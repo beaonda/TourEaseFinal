@@ -1,0 +1,10 @@
+.bodycont {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 20px;
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    overflow: hidden;
+    background-size: cover; /* Adjust as needed */
+    background-position: center center; /* Adjust as needed */
+    background-repeat: no-repeat;
+}
