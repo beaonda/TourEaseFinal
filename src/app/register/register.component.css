@@ -215,6 +215,10 @@ display-flex, .signup-content, .form-row, .label-flex, .form-radio-group {
     background-position: center center; /* Adjust as needed */
     background-repeat: no-repeat;
   }
+
+  .container{
+    padding: 0;
+  }
   
   .selects{
     font-size: 14px;
@@ -269,8 +273,16 @@ display-flex, .signup-content, .form-row, .label-flex, .form-radio-group {
       width: 50%;
       padding: 0 30px; }
   
+      .form-select{
+        border: none;
+      }
+      .margin{
+        
+        padding: 0;
+      }
   .form-input, .form-select, .form-radio {
     margin-bottom: 23px; }
+
   
   label, input {
     display: block;
