@@ -8,7 +8,7 @@ import { AdminNavComponent } from '../admin-nav/admin-nav.component';
   declarations: [],
   imports: [
     CommonModule,
-    AdminNavComponent,
+    AdminNavComponent
   ]
 })
-export class DashboardModule { }
+export class ManagepostsModule { }

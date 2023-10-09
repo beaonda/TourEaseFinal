@@ -24,16 +24,16 @@
                            
                             <div class="form-input">
                                 <label for="first_name" class="required">First name</label>
-                                <input type="text" name="first_name" id="first_name" />
+                                <input [(ngModel)]="fname" type="text" name="first_name" id="first_name" />
                             </div>
                             <div class="form-input">
                                 <label for="last_name" class="required">Last name</label>
-                                <input type="text" name="last_name" id="last_name" />
+                                <input [(ngModel)]="lname" type="text" name="last_name" id="last_name" />
                             </div>
 
                             <div class="form-input">
                                 <label for="middle_name" class="required">Middle name</label>
-                                <input type="text" name="middle_name" id="middle_name" />
+                                <input [(ngModel)]="mname" type="text" name="middle_name" id="middle_name" />
                             </div>
 
                          
@@ -46,10 +46,10 @@
                         <div class="form-group">
                             <div class="form-select margin">
                                 <div class="label-flex">
-                                    <label for="meal_preference">Gender</label>
+                                    <label for="gender">Gender</label>
                                 </div>
                                 <div class="select-list">
-                                    <select name="meal_preference" class="selects"id="meal_preference">
+                                    <select [(ngModel)]="gender" name="gender" class="selects"id="meal_preference">
                                         <option value="Vegetarian">Male</option>
                                         <option value="Kosher">Female</option>
                                         <option value="Asian Vegetarian">Rather Not Say</option>
@@ -81,11 +81,11 @@
                             </div> -->
                             <div class="form-input" style="margin-top: -13%;">
                                 <label for="bday">Birthday</label>
-                                <input type="date" name="bday" id="bday" />
+                                <input [(ngModel)]="bday" type="date" name="bday" id="bday" />
                             </div>
                             <div class="form-input">
                                 <label for="phone_number" class="required">Phone number</label>
-                                <input type="text" name="phone_number" id="phone_number" />
+                                <input [(ngModel)]="contact" type="text" name="phone_number" id="phone_number" />
                             </div>
                        
                          
@@ -99,36 +99,36 @@
                        
                     <div class="form-input">
                         <label for="email" class="required">Email</label>
-                        <input type="text" name="email" id="email" />
+                        <input [(ngModel)]="email" type="text" name="email" id="email" />
                     </div>
 
                     <div class="form-input">
                         <label for="country" class="required">Country</label>
-                        <input type="text" name="country" id="country" />
+                        <input [(ngModel)]="country" type="text" name="country" id="country" />
                     </div>
 
                     
                     <div class="form-input">
                         <label for="prov" class="required">Province</label>
-                        <input type="text" name="prov" id="prov" />
+                        <input [(ngModel)]="province" type="text" name="prov" id="prov" />
                     </div>
 
                     
                     <div class="form-input">
                         <label for="city" class="required">City/Municipality</label>
-                        <input type="text" name="city" id="city" />
+                        <input [(ngModel)]="city" type="text" name="city" id="city" />
                     </div>
 
                     
                     <div class="form-input">
                         <label for="exact" class="required">Exact Address</label>
-                        <input type="text" name="exact" id="exact" />
+                        <input [(ngModel)]="exact_add" type="text" name="exact" id="exact" />
                     </div>
 
                     <div class="form-group">
                         <div class="form-input">
                             <label for="uname">Username</label>
-                            <input type="text" name="uname" id="uname" />
+                            <input [(ngModel)]="uname" type="text" name="uname" id="uname" />
                         </div>
 
                     </div>
@@ -136,16 +136,16 @@
                     
                         <div class="form-group">
                             <div class="form-input">
-                                <label for="uname">Password</label>
-                                <input type="text" name="uname" id="uname" />
+                                <label for="pword">Password</label>
+                                <input [(ngModel)]="pword" type="text" name="pword" id="pword" />
                             </div>
                          
                         </div>
 
                         <div class="form-group">
                             <div class="form-input">
-                                <label for="uname">Re-enter Password</label>
-                                <input type="text" name="uname" id="uname" />
+                                <label for="pword2">Re-enter Password</label>
+                                <input [(ngModel)]="pword2" type="text" name="pword2" id="pword2" />
                             </div>
                          
                           
@@ -168,8 +168,9 @@
                         </div>
                     </div> -->
                     <div class="form-submit">
-                        <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
-                        <input type="submit" value="Reset" class="submit" id="reset" name="reset" />
+                        <button class="submit" id="reset">Reset</button>
+                        <button (click)="signUp()" type="submit" class="submit" id="submit">Submit</button>
+                        
                     </div>
                 </form>
             </div>

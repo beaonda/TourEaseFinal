@@ -1,272 +1,188 @@
+<app-admin-nav></app-admin-nav>
+<div class="main">
+    <div class="topbar">
+        <div class="toggle">
+            <!-- <ion-icon name="menu-outline"></ion-icon> -->
+        </div>
 
-<div class="g-sidenav-show bg-gray-100">
-<div class="min-height-300 bg-primary position-absolute w-100"></div>
-<app-sidenav></app-sidenav>
-<main class="main-content position-relative border-radius-lg ">
-<app-navbar></app-navbar>
-    <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">New Users</p>
-                    <h5 class="font-weight-bolder">
-                     +126
-                    </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+55%</span>
-                      since yesterday
-                    </p>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                    <i class="fas fa-user text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="search">
+            <label>
+                <input type="text" placeholder="Search here">
+                <!-- <ion-icon name="search-outline"></ion-icon> -->
+            </label>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Users</p>
-                    <h5 class="font-weight-bolder">
-                     10,290
-                    </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+3%</span>
-                      since last week
-                    </p>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                    <i class="fas fa-users text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Tourist Spots</p>
-                    <h5 class="font-weight-bolder">
-                      890
-                    </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">-10%</span>
-                      since last year
-                    </p>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                    <i class="fas fa-church text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">New Tourist Spot</p>
-                    <h5 class="font-weight-bolder">
-                      +10
-                    </h5>
-                    <p class="mb-0">
-                      <span class="text-success text-sm font-weight-bolder">+5%</span> than last month
-                    </p>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-lg-7 mb-lg-0 mb-4">
-          <div class="card z-index-2 h-100">
-            <div class="card-header pb-0 pt-3 bg-transparent">
-              <h6 class="text-capitalize">User's Interaction</h6>
-              <p class="text-sm mb-0">
-                <i class="fa fa-arrow-up text-success"></i>
-                <span class="font-weight-bold">4% more</span> in 2021
-              </p>
-            </div>
-            <div class="card-body p-3">
-              <div class="chart">
-                <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <div class="card card-carousel overflow-hidden h-100 p-0">
-            <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
-              <div class="carousel-inner border-radius-lg h-100">
-                <div class="carousel-item h-100 active" style="background-image: url('../../../assets/img/bg-Nasugbu.png');
-      background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                      <i class="ni ni-camera-compact text-dark opacity-10"></i>
-                    </div>
-                    <h5 class="text-white mb-1">Get started with Argon</h5>
-                    <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
-                  </div>
-                </div>
-                <div class="carousel-item h-100" style="background-image: url('../../../assets/img/bg-Mabini.png');
-      background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                      <i class="ni ni-bulb-61 text-dark opacity-10"></i>
-                    </div>
-                    <h5 class="text-white mb-1">Faster way to create web pages</h5>
-                    <p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
-                  </div>
-                </div>
-                <div class="carousel-item h-100" style="background-image: url('../../../assets/img/bg-Nasugbu.png');
-      background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
-                    <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
-                      <i class="ni ni-trophy text-dark opacity-10"></i>
-                    </div>
-                    <h5 class="text-white mb-1">Share with us your design tips!</h5>
-                    <p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
-                  </div>
-                </div>
-              </div>
-              <button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-lg-7 mb-lg-0 mb-4">
-          <div class="card ">
-            <div class="card-header pb-0 p-3">
-              <div class="d-flex justify-content-between">
-                <h6 class="mb-2">Newest Added Tourist Spots</h6>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-items-center ">
-                <tbody>
-                  <tr>
-                    
-                    
-                    <td class="w-30">
-                     
-                      
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">Name</p>
-                          <h6 class="text-sm mb-0">Villa Neyra</h6>
-                        </div>
-                   
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Location</p>
-                        <h6 class="text-sm mb-0">Mabini Batangas</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Filter</p>
-                        <h6 class="text-sm mb-0">Resort</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">User Rating</p>
-                        <h6 class="text-sm mb-0">80%</h6>
-                      </div>
-                    </td>
-                 
-                  </tr>
 
-
-                  <tr>
-                    <td class="w-30">
-                     
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">Name</p>
-                          <h6 class="text-sm mb-0">Taal Volcano</h6>
-                        </div>
-                      
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Location</p>
-                        <h6 class="text-sm mb-0">Taal Batangas</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Filter</p>
-                        <h6 class="text-sm mb-0">View</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">User Rating
-                        <h6 class="text-sm mb-0">99%</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  
-                 
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <div class="user">
+            <img src="../../../assets/img/customer01.jpg" alt="">
         </div>
-        <div class="col-lg-5">
-          <div class="card">
-            <div class="card-header pb-0 p-3">
-              <h6 class="mb-0">Categories</h6>
-            </div>
-       
-              <div class="card-body p-3">
-                <div class="chart">
-                  <canvas id="pie-chart" class="chart-canvas" height="300px"></canvas>
-                </div>
-      
-            </div>
-            </div>
-          </div>
-      
-      </div>
-      
     </div>
-  </main>
+
+    <!-- ======================= Cards ================== -->
+    <div class="cardBox">
+        <div class="card">
+            <div>
+                <div class="numbers">+1,504</div>
+                <div class="cardName">New Users</div>
+            </div>
+
+            <div class="iconBx">
+                <!-- <ion-icon name="person-outline"></ion-icon> -->
+            </div>
+        </div>
+
+        <div class="card">
+            <div>
+                <div class="numbers">800,000</div>
+                <div class="cardName">Total Users</div>
+            </div>
+
+            <div class="iconBx">
+               <!--  <ion-icon name="people-outline"></ion-icon> -->
+            </div>
+        </div>
+
+        <div class="card">
+            <div>
+                <div class="numbers">284</div>
+                <div class="cardName">Total Tourist Spots</div>
+            </div>
+
+            <div class="iconBx">
+                <!-- <ion-icon name="business-outline"></ion-icon> -->
+            </div>
+        </div>
+
+        <div class="card">
+            <div>
+                <div class="numbers">+10</div>
+                <div class="cardName">New Tourist Spot</div>
+            </div>
+
+            <div class="iconBx">
+                <!-- <ion-icon name="add-outline"></ion-icon> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ================ Add Charts JS ================= -->
+    <div class="chartsBx">
+        <div class="chart"> <canvas id="chart-1"></canvas> </div>
+        <div class="chart"> <canvas id="chart-2"></canvas> </div>
+    </div>
+
+    <!-- ================ Order Details List ================= -->
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>Newest Added Tourist Spots</h2>
+                <a href="#" class="btn">View All</a>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Location</td>
+                        <td>Filter</td>
+                        <td>User Ratings</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Villa Neyra</td>
+                        <td>Mabini Batangas</td>
+                        <td>Resort</td>
+                        <td><span class="status delivered">80%</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Taal Volcano</td>
+                        <td>Taal Batangas</td>
+                        <td>View</td>
+                        <td><span class="status pending">70%</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Batangas State University</td>
+                        <td>Batangas City</td>
+                        <td>School</td>
+                        <td><span class="status return">10%</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>Gulogod Baboy</td>
+                        <td>Mabini Batangas</td>
+                        <td>Hikes and Trail</td>
+                        <td><span class="status inProgress">50%</span></td>
+                    </tr>
+
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td><span class="status pending">Pending</span></td>
+                    </tr>
+
+                   
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ================= New Customers ================ -->
+        <div class="recentCustomers">
+            <div class="cardHeader">
+                <h2>Recent Users</h2>
+            </div>
+
+            <table>
+                <tr>
+                    <td width="60px">
+                        <div class="imgBx"><img src="../../../assets/img/customer02.jpg" alt=""></div>
+                    </td>
+                    <td>
+                        <h4>Marie Kaila<br> <span>0 Badge</span></h4>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="60px">
+                        <div class="imgBx"><img src="../../../assets/img/customer01.jpg" alt=""></div>
+                    </td>
+                    <td>
+                        <h4>Krystel Macatay <br> <span>Beginner</span></h4>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="60px">
+                        <div class="imgBx"><img src="../../../assets/img/customer02.jpg" alt=""></div>
+                    </td>
+                    <td>
+                        <h4>Bea Onda <br> <span>Developer</span></h4>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="60px">
+                        <div class="imgBx"><img src="../../../assets/img/customer01.jpg" alt=""></div>
+                    </td>
+                    <td>
+                        <h4>Harry Styles <br> <span>Verified</span></h4>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="60px">
+                        <div class="imgBx"><img src="../../../assets/img/customer02.jpg" alt=""></div>
+                    </td>
+                    <td>
+                        <h4>David <br> <span>No Badge</span></h4>
+                    </td>
+                </tr>
+
+                
+            </table>
+        </div>
+    </div>
 </div>

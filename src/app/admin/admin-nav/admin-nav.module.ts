@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidenavComponent } from '../sidenav/sidenav.component';
+import { AdminComponent } from 'src/app/login/admin/admin.component';
 
 
 
@@ -8,8 +8,9 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
   declarations: [],
   imports: [
     CommonModule
-  ], exports: [
-    SidenavComponent
+  ],
+  exports: [
+    AdminComponent
   ]
 })
-export class NavbarModule { }
+export class AdminNavModule { }
