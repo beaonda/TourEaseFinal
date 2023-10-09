@@ -23,7 +23,7 @@ export class SidenavModule {
         damping: '0.5'
       }
    /*    Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options); */
-      
+      /* Test Commit */
     }
   }
 }
