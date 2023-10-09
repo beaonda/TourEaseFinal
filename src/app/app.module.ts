@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
+import { NewPostComponent } from './new-post/new-post.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/f
     GetstartedComponent,
     RegisterComponent,
     VerifyComponent,
+    NewPostComponent,
     AdminNavComponent,
     ManageusersComponent,
     ManagespotsComponent,

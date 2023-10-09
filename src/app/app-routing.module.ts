@@ -14,6 +14,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ManageusersComponent } from './admin/manageusers/manageusers.component';
 import { ManagepostsComponent } from './admin/manageposts/manageposts.component';
 import { ManagespotsComponent } from './admin/managespots/managespots.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 const routes: Routes = [
   
@@ -32,6 +33,7 @@ const routes: Routes = [
       { path: 'getstarted', component:GetstartedComponent},
       {path: 'register', component:RegisterComponent},
       {path: 'verify', component:VerifyComponent},
+      {path: 'new_post', component:NewPostComponent},
       {path: 'admin/dashboard', component:DashboardComponent},
       {path: 'admin/users', component:ManageusersComponent},
       {path: 'admin/posts', component:ManagepostsComponent},
