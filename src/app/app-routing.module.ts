@@ -11,6 +11,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { GetstartedComponent } from './getstarted/getstarted.component';
 import { RegisterComponent } from './register/register.component';
 import { VerifyComponent } from './verify/verify.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 const routes: Routes = [
   
@@ -29,7 +30,8 @@ const routes: Routes = [
       { path: 'admin/dashboard', component:DashboardComponent},
       { path: 'getstarted', component:GetstartedComponent},
       {path: 'register', component:RegisterComponent},
-      {path: 'verify', component:VerifyComponent}
+      {path: 'verify', component:VerifyComponent},
+      {path: 'new_post', component:NewPostComponent}
     ])],
   exports: [RouterModule]
 })

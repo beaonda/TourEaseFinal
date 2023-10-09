@@ -18,6 +18,7 @@ import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { GetstartedComponent } from './getstarted/getstarted.component';
 import { RegisterComponent } from './register/register.component';
 import { VerifyComponent } from './verify/verify.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { VerifyComponent } from './verify/verify.component';
     SidenavComponent,
     GetstartedComponent,
     RegisterComponent,
-    VerifyComponent
+    VerifyComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,
