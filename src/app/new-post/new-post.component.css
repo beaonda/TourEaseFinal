@@ -1,0 +1,46 @@
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.btn-group {
+    margin-bottom: 10px;
+  }
+  
+
+.rating label {
+    cursor: pointer;
+    width: 30px;
+    font-size: 30px;
+    color: #ddd;
+    text-align: center;
+}
+
+.rating label:before {
+    content: '\2605';
+}
+
+.rating input[type="radio"]:checked ~ label {
+    color: #FFD700;
+}
+
+
+/* Example styles for file input */
+.form-control-file {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
