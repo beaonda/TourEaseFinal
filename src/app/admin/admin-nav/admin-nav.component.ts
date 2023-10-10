@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-nav.component.css', '../../../assets/css/adminPages.css']
 })
 export class AdminNavComponent {
-
+  ngOnInit(){
+    
+  }
 }
