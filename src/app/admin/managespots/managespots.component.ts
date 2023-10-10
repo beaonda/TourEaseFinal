@@ -65,6 +65,8 @@ export class ManagespotsComponent {
 
   }
 
+  
+
   uploadData(){
     let tourismData = {
       tourismID:this.firestore.createId(),
@@ -72,7 +74,7 @@ export class ManagespotsComponent {
       city:this.city,
       category:this.category,
       status:this.status,
-      desc:this.description,
+      desc:"No Description Yet",
       photo:"No Photo Yet"
     }
     let counter = 0;
