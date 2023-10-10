@@ -16,6 +16,19 @@
   --black2: #999;
 }
 
+.search label .iconbi {
+  position: absolute;
+  top: 0;
+ margin-top: 5px;
+  left: 10px;
+  font-size: 1.3rem;
+}
+
+.navigation ul li a .icon .iconbi {
+  font-size: 1.60rem;
+
+}
+
 body {
   min-height: 100vh;
   overflow-x: hidden;

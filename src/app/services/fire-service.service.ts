@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class FireServiceService {
   user:any;
+  destiItem:any;
+  desti:any;
 
   constructor(
     public auth: AngularFireAuth, 
@@ -19,12 +21,21 @@ export class FireServiceService {
     auth.authState.subscribe(user => {
       this.user = user;
     });
+
+    this.destinationCollection = firestore.collection<Destination>('tourist_spots', (ref) =>ref.orderBy('estName'));
+    this.destiItems = this.destinationCollection.valueChanges();
   }
 
   private usersCollection: AngularFirestoreCollection<User>;
   items: Observable<User[]>;
-  addUserItem(item: User) {
+  addUserItem(item: User) { 
     this.usersCollection.add(item);
+  }
+
+  private destinationCollection: AngularFirestoreCollection<Destination>;
+  destiItems: Observable<Destination[]>;
+  addDestinationItem(destiItem: Destination) {
+    this.destinationCollection.add(destiItem);
   }
 
   getAuth(){
@@ -39,6 +50,14 @@ export class FireServiceService {
   saveDetails(data:any) {
     return this.firestore.collection("users").doc(data.uId).set(data);
   }
+  saveTouristDestion(data:any){
+    return this.firestore.collection("tourist_spots").doc(data.tourismID).set(data);
+  }
+
+  getAllTouristDestinations(){
+    return this.destinationCollection;
+  }
+
   getUserDetails(data:any) {
     return this.firestore.collection("users").doc(data.uId).valueChanges();
   }
@@ -56,5 +75,9 @@ export class FireServiceService {
 
 
 export interface User{
+
+}
+
+export interface Destination{
 
 }

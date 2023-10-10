@@ -1,0 +1,116 @@
+<div class="header__wrapper">
+    <header></header>
+    <div class="cols__container">
+      <div class="left__col">
+        <div class="img__container">
+            <img src="../../assets/img/kai_profile.jpg" alt="Kaila Guerrero" />
+            <span></span>
+        </div>
+        <h2>Kaila Guerrero</h2>
+        <p>@guerrerokai</p>
+        <button id="follow-button">Follow</button>
+        <button id="settings-button">
+            <i class="bi bi-gear"></i>  
+        </button>
+        <ul class="about">
+            <li><span>4,073</span>Followers</li>
+            <li><span>322</span>Following</li>
+            <li><span>200,543</span>Blog Posts</li>
+        </ul>
+        <div class="content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam
+                erat volutpat. Morbi imperdiet, mauris ac auctor dictum, nisl
+                ligula egestas nulla.
+            </p>
+            <ul>
+                <li><i class="fab fa-twitter"></i></li>
+                <li><i class="fab fa-instagram"></i></li>
+                <li><i class="fab fa-facebook"></i></li>
+            </ul>
+            
+        </div>
+    </div>
+        <div class="right__col">
+            <nav>
+                <ul>
+                    <li><a (click)="showSection('blogs')" data-section="blogs">blogs</a></li>
+                    <li><a (click)="showSection('photos')" data-section="photos">photos</a></li>
+                    <li><a (click)="showSection('badge')" data-section="badge">badge</a></li>
+                </ul>
+                <button id="home-button">
+                    <i class="fa-solid fa-house"></i> Go Back Home 
+                </button>
+            </nav>
+
+            <!-- Blogs Section -->
+            <div id="blogs" class="blogs__section content-section">
+              <h3>Blogs</h3>
+              <div class="blog__post">
+                  <img src="../../assets/img/img_1.avif" alt="Blog Post 1" />
+                  <h4>Exploring the Beautiful Beaches</h4>
+                  <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
+                      dolor at eros vehicula hendrerit.
+                  </p>
+                  <a href="#">Read more</a>
+              </div>
+              <div class="blog__post">
+                  <img src="../../assets/img/img_2.avif" alt="Blog Post 2" />
+                  <h4>A Culinary Journey Through the City</h4>
+                  <p>
+                      Vestibulum a nisl vitae lectus vehicula fermentum. Phasellus at
+                      orci eget ligula placerat semper.
+                  </p>
+                  <a href="#">Read more</a>
+              </div>
+              <div class="blog__post">
+                  <img src="../../assets/img/img_3.avif" alt="Blog Post 3" />
+                  <h4>Hiking Adventures in the Mountains</h4>
+                  <p>
+                      Nullam euismod, velit id posuere vulputate, tortor risus vehicula
+                      nisi, eu dignissim erat nunc ut nulla.
+                  </p>
+                  <a href="#">Read more</a>
+              </div>
+            </div>
+            <!-- End of Blogs Section -->
+
+            <!-- Photos Section -->
+            <div id="photos" class="photos content-section">
+                <h3>Photos</h3>
+                <div class="photo-gallery">
+                    <img class="zoomable" src="../../assets/img/img_1.avif" alt="Photo" />
+                    <img class="zoomable" src="../../assets/img/img_2.avif" alt="Photo" />
+                    <img class="zoomable" src="../../assets/img/img_3.avif" alt="Photo" />
+                    <img class="zoomable" src="../../assets/img/img_4.avif" alt="Photo" />
+                    <img class="zoomable" src="../../assets/img/img_5.avif" alt="Photo" />
+                    <img class="zoomable" src="../../assets/img/img_6.avif" alt="Photo" />
+                </div>
+            </div>
+            <!-- End of Photos Section -->
+
+            <!-- Modal for Zoomed-in Photo -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="closeModal()">&times;</span>
+                    <img id="zoomedImg" class="modal-img" src="" alt="Zoomed Photo">
+                </div>
+            </div>
+
+            <!-- Badge Section -->
+            <div id="badge" class="badge__section content-section">
+              <h3>Badges</h3>
+              <div class="badge__item">
+                  <img src="../../assets/img/badge.png" alt="First Blog Post Badge" />
+                  <h4>First Blog Post Badge</h4>
+                  <p>
+                      Congratulations on writing your first blog post! You've officially
+                      joined the blogging community.
+                  </p>
+              </div>
+            </div>
+            <!-- End of Badge Section -->
+        </div>
+    </div>
+</div>

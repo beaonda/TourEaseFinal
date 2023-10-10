@@ -28,6 +28,7 @@ import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/aut
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { NewPostComponent } from './new-post/new-post.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { NewPostComponent } from './new-post/new-post.component';
     AdminNavComponent,
     ManageusersComponent,
     ManagespotsComponent,
-    ManagepostsComponent
+    ManagepostsComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

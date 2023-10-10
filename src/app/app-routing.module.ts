@@ -15,6 +15,8 @@ import { ManageusersComponent } from './admin/manageusers/manageusers.component'
 import { ManagepostsComponent } from './admin/manageposts/manageposts.component';
 import { ManagespotsComponent } from './admin/managespots/managespots.component';
 import { NewPostComponent } from './new-post/new-post.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 
 const routes: Routes = [
   
@@ -37,7 +39,8 @@ const routes: Routes = [
       {path: 'admin/dashboard', component:DashboardComponent},
       {path: 'admin/users', component:ManageusersComponent},
       {path: 'admin/posts', component:ManagepostsComponent},
-      {path: 'admin/spots', component:ManagespotsComponent}
+      {path: 'admin/spots', component:ManagespotsComponent},
+      {path: 'profile', component:UserProfileComponent}
     ])],
   exports: [RouterModule]
 })
