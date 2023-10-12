@@ -29,6 +29,7 @@ import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/f
 
 import { NewPostComponent } from './new-post/new-post.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ManageusersComponent,
     ManagespotsComponent,
     ManagepostsComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ForgotPassComponent
   ],
   imports: [
     BrowserModule,
