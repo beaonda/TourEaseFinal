@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
+   
 }
 
 .rating input[type="radio"] {
@@ -15,8 +16,8 @@
 
 .rating label {
     cursor: pointer;
-    width: 30px;
-    font-size: 30px;
+    width: 50px;
+    font-size: 50px;
     color: #ddd;
     text-align: center;
 }
@@ -44,3 +45,57 @@
     border-radius: .25rem;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
+
+.addloc{
+    background: #21757f;
+    border: 0;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    width: 66%;
+    max-height: 80%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.116);
+    box-sizing: border-box;
+}
+
+
+
+.popup-content {
+    background-color: #fefefe;
+    padding: 48px;
+    border: 1px solid #888;
+    width: 100%;
+    height: 100%;
+    color: black;
+    box-sizing: border-box;
+}
+
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #21757F;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+

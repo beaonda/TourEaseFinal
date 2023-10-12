@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminNavComponent } from '../admin-nav/admin-nav.component';
+import { AdminNavModule } from '../admin-nav/admin-nav.module';
 
 
 
@@ -8,7 +9,7 @@ import { AdminNavComponent } from '../admin-nav/admin-nav.component';
   declarations: [],
   imports: [
     CommonModule,
-    AdminNavComponent
+    AdminNavModule
   ]
 })
 export class ManagepostsModule { }
