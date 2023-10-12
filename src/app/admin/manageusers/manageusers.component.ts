@@ -11,6 +11,8 @@ import { map } from 'rxjs/operators';
 export class ManageusersComponent {
   usersList:any;
   user:any;
+  isModalOpen = false;
+  popups:any;
   constructor(
     public fireService:FireServiceService,
     public router:Router
@@ -20,6 +22,20 @@ export class ManageusersComponent {
 
   ngOnInit(){
     this.retrieveUsers();
+  }
+
+  viewUser(){
+    var popups = document.querySelectorAll('.popup'); 
+    var viewPopUp = document.querySelector("#viewPopUp");
+    (viewPopUp as HTMLElement).style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeView(){
+    var closeButtons = document.querySelector('.close');
+    var viewPopUp = document.querySelector("#viewPopUp");
+    (viewPopUp as HTMLElement).style.display = 'none';
+    document.body.style.overflow = 'auto';
   }
 
   retrieveUsers(): void {
