@@ -73,7 +73,6 @@ export class ManagespotsComponent {
       estName:this.placeName,
       city:this.city,
       category:this.category,
-      status:this.status,
       desc:"No Description Yet",
       photo:"No Photo Yet"
     }
@@ -95,6 +94,7 @@ export class ManagespotsComponent {
             this.resetAdd();
           }else{
             this.closeAdd();
+            this.resetAdd();
           }
           
         }, err=>{

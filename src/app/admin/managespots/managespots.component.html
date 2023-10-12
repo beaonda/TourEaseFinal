@@ -21,6 +21,15 @@
    
     <!-- ================ Order Details List ================= -->
     <div class="regdetails">
+        <div class="row">
+            <div class="col">
+                <button type="button" (click)="addOne()" class="addOneBtn btn btn-primary">Add</button>
+                
+            </div>
+            <div class="col">
+                <button type="button" (click)="addMany()" class="btn btn-success" style="margin-left: -89%;">Add Many</button>
+            </div>
+        </div>
         <div class="recentOrders">
             <div class="cardHeader">
                 <h2>Spots</h2>
@@ -30,60 +39,24 @@
             <table>
                 <thead>
                     <tr>
-                        <td>Date</td>
-                        <td>Time</td>
-                        <td>Name of Establishment</td>
-                        <td>Location</td>
-                        <td>Filter</td>
-                        <td>View</td>
+                        <td>Name of Place</td>
+                        <td>City/Municipality</td>
+                        <td>Category</td>
+                        <!-- <td>Status</td> -->
+                        <td>View Photo</td>
                         <td>Action</td>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>dd/mm/yyyy</td>
-                        <td>00:00</td>
-                        <td>Villa Neyra</td>
-                        <td>Mabini Batangas</td>
-                        <td>Beaches & Resort</td>
+                    <tr *ngFor = "let dest of destList">
+                        <td>{{dest.estName}}</td>
+                        <td>{{dest.city}}</td>
+                        <td>{{dest.category}}</td>
+                        <!-- <td>{{dest.status}}</td> -->
                         <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>Other Information</h2>
-                                    <div>
-                                        <br>
-                                        <strong>Description</strong>
-                                        <br>
-                                       <p>hellllllllllllllllllllllllllllllllllllllllllllllllllllllllooooooooooooooooooooooooooo</p>
-                                        <br>
-                                        <strong>Photos</strong>
-                                      
-                                    </div>
-                                </div>
-                            </div>
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a href="#" class="accept">Accept</a>
-                                    <a href="#" class="reject">Reject</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>dd/mm/yyyy</td>
-                        <td>00:00</td>
-                        <td>Villa Neyra</td>
-                        <td>Mabini Batangas</td>
-                        <td>Beaches & Resort</td>
-                        <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
+                            <button class="viewButton" (click) = "viewSpot()">View</button>
+                            <!-- <div class="popup">
                                 <div class="popup-content">
                                     <span class="close">&times;</span>
                                     <h2>All Information</h2>
@@ -102,296 +75,9 @@
                             <div class="decision-dropdown">
                                 <button class="decision-button">Select</button>
                                 <div class="dropdown-content">
-                                    <a href="#" class="accept">Accept</a>
-                                    <a href="#" class="reject">Reject</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>dd/mm/yyyy</td>
-                        <td>00:00</td>
-                        <td>Villa Neyra</td>
-                        <td>Mabini Batangas</td>
-                        <td>Beaches & Resort</td>
-                        <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>All Information</h2>
-                                    <div>
-                                        <strong>User Information</strong>
-                                        <br>
-                                        <strong>Last Name:</strong> Guerrero<br>
-                                        <strong>First Name:</strong> Marie Kaila<br>
-                                        <strong>Middle Name:</strong> [Add Middle Name here]
-                                    </div>
-                                </div>
-                            </div>
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a href="#" class="accept">Accept</a>
-                                    <a href="#" class="reject">Reject</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>dd/mm/yyyy</td>
-                        <td>00:00</td>
-                        <td>Villa Neyra</td>
-                        <td>Mabini Batangas</td>
-                        <td>Beaches & Resort</td>
-                        <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>All Information</h2>
-                                    <div>
-                                        <strong>User Information</strong>
-                                        <br>
-                                        <strong>Last Name:</strong> Guerrero<br>
-                                        <strong>First Name:</strong> Marie Kaila<br>
-                                        <strong>Middle Name:</strong> [Add Middle Name here]
-                                    </div>
-                                </div>
-                            </div>
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a href="#" class="accept">Accept</a>
-                                    <a href="#" class="reject">Reject</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>dd/mm/yyyy</td>
-                        <td>00:00</td>
-                        <td>Villa Neyra</td>
-                        <td>Mabini Batangas</td>
-                        <td>Beaches & Resort</td>
-                        <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>All Information</h2>
-                                    <div>
-                                        <strong>User Information</strong>
-                                        <br>
-                                        <strong>Last Name:</strong> Guerrero<br>
-                                        <strong>First Name:</strong> Marie Kaila<br>
-                                        <strong>Middle Name:</strong> [Add Middle Name here]
-                                    </div>
-                                </div>
-                            </div>
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a href="#" class="accept">Accept</a>
-                                    <a href="#" class="reject">Reject</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>dd/mm/yyyy</td>
-                        <td>00:00</td>
-                        <td>Villa Neyra</td>
-                        <td>Mabini Batangas</td>
-                        <td>Beaches & Resort</td>
-                        <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>All Information</h2>
-                                    <div>
-                                        <strong>User Information</strong>
-                                        <br>
-                                        <strong>Last Name:</strong> Guerrero<br>
-                                        <strong>First Name:</strong> Marie Kaila<br>
-                                        <strong>Middle Name:</strong> [Add Middle Name here]
-                                    </div>
-                                </div>
-                            </div>
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a href="#" class="accept">Accept</a>
-                                    <a href="#" class="reject">Reject</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>dd/mm/yyyy</td>
-                        <td>00:00</td>
-                        <td>Villa Neyra</td>
-                        <td>Mabini Batangas</td>
-                        <td>Beaches & Resort</td>
-                        <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>All Information</h2>
-                                    <div>
-                                        <strong>User Information</strong>
-                                        <br>
-                                        <strong>Last Name:</strong> Guerrero<br>
-                                        <strong>First Name:</strong> Marie Kaila<br>
-                                        <strong>Middle Name:</strong> [Add Middle Name here]
-                                    </div>
-                                </div>
-                            </div>
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a href="#" class="accept">Accept</a>
-                                    <a href="#" class="reject">Reject</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>dd/mm/yyyy</td>
-                        <td>00:00</td>
-                        <td>Villa Neyra</td>
-                        <td>Mabini Batangas</td>
-                        <td>Beaches & Resort</td>
-                        <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>All Information</h2>
-                                    <div>
-                                        <strong>User Information</strong>
-                                        <br>
-                                        <strong>Last Name:</strong> Guerrero<br>
-                                        <strong>First Name:</strong> Marie Kaila<br>
-                                        <strong>Middle Name:</strong> [Add Middle Name here]
-                                    </div>
-                                </div>
-                            </div>
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a href="#" class="accept">Accept</a>
-                                    <a href="#" class="reject">Reject</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>dd/mm/yyyy</td>
-                        <td>00:00</td>
-                        <td>Villa Neyra</td>
-                        <td>Mabini Batangas</td>
-                        <td>Beaches & Resort</td>
-                        <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>All Information</h2>
-                                    <div>
-                                        <strong>User Information</strong>
-                                        <br>
-                                        <strong>Last Name:</strong> Guerrero<br>
-                                        <strong>First Name:</strong> Marie Kaila<br>
-                                        <strong>Middle Name:</strong> [Add Middle Name here]
-                                    </div>
-                                </div>
-                            </div>
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a href="#" class="accept">Accept</a>
-                                    <a href="#" class="reject">Reject</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>dd/mm/yyyy</td>
-                        <td>00:00</td>
-                        <td>Villa Neyra</td>
-                        <td>Mabini Batangas</td>
-                        <td>Beaches & Resort</td>
-                        <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>All Information</h2>
-                                    <div>
-                                        <strong>User Information</strong>
-                                        <br>
-                                        <strong>Last Name:</strong> Guerrero<br>
-                                        <strong>First Name:</strong> Marie Kaila<br>
-                                        <strong>Middle Name:</strong> [Add Middle Name here]
-                                    </div>
-                                </div>
-                            </div>
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a href="#" class="accept">Accept</a>
-                                    <a href="#" class="reject">Reject</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>dd/mm/yyyy</td>
-                        <td>00:00</td>
-                        <td>Villa Neyra</td>
-                        <td>Mabini Batangas</td>
-                        <td>Beaches & Resort</td>
-                        <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>All Information</h2>
-                                    <div>
-                                        <strong>User Information</strong>
-                                        <br>
-                                        <strong>Last Name:</strong> Guerrero<br>
-                                        <strong>First Name:</strong> Marie Kaila<br>
-                                        <strong>Middle Name:</strong> [Add Middle Name here]
-                                    </div>
-                                </div>
-                            </div>
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a href="#" class="accept">Accept</a>
-                                    <a href="#" class="reject">Reject</a>
+                                    <a href="#" class="edit">Edit</a>
+                                    <a href="#" class="archive">Archive</a>
+                                    <a href="#" class="feature">Feature</a>
                                 </div>
                             </div>
                         </td>
@@ -529,14 +215,14 @@
                     </div>
         
         
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="status">Status</label>
                         <select id="status" name="status" required>
                             <option value="default">Select</option>
 
                             <option value="registered">Registered</option>
                             <option value="notRegistered">Not Registered</option>
-                        </select></div>
+                        </select></div> -->
             <br>
                     <div class="form-group">
                         <label for="description">Description</label>
