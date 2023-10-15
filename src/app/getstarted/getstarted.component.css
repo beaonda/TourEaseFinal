@@ -1,3 +1,16 @@
+@import '../../assets/css/variables.css';
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label, button, .option-button {
+  font-family: var(--font-primary);
+}
+
 .section {
     display: none;
     margin-top: 40px;
@@ -30,7 +43,6 @@ button {
   
 
 .bodycont {
-    font-family: Arial, sans-serif;
     text-align: center;
     margin: 0 auto;
     padding: 20px;
