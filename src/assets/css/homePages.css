@@ -18,6 +18,8 @@
 @import '../../../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 @import '../../../node_modules/aos/dist/aos.css';
 @import './variables.css';
+
+
   
   body {
     color: rgba(var(--color-primary-rgb), 1);
@@ -33,13 +35,16 @@
     text-decoration: none;
   }
   
+  .span.date{
+    color: #0a3c42;
+  }
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6 {
-    font-family: var(--font-primary);
+  h6,a,label,p, button {
+    font-family:Arial, Helvetica, sans-serif;
   }
   
   #main {
@@ -55,12 +60,12 @@
   }
   
   .section-header {
-    border-bottom: 2px solid var(--color-black);
+    border-bottom: 2px solid #0a3c42;
   }
   
   .section-header h2 {
     font-size: 50px;
-    color: var(--color-black);
+    color: #0a3c42;
   }
   
   .section-header p {
@@ -487,7 +492,7 @@
     text-transform: uppercase;
     font-weight: 600;
     font-family: var(--font-secondary);
-    color: rgba(var(--color-black-rgb), 0.4);
+    color:#0a3c4299;
     margin-bottom: 10px;
   }
   
@@ -736,6 +741,7 @@
     position: relative;
     display: inline-block;
     padding-bottom: 5px;
+    color: #0a3c42;
   }
   
   .more:before {
@@ -745,7 +751,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--color-black);
+    background: #0a3c42;
   }
   
   .post-content {
@@ -762,7 +768,7 @@
   
   .post-content .firstcharacter {
     float: left;
-    font-family: Georgia;
+    font-family: (--font-primary);
     font-size: 75px;
     line-height: 60px;
     padding-top: 4px;
