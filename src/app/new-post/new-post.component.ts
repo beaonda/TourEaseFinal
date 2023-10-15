@@ -36,6 +36,7 @@ export class NewPostComponent {
   time:any;
   currentUser:any;
   photo:any;
+  tspot:any;
 
   //nested collections
   photos:any;

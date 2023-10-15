@@ -18,6 +18,10 @@
         <div class="form mt-5">
           <form method="post" role="form" class="php-email-form">
             <div class="row">
+              <div>
+                <input placeholder="Location" [(ngModel)] ="tspot" type="text" class="form-control" style="width:85%" disabled>
+                <button class="addloc" type="location" (click) = "viewLoc()">Add Location</button>
+              </div>
               <div class="form-group">
                 <input type="text" [(ngModel)] = "post_title" name="post_title" class="form-control" id="title" placeholder="Title" required>
               </div>
@@ -38,7 +42,7 @@
 
             <div class="row">
               <div class="form-group">
-                <label for="file">Attach File</label>
+                <label for="file">Add a Photo</label>
                 <input [(ngModel)] ="photo"  type="file" name="file" id="file" class="form-control">
               </div>
               <div class="form-group col-md-6">
@@ -56,7 +60,7 @@
            <!--  <div class="form-group">
               <input type="email" class="form-control" name="location" id="location" placeholder="Location" required>
             </div> -->
-            <div class="text-left"><button class="addloc"  type="location" (click) = "viewLoc()">Add Location</button></div>
+            
         
             
     <div class="popup" id="viewPopUp">
@@ -64,6 +68,9 @@
           <span class="close" (click)="closeView()">&times;</span>
           <h2 class="titlespot">Add Location</h2>
           <div>
+            <google-map height="300px"
+            width="550px"
+            ></google-map>
               <br>
               <form action="#" method="Tourist Destination">
                   <div class="form-group">
