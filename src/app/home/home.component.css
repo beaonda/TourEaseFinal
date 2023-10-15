@@ -167,6 +167,82 @@
 
 
 
+
+
+
+
+
+.weathercard-{
+  height: 507px;
+  width: 350px;
+  background-color: rgb(10 60 66);
+
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 20px 20px 22px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  font-family: 'Poppins';
+  color: #fcfcfc;
+}
+.weatherh4-{
+  letter-spacing: 4px;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  margin: 25px 0 10px 0;
+}
+.weatherh6-{
+  text-align: center;
+  color: #b3b3b3;
+  font-size: 15px;
+  letter-spacing: 5px;
+  font-weight: 300;
+  margin-bottom: 25px;
+}
+.weathercard- .weatherimg-{
+  width: 36%;
+  margin-top: -3%;
+  margin-left: 31%;
+}
+.weatherh1-{
+  letter-spacing: 2px;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 300;
+  margin-top: 2%;
+}
+.weathercontainer-{
+  width: 70%;
+  margin-left: 15%;
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-top: 30px;
+}
+.weatherdetails-{
+  text-align: center;
+  font-size: 23px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.weatherdetails- span{
+  color: #b3b3b3;
+}
+.weatherdetails-:first-child{
+  border-right: 2px solid #fcfcfc;
+}
+
+
+
+
+
+
+
+
   
   /*--------------------------------------------------------------
   # Page title
@@ -826,6 +902,28 @@
       padding-left: 15px;
       padding-right: 15px;
     }
+
+    .weathercard-{
+      height: 426px;
+      width: 260px;
+    }
+
+    .weatherdetails-{
+      font-size: 14px;
+    }
+
+    .weathercard- .weatherimg-{
+      width: 31%;
+      margin-top: -3%;
+      margin-left: 33%;
+  
+      
+    }
+
+    .weatherh1-{
+      font-size: 42px;
+    }
+
   }
   
   .post-content .firstcharacter {
