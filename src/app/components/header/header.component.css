@@ -217,6 +217,64 @@
   section {
     scroll-margin-top: 70px;
   }
+
+
+  /* Style for the toggle button */
+.toggle-button {
+  display: none; /* Initially hidden on larger screens */
+  font-size: 24px;
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  right: 10px; /* Position on the right */
+}
+
+/* Style for the side navigation */
+.side-nav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: -250px; /* Initially off-screen on the right */
+  background-color: #f0f0f0;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+
+
+.side-nav a {
+  padding: 15px 25px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #2b2929;
+  display: block;
+  transition: 0.3s;
+}
+
+.side-nav a:hover {
+  color: #267882;
+  background-color: #2b292930;
+
+}
+
+/* Show the side navigation when class 'show' is added */
+.side-nav.show {
+  width: 250px;
+  right: 0; /* Slide in from the right */
+}
+
+/* Media query to show/hide the toggle button based on screen width */
+@media screen and (max-width: 600px) {
+  .toggle-button {
+      display: block; /* Show on smaller screens */
+  }
+
+  .side-nav.show {
+      width: 70%; /* Adjust width for mobile screens */
+  }
+}
+
   
   /*--------------------------------------------------------------
   # Desktop Navigation 
@@ -431,6 +489,14 @@
     .mobile-nav-toggle.bi-x {
       color: var(--color-black);
     }
+
+    .bi-x[_ngcontent-ng-c189233843]::before {
+      content: "\f479";
+    }
+
+    .burgerbutton{
+      margin-top: 5%;
+    }
   
     .mobile-nav-active {
       overflow: hidden;
@@ -467,7 +533,18 @@
   .post-entry-1 img {
     margin-bottom: 30px;
   }
-  
+
+  .mobpos{
+    margin-right: 11%;
+  }
+
+
+/* dito eedit search sa mobile */
+.mobsearch{
+  margin-right: -51%;
+}
+
+
   .post-entry-1 h2 {
     margin-bottom: 20px;
     font-size: 20px;

@@ -4,12 +4,21 @@
     padding: 0;
 }
 
+  
+@font-face {
+    font-family: 'Sodosans';
+    src: url('../../assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
+         url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+  }
+  
+
+
 /* Set the background image */
 .bodycont {
     background-image: url('../../assets/img/background.png');
     background-size: cover;
     background-position: center;
-    font-family: "Roboto";
+    font-family: 'Sodosans';
 }
 
 .title{
@@ -18,7 +27,7 @@
     font-size: 50px;
     padding: 0;
     margin-top: -5%;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Sodosans';
 
 }
 
@@ -101,7 +110,7 @@ a {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        font-family: "Roboto";
+        font-family: 'Sodosans';
     }
 
     .right-logo {
@@ -118,7 +127,7 @@ a {
     font-size: 40px;
     padding: 0;
     margin-top: -5%;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Sodosans';
 
 }
 

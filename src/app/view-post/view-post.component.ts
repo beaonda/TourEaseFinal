@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./view-post.component.css', '../../assets/css/homePages.css']
 })
 export class ViewPostComponent {
+  rating:any;
 
 }

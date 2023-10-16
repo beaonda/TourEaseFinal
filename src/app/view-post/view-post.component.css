@@ -1,0 +1,17 @@
+.rating label {
+    cursor: pointer;
+    width: 20px;
+    font-size:15px;
+    color: #ddd;
+    text-align: center;
+}
+
+
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.rating label:before {
+    content: '\2605';
+}

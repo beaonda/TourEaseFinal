@@ -20,10 +20,18 @@
 --------------------------------------------------------------*/
 ::ng-deep :root {
 
+  
+@font-face {
+  font-family: 'Sodosans';
+  src: url('../fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
+       url('../fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+}
+
+
   /* Fonts */
-  --font-default: Arial, Helvetica, sans-serif;
-  --font-primary: Arial, Helvetica, sans-serif ;/*'Playfair Display', serif;*/
-  --font-secondary: Arial, Helvetica, sans-serif;
+  --font-default:'Sodosans';
+  --font-primary: 'Sodosans' ;/*'Playfair Display', serif;*/
+  --font-secondary: 'Sodosans';
 
   /* Colors */
   /* The *-rgb color names are simply the RGB converted value of the corresponding color for use in the rgba() function */

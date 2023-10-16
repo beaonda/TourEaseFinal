@@ -36,13 +36,14 @@
         </ul>
       </nav>
 
-      <div class="position-relative">
+      <div class="position-relative ">
         
         <a href="/profile" class="mx-2"><span class="bi-person-fill"></span></a>
 
         <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-
+        <i class="bi bi-list mobile-nav-toggle mx-2 " (click)="toggleSideNav()">
+      </i> 
+<!--         <div class="bi bi-list toggle-button" (click)="toggleSideNav()">☰</div> -->
      
         <div class="search-form-wrap js-search-form-wrap">
           <form action="search-result.html" class="search-form">
@@ -51,6 +52,21 @@
             <button class="btn js-search-close"><span class="bi-x"></span></button>
           </form>
         </div>
+
+        <div class="side-nav" [ngClass]="{'show': showSideNav}">
+          <a style="text-align: right;"href="#" (click)="toggleSideNav()">Close &#x2716;</a>
+          <a class="editnav" href="/home">Blog</a>
+          <a class="editnav" href="/view-post">Single Post</a>
+          <a class="editnav" href="/category">Categories</a>
+          <a class="editnav" href="/about">About</a>
+          <a class="editnav" href="/contact">Contact</a>
+      </div>
       </div>
     </div>
+
+
+
+
+    <!-- Side Navigation -->
+    
   </header>   

@@ -18,6 +18,14 @@
 @import '../../../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 @import '../../../node_modules/aos/dist/aos.css';
 @import './variables.css';
+
+
+@font-face {
+  font-family: 'Sodosans';
+  src: url('../../assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
+       url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+}
+
   
   body {
     color: rgba(var(--color-primary-rgb), 1);
@@ -39,7 +47,7 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-primary);
+    font-family: 'Sodosans';
   }
   
   #main {
@@ -115,7 +123,7 @@
     border: 1px solid rgba(255,255,255,0.1);
     box-shadow: 20px 20px 22px rgba(0,0,0,0.2);
     border-radius: 8px;
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Sodosans';
     color: #fcfcfc;
 }
 .weatherh4{
@@ -186,7 +194,7 @@
   border: 1px solid rgba(255,255,255,0.1);
   box-shadow: 20px 20px 22px rgba(0,0,0,0.2);
   border-radius: 8px;
-  font-family: 'Poppins';
+  font-family: 'Sodosans';
   color: #fcfcfc;
 }
 .weatherh4-{
@@ -294,7 +302,7 @@
     font-size: 30px;
     font-weight: 700;
     color: var(--color-default);
-    font-family: var(--font-primary);
+    font-family: 'Sodosans';
   }
   
   .search-form-wrap {
@@ -384,7 +392,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 0 10px 30px;
-      font-family: var(--font-default);
+      font-family: 'Sodosans';
       font-size: 16px;
       font-weight: 500;
       color: rgba(var(--color-default-rgb), 1);
@@ -520,7 +528,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 20px;
-      font-family: var(--font-primary);
+      font-family: 'Sodosans';
       font-size: 15px;
       font-weight: 600;
       color: var(--color-primary);
@@ -630,7 +638,7 @@
     letter-spacing: 0.07rem;
     text-transform: uppercase;
     font-weight: 600;
-    font-family: var(--font-secondary);
+    font-family: 'Sodosans';
     color: rgba(var(--color-black-rgb), 0.4);
     margin-bottom: 10px;
   }
@@ -655,7 +663,7 @@
     margin: 0;
     padding: 0;
     font-size: 15px;
-    font-family: var(--font-secondary);
+    font-family: 'Sodosans';
   }
   
   .trending {
@@ -725,7 +733,7 @@
     letter-spacing: 0.07rem;
     text-transform: uppercase;
     font-weight: 600;
-    font-family: var(--font-secondary);
+    font-family: 'Sodosans';
     color: rgba(var(--color-black-rgb), 0.4);
     margin-bottom: 10px;
   }
@@ -873,7 +881,7 @@
   }
   
   .more {
-    font-family: var(--font-secondary);
+    font-family: 'Sodosans';
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 500;
@@ -928,7 +936,7 @@
   
   .post-content .firstcharacter {
     float: left;
-    font-family: Georgia;
+    font-family: 'Sodosans';
     font-size: 75px;
     line-height: 60px;
     padding-top: 4px;
@@ -952,7 +960,7 @@
   }
   
   .post-content figure figcaption {
-    font-family: var(--font-secondary);
+    font-family: 'Sodosans';
     font-size: 14px;
     padding: 10px 0 0 0;
   }
@@ -978,7 +986,7 @@
     line-height: 40px;
     text-align: center;
     border-radius: 50%;
-    font-family: var(--font-secondary);
+    font-family: 'Sodosans';
     margin: 5px;
     transition: 0.3s all ease;
   }
@@ -1225,7 +1233,7 @@
   
   .comment .comment-meta .text-muted,
   .comment .reply-meta .text-muted {
-    font-family: var(--font-secondary);
+    font-family: 'Sodosans';
     font-size: 12px;
   }
   
@@ -1412,7 +1420,7 @@
     letter-spacing: 0.07rem;
     text-transform: uppercase;
     font-weight: 400;
-    font-family: var(--font-secondary);
+    font-family: 'Sodosans';
     color: rgba(var(--color-white-rgb), 0.4);
     margin-bottom: 0px;
   }

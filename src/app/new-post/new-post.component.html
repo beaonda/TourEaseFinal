@@ -17,15 +17,32 @@
 
         <div class="form mt-5">
           <form method="post" role="form" class="php-email-form">
-            <div class="row">
-              <div>
-                <input name ="loc" placeholder="Location" [(ngModel)] ="tspot" type="text" class="form-control" style="width:85%" disabled>
-                <button class="addloc" type="location" (click) = "viewLoc()">Add Location</button>
+            <div class="row" style="margin-bottom:20px;">
+              <div class=" col-md-10">
+                
+                <input type="text" [(ngModel)] = "tspot" name="loc" class="form-control" id="title" placeholder="Location"  disabled>
               </div>
-              <div class="form-group">
-                <input type="text" [(ngModel)] = "post_title" name="post_title" class="form-control" id="title" placeholder="Title" required>
+              <div class="  col-md-2">
+                <button class="addloc" type="location" style="margin-left: 25px;" (click) = "viewLoc()">Add Location</button>
               </div>
+          
              
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="file">Rate</label>
+              <div  class="rating" id="rating">
+
+                <input [(ngModel)] = "rating" type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+                <input [(ngModel)] = "rating" type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+                <input [(ngModel)] = "rating" type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+                <input [(ngModel)] = "rating" type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+                <input [(ngModel)] = "rating" type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+            </div>
+            </div>
+
+            <div class="form-group">
+              <input type="text" [(ngModel)] = "post_title" name="post_title" class="form-control" id="title" placeholder="Title" required>
             </div>
       
         
@@ -34,7 +51,8 @@
                 <button (click)="formatText('bold')" type="button" class="btn btn-secondary" id="bold"><strong>B</strong></button>
                 <button (click)="formatText('italic')" type="button" class="btn btn-secondary" id="italic"><em>I</em></button>
                 <button (click)="formatText('underline')" type="button" class="btn btn-secondary" id="align-left"><u>U</u></button>
-                <button (click)="undo()"><i class="bi bi-arrow-counterclockwise"></i></button>
+                <button (click)="undo()" type="button" class="btn btn-secondary bi-arrow-counterclockwise" id="undo"></button>
+                
               </div>
               <textarea id="post_body" (input)="onTextChanged()" [(ngModel)] = "post_body" class="form-control" name="post" rows="7" placeholder="What's on your mind?" required #textArea></textarea>
               
@@ -45,17 +63,7 @@
                 <label for="file">Add a Photo</label>
                 <input [(ngModel)] ="photo"  type="file" name="file" id="file" class="form-control">
               </div>
-              <div class="form-group col-md-6">
-                <label for="file">Rate</label>
-                <div  class="rating" id="rating">
-
-                  <input [(ngModel)] = "rating" type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
-                  <input [(ngModel)] = "rating" type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
-                  <input [(ngModel)] = "rating" type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
-                  <input [(ngModel)] = "rating" type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
-                  <input [(ngModel)] = "rating" type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
-              </div>
-              </div>
+         
             </div>
            <!--  <div class="form-group">
               <input type="email" class="form-control" name="location" id="location" placeholder="Location" required>
