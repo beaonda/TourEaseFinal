@@ -16,6 +16,7 @@ import { ManagepostsComponent } from './admin/manageposts/manageposts.component'
 import { ManagespotsComponent } from './admin/managespots/managespots.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 
 
 const routes: Routes = [
@@ -40,7 +41,8 @@ const routes: Routes = [
       {path: 'admin/users', component:ManageusersComponent},
       {path: 'admin/posts', component:ManagepostsComponent},
       {path: 'admin/spots', component:ManagespotsComponent},
-      {path: 'profile', component:UserProfileComponent}
+      {path: 'profile', component:UserProfileComponent},
+      {path: 'retrieve_account', component:ForgotPassComponent}
     ])],
   exports: [RouterModule]
 })
