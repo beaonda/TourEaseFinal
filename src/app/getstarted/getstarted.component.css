@@ -1,5 +1,13 @@
 @import '../../assets/css/variables.css';
 
+  
+@font-face {
+    font-family: 'Sodosans';
+    src: url('../../assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
+         url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+  }
+  
+
 h1,
 h2,
 h3,
@@ -8,7 +16,7 @@ h5,
 h6,
 p,
 label, button, .option-button {
-  font-family: var(--font-primary);
+  font-family: 'Sodosans';
 }
 
 .section {
@@ -205,7 +213,8 @@ button:hover {
 /* Media Queries for Phones */
 @media (max-width: 480px) {
     .section {
-        height: 500px; /* Adjust the height for phone */
+        height: 500px;
+        margin-top: 46px; /* Adjust the height for phone */
     }
     body {
         max-width: 100%; /* Allow full width on smaller screens */

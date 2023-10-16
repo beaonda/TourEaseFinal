@@ -1,7 +1,21 @@
-
+  
 @font-face {
-    font-family: "Poppins";
-    src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+  font-family: 'Sodosans';
+  src: url('../../assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
+       url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label, button, input, a {
+  font-family: 'Sodosans';
 }
 
 body {
@@ -10,7 +24,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   min-height: 100vh;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Sodosans';
 }
 
 ul {
@@ -135,7 +149,7 @@ a {
   color: #1d1d1d;
 }
 .header__wrapper .cols__container .right__col nav button {
-  background: #0091ff;
+  background: #21757f;
   color: #fff;
   border: none;
   padding: 10px 25px;
@@ -200,7 +214,7 @@ nav ul li a.active {
 
 /* Add styles for the Settings button */
 #settings-button {
-  background-color: #0091ff; /* Change to your desired background color */
+  background-color: #21757f; /* Change to your desired background color */
   color: #fff; /* Text color */
   padding: 10px 25px; /* Adjust padding as needed */
   border: none;
@@ -212,11 +226,11 @@ nav ul li a.active {
 }
 
 #settings-button:hover {
-  background-color: #0056b3; /* Change to your desired hover color */
+  background-color: #195960; /* Change to your desired hover color */
 }
 
 #follow-button {
-  background-color: #0091ff; /* Change to your desired background color */
+  background-color: #21757f; /* Change to your desired background color */
   color: #fff; /* Text color */
   padding: 10px 25px; /* Adjust padding as needed */
   border: none;
@@ -228,7 +242,7 @@ nav ul li a.active {
 }
 
 #follow-button:hover {
-  background-color: #0056b3; /* Change to your desired hover color */
+  background-color: #0f383d; /* Change to your desired hover color */
 }
 
 .photo-gallery {

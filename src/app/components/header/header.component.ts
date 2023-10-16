@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import '../../../assets/js/homeMain.js';
-import { elements } from 'chart.js';
+
 
 @Component({
   selector: 'app-header',
@@ -8,7 +8,13 @@ import { elements } from 'chart.js';
   styleUrls: ['./header.component.css', '../../../assets/css/homePages.css']
 })
 export class HeaderComponent {
+  showSideNav: boolean = false;
+ 
 
+  toggleSideNav() {
+    this.showSideNav = !this.showSideNav;
+
+  }
  
 
   constructor(){

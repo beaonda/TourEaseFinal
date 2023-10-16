@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 import { FireServiceService } from '../services/fire-service.service';
 import { Router } from '@angular/router';
 import { GoogleMap } from '@angular/google-maps';
@@ -14,6 +14,11 @@ import { map } from 'rxjs';
 export class NewPostComponent {
   
   @ViewChild(GoogleMap, { static: false }) addMap!: GoogleMap;
+
+  openModal(){
+    const modal = this.el.nativeElement.querySelector('#exampleModalCenter');
+    this.renderer.setAttribute(modal, 'style', 'display: block');
+  }
 
   
   markers:any;
@@ -127,7 +132,9 @@ export class NewPostComponent {
     public fireService:FireServiceService,
     public router:Router,
     public typesense:TypesenseService,
-    public changeDetector: ChangeDetectorRef
+    public changeDetector: ChangeDetectorRef,
+    private renderer: Renderer2,
+    private el:ElementRef
   ){
 
   }

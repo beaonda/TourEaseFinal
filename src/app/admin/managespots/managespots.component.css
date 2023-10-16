@@ -7,16 +7,24 @@
     width: 100%;
   }
 
+  
+  @font-face {
+    font-family: 'Sodosans';
+    src: url('../../../assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
+         url('../../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+  }
+  
+  
   h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-label, button, a, td, tr, input {
-  font-family: Arial, Helvetica, sans-serif;
-}
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  label, button, a, td, tr, input {
+    font-family: 'Sodosans';
+  }
   
   .form-group {
     margin-bottom: 20px;
