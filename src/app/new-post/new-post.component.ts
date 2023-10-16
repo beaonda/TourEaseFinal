@@ -1,6 +1,8 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { FireServiceService } from '../services/fire-service.service';
 import { Router } from '@angular/router';
+import { GoogleMap } from '@angular/google-maps';
+import { TypesenseService } from '../services/typesense.service';
 
 @Component({
   selector: 'app-new-post',
@@ -8,9 +10,41 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-post.component.css','../../assets/css/homePages.css']
 })
 export class NewPostComponent {
+  
+  @ViewChild(GoogleMap, { static: false }) map!: GoogleMap;
+
+  markers:any;
+  addMarker() {
+    this.markers.push({
+      position: {
+        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
+        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
+      },
+      label: {
+        color: 'red',
+        text: 'Marker label ' + (this.markers.length + 1),
+      },
+      title: 'Marker title ' + (this.markers.length + 1),
+      options: { animation: google.maps.Animation.BOUNCE },
+    });
+  }
 
   isModalOpen = false;
   popups:any;
+  center: google.maps.LatLngLiteral = {
+    lat: 13.7565,
+    lng: 121.0583
+  };
+  zoom = 10;
+  display: any;
+
+  moveMap(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) this.center = (event.latLng.toJSON());
+  }
+
+  move(event: google.maps.MapMouseEvent) {
+    if (event.latLng != null) this.display = event.latLng.toJSON();
+  }
 
   viewLoc(){
     var popups = document.querySelectorAll('.popup'); 
@@ -37,6 +71,22 @@ export class NewPostComponent {
   currentUser:any;
   photo:any;
   tspot:any;
+  search:any;
+  searchResults:any;
+  showResults:boolean = true;
+  searchRaw:any;
+  
+
+  searchSpot(){
+    this.typesense.searchEst(this.search); 
+  }
+
+  selectResult(result: string) {
+    this.search = result; // Set the input value to the selected result
+    this.showResults = false; // Hide the results
+    // You can also perform additional actions based on the selected result.
+  }
+  
 
   //nested collections
   photos:any;
@@ -44,12 +94,14 @@ export class NewPostComponent {
 
   constructor(
     public fireService:FireServiceService,
-    public router:Router
+    public router:Router,
+    public typesense:TypesenseService
   ){
 
   }
 
   ngOnInit(){
+
 
   }
 

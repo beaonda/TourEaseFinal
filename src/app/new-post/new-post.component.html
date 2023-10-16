@@ -19,7 +19,7 @@
           <form method="post" role="form" class="php-email-form">
             <div class="row">
               <div>
-                <input placeholder="Location" [(ngModel)] ="tspot" type="text" class="form-control" style="width:85%" disabled>
+                <input name ="loc" placeholder="Location" [(ngModel)] ="tspot" type="text" class="form-control" style="width:85%" disabled>
                 <button class="addloc" type="location" (click) = "viewLoc()">Add Location</button>
               </div>
               <div class="form-group">
@@ -67,10 +67,36 @@
       <div class="popup-content">
           <span class="close" (click)="closeView()">&times;</span>
           <h2 class="titlespot">Add Location</h2>
+          <div class="form-group">
+            <label for="placeName">Search: </label>
+            <input [(ngModel)] ="search" type="text" id="placeName" name="search" required class="form-control" (input)="searchSpot()" >
+            <div *ngIf="true" class="search-results">
+              <ul>
+                <li>
+                  Result 1
+                </li>
+                <li *ngFor="let result of searchResults" (click)="selectResult(result)">
+                  {{ result.estName }}
+                </li>
+              </ul>
+            </div>
+            
+        </div>
           <div>
             <google-map height="300px"
-            width="550px"
-            ></google-map>
+            width="100%"
+            id="addMap"
+            [center]="center"
+            [zoom]="zoom"
+            (mapClick)="moveMap($event)"
+            (mapMousemove)="move($event)"
+            #map
+            >
+              <map-marker
+              [position]="center"
+              >
+              </map-marker>
+          </google-map>
               <br>
               <form action="#" method="Tourist Destination">
                   <div class="form-group">

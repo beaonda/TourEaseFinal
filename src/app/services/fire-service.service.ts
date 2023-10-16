@@ -59,6 +59,15 @@ export class FireServiceService {
     return this.firestore.collection("posts").doc(data.postID).set(data);
   }
 
+  searchResults: any[] = [];
+
+  search(query: string) {
+    return this.firestore.collection('tourist_spots')
+    .ref
+    .where('estName', '==', query)
+    .get();
+  }
+
 
   getAllTouristDestinations(){
     return this.destinationCollection;
