@@ -239,6 +239,7 @@
   background-color: #f0f0f0;
   overflow-x: hidden;
   transition: 0.5s;
+  z-index:10000;
 }
 
 

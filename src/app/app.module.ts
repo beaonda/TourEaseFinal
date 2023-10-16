@@ -36,6 +36,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TrendingComponent } from './components/trending/trending.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     UserProfileComponent,
     ForgotPassComponent,
     FabComponent,
-    TrendingComponent
+    TrendingComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

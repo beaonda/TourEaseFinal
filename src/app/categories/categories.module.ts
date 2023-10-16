@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { FabComponent } from '../components/fab/fab.component';
 import { HeaderComponent } from '../components/header/header.component';
+import { FooterComponent } from '../components/footer/footer.component';
 
 
 
@@ -11,7 +12,8 @@ import { HeaderComponent } from '../components/header/header.component';
   imports: [
     CommonModule,
     HeaderComponent,
-    FabComponent
+    FabComponent,
+    FooterComponent
   ]
 })
 export class CategoriesModule { }

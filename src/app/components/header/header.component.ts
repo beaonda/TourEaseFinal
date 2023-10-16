@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import '../../../assets/js/homeMain.js';
-import { elements } from 'chart.js';
+
 
 @Component({
   selector: 'app-header',

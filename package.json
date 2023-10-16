@@ -44,6 +44,7 @@
     "tslib": "^2.3.0",
     "typesense": "^1.7.2",
     "typesense-instantsearch-adapter": "^2.7.1",
+    "webpack-dev-server": "^4.15.1",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

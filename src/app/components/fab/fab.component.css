@@ -3,7 +3,7 @@
     top:85%;
     bottom: 40px;
     right: 40px;
-    z-index: 1000;
-    color:#21757f;
+    z-index: 50;
     background-color: white;
+    color: #21757f;
   }

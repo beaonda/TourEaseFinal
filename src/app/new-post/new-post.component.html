@@ -1,33 +1,102 @@
+
 <app-header></app-header>
+
 <main id="main">
-    <section id="newpost" class="contact mb-5">
+
+  <section id="newpost" class="contact mb-5" >
+    <div class="container" data-aos="fade-up">
+
+      <div class="row">
+        <div class="col-lg-12 text-center mb-5">
+          <h1 class="page-title">Create a Post</h1>
+        </div>
+      </div>
+
+      <div class="row gy-4">
+
+          <h5 style = "text-align: center; margin-top: -1%;">Share your own extraordinary travel tales and inspire fellow wanderers to embark on their own unforgettable journeys! Create post now.</h5>
+
+      </div>
+     
+
+      <div class="form mt-5">
+        <form method="post" role="form" class="php-email-form">
+         
+
+          <h2 class="titlespot">Add Location</h2>
+
+          <div class="row" style="margin-bottom: 20px;">
+           
+            <div class="col-md-12">
+              <input name ="loc" placeholder="Location" [(ngModel)] ="tspot" type="text" class="form-control"  required disabled>
+            </div>
+         
+           
+          </div>
+
+
+          <div class="form-group">
+            <input autocomplete="off"  (focus) = "gainFocus()" [(ngModel)] ="search" type="text" id="placeName" name="search" required class="form-control" (input)="searchSpot()" placeholder="Name of Place">
+
+            <div *ngIf="showResults" class="search-results">
+              <ul>
+                <li *ngFor="let result of estNameList" (click)="selectResult(result)">
+                  {{ result }}
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div>
+            <google-map height="300px"
+            width="100%"
+            id="addMap"
+            [center]="center"
+            [zoom]="zoom"
+            (mapClick)="moveMap($event)"
+            (mapMousemove)="move($event)"
+            #addMap
+            >
+              <map-marker
+              [position]="center"
+              id = "mapMark"
+              draggable="true"
+              >
+              </map-marker>
+          </google-map>
+              <br>
+              <form action="#" method="Tourist Destination">
+      
+                  <div class="form-group">
+                      
+                      <label for="city">City/Municipality</label>
+                      <input type="text" id="city" name="city" required class="form-control">
+                  </div>
+      
+              
+              </form>
+            
+          </div>
+    
+      </form></div></div>
+  </section>
+
+
+
+
+
+
+
+    <section id="newpost" class="contact mb-5"
+    style="margin-top: -5%;">
       <div class="container" data-aos="fade-up">
 
-        <div class="row">
-          <div class="col-lg-12 text-center mb-5">
-            <h1 class="page-title">Create a Post</h1>
-          </div>
-        </div>
-
-        <div class="row gy-4">
-
-            <h5 style = "text-align: center; margin-top: -1%;">Share your own extraordinary travel tales and inspire fellow wanderers to embark on their own unforgettable journeys! Create post now.</h5>
-
-        </div>
+       
 
         <div class="form mt-5">
           <form method="post" role="form" class="php-email-form">
-            <div class="row" style="margin-bottom:20px;">
-              <div class=" col-md-10">
-                
-                <input type="text" [(ngModel)] = "tspot" name="loc" class="form-control" id="title" placeholder="Location"  disabled>
-              </div>
-              <div class="  col-md-2">
-                <button class="addloc" type="location" (click) = "viewLoc()">Add Location</button>
-              </div>
-          
-             
-            </div>
+    
 
             <div class="form-group col-md-6">
               <label for="file">Rate</label>
@@ -63,75 +132,17 @@
                 <label for="file">Add a Photo</label>
                 <input [(ngModel)] ="photo"  type="file" name="file" id="file" class="form-control">
               </div>
-         
-            </div>
-           <!--  <div class="form-group">
-              <input type="email" class="form-control" name="location" id="location" placeholder="Location" required>
-            </div> -->
-            
-        
-            
-    <div class="popup" id="viewPopUp">
-      <div class="popup-content">
-          <span class="close" (click)="closeView()">&times;</span>
-          <h2 class="titlespot">Add Location</h2>
-          <div class="form-group">
-            <label for="placeName">Search: </label>
-            <input [(ngModel)] ="search" type="text" id="placeName" name="search" required class="form-control" (input)="searchSpot()" >
-            <div *ngIf="true" class="search-results">
-              <ul>
-                <li>
-                  Result 1
-                </li>
-                <li *ngFor="let result of searchResults" (click)="selectResult(result)">
-                  {{ result.estName }}
-                </li>
-              </ul>
+             
             </div>
             
-        </div>
-          <div>
-            <google-map height="300px"
-            width="100%"
-            id="addMap"
-            [center]="center"
-            [zoom]="zoom"
-            (mapClick)="moveMap($event)"
-            (mapMousemove)="move($event)"
-            #map
-            >
-              <map-marker
-              [position]="center"
-              >
-              </map-marker>
-          </google-map>
-              <br>
-              <form action="#" method="Tourist Destination">
-                  <div class="form-group">
-                      <label for="placeName">Name of Place: </label>
-                      <input type="text" id="placeName" name="placeName" required class="form-control">
-                  </div>
-      
-                  <div class="form-group">
-                      
-                      <label for="city">City/Municipality</label>
-                      <input type="text" id="city" name="city" required class="form-control">
-                  </div>
-      
-                  <div class="form-group">
-                      <button type="submit" class="buttonform">Submit</button>
-                  </div>
-              </form>
-            
-          </div>
-      </div>
-  </div>
             <div class="my-3">
               <div class="loading">Loading</div>
               <div class="error-message"></div>
               <div class="sent-message">Your message has been posted.</div>
             </div>
             <div class="text-center"><button type="submit">Post</button></div>
+    
+           
           </form>
         </div><!-- End Contact Form -->
 
@@ -139,5 +150,15 @@
     </section>
 
 
+
+    
+
+
     
   </main>
+
+
+  
+  
+  
+ 

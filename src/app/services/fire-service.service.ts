@@ -22,7 +22,7 @@ export class FireServiceService {
       this.user = user;
     });
 
-    this.destinationCollection = firestore.collection<Destination>('tourist_spots', (ref) =>ref.orderBy('estName'));
+    this.destinationCollection = firestore.collection<Destination>('tourist_spots', (ref) =>ref.orderBy('estName').limit(50));
     this.destiItems = this.destinationCollection.valueChanges();
   }
 
@@ -58,6 +58,7 @@ export class FireServiceService {
   savePost(data:any){
     return this.firestore.collection("posts").doc(data.postID).set(data);
   }
+  
 
   searchResults: any[] = [];
 

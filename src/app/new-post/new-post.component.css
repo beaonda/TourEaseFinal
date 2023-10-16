@@ -1,3 +1,5 @@
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
+
 .rating {
     display: flex;
     flex-direction: row-reverse;
@@ -63,17 +65,16 @@
 .popup {
     display: none;
     position: fixed;
-    z-index: 1;
-    top:13%;
-    left: 50%;
-    transform: translate(-50%, -20%);
+    z-index: 10;
+    top:10%;
+    left: 10%;
     width: 80%;
     max-height: 60%;
-    overflow: auto;
+    overflow: scroll;
     background-color: rgba(0, 0, 0, 0.116);
     box-sizing: border-box;
-   border-style: solid ;
-   border-color: #4950575d;
+    border-style: solid ;
+    border-color: #4950575d;
    
 }
 
@@ -108,7 +109,7 @@
 
 .search-results {
     position: absolute;
-    width: 90%;
+    width: 93.5%;
     max-height: 150px;
     overflow-y: auto;
     background-color: #fff;
@@ -134,6 +135,8 @@
   .search-results li:hover {
     background-color: #f0f0f0;
   }
+
+  
     
 
 
