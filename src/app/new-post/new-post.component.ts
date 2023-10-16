@@ -1,8 +1,10 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { FireServiceService } from '../services/fire-service.service';
 import { Router } from '@angular/router';
 import { GoogleMap } from '@angular/google-maps';
 import { TypesenseService } from '../services/typesense.service';
+import { map } from 'rxjs';
+
 
 @Component({
   selector: 'app-new-post',
@@ -11,15 +13,13 @@ import { TypesenseService } from '../services/typesense.service';
 })
 export class NewPostComponent {
   
-  @ViewChild(GoogleMap, { static: false }) map!: GoogleMap;
+  @ViewChild(GoogleMap, { static: false }) addMap!: GoogleMap;
 
+  
   markers:any;
   addMarker() {
     this.markers.push({
-      position: {
-        lat: this.center.lat + ((Math.random() - 0.5) * 2) / 10,
-        lng: this.center.lng + ((Math.random() - 0.5) * 2) / 10,
-      },
+      position: this.center,
       label: {
         color: 'red',
         text: 'Marker label ' + (this.markers.length + 1),
@@ -39,7 +39,9 @@ export class NewPostComponent {
   display: any;
 
   moveMap(event: google.maps.MapMouseEvent) {
+
     if (event.latLng != null) this.center = (event.latLng.toJSON());
+
   }
 
   move(event: google.maps.MapMouseEvent) {
@@ -73,18 +75,47 @@ export class NewPostComponent {
   tspot:any;
   search:any;
   searchResults:any;
-  showResults:boolean = true;
+  showResults:boolean = false;
+  estNameList: string[] = []; 
   searchRaw:any;
   
 
   searchSpot(){
-    this.typesense.searchEst(this.search); 
+    this.showResults = true;
+    this.estNameList = [];
+    this.typesense.searchEst(this.search)
+      .then((res) => {
+        if(res){
+          console.log(res);
+          
+          for(var k in res){
+           this.estNameList.push(res[k].estName);
+           
+          }
+        }else{
+          console.log("undefined res")
+        }
+       
+      })
+      .catch((err:any) => {
+        
+      });
   }
 
   selectResult(result: string) {
+    alert("clicked!");
+    console.log(result);
     this.search = result; // Set the input value to the selected result
     this.showResults = false; // Hide the results
     // You can also perform additional actions based on the selected result.
+  }
+
+  loseFocus(){
+    this.showResults = false;
+  }
+
+  gainFocus(){
+    this.showResults = true;
   }
   
 
@@ -95,15 +126,39 @@ export class NewPostComponent {
   constructor(
     public fireService:FireServiceService,
     public router:Router,
-    public typesense:TypesenseService
+    public typesense:TypesenseService,
+    public changeDetector: ChangeDetectorRef
   ){
 
   }
 
   ngOnInit(){
+    
+  }
 
+  
+  ngAfterViewInit(){
+    var addMap = document.getElementById("addMap");
+    var addMarker = document.getElementById("mapMark");
+
+    
+    
+    /* this.addMap!.googleMap!.addListener("drag", (e:any) => {
+      var newCenter = this.addMap.getCenter()?.toJSON();
+      console.log(newCenter);
+      /* this.center = newCenter!; 
+      
+
+    }); */
 
   }
+
+ /*  markerPosition:any;
+  updateMarkerPosition(newLat: number, newLng: number) {
+    this.markerPosition = { lat: newLat, lng: newLng };
+    this.changeDetector.detectChanges(); // Trigger change detection
+  } */
+  
 
   savePost(){
     let postData = {
@@ -116,7 +171,7 @@ export class NewPostComponent {
       year: this.year,
       user: this.currentUser
     }
-    this.fireService.saveTouristDestion(postData).then(
+    this.fireService.savePost(postData).then(
       res=>{
         console.log(res);
         alert("Posted Successfully.");
@@ -187,4 +242,13 @@ export class NewPostComponent {
       this.currentIndex = this.textHistory.length - 1;
     }
 
+}
+
+export interface SearchResult {
+  document: {
+    estName: string;
+    city:string
+    // Add other properties if they exist
+  };
+  // Add other properties if they exist
 }

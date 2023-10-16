@@ -19,7 +19,7 @@
           <form method="post" role="form" class="php-email-form">
             <div class="row">
               <div>
-                <input name ="loc" placeholder="Location" [(ngModel)] ="tspot" type="text" class="form-control" style="width:85%" disabled>
+                <input name ="loc" placeholder="Location" [(ngModel)] ="tspot" type="text" class="form-control" style="width:85%" required disabled>
                 <button class="addloc" type="location" (click) = "viewLoc()">Add Location</button>
               </div>
               <div class="form-group">
@@ -53,7 +53,7 @@
                   <input [(ngModel)] = "rating" type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
                   <input [(ngModel)] = "rating" type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
                   <input [(ngModel)] = "rating" type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
-                  <input [(ngModel)] = "rating" type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                  <input [(ngModel)] = "rating" type="radio" id="star1" name="rate" value="1" required /><label for="star1"></label>
               </div>
               </div>
             </div>
@@ -69,14 +69,11 @@
           <h2 class="titlespot">Add Location</h2>
           <div class="form-group">
             <label for="placeName">Search: </label>
-            <input [(ngModel)] ="search" type="text" id="placeName" name="search" required class="form-control" (input)="searchSpot()" >
-            <div *ngIf="true" class="search-results">
+            <input autocomplete="off"  (focus) = "gainFocus()" [(ngModel)] ="search" type="text" id="placeName" name="search" required class="form-control" (input)="searchSpot()" placeholder="Name of Place">
+            <div *ngIf="showResults" class="search-results">
               <ul>
-                <li>
-                  Result 1
-                </li>
-                <li *ngFor="let result of searchResults" (click)="selectResult(result)">
-                  {{ result.estName }}
+                <li *ngFor="let result of estNameList" (click)="selectResult(result)">
+                  {{ result }}
                 </li>
               </ul>
             </div>
@@ -90,19 +87,17 @@
             [zoom]="zoom"
             (mapClick)="moveMap($event)"
             (mapMousemove)="move($event)"
-            #map
+            #addMap
             >
               <map-marker
               [position]="center"
+              id = "mapMark"
+              draggable="true"
               >
               </map-marker>
           </google-map>
               <br>
               <form action="#" method="Tourist Destination">
-                  <div class="form-group">
-                      <label for="placeName">Name of Place: </label>
-                      <input type="text" id="placeName" name="placeName" required class="form-control">
-                  </div>
       
                   <div class="form-group">
                       

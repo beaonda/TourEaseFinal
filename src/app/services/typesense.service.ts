@@ -26,10 +26,13 @@ export class TypesenseService {
   
 
   constructor() { }
+
+  
   
  
-  searchEst(query:string){
+  /* searchEst(query:string){
     var res;
+    var list;
     
     this.client.collections('tourist_spots')
       .documents()
@@ -37,10 +40,41 @@ export class TypesenseService {
       .then(function (searchResults) {
         
         res = searchResults.hits;
-        console.log(res);
-        
-      })
-      return res;
+       
+        list = res?.map(results => results.document);
+        console.log(list);
+      });
+       
+      return list;
+  } */
+
+  searchEst(query: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.client.collections('tourist_spots')
+        .documents()
+        .search({ q: query, query_by: 'estName' })
+        .then((searchResults) => {
+          const res = searchResults.hits;
+          const list = res!.map((result) => result.document);
+          console.log(list);
+          resolve(list);
+        })
+        .catch((error) => {
+          console.error('Search error:', error);
+          reject(error);
+        });
+    });
   }
   
 }
+
+export interface SearchResult {
+  document: {
+    estName: string;
+    city:string
+    // Add other properties if they exist
+  };
+
+  // Add other properties if they exist
+}
+
