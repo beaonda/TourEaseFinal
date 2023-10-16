@@ -135,9 +135,9 @@
   }
   
   .btn.btn-primary {
-    background-color: var(--color-black);
+    background-color: #21757f;
     color: var(--color-white);
-    border-color: var(--color-black);
+    border-color: #21757f;
   }
   
   /*--------------------------------------------------------------
@@ -519,6 +519,11 @@
     .custom-border {
       border: none !important;
     }
+    .addloc{
+     margin-left: -20px;
+     font-size: 11px;
+     padding: 2px 33px;
+  }
   }
   
   .author .photo {
@@ -704,6 +709,9 @@
     .img-bg .img-bg-inner p {
       display: none;
     }
+
+
+    
   }
   
   .custom-swiper-button-next,
@@ -783,6 +791,25 @@
       padding-left: 15px;
       padding-right: 15px;
     }
+  }
+
+  @media (max-width: 1024px) {
+    .addloc{
+      margin-left: -10px;
+      font-size: 11px;
+      padding:11px 33px;
+   }
+  }
+
+
+    
+  @media (max-width: 320px) {
+    .addloc{
+      margin-top:10px ;
+      margin-left: 54px;
+      font-size: 11px;
+      padding:11px 33px;
+   }
   }
   
   .post-content .firstcharacter {
