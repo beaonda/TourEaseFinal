@@ -16,6 +16,14 @@
 @import '../../../node_modules/bootstrap-icons/font/bootstrap-icons.css';
 @import '../../../node_modules/aos/dist/aos.css';
 @import '../home/variables.css';
+
+  
+@font-face {
+  font-family: 'Sodosans';
+  src: url('../../assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
+       url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+}
+
   
  
 :root {
@@ -42,7 +50,7 @@
   h4,
   h5,
   h6,a,label,p, button, .header, .logo {
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Sodosans';
   }
   
   #main {
@@ -154,7 +162,7 @@
     font-size: 30px;
     font-weight: 700;
     color: var(--color-default);
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Sodosans';
   }
   
   .search-form-wrap {
@@ -244,7 +252,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 0 10px 30px;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family:'Sodosans';
       font-size: 13px;
       font-weight: 500;
       color: rgba(var(--color-default-rgb), 1);
@@ -380,7 +388,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 20px;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Sodosans';
       font-size: 15px;
       font-weight: 600;
       color: var(--color-primary);
@@ -490,7 +498,7 @@
     letter-spacing: 0.07rem;
     text-transform: uppercase;
     font-weight: 600;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Sodosans';
     color: rgba(var(--color-black-rgb), 0.4);
     margin-bottom: 10px;
   }
@@ -515,7 +523,7 @@
     margin: 0;
     padding: 0;
     font-size: 15px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Sodosans';
   }
   
   .trending {
@@ -585,7 +593,7 @@
     letter-spacing: 0.07rem;
     text-transform: uppercase;
     font-weight: 600;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:'Sodosans';
     color: rgba(var(--color-black-rgb), 0.4);
     margin-bottom: 10px;
   }
@@ -733,7 +741,7 @@
   }
   
   .more {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Sodosans';
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 500;
@@ -766,7 +774,7 @@
   
   .post-content .firstcharacter {
     float: left;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:'Sodosans';
     font-size: 75px;
     line-height: 60px;
     padding-top: 4px;
@@ -790,7 +798,7 @@
   }
   
   .post-content figure figcaption {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Sodosans';
     font-size: 14px;
     padding: 10px 0 0 0;
   }
@@ -816,7 +824,7 @@
     line-height: 40px;
     text-align: center;
     border-radius: 50%;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Sodosans';
     margin: 5px;
     transition: 0.3s all ease;
   }
@@ -1063,7 +1071,7 @@
   
   .comment .comment-meta .text-muted,
   .comment .reply-meta .text-muted {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Sodosans';
     font-size: 12px;
   }
   
@@ -1250,7 +1258,7 @@
     letter-spacing: 0.07rem;
     text-transform: uppercase;
     font-weight: 400;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:'Sodosans';
     color: rgba(var(--color-white-rgb), 0.4);
     margin-bottom: 0px;
   }

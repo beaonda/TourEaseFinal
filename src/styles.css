@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+
+
+@font-face {
+    font-family: 'Sodosans';
+    src: url('TourEaseFinal/src/assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
+         url('TourEaseFinal/src/assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+  }
+  
