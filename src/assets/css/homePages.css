@@ -147,7 +147,7 @@
     height: 90px;
     transition: all 0.5s;
     z-index: 997;
-    background: #f2f2f2;
+    background: #fff;
   }
   
   .header.sticked {
@@ -254,11 +254,18 @@
       justify-content: space-between;
       padding: 10px 0 10px 30px;
       font-family: 'Sodosans';
-      font-size: 16px;
+      font-size: 13px;
       font-weight: 500;
       color: rgba(var(--color-default-rgb), 1);
       white-space: nowrap;
       transition: 0.3s;
+    }
+
+    .navbar a,
+    .navbar a:hover {
+   
+      color: #0a3c42;
+    
     }
   
     .navbar a i,
@@ -440,6 +447,10 @@
     .mobile-nav-toggle.bi-x {
       color: var(--color-black);
     }
+
+    .bi-x[_ngcontent-ng-c3180552294]::before {
+      content: "\f479";
+  }
   
     .mobile-nav-active {
       overflow: hidden;
@@ -1187,7 +1198,7 @@
   }
   
   .contact .php-email-form button[type=submit] {
-    background: var(--color-primary);
+    background: #21757f;
     border: 0;
     padding: 10px 30px;
     color: #fff;

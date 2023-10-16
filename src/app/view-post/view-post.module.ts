@@ -1,14 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../header/header.component';
+
+import { FabComponent } from '../components/fab/fab.component';
+import { HeaderComponent } from '../components/header/header.component';
+import { HeaderModule } from '../components/header/header.module';
+import { FabModule } from '../components/fab/fab.module';
+
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    FabComponent,
+    HeaderComponent
+  ],
   imports: [
     CommonModule,
-    HeaderComponent
+    
   ]
 })
 export class ViewPostModule { }

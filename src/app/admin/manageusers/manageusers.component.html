@@ -30,23 +30,29 @@
             <table>
                 <thead>
                     <tr>
-                        <td width="90%">Information</td>
-                        <td>View</td>
+                     <!--    <td>User ID</td> -->
+                        <td>Name</td>
+                        <td>Username</td>
+<!--                         <td>Contact</td> -->
+                        <td>Email</td>
                         <td>Action</td>
+                        <td>Action</td>
+
+
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr *ngFor = "let user of usersList">
-                        <td width="95%">
-                            <div class="user-info">
-                                <h4>{{user.fname + ' ' + user.mname + ' ' + user.lname}}</h4>
-                                <p>{{user.uid}}</p>
-                                <p>{{user.uname}}</p>
-                                <p>{{user.contact}}</p>
-                                <p>{{user.email}}</p>
-                            </div>
-                        </td>
+                        
+                           
+                              <td>{{user.fname + ' ' + user.mname + ' ' + user.lname}} </td> 
+                            <!--    <td>{{user.uid}}</td> -->
+                                <td>{{user.uname}}</td>
+                            <!--    <td>{{user.contact}}</td> -->
+                               <td>{{user.email}}</td>
+                       
+                        
                         <td>
                             <button class="edit-button"  type="location" (click) = "viewUser()">View All</button>
                         </td>

@@ -213,7 +213,8 @@ button:hover {
 /* Media Queries for Phones */
 @media (max-width: 480px) {
     .section {
-        height: 500px; /* Adjust the height for phone */
+        height: 500px;
+        margin-top: 46px; /* Adjust the height for phone */
     }
     body {
         max-width: 100%; /* Allow full width on smaller screens */

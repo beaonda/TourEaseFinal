@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './login/admin/admin.component';
 import { TouristComponent } from './login/tourist/tourist.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -29,6 +29,13 @@ import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/f
 
 import { NewPostComponent } from './new-post/new-post.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
+import { FabComponent } from './components/fab/fab.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { TrendingComponent } from './components/trending/trending.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 @NgModule({
@@ -51,7 +58,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     ManageusersComponent,
     ManagespotsComponent,
     ManagepostsComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ForgotPassComponent,
+    FabComponent,
+    TrendingComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +71,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     AngularFireModule.initializeApp(firebaseConfig),
     FormsModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 <app-header></app-header>
+<app-fab></app-fab>
 <main id="main">
 
     <section class="single-post-content">
@@ -9,6 +10,14 @@
             <!-- ======= Single Post Content ======= -->
             <div class="single-post">
               <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <div style="text-align: right; margin-top: -25px;"class="post-meta"> <span class="mx-1"><i class="bi bi-people-fill"></i></span><span class="views">10,000 Views</span><span> <div  class="rating" id="rating">
+
+                <input  [(ngModel)] = "rating" type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+                <input  [(ngModel)] = "rating" type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+                <input [(ngModel)] = "rating" type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+                <input [(ngModel)] = "rating" type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+                <input [(ngModel)] = "rating" type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+            </div></span></div> 
               <h1 class="mb-5">13 Amazing Poems from Shel Silverstein with Valuable Life Lessons</h1>
               <p><span class="firstcharacter">L</span>orem ipsum dolor sit, amet consectetur adipisicing elit. Ratione officia sed, suscipit distinctio, numquam omnis quo fuga ipsam quis inventore voluptatum recusandae culpa, unde doloribus saepe labore alias voluptate expedita? Dicta delectus beatae explicabo odio voluptatibus quas, saepe qui aperiam autem obcaecati, illo et! Incidunt voluptas culpa neque repellat sint, accusamus beatae, cumque autem tempore quisquam quam eligendi harum debitis.</p>
 

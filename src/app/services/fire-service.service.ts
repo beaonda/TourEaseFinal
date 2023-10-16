@@ -32,6 +32,8 @@ export class FireServiceService {
     this.usersCollection.add(item);
   }
 
+
+
   private destinationCollection: AngularFirestoreCollection<Destination>;
   destiItems: Observable<Destination[]>;
   addDestinationItem(destiItem: Destination) {
@@ -53,6 +55,19 @@ export class FireServiceService {
   saveTouristDestion(data:any){
     return this.firestore.collection("tourist_spots").doc(data.tourismID).set(data);
   }
+  savePost(data:any){
+    return this.firestore.collection("posts").doc(data.postID).set(data);
+  }
+
+  searchResults: any[] = [];
+
+  search(query: string) {
+    return this.firestore.collection('tourist_spots')
+    .ref
+    .where('estName', '==', query)
+    .get();
+  }
+
 
   getAllTouristDestinations(){
     return this.destinationCollection;
