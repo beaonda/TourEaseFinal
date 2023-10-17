@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { collection } from 'firebase/firestore';
+import { WhereFilterOp, collection } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -58,6 +58,35 @@ export class FireServiceService {
   savePost(data:any){
     return this.firestore.collection("posts").doc(data.postID).set(data);
   }
+  resetPassword(email: string) {
+    return this.auth.sendPasswordResetEmail(email);
+  }
+
+
+  getDocumentCount(collectionName: string): Promise<number> {
+    const collectionRef = this.firestore.collectionGroup(collectionName);
+
+    return collectionRef.get().toPromise().then((querySnapshot) => {
+      return querySnapshot!.size; // Get the number of documents in the collection
+    });
+  }
+
+  async countDocuments(collectionName: string, fieldName: string, condition: WhereFilterOp, value: any): Promise<number> {
+    const collectionRef = this.firestore.collection(collectionName);
+
+    // Create a query that counts documents based on the specified condition
+    const query = collectionRef.ref
+      .where(fieldName, condition, value)
+      .limit(1); // Limit the query to a single document
+
+    // Perform the query and get the result
+    const querySnapshot = await query.get();
+
+    // Extract the count using the count() function
+    const count = querySnapshot.size;
+
+    return count;
+  }
   
 
   searchResults: any[] = [];
@@ -87,6 +116,15 @@ export class FireServiceService {
     return this.usersCollection;
   }
 
+
+  getDocumentCounter(): Observable<any> {
+    const collectionRef = this.firestore.collection("counter");
+    return collectionRef.doc("counts").valueChanges();
+  }
+  updateTSPotCount(data: any): Promise<void> {
+    return this.firestore.collection("counter").doc("counts").update(data);
+  }
+
 }
 
 
@@ -97,3 +135,4 @@ export interface User{
 export interface Destination{
 
 }
+

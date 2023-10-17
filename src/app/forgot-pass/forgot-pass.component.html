@@ -6,12 +6,13 @@
         <div class="text">
             <p class="title"> Retrieve your Account</p>
             <form>
-                <input class="email" type="email" id="email" name="email" placeholder="Enter your email address" required>
+                <input [(ngModel)]="email" class="email" type="email" id="email" name="email" placeholder="Enter your email address" required>
                 <div>
-                    <button type="submit">SEND LINK</button>
+                    <button type="submit" (click) = "retrieveAcc()" #send>SEND LINK</button>
+                    <button (click)="retrieveAcc()" #resend type="submit" [disabled] = "isButtonDisabled" >RESEND (60s)</button>
                 </div>
             </form>
-            <p><a href="#">Click here</a> if you did not receive an email.</p>
+            <p>Please wait 60 seconds before resending the email.</p>
         </div>
     </div>  
 </div>
