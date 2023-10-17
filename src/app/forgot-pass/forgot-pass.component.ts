@@ -4,7 +4,7 @@ import { FireServiceService } from '../services/fire-service.service';
 @Component({
   selector: 'app-forgot-pass',
   templateUrl: './forgot-pass.component.html',
-  styleUrls: ['./forgot-pass.component.css']
+  styleUrls: ['./forgot-pass.component.css', '../../assets/css/homePages.css']
 })
 export class ForgotPassComponent {
 

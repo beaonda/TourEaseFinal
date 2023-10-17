@@ -1,155 +1,87 @@
 /* Reset some default styles */
-body, html {
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
+
+
+.bodycont, html {
     margin: 0;
     padding: 0;
 }
 
-/* Set the background image */
-.bodycont {
-    margin: 0;
-    padding: 0;
-    background-image: url('../../assets/img/background.png');
-    background-size: cover;
-    background-position: center;
-    font-family: "Roboto";
+  
+@font-face {
+    font-family: 'Sodosans';
+    src: url('../../assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
+         url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+  }
+  
+
+.verlogo{
+    max-width: 28%;
+    margin-left: 99%;
+    margin-top: -12%;
 }
 
-.title{
-    color: #21757F;
-    font-weight: bolder;
-    font-size: 50px;
-    padding: 0;
-    margin-top: -5%;
-    font-family:Arial, Helvetica, sans-serif;
-
-}
-
-/* Create a container to center the content vertically */
-.container {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-}
-
-.right-logo {
-    max-width: 250px; /* Adjust the size of your right logo */
-    float: left;
-    margin-top: -50%; /* Adjust the margin as needed */
-}
-
-
-/* Center the content horizontally */
-.content {
-    background-color: white;
-    text-align: center;
-    margin: 0 auto;
-    padding: 80px;
-    border-radius: 10px;
-    max-width: 700px;
-    position: relative; /* Added for positioning the white rectangle */
-}
-
-/* Add a white rectangle behind the content */
-.content:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: white; /* White rectangle background color */
-    z-index: -1; /* Place the white rectangle behind the content */
-    border-radius: 10px; /* Match the content's border-radius */
-}
-
-/* Style the logo */
-.logo {
-    max-width: 250px; /* Adjust the size of your logo */
-    margin-bottom: 20px;
-    margin-left: 80%;
-    margin-top: -25%;
-}
-
-
-/* Style the email address */
-.email {
-    font-weight: bold;
-    color: #21757F;
-}
-
-/* Style the "Click here" link */
-a {
-    text-decoration: none;
-    color: #F6C826;
-    font-weight: bolder; /* You can change the color as needed */
+.cont{
+    margin-bottom: -10%;
 }
 
 .email{
-    border: none; /* Remove the input box border */
-    border-bottom: 1px solid #000; /* Add a bottom border */
-    padding: 5px; /* Add some padding for spacing */
-    font-size: 16px; /* Set the font size */
-    width: 70%; /* Make the input field take the full width */
-    margin-bottom: 20px; /* Add some spacing below the input field */
-    background-color: rgba(255, 255, 255, 0.9);
+    color:#21757f
 }
 
-
-button{
-    background-color: #21757F; /* Change this to the desired button color */
-    color: #fff; /* Text color for the button */
-    padding: 10px 20px; /* Adjust padding as needed */
-    border-radius: 5px;
-    border: none;
-    margin-top: 13px;
+.click{
+    color:#f6c826;
 }
 
-button:disabled{
-    background-color: #44787e; /* Change this to the desired button color */
-    color: #fff;
+.right-logo{
+    max-width: 23%;
+    margin-left: 82%;
+    margin-top: -6%;
 }
 
-a{
-    cursor: pointer;
+.verifytext{
+    text-align: center;
+    padding:10px;
+    size: 40px;
 }
 
-@media (max-width: 768px) {
-    .content {
-        max-width: 90%; /* Reduce the maximum width for smaller screens */
-        padding: 10px; /* Reduce padding for smaller screens */
+.contverify{
+    padding: 172px;
+    margin-top: -12%;
+    margin-bottom: -3%;
+}
+
+.contact .php-email-form{
+    width: 113%;
+      margin-left: -6%;
+  }
+  
+  #main{
+    background-image: url('../../assets/img/backg.png');
+    background-size: cover; 
+    height: 100vh;
+    /* Optional: Adjusts how the image covers the element */
+  }
+  
+  @media (max-width:320px){
+        .page-title{
+      margin-top: 230px;
     }
-
-    .logo {
-        max-width: 250px; /* Adjust the size of your logo */
-        margin-bottom: 20px;
-        margin-left: -1%;
-        margin-top: -30%;
-    }
-
-    body {
-        background-image: url('../../assets/img/background.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        font-family: "Roboto";
-    }
-
-    .right-logo {
-        max-width: 200px; /* Adjust the size of your right logo */
-       margin-left: -30px;
-        margin-top: -250%; /* Adjust the margin as needed */
+    .name- .moretext{
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     
-
-    
-.title{
-    color: #21757F;
-    font-weight: bolder;
-    font-size: 40px;
-    padding: 0;
-    margin-top: -5%;
-    font-family:Arial, Helvetica, sans-serif;
-
-}
-
-}
+  }
+  
+  @media (max-width:768px){
+  
+  
+    .page-title {
+      margin-top: 150px;
+    }
+  
+    #main{
+      background-image: url('../../assets/img/bggg.png');
+      
+    }
+  }

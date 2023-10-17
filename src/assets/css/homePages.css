@@ -19,7 +19,7 @@
 @import '../../../node_modules/aos/dist/aos.css';
 @import './variables.css';
 
-  
+
 @font-face {
   font-family: 'Sodosans';
   src: url('../fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
@@ -54,10 +54,12 @@
   h6,a,label,p, button {
     font-family:'Sodosans';
   }
-  
-  #main {
+
+/*   #main {
     margin-top: 90px;
   }
+   */
+
   
   /*--------------------------------------------------------------
   # Sections & Section Header
@@ -234,6 +236,10 @@
     .navbar {
       padding: 0;
     }
+
+    .bi-list{
+      display: none;
+    }
   
     .navbar ul {
       margin: 0;
@@ -358,6 +364,8 @@
     .navbar .dropdown .dropdown ul {
       left: -90%;
     }
+
+   
   
     .navbar .dropdown .dropdown:hover>ul {
       left: -100%;
@@ -448,7 +456,7 @@
       color: var(--color-black);
     }
 
-    .bi-x[_ngcontent-ng-c3180552294]::before {
+    .bi-x[_ngcontent-ng-c4252871351]::before {
       content: "\f479";
   }
   
@@ -523,6 +531,11 @@
      margin-left: -20px;
      font-size: 11px;
      padding: 2px 33px;
+  }
+
+  
+  .logoutbtn{
+    display: none;
   }
   }
   
@@ -805,7 +818,7 @@
     margin-bottom: -3%;
 }
 
-.logo{
+.verlogo{
   max-width: 36%;
   margin-left: 78%;
   margin-top: -5%;
@@ -822,7 +835,7 @@
       padding:11px 33px;
    }
 
-   .logo{
+   .verlogo{
     max-width: 41%;
     margin-left: 99%;
     margin-top: -39%;
@@ -854,7 +867,7 @@
 }
 
 
-.logo{
+.verlogo{
   max-width: 77%;
   margin-left: 53%;
   margin-top: -25%;
