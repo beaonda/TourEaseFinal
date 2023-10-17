@@ -39,11 +39,12 @@
       </nav>
 
       <div class="position-relative ">
-        
+
+        <a href=# class="mx-2 logoutbtn"><span class="bi bi-box-arrow-in-left"></span></a>
         <a href="/profile" class="mx-2"><span class="bi-person-fill"></span></a>
 
         <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
-        <i class="bi bi-list mobile-nav-toggle mx-2 " (click)="toggleSideNav()">
+        <i class="bi bi-list mx-2 " (click)="toggleSideNav()">
       </i> 
 <!--         <div class="bi bi-list toggle-button" (click)="toggleSideNav()">☰</div> -->
      
@@ -51,7 +52,7 @@
           <form action="search-result.html" class="search-form">
             <span class="icon bi-search"></span>
             <input type="text" placeholder="Search" class="form-control">
-            <button class="btn js-search-close"><span class="bi-x"></span></button>
+            <button class="btn js-search-close"><span class="bi-list"></span></button>
           </form>
         </div>
 
@@ -62,6 +63,7 @@
           <a class="editnav" href="/category">Categories</a>
           <a class="editnav" href="/about">About</a>
           <a class="editnav" href="/contact">Contact</a>
+          <a class="editnav" href=#>Logout</a>
       </div>
       </div>
     </div>

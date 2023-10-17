@@ -1,3 +1,6 @@
+<app-header></app-header>
+<app-fab></app-fab>
+
 <div class="header__wrapper">
     <header></header>
     <div class="cols__container">
@@ -9,7 +12,7 @@
         <h2>Kaila Guerrero</h2>
         <p>@guerrerokai</p>
         <button id="follow-button">Follow</button>
-        <button id="settings-button">
+        <button id="settings-button" (click)="goToSettings()">
             <i class="bi bi-gear"></i>  
         </button>
         <ul class="about">
@@ -28,50 +31,81 @@
                 <li><i class="fab fa-instagram"></i></li>
                 <li><i class="fab fa-facebook"></i></li>
             </ul>
-            
         </div>
     </div>
-        <div class="right__col">
+   
+        <div class="right__col" style="padding: 20px;">
             <nav>
                 <ul>
                     <li><a (click)="showSection('blogs')" data-section="blogs">blogs</a></li>
                     <li><a (click)="showSection('photos')" data-section="photos">photos</a></li>
                     <li><a (click)="showSection('badge')" data-section="badge">badge</a></li>
                 </ul>
-                <button id="home-button">
-                    <i class="fa-solid fa-house"></i> Go Back Home 
-                </button>
+              
             </nav>
+
+          
 
             <!-- Blogs Section -->
             <div id="blogs" class="blogs__section content-section">
               <h3>Blogs</h3>
               <div class="blog__post">
+             
+                <div  class="rating" id="rating">
+<!-- <label style="margin-right: 80px; font-size: 15px;">Rating</label> -->
+                    <input   type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+                    <input   type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+                    <input  type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+                    <input  type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+                    <input  type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                </div>
+
+                <h4>Exploring the Beautiful Beaches</h4>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
+                    dolor at eros vehicula hendrerit.
+                </p>
                   <img src="../../assets/img/img_1.avif" alt="Blog Post 1" />
-                  <h4>Exploring the Beautiful Beaches</h4>
-                  <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
-                      dolor at eros vehicula hendrerit.
-                  </p>
-                  <a href="#">Read more</a>
+              
+                 
               </div>
               <div class="blog__post">
+
+                <div  class="rating" id="rating">
+                    <!-- <label style="margin-right: 80px; font-size: 15px;">Rating</label> -->
+                                        <input   type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+                                        <input   type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+                                        <input  type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+                                        <input  type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+                                        <input  type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                                    </div>
+                <h4>A Culinary Journey Through the City</h4>
+                <p>
+                    Vestibulum a nisl vitae lectus vehicula fermentum. Phasellus at
+                    orci eget ligula placerat semper.
+                </p>
                   <img src="../../assets/img/img_2.avif" alt="Blog Post 2" />
-                  <h4>A Culinary Journey Through the City</h4>
-                  <p>
-                      Vestibulum a nisl vitae lectus vehicula fermentum. Phasellus at
-                      orci eget ligula placerat semper.
-                  </p>
-                  <a href="#">Read more</a>
+              
+                  
               </div>
               <div class="blog__post">
+
+                <div  class="rating" id="rating">
+                    <!-- <label style="margin-right: 80px; font-size: 15px;">Rating</label> -->
+                                        <input   type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
+                                        <input   type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
+                                        <input  type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
+                                        <input  type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
+                                        <input  type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                                    </div>
+                <h4>Hiking Adventures in the Mountains</h4>
+                <p>
+                    Nullam euismod, velit id posuere vulputate, tortor risus vehicula
+                    nisi, eu dignissim erat nunc ut nulla.
+                </p>
                   <img src="../../assets/img/img_3.avif" alt="Blog Post 3" />
-                  <h4>Hiking Adventures in the Mountains</h4>
-                  <p>
-                      Nullam euismod, velit id posuere vulputate, tortor risus vehicula
-                      nisi, eu dignissim erat nunc ut nulla.
-                  </p>
-                  <a href="#">Read more</a>
+              
+                
               </div>
             </div>
             <!-- End of Blogs Section -->

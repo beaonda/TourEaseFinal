@@ -145,6 +145,10 @@
             <!-- ======= Sidebar ======= -->
             <div class="aside-block">
 
+
+
+              
+
               <ul class="nav nav-pills custom-tab-nav mb-4" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                   <button class="nav-link active" id="pills-popular-tab" data-bs-toggle="pill" data-bs-target="#pills-popular" type="button" role="tab" aria-controls="pills-popular" aria-selected="true">Popular</button>
@@ -279,15 +283,7 @@
               </div>
             </div>
 
-            <div class="aside-block">
-              <h3 class="aside-title">Video</h3>
-              <div class="video-post">
-                <a href="https://www.youtube.com/watch?v=AiFfDjmd0jU" class="glightbox link-video">
-                  <span class="bi-play-fill"></span>
-                  <img src="assets/img/post-landscape-5.jpg" alt="" class="img-fluid">
-                </a>
-              </div>
-            </div><!-- End Video -->
+           <!-- End Video -->
 
             <div class="aside-block">
               <h3 class="aside-title">Categories</h3>
@@ -315,6 +311,29 @@
                 <li><a href="category.html">Startups</a></li>
                 <li><a href="category.html">Travel</a></li>
               </ul>
+            </div>
+            
+            
+            <div class="aside-block">
+              <h3 class="aside-title">Map</h3>
+              <div class="video-post">
+                <google-map height="300px"
+            width="100%"
+            id="addMap"
+            [center]="center"
+            [zoom]="zoom"
+            (mapClick)="moveMap($event)"
+            (mapMousemove)="move($event)"
+            #addMap
+            >
+              <map-marker
+              [position]="center"
+              id = "mapMark"
+              draggable="true"
+              >
+              </map-marker>
+          </google-map>
+              </div>
             </div><!-- End Tags -->
 
           </div>

@@ -82,8 +82,8 @@
     position: fixed;
     visibility: hidden;
     opacity: 0;
-    right: 15px;
-    bottom: 15px;
+    left: 25px;
+    bottom: 41px;
     z-index: 99999;
     background: var(--color-primary);
     width: 40px;

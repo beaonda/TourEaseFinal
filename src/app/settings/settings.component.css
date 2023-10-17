@@ -1,0 +1,64 @@
+/* Styles for default view (laptop) */
+.header_edit {
+    margin-top: 267px;
+    margin-left: 1391px;
+    background-color: #21757f;
+    border: none;
+    border-radius: 50%;
+    width:35px;
+    height: 35px;
+}
+
+.profile_edit {
+    position: absolute;
+    top: 86%;
+    left: 77%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width:35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    background-color: #185c64;
+}
+
+.bi-camera {
+    color: white;
+    font-size: 20px;
+}
+
+/* Styles for screens with maximum width of 768px (tablets) */
+@media (max-width: 768px) {
+    .header_edit {
+        margin-top: 22%;
+        margin-left: 92%;
+    }
+    
+    .profile_edit {
+        top: 80%;
+        left: 75%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header_edit {
+        margin-top: 20%;
+    margin-left: 94%;
+    }
+
+   
+}
+
+/* Styles for screens with maximum width of 320px (small mobile screens) */
+@media (max-width: 320px) {
+    .header_edit {
+        margin-top: 61%;
+        margin-bottom: 2%;
+        margin-left: 86%;
+    }
+    
+    .profile_edit {
+        top: 90%;
+    left: 80%;
+    }
+}

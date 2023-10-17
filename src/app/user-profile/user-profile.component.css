@@ -5,6 +5,24 @@
        url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
 }
 
+.rating label {
+  cursor: pointer;
+  width: 20px;
+  font-size:20px;
+  color: #ddd;
+  text-align: center;
+}
+
+
+
+.rating input[type="radio"] {
+  display: none;
+}
+
+.rating label:before {
+  content: '\2605';
+}
+
 
 
 h1,
@@ -27,6 +45,14 @@ body {
   font-family: 'Sodosans';
 }
 
+.blog__post{
+  border: 1px solid #81818157;
+  margin-bottom: 20px;
+  padding: 16px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -42,7 +68,7 @@ a {
 .header__wrapper header {
   width: 100%;
   background: url("../../assets/img/olah.jpg") no-repeat 50% 20% / cover;
-  min-height: calc(100px + 15vw);
+  min-height: calc(100px + 37vw);
 }
 
 .header__wrapper .cols__container .left__col {
@@ -133,13 +159,13 @@ a {
   display: flex;
   align-items: center;
   padding: 30px 0;
-  justify-content: space-between;
-  flex-direction: column;
+  justify-content: space-around;
+  flex-direction: row;
 }
 .header__wrapper .cols__container .right__col nav ul {
   display: flex;
   gap: 20px;
-  flex-direction: column;
+  flex-direction: row;
 }
 .header__wrapper .cols__container .right__col nav ul li a {
   text-transform: uppercase;
@@ -199,8 +225,8 @@ nav ul li a.active {
 }
 
 .blog__post img {
-    max-width: 750px; /* Set the maximum width to the container width */
-    max-height: 750px; /* Adjust the maximum height as per your requirements */
+    max-width: 236px; /* Set the maximum width to the container width */
+    max-height: 236px; /* Adjust the maximum height as per your requirements */
 }
 
 .badge__item {
@@ -306,12 +332,26 @@ nav ul li a.active {
     grid-template-columns: 1fr 2fr;
     gap: 50px;
   }
+  .blog__post img {
+    max-width: 511px;
+    max-height: 391px;
+    margin-left: 12%; /* Adjust the maximum height as per your requirements */
+}
+  
+  .header__wrapper header{
+    min-height: calc(100px + 15vw);
+  }
   .header__wrapper .cols__container .left__col {
     padding: 25px 0px;
   }
   .header__wrapper .cols__container .right__col nav ul {
     flex-direction: row;
     gap: 30px;
+  }
+  .header__wrapper .cols__container .right__col nav {
+ 
+    justify-content: space-between;
+  
   }
   .header__wrapper .cols__container .right__col .photos {
     height: 365px;
