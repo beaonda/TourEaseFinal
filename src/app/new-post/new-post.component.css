@@ -55,7 +55,13 @@
     color: #fff;
     transition: 0.4s;
     cursor: pointer;
+    margin-left: 25px;
 }
+
+
+
+
+
 .popup {
     display: none;
     position: fixed;
@@ -103,7 +109,7 @@
 
 .search-results {
     position: absolute;
-    width: 90%;
+    width: 93.5%;
     max-height: 150px;
     overflow-y: auto;
     background-color: #fff;
@@ -129,6 +135,8 @@
   .search-results li:hover {
     background-color: #f0f0f0;
   }
+
+  
     
 
 

@@ -71,32 +71,94 @@ export class FireServiceService {
     });
   }
 
-  async countDocuments(collectionName: string, fieldName: string, condition: WhereFilterOp, value: any): Promise<number> {
-    const collectionRef = this.firestore.collection(collectionName);
+  async getTspotDocument(value: any): Promise<any> {
+    const collectionRef = this.firestore.collection("tourist_spots");
 
     // Create a query that counts documents based on the specified condition
     const query = collectionRef.ref
-      .where(fieldName, condition, value)
+      .where('estName', '==', value)
       .limit(1); // Limit the query to a single document
 
     // Perform the query and get the result
     const querySnapshot = await query.get();
 
-    // Extract the count using the count() function
-    const count = querySnapshot.size;
+    if (querySnapshot.empty) {
+      // No matching documents found, return null or handle it as needed
+      return null;
+    } else {
+      // Extract and return the first document from the query
+      const firstDocument = querySnapshot.docs[0].data();
+      return firstDocument;
+    }
+  }
 
-    return count;
+  async getHomeDocuments(value: any): Promise<any> {
+    const collectionRef = this.firestore.collection("posts");
+
+    // Create a query that counts documents based on the specified condition
+    const query = collectionRef.ref
+      .where('category', '==', value)
+      .limit(10); // Limit the query to a single document
+
+    // Perform the query and get the result
+    const querySnapshot = await query.get();
+
+    if (querySnapshot.empty) {
+      // No matching documents found, return null or handle it as needed
+      return null;
+    } else {
+      // Extract and return the first document from the query
+      const natureList = querySnapshot.docs;
+      return natureList;
+    }
+  }
+
+  async getPhotoDocument(value: any): Promise<any> {
+    const collectionRef = this.firestore.collection("post_photos");
+
+    // Create a query that counts documents based on the specified condition
+    const query = collectionRef.ref
+      .where('postID', '==', value)
+      .limit(10); // Limit the query to a single document
+
+    // Perform the query and get the result
+    const querySnapshot = await query.get();
+
+    if (querySnapshot.empty) {
+      // No matching documents found, return null or handle it as needed
+      return null;
+    } else {
+      // Extract and return the first document from the query
+      const photo = querySnapshot.docs[0].data();
+      return photo;
+    }
+  }
+
+  async getPostDocument(value: string): Promise<any> {
+    const collectionRef = this.firestore.collection("posts");
+
+    // Create a query that counts documents based on the specified condition
+    const query = collectionRef.ref
+      .where('postID', '==', value)
+      .limit(1); // Limit the query to a single document
+
+    // Perform the query and get the result
+    const querySnapshot = await query.get();
+
+    if (querySnapshot.empty) {
+      alert("Document Not Found");
+      // No matching documents found, return null or handle it as needed
+      return null;
+    } else {
+      // Extract and return the first document from the query
+      const post = querySnapshot.docs[0].data();
+      return post;
+    }
   }
   
 
   searchResults: any[] = [];
 
-  search(query: string) {
-    return this.firestore.collection('tourist_spots')
-    .ref
-    .where('estName', '==', query)
-    .get();
-  }
 
 
   getAllTouristDestinations(){
@@ -124,6 +186,12 @@ export class FireServiceService {
   updateTSPotCount(data: any): Promise<void> {
     return this.firestore.collection("counter").doc("counts").update(data);
   }
+
+
+  /* getOneTSpot(documentId:string): Observable<any> {
+    const documentRef = this.firestore.collection("touristSpots").doc().where('estName', '==', '');
+    return documentRef.valueChanges();
+  } */
 
 }
 

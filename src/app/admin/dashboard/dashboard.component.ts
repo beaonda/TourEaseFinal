@@ -93,7 +93,7 @@ export class DashboardComponent {
     const condition = '=='; // Replace with your condition (e.g., '>', '<', '==')
     const value = 'Nature'; // Replace with the value to compare against
     
-    this.natureCategCount = await this.fireService.countDocuments(collectionName, fieldName, condition, value);
+    /* this.natureCategCount = await this.fireService.countDocuments(collectionName, fieldName, condition, value); */
     console.log(`Count of documents matching the condition: ${this.natureCategCount}`);
   }
 
