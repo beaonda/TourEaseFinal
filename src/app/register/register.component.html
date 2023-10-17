@@ -1,16 +1,118 @@
 <div class="bodycont">
 
+    <main id="main">
+        <section id="contact" class="contact mb-5">
+          <div class="container" data-aos="fade-up">
+    
+            <div class="row">
+              <div class="col-lg-12 text-center mb-5 name-">
+                <h1 class="page-title">Register Now!</h1>
+              </div>
+            </div>
+            
+        <div class="row gy-4 pad">
+  
+            <h5 class="moretext" style = "text-align: center; margin-top: -1%;">Embark on Your Journey with Us! Join TourEase and Unlock a world of Travel Possibilities.</h5>
+  
+        </div>
 
+    
+            
+    
+            <div class="form mt-5">
+              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                <div class="row">
+                  <div class="form-group col-md-4">
+                    <input  class="form-control" [(ngModel)]="fname" type="text" name="first_name" id="first_name" placeholder="Enter your first name" />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input class="form-control" [(ngModel)]="lname" type="text" name="last_name" id="last_name" placeholder="Enter your last name" />
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input class="form-control" [(ngModel)]="mname" type="text" name="middle_name" id="middle_name" placeholder="Enter your middle name"/>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <div class="select-list">
+                            <select [(ngModel)]="gender" name="gender" class="form-control" id="meal_preference">
+                                <option value="Vegetarian">Male</option>
+                                <option value="Kosher">Female</option>
+                                <option value="Asian Vegetarian">Rather Not Say</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input  class="form-control" [(ngModel)]="bday" type="date" name="bday" id="bday" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input class="form-control" [(ngModel)]="contact" type="text" name="phone_number" id="phone_number"  placeholder="Enter your phone number" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input class="form-control" [(ngModel)]="email" type="text" name="email" id="email"  placeholder="Enter your email address"/>
+                    </div>
+                  </div>
+                 
+                  <div class="form-group">
+                    <input class="form-control"  [(ngModel)]="country" type="text" name="country" id="country"  placeholder="Enter your country" />
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control"  [(ngModel)]="province" type="text" name="prov" id="prov"  placeholder="Enter your province"/>
+                    </div>
+                
+                        <div class="form-group">
+                            <input class="form-control"  [(ngModel)]="city" type="text" name="city" id="city"  placeholder="Enter your city/municipality"/>
+                    </div>
+                
+                            <div class="form-group">
+                                <input class="form-control"  [(ngModel)]="exact_add" type="text" name="exact" id="exact"  placeholder="Enter your exact address"/>
+                    </div>
+                
+                                <div class="form-group">
+                                    <input class="form-control"  [(ngModel)]="uname" type="text" name="uname" id="uname"  placeholder="Enter your username"/>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control"  [(ngModel)]="pword" type="text" name="pword" id="pword"  placeholder="Enter your password"/>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input class="form-control" [(ngModel)]="pword2" type="text" name="pword2" id="pword2"  placeholder="Confirm your password"/>
+                                    </div>
+                                  </div>   
+                                
+                
+                <div class="my-3">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                </div>
+                <div class="text-center"><button (click)="signUp()" type="submit" class="submit" id="submit">Submit</button></div>
+              </form>
+            </div><!-- End Contact Form -->
+    
+          </div>
+        </section>
+    
+      </main>
+
+
+
+
+    
+<!-- 
 <div class="main">
 
     <div class="container">
         <div class="signup-content">
             <div class="signup-img">
                 <img src="../../assets/img/reg.png" alt="">
-                <!-- <div class="signup-img-content">
-                    <h2>Register now </h2>
-                    <p>while seats are available !</p>
-                </div> -->
+           
             </div>
             <div class="signup-form">
                 <form method="POST" class="register-form" id="register-form">
@@ -49,36 +151,14 @@
                                     <label for="gender">Gender</label>
                                 </div>
                                 <div class="select-list">
-                                    <select [(ngModel)]="gender" name="gender" class="selects"id="meal_preference">
+                                    <select class="formselect" [(ngModel)]="gender" name="gender" class="selects"id="meal_preference">
                                         <option value="Vegetarian">Male</option>
                                         <option value="Kosher">Female</option>
                                         <option value="Asian Vegetarian">Rather Not Say</option>
                                     </select>
                                 </div>
                             </div>
-                            <!-- <div class="form-radio">
-                                <div class="label-flex">
-                                    <label for="payment">Payment Mode</label>
-                                    <a href="#" class="form-link">Payment Detail</a>
-                                </div>
-                                <div class="form-radio-group">            
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="payment" id="cash" checked>
-                                        <label for="cash">Cash</label>
-                                        <span class="check"></span>
-                                    </div>
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="payment" id="cheque">
-                                        <label for="cheque">Cheque</label>
-                                        <span class="check"></span>
-                                    </div>
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="payment" id="demand">
-                                        <label for="demand">Demand Draf</label>
-                                        <span class="check"></span>
-                                    </div>
-                                </div>
-                            </div> -->
+                            
                             <div class="form-input" style="margin-top: -13%;">
                                 <label for="bday">Birthday</label>
                                 <input [(ngModel)]="bday" type="date" name="bday" id="bday" />
@@ -160,13 +240,7 @@
 
                     
 
-                   <!--  <div class="donate-us">
-                        <label>Donate us</label>
-                        <div class="price_slider ui-slider ui-slider-horizontal">
-                            <div id="slider-margin"></div>
-                            <span class="donate-value" id="value-lower"></span>
-                        </div>
-                    </div> -->
+                
                     <div class="form-submit">
                         <button class="submit" id="reset">Reset</button>
                         <button (click)="signUp()" type="submit" class="submit" id="submit">Submit</button>
@@ -178,4 +252,4 @@
     </div>
 
 </div>
-</div>
+</div> -->

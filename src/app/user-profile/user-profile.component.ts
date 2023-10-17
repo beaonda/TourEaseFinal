@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  styleUrls: ['./user-profile.component.css', '../../assets/css/homePages.css']
 })
 export class UserProfileComponent {
 
@@ -11,6 +12,12 @@ export class UserProfileComponent {
   modal = document.getElementById('myModal');
   zoomedImg = document.getElementById('zoomedImg') as HTMLImageElement;
   navigationLinks = document.querySelectorAll("nav ul li a");
+
+  constructor(private router: Router) { }
+
+  goToSettings() {
+      this.router.navigate(['/settings']);
+  }
 
   handleNavigationClick(event:any) {
     const targetId = event.target.getAttribute("data-section");
