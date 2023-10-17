@@ -60,7 +60,23 @@
           <a style="text-align: right;"href="#" (click)="toggleSideNav()">Close &#x2716;</a>
           <a class="editnav" href="/home">Blog</a>
           <a class="editnav" href="/view-post">Single Post</a>
-          <a class="editnav" href="/category">Categories</a>
+          <div class="dropdown">
+            <a (click)="showDrop()" class="editnav dropdown-toggle" id="categoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Categories
+            </a>
+            <div *ngIf = "showDropBool" id="dropdown" aria-labelledby="categoriesDropdown">
+                <!-- Add your category options here -->
+                <a class="dropdown-item" href="#">Nature</a>
+                <a class="dropdown-item" href="#">Cultural</a>
+                <a class="dropdown-item" href="#">Industrial</a>
+                <a class="dropdown-item" href="#">Sun and Beach</a>
+                <a class="dropdown-item" href="#">Leisure and Entertainment</a>
+                <a class="dropdown-item" href="#">Meetings, Incentives, Conventions, and Exhibitions</a>
+                <a class="dropdown-item" href="#">Health Wellness</a>
+
+                <!-- Add more categories as needed -->
+            </div>
+        </div>
           <a class="editnav" href="/about">About</a>
           <a class="editnav" href="/contact">Contact</a>
           <a class="editnav" href=#>Logout</a>

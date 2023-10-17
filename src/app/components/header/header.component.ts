@@ -9,6 +9,10 @@ import '../../../assets/js/homeMain.js';
 })
 export class HeaderComponent {
   showSideNav: boolean = false;
+  showDropBool:any = false;
+  showDrop(){
+    this.showDropBool = !this.showDropBool;
+  }
  
 
   toggleSideNav() {
