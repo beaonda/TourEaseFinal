@@ -8,11 +8,7 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent {
 
-  photos = document.querySelectorAll('.zoomable');
-  modal = document.getElementById('myModal');
-  zoomedImg = document.getElementById('zoomedImg') as HTMLImageElement;
-  navigationLinks = document.querySelectorAll("nav ul li a");
-
+ 
   constructor(private router: Router) { }
 
   goToSettings() {
@@ -50,21 +46,30 @@ export class UserProfileComponent {
 
   }
 
+  navigationLinks:any;
+  zoomedImg:any;
+  modal:any;
+  photos:any;
 
 
+
+ ngAfterViewInit(){
+  this.showSection("blogs");
+  this.navigationLinks[0].classList.add("active"); 
+ }
 
   ngOnInit(){ 
-    this.navigationLinks.forEach((link:any) => {
-      link.addEventListener("click", this.handleNavigationClick);
-    });
-      this.showSection("blogs");
-      this.navigationLinks[0].classList.add("active"); 
+    this.photos = document.querySelectorAll('.zoomable');
+    this.modal = document.getElementById('myModal');
+    this.zoomedImg = document.getElementById('zoomedImg') as HTMLImageElement;
+    this.navigationLinks = document.querySelectorAll("nav ul li a");
+     
       this.photos.forEach((photo:any) => {
         photo.addEventListener('click', () => {
             this.modal!.style.display = 'block';
             this.zoomedImg!.src = photo.src;
         });
-    });
+      });
   }
 
   }

@@ -26,6 +26,10 @@
        url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
 }
 
+
+.weatherIcon{
+  font-size:7rem;
+}
   
   body {
     color: rgba(var(--color-primary-rgb), 1);
@@ -110,7 +114,7 @@
   
 
   .weathercard{
-    height: 360px;
+    height: 400px;
     width: 134%;
     background-color: rgb(10 60 66);
  

@@ -70,17 +70,18 @@
               <div class="weathercard-">
                 <h4 class="weatherh4-">WEATHER TODAY</h4>
                 <h4 class="weatherh4-">BATANGAS</h4>
-                <h6 class="weatherh6-">PARTLY CLOUDY</h6>
-                <img class="weatherimg-" src="../../assets/img/icon.png" alt="icon">
-                <h1 class="weatherh1-">32<sup>&deg;</sup></h1>
+                <h6 class="weatherh6-" *ngIf = "WeatherData">{{WeatherData.weather[0].description}}</h6>
+                <i class="bi bi-sun weatherIcon weatherimg-" *ngIf="WeatherData && WeatherData.isDay"></i>
+                <i class="bi bi-moon-stars weatherIcon weatherimg-" *ngIf="WeatherData && !WeatherData.isDay"></i>
+                <h1 class="weatherh1-" *ngIf = "WeatherData">{{WeatherData.temp_feels_like}}<sup>&deg;</sup></h1>
                 <div class="weathercontainer-">
                     <div class="weatherdetails-">
                         <p>max</p>
-                        <span>32<sup>&deg;</sup></span>
+                        <span *ngIf = "WeatherData">{{WeatherData.temp_max}}<sup>&deg;</sup></span>
                     </div>
                     <div class="weatherdetails-">
                         <p>min</p>
-                        <span>30<sup>&deg;</sup></span>
+                        <span *ngIf = "WeatherData">{{WeatherData.temp_min}}<sup>&deg;</sup></span>
                     </div>
                 </div>
             </div>

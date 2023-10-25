@@ -5,6 +5,7 @@ import Swiper from 'swiper';
 import { FireServiceService } from '../services/fire-service.service';
 import { Conditional } from '@angular/compiler';
 import { Router } from '@angular/router';
+import { WeatherService } from '../services/weather.service';
 
 @Component({
   selector: 'app-home',
@@ -13,14 +14,44 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
+  city: string = 'New York'; // Replace with the desired city
+  WeatherData: any;
+
   constructor(
     public fireservice:FireServiceService,
-    public router: Router
+    public router: Router,
+    private weatherService: WeatherService
   ){
     this.getNatureList();
     this.getCulturalList();
     this.getBeachList();
     this.getLeisureList();
+    this.getWeatherData();
+  }
+
+  getWeatherData(){
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=Batangas,PH&appid=acde409f699e5c16e2b46cbb70e8fd66')
+    .then(response=>response.json())
+    .then(data=>{
+      this.setWeatherData(data);
+      console.log(data);
+  })
+
+    // let data = JSON.parse('{"coord":{"lon":72.85,"lat":19.01},"weather":[{"id":721,"main":"Haze","description":"haze","icon":"50n"}],"base":"stations","main":{"temp":297.15,"feels_like":297.4,"temp_min":297.15,"temp_max":297.15,"pressure":1013,"humidity":69},"visibility":3500,"wind":{"speed":3.6,"deg":300},"clouds":{"all":20},"dt":1580141589,"sys":{"type":1,"id":9052,"country":"IN","sunrise":1580089441,"sunset":1580129884},"timezone":19800,"id":1275339,"name":"Mumbai","cod":200}');
+    // this.setWeatherData(data);
+  }
+
+  async setWeatherData(data:any){
+    this.WeatherData = data;
+    let sunsetTime = new Date(this.WeatherData.sys.sunset * 1000);
+    this.WeatherData.sunset_time = sunsetTime.toLocaleTimeString();
+    let currentDate = new Date();
+    this.WeatherData.isDay = (currentDate.getTime() < sunsetTime.getTime());
+    this.WeatherData.temp_celcius = (this.WeatherData.main.temp - 273.15).toFixed(0);
+    this.WeatherData.temp_min = (this.WeatherData.main.temp_min - 273.15).toFixed(0);
+    this.WeatherData.temp_max = (this.WeatherData.main.temp_max - 273.15).toFixed(0);
+    this.WeatherData.temp_feels_like = (this.WeatherData.main.feels_like - 273.15).toFixed(0);
+    return this.WeatherData;
   }
 
   natureList:any[] = [];
@@ -80,8 +111,6 @@ export class HomeComponent {
         this.beachList.push(doc[k].data());
         this.rawPost3 = doc[k].data();
         this.currentPost3 = this.rawPost3.postID;
-        console.log(this.currentPost3);
-        console.log(' K', k);
         if(k == '0' || k == '3' || k == '4' || k == '5' || k == '6' || k == '7' || k == '8' || k == '9'){
           this.fireservice.getPhotoDocument(this.currentPost3).then((doc:any) => {
             this.beachPhotos.push(doc.imageUrl);
@@ -105,8 +134,6 @@ export class HomeComponent {
         this.leisureList.push(doc[k].data());
         this.rawPost4 = doc[k].data();
         this.currentPost4 = this.rawPost4.postID;
-        console.log(this.currentPost4);
-        console.log(' K', k);
         if(k == '0' || k == '1' || k == '3'){
           this.fireservice.getPhotoDocument(this.currentPost4).then((doc:any) => {
             this.leisurePhotos.push(doc.imageUrl);
@@ -129,7 +156,7 @@ export class HomeComponent {
 
     const swiper = new Swiper(".sliderFeaturedPosts", {
       spaceBetween: 0,
-      speed: 500,
+      speed: 5000,
       centeredSlides: true,
       loop: true,
       slideToClickedSlide: true,

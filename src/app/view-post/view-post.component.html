@@ -10,7 +10,8 @@
             <!-- ======= Single Post Content ======= -->
             <div class="single-post">
               <div class="post-meta"><span class="date" *ngIf = "postDoc">{{postDoc.category}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <div style="text-align: right; margin-top: -25px;"class="post-meta"> <span class="mx-1"><i class="bi bi-people-fill"></i></span><span class="views">10,000 Views</span><span> <div  class="rating" id="rating">
+              <div style="text-align: right; margin-top: -25px;"class="post-meta"> <span class="mx-1"><i class="bi bi-people-fill"></i></span><span class="views">10,000 Views</span><span> 
+                <div  class="rating" id="rating">
 
                 <input  [(ngModel)] = "rating" type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
                 <input  [(ngModel)] = "rating" type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
@@ -56,7 +57,7 @@
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non minima ipsum at amet doloremque qui magni, placeat deserunt pariatur itaque laudantium impedit aliquam eligendi repellendus excepturi quibusdam nobis esse accusantium.
                   </div>
 
-                  <div class="comment-replies bg-light p-3 mt-3 rounded">
+                  <!-- <div class="comment-replies bg-light p-3 mt-3 rounded">
                     <h6 class="comment-replies-title mb-4 text-muted text-uppercase">2 replies</h6>
 
                     <div class="reply d-flex mb-4">
@@ -91,7 +92,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="comment d-flex">

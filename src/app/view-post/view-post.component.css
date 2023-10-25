@@ -15,3 +15,7 @@
 .rating label:before {
     content: '\2605';
 }
+
+.rating input[type="radio"]:checked ~ label {
+    color: #21757f;
+}

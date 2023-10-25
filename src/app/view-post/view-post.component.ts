@@ -11,7 +11,8 @@ import { GoogleMap } from '@angular/google-maps';
 })
 export class ViewPostComponent {
   rating:any;
-  postID:any
+  postID:any;
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +29,8 @@ export class ViewPostComponent {
 
     console.log(this.postID.toString());
     this.getPost();
+    
+    
   }
   postDoc:any;
   postPhoto:any
@@ -36,6 +39,9 @@ export class ViewPostComponent {
     this.fireservice.getPostDocument(this.postID).then((doc:any) =>{
       this.postDoc = doc;
       console.log(doc);
+      this.center = this.postDoc.coords;
+      this.rating = this.postDoc.rating;
+      console.log(this.center);
     }).catch(err => {
       console.log(err);
     });
@@ -67,7 +73,7 @@ export class ViewPostComponent {
     lat: 13.7565,
     lng: 121.0583
   };
-  zoom = 10;
+  zoom = 15;
   display: any;
 
   moveMap(event: google.maps.MapMouseEvent) {
