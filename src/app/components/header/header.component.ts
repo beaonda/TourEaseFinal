@@ -9,7 +9,10 @@ import '../../../assets/js/homeMain.js';
 })
 export class HeaderComponent {
   showSideNav: boolean = false;
+  showSideNavWeb: boolean = false;
   showDropBool:any = false;
+  showBurger:any = true;
+
   showDrop(){
     this.showDropBool = !this.showDropBool;
   }
@@ -19,6 +22,12 @@ export class HeaderComponent {
     this.showSideNav = !this.showSideNav;
 
   }
+
+  toggleSideNavWeb() {
+    this.showSideNavWeb = !this.showSideNavWeb;
+
+  }
+
  
 
   constructor(){

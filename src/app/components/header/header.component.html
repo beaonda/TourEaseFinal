@@ -39,12 +39,12 @@
 
       <div class="position-relative ">
 
-        <a href=# class="mx-2 logoutbtn"><span class="bi bi-box-arrow-in-left"></span></a>
-        <a href="/profile" class="mx-2"><span class="bi-person-fill"></span></a>
+
 
         <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
-        <i class="bi bi-list mx-2 " (click)="toggleSideNav()">
-      </i> 
+
+        <i class="bi bi-list mx-2 mobilenav" (click)="toggleSideNav()"></i>
+        <i class="bi bi-list mx-2 webnav" [ngClass]="{'show': showBurger}" (click)="toggleSideNavWeb()"></i> 
 <!--         <div class="bi bi-list toggle-button" (click)="toggleSideNav()">☰</div> -->
      
         <div class="search-form-wrap js-search-form-wrap">
@@ -78,8 +78,19 @@
         </div>
           <a class="editnav" href="/about">About</a>
           <a class="editnav" href="/contact">Contact</a>
+          <a class="editnav" href="/contact">Notification</a>
           <a class="editnav" href=#>Logout</a>
       </div>
+
+
+
+      <div class="side-nav" [ngClass]="{'show': showSideNavWeb}">
+        <a style="text-align: right;"href="#" (click)="toggleSideNavWeb()">Close &#x2716;</a>
+        <a class="editnav" href="/profile">Profile</a>
+        <a class="editnav" href="/contact">Notification</a>
+
+        <a class="editnav" href="#">Logout</a>
+    </div>
       </div>
     </div>
 
@@ -88,4 +99,74 @@
 
     <!-- Side Navigation -->
     
-  </header>   
+  </header>  
+  
+  
+
+<!--  ----------------- NOTIFICATION----------- -->
+<!-- 
+  <div class="notification-container">
+      <h1 class="notification-header">Notification</h1>
+      <div class="notification-all">
+      <ul class="notification-list">
+          <li class="notification-item">
+              <img class="profile-picture" src="../assets/img/profilepic.png" alt="Profile Picture">
+              <div class="notification-details">
+                <span class="notification-time">Oct 21, 2023 12:34 PM</span>
+                <br>
+                  <span class="name">John Doe</span>
+                  <span class="notification-text"> commented on your blog.</span>
+              </div>
+          </li>
+          <li class="notification-item">
+              <img class="profile-picture" src="../assets/img/profilepic.png" alt="Profile Picture">
+              <div class="notification-details">
+                <span class="notification-time">Oct 21, 2023 12:34 PM</span>
+                <br>
+                  <span class="name">Jane Smith</span>
+                  <span class="notification-text"> liked your blog.</span>
+              </div>
+          </li>
+          <li class="notification-item">
+            <img class="profile-picture" src="../assets/img/profilepic.png" alt="Profile Picture">
+            <div class="notification-details">
+              <span class="notification-time">Oct 21, 2023 12:34 PM</span>
+              <br>
+                <span class="name">Jane Smith</span>
+                <span class="notification-text"> liked your blog.</span>
+            </div>
+        </li>
+        <li class="notification-item">
+          <img class="profile-picture" src="../assets/img/profilepic.png" alt="Profile Picture">
+          <div class="notification-details">
+            <span class="notification-time">Oct 21, 2023 12:34 PM</span>
+            <br>
+              <span class="name">Jane Smith</span>
+              <span class="notification-text"> liked your blog.</span>
+          </div>
+      </li>
+      <li class="notification-item">
+        <img class="profile-picture" src="../assets/img/profilepic.png" alt="Profile Picture">
+        <div class="notification-details">
+          <span class="notification-time">Oct 21, 2023 12:34 PM</span>
+          <br>
+            <span class="name">Jane Smith</span>
+            <span class="notification-text"> liked your blog.</span>
+        </div>
+    </li>
+
+    <li class="notification-item">
+      <img class="profile-picture" src="../assets/img/profilepic.png" alt="Profile Picture">
+      <div class="notification-details">
+        <span class="notification-time">Oct 21, 2023 12:34 PM</span>
+        <br>
+          <span class="name">Jane Smith</span>
+          <span class="notification-text"> liked your blog.</span>
+      </div>
+  </li>
+      
+      
+      </ul>
+    </div>
+    
+</div>  -->
