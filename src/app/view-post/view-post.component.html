@@ -38,6 +38,119 @@
               <p>Possimus temporibus rerum illo quia repudiandae provident sed quas atque. Ipsam adipisci accusamus iste optio illo aliquam molestias? Voluptatibus, veniam recusandae facilis nobis perspiciatis rem similique, nisi ad explicabo ipsa voluptatum, inventore molestiae natus adipisci? Fuga delectus quia assumenda totam aspernatur. Nobis hic ea rem, quaerat voluptate vero illum laboriosam omnis aspernatur labore, natus ex iusto ducimus exercitationem a officia.</p>
             </div><!-- End Single Post Content -->
 
+
+            <div class="right__col" style="margin-bottom: 100px;">
+              <h3 class="aside-title" style="margin-top: 50px;">Map Navigations</h3>
+              <nav>
+                  <ul class ="ulmap">
+                      <li class="maplink"><a (click)="showSection('blogs')" data-section="blogs" >LOCATION</a></li>
+                      <li class="maplink"><a (click)="showSection('photos')" data-section="photos">NAVIGATION</a></li>
+                      <li class="maplink"><a (click)="showSection('badge')" data-section="badge">EMERGENCY</a></li>
+                  </ul>
+                
+              </nav>
+  
+            
+  
+              <!-- Blogs Section -->
+              <div id="blogs" class="blogs__section content-section">
+               <h3 class="aside-title lline"></h3> 
+                <div class="blog__post"  style="margin-top: 30px;">
+                
+                    <google-map height="300px"
+                width="100%"
+                id="addMap"
+                [center]="center"
+                [zoom]="zoom"
+                (mapClick)="moveMap($event)"
+                (mapMousemove)="move($event)"
+                #addMap
+                >
+                  <map-marker
+                  [position]="center"
+                  id = "mapMark"
+                  draggable="true"
+                  >
+                  </map-marker>
+              </google-map>
+                
+                  
+                  
+                </div>
+              </div>
+              <!-- End of Blogs Section -->
+  
+              <!-- Photos Section -->
+              <div id="photos" class="photos content-section">
+            <!--       <h3>Navigation</h3> -->
+            <h3 class="aside-title nline"></h3> 
+                  <div class="photo-gallery" style="margin-top: 30px;">
+                
+                    <google-map height="300px"
+                width="100%"
+                id="addMap"
+                [center]="center"
+                [zoom]="zoom"
+                (mapClick)="moveMap($event)"
+                (mapMousemove)="move($event)"
+                #addMap
+                >
+                  <map-marker
+                  [position]="center"
+                  id = "mapMark"
+                  draggable="true"
+                  >
+                  </map-marker>
+              </google-map>
+                
+                  
+                  
+                </div>
+              </div>
+              <!-- End of Photos Section -->
+  
+              <!-- Modal for Zoomed-in Photo -->
+       
+  
+              <!-- Badge Section -->
+              <div id="badge" class="badge__section content-section">
+               <!--  <h3>Emergency Establishments</h3> -->
+               <h3 class="aside-title emline"></h3> 
+                <div class="badge__item" style="margin-top: 30px;">
+                
+                  <google-map height="300px"
+              width="100%"
+              id="addMap"
+              [center]="center"
+              [zoom]="zoom"
+              (mapClick)="moveMap($event)"
+              (mapMousemove)="move($event)"
+              #addMap
+              >
+                <map-marker
+                [position]="center"
+                id = "mapMark"
+                draggable="true"
+                >
+                </map-marker>
+            </google-map>
+              
+                
+                
+              </div>
+              </div>
+              <!-- End of Badge Section -->
+          </div>
+
+
+
+
+
+
+
+
+
+
             <!-- ======= Comments ======= -->
             <div class="comments">
               <h5 class="comment-title py-4">2 Comments</h5>
@@ -304,7 +417,7 @@
             </div>
             
             
-            <div class="aside-block">
+            <!-- <div class="aside-block">
               <h3 class="aside-title">Map</h3>
               <div class="video-post">
                 <google-map height="300px"
@@ -324,7 +437,7 @@
               </map-marker>
           </google-map>
               </div>
-            </div><!-- End Tags -->
+            </div> --><!-- End Tags -->
 
           </div>
         </div>
