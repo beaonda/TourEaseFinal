@@ -32,7 +32,7 @@ const routes: Routes = [
       { path: '', component:HomeComponent},
       { path: 'about', component:AboutComponent},
       { path: 'category', component:CategoriesComponent},
-      { path: 'view-post', component:ViewPostComponent},
+      { path: 'view/:postID', component:ViewPostComponent},
       { path: 'contact', component:ContactComponent},
       { path: 'getstarted', component:GetstartedComponent},
       {path: 'register', component:RegisterComponent},

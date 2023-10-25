@@ -33,15 +33,17 @@
                     <form>
                         <div class="row">
                           <div class="form-group col-md-6">
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Enter your email address" required>
+                            <input [(ngModel)]="email" class="email" type="email" id="email" name="email" placeholder="Enter your email address" required>
                           </div>
                         </div>
                         <div class="my-3">
                           <div class="loading">Loading</div>
                           <div class="error-message"></div>
-                          <div class="sent-message">Your message has been sent. Thank you!</div>
+                          <div class="sent-message">Your message has been sent. Please wait 60 seconds before resending the email. Thank you!</div>
                         </div>
-                        <div class="text-center"><button type="submit">Send Link</button></div>
+                        
+                        <button type="submit" (click) = "retrieveAcc()" #send>SEND LINK</button>
+                    <button (click)="retrieveAcc()" #resend type="submit" [disabled] = "isButtonDisabled" >RESEND (60s)</button>
                       </form>
                 
             <p style="text-align: center; margin-top:10px; color:dimgray;"><a href="#" style="color:#f6c826;">Click here</a> if you did not receive an email.</p>

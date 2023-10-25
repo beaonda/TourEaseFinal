@@ -21,9 +21,8 @@
 
       <div class="form mt-5">
         <form method="post" role="form" class="php-email-form">
-         
-
-          <h2 class="titlespot">Add Location</h2>
+        
+          <h2 class="titlespot">Choose Location</h2>
 
           <div class="row" style="margin-bottom: 20px;">
            
@@ -40,7 +39,7 @@
 
             <div *ngIf="showResults" class="search-results">
               <ul>
-                <li *ngFor="let result of estNameList" (click)="selectResult(result)">
+                <li *ngFor="let result of estNameList; let i = index"  (click)="selectResult(result, i)">
                   {{ result }}
                 </li>
               </ul>
@@ -62,6 +61,7 @@
               [position]="center"
               id = "mapMark"
               draggable="true"
+              style="opacity:0.5"
               >
               </map-marker>
           </google-map>
@@ -71,7 +71,7 @@
                   <div class="form-group">
                       
                       <label for="city">City/Municipality</label>
-                      <input type="text" id="city" name="city" required class="form-control">
+                      <input [(ngModel)]="city" type="text" id="city" name="city" required class="form-control">
                   </div>
       
               
@@ -130,7 +130,7 @@
             <div class="row">
               <div class="form-group">
                 <label for="file">Add a Photo</label>
-                <input [(ngModel)] ="photo"  type="file" name="file" id="file" class="form-control">
+                <button (click)="takePicture()" name="file" id="file" class="form-control">Choose Photo</button>
               </div>
              
             </div>
@@ -140,7 +140,7 @@
               <div class="error-message"></div>
               <div class="sent-message">Your message has been posted.</div>
             </div>
-            <div class="text-center"><button type="submit">Post</button></div>
+            <div class="text-center"><button type="submit" (click) = "savePost()">Post</button></div>
     
            
           </form>

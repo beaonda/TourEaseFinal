@@ -250,17 +250,17 @@
           <div class="col-md-9">
 
             <div class="d-lg-flex post-entry-2">
-              <a href="single-post.html" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
-                <img src="assets/img/post-landscape-6.jpg" alt="" class="img-fluid">
+              <a (click) = "nextPage(natureList[0].postID)" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
+                <img *ngIf="naturePhotos[0]" [src]="naturePhotos[0]" alt="" class="img-fluid">
               </a>
               <div>
-                <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                <h3><a href="single-post.html">What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</a></h3>
+                <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                <h3><a (click) = "nextPage(natureList[0].postID)" *ngIf="natureList[0]">{{natureList[0].title}}</a></h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas, nobis error deserunt aliquam temporibus sapiente, laudantium dolorum itaque libero eos deleniti?</p>
                 <div class="d-flex align-items-center author">
-                  <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
+                  <div class="photo"><img *ngIf="natureList[0]" [src]="naturePhotos[0]" alt="" class="img-fluid"></div>
                   <div class="name">
-                    <h3 class="m-0 p-0">Wade Warren</h3>
+                    <h3 class="m-0 p-0" *ngIf="natureList[0]">{{natureList[0].user}}</h3>
                   </div>
                 </div>
               </div>
@@ -269,25 +269,25 @@
             <div class="row">
               <div class="col-lg-4">
                 <div class="post-entry-1 border-bottom">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-1.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">11 Work From Home Part-Time Jobs You Can Do Now</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <a (click) = "nextPage(natureList[1].postID)"><img [src]="naturePhotos[1]" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(natureList[1].postID)" *ngIf="natureList[1]">{{natureList[1].title}}</a></h2>
+                  <span class="author mb-3 d-block" *ngIf="natureList[1]">{{natureList[1].user}}</span>
                   <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
                 </div>
 
                 <div class="post-entry-1">
-                  <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">5 Great Startup Tips for Female Founders</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(natureList[2].postID)" *ngIf="natureList[2]">{{natureList[2].title}}</a></h2>
+                  <span class="author mb-3 d-block" *ngIf="natureList[2]">{{natureList[2].user}}</span>
                 </div>
               </div>
               <div class="col-lg-8">
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-2.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <a (click) = "nextPage(natureList[3].postID)"><img *ngIf="natureList[2]" [src]="naturePhotos[2]" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(natureList[3].postID)" *ngIf="natureList[3]">{{natureList[3].title}}</a></h2>
+                  <span class="author mb-3 d-block" *ngIf="natureList[3]">{{natureList[3].user}}</span>
                   <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
                 </div>
               </div>
@@ -296,39 +296,39 @@
 
           <div class="col-md-3">
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[4].postID)" *ngIf="natureList[4]">{{natureList[4].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf="natureList[4]">{{natureList[4].user}}</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[5].postID)" *ngIf="natureList[5]">{{natureList[5].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf="natureList[5]">{{natureList[5].user}}</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">9 Half-up/half-down Hairstyles for Long and Medium Hair</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[6].postID)" *ngIf="natureList[6]">{{natureList[6].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf="natureList[6]">{{natureList[6].user}}</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">Life Insurance And Pregnancy: A Working Mom’s Guide</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[7].postID)" *ngIf="natureList[7]">{{natureList[7].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf="natureList[7]">{{natureList[7].user}}</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">The Best Homemade Masks for Face (keep the Pimples Away)</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[8].postID)" *ngIf="natureList[8]">{{natureList[8].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf="natureList[8]">{{natureList[8].user}}</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[9].postID)" *ngIf="natureList[9]">{{natureList[9].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf="natureList[9]">{{natureList[9].user}}</span>
             </div>
           </div>
         </div>
@@ -348,17 +348,17 @@
           <div class="col-md-9 order-md-2">
 
             <div class="d-lg-flex post-entry-2">
-              <a href="single-post.html" class="me-4 thumbnail d-inline-block mb-4 mb-lg-0">
-                <img src="assets/img/post-landscape-3.jpg" alt="" class="img-fluid">
+              <a (click) = "nextPage(culturalList[0].postID)" class="me-4 thumbnail d-inline-block mb-4 mb-lg-0">
+                <img *ngIf = "culturalList[0]" [src]="culturalPhotos[0]" alt="" class="img-fluid">
               </a>
               <div>
-                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                <h3><a href="single-post.html">What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</a></h3>
+                <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                <h3><a (click) = "nextPage(culturalList[0].postID)" *ngIf = "culturalList[0]">{{culturalList[0].title}}</a></h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas, nobis error deserunt aliquam temporibus sapiente, laudantium dolorum itaque libero eos deleniti?</p>
                 <div class="d-flex align-items-center author">
                   <div class="photo"><img src="assets/img/person-4.jpg" alt="" class="img-fluid"></div>
                   <div class="name">
-                    <h3 class="m-0 p-0">Wade Warren</h3>
+                    <h3 class="m-0 p-0" *ngIf = "culturalList[0]">{{culturalList[0].user}}</h3>
                   </div>
                 </div>
               </div>
@@ -367,25 +367,25 @@
             <div class="row">
               <div class="col-lg-4">
                 <div class="post-entry-1 border-bottom">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-5.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">11 Work From Home Part-Time Jobs You Can Do Now</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <a (click) = "nextPage(culturalList[1].postID)"><img *ngIf = "culturalList[1]" [src]="culturalPhotos[1]" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(culturalList[1].postID)" *ngIf = "culturalList[1]">{{culturalList[1].title}}</a></h2>
+                  <span class="author mb-3 d-block" *ngIf = "culturalList[1]">{{culturalList[1].user}}</span>
                   <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
                 </div>
 
                 <div class="post-entry-1">
-                  <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">5 Great Startup Tips for Female Founders</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(culturalList[2].postID)" *ngIf = "culturalList[2]">{{culturalList[2].title}}</a></h2>
+                  <span class="author mb-3 d-block" *ngIf = "culturalList[2]">{{culturalList[2].user}}</span>
                 </div>
               </div>
               <div class="col-lg-8">
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-7.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <a (click) = "nextPage(culturalList[2].postID)"><img [src]="culturalPhotos[2]" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(culturalList[3].postID)" *ngIf = "culturalList[3]">{{culturalList[3].title}}</a></h2>
+                  <span class="author mb-3 d-block" *ngIf = "culturalList[3]">{{culturalList[3].user}}</span>
                   <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
                 </div>
               </div>
@@ -393,39 +393,39 @@
           </div>
           <div class="col-md-3">
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[4].postID)" *ngIf = "culturalList[4]">{{culturalList[4].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf = "culturalList[4]">{{culturalList[4].user}}</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[5].postID)" *ngIf = "culturalList[5]">{{culturalList[5].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf = "culturalList[5]">{{culturalList[5].user}}</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">9 Half-up/half-down Hairstyles for Long and Medium Hair</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[6].postID)" *ngIf = "culturalList[6]">{{culturalList[6].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf = "culturalList[6]">{{culturalList[6].user}}</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">Life Insurance And Pregnancy: A Working Mom’s Guide</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[7].postID)" *ngIf = "culturalList[7]">{{culturalList[7].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf = "culturalList[7]">{{culturalList[7].user}}</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">The Best Homemade Masks for Face (keep the Pimples Away)</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[8].postID)" *ngIf = "culturalList[8]">{{culturalList[8].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf = "culturalList[8]">{{culturalList[8].user}}</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[9].postID)" *ngIf = "culturalList[9]">{{culturalList[9].title}}</a></h2>
+              <span class="author mb-3 d-block" *ngIf = "culturalList[9]">{{culturalList[9].user}}</span>
             </div>
           </div>
         </div>
@@ -444,9 +444,9 @@
         <div class="row g-5">
           <div class="col-lg-4">
             <div class="post-entry-1 lg">
-              <a href="single-post.html"><img src="assets/img/post-landscape-8.jpg" alt="" class="img-fluid"></a>
-              <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2><a href="single-post.html">11 Work From Home Part-Time Jobs You Can Do Now</a></h2>
+              <a (click) = "nextPage(beachList[0].postID)"><img *ngIf = "beachPhotos[0]" [src]="beachPhotos[0]" alt="" class="img-fluid"></a>
+              <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2><a (click) = "nextPage(beachList[0].postID)" *ngIf = "beachList[0]">{{beachList[0].title}}</a></h2>
               <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus exercitationem? Nihil tempore odit ab minus eveniet praesentium, similique blanditiis molestiae ut saepe perspiciatis officia nemo, eos quae cumque. Accusamus fugiat architecto rerum animi atque eveniet, quo, praesentium dignissimos</p>
 
               <div class="d-flex align-items-center author">
@@ -458,14 +458,14 @@
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">The Best Homemade Masks for Face (keep the Pimples Away)</a></h2>
+              <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(beachList[1].postID)" *ngIf = "beachList[1]">{{beachList[1].title}}</a></h2>
               <span class="author mb-3 d-block">Jenny Wilson</span>
             </div>
 
             <div class="post-entry-1">
-              <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
+              <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(beachList[2].postID)" *ngIf = "beachList[2]">{{beachList[2].title}}</a></h2>
               <span class="author mb-3 d-block">Jenny Wilson</span>
             </div>
 
@@ -475,72 +475,72 @@
             <div class="row g-5">
               <div class="col-lg-4 border-start custom-border">
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-6.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2><a href="single-post.html">Let’s Get Back to Work, New York</a></h2>
+                  <a (click) = "nextPage(beachList[3].postID)"><img *ngIf = "beachPhotos[3]" [src]="beachPhotos[3]" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2><a (click) = "nextPage(beachList[3].postID)" *ngIf = "beachList[3]">{{beachList[3].title}}</a></h2>
                 </div>
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-5.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 17th '22</span></div>
-                  <h2><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
+                  <a (click) = "nextPage(beachList[4].postID)"><img *ngIf = "beachPhotos[4]" [src]="beachPhotos[4]" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 17th '22</span></div>
+                  <h2><a (click) = "nextPage(beachList[4].postID)" *ngIf = "beachList[4]">{{beachList[4].title}}</a></h2>
                 </div>
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-4.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Mar 15th '22</span></div>
-                  <h2><a href="single-post.html">Why Craigslist Tampa Is One of The Most Interesting Places On the Web?</a></h2>
+                  <a (click) = "nextPage(beachList[5].postID)"><img *ngIf = "beachPhotos[5]" [src]="beachPhotos[5]" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Mar 15th '22</span></div>
+                  <h2><a (click) = "nextPage(beachList[5].postID)" *ngIf = "beachList[5]">{{beachList[5].title}}</a></h2>
                 </div>
               </div>
               <div class="col-lg-4 border-start custom-border">
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-3.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2><a href="single-post.html">6 Easy Steps To Create Your Own Cute Merch For Instagram</a></h2>
+                  <a (click) = "nextPage(beachList[6].postID)"><img *ngIf = "beachPhotos[6]" [src]="beachPhotos[6]" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2><a (click) = "nextPage(beachList[6].postID)" *ngIf = "beachList[6]">{{beachList[6].title}}</a></h2>
                 </div>
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-2.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Mar 1st '22</span></div>
+                  <a (click) = "nextPage(beachList[6].postID)"><img src="assets/img/post-landscape-2.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Mar 1st '22</span></div>
                   <h2><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
                 </div>
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-1.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2><a href="single-post.html">5 Great Startup Tips for Female Founders</a></h2>
+                  <a (click) = "nextPage(beachList[7].postID)"><img *ngIf = "beachPhotos[7]" [src]="beachPhotos[7]" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2><a (click) = "nextPage(beachList[7].postID)" *ngIf = "beachList[7]">{{beachList[7].title}}</a></h2>
                 </div>
               </div>
               <div class="col-lg-4">
 
                 <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(beachList[8].postID)" *ngIf = "beachList[8]">{{beachList[8].title}}</a></h2>
                   <span class="author mb-3 d-block">Jenny Wilson</span>
                 </div>
 
                 <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</a></h2>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(beachList[9].postID)" *ngIf = "beachList[9]">{{beachList[9].title}}</a></h2>
                   <span class="author mb-3 d-block">Jenny Wilson</span>
                 </div>
 
                 <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">9 Half-up/half-down Hairstyles for Long and Medium Hair</a></h2>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(beachList[9].postID)">9 Half-up/half-down Hairst  yles for Long and Medium Hair</a></h2>
                   <span class="author mb-3 d-block">Jenny Wilson</span>
                 </div>
 
                 <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                   <h2 class="mb-2"><a href="single-post.html">Life Insurance And Pregnancy: A Working Mom’s Guide</a></h2>
                   <span class="author mb-3 d-block">Jenny Wilson</span>
                 </div>
 
                 <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                   <h2 class="mb-2"><a href="single-post.html">The Best Homemade Masks for Face (keep the Pimples Away)</a></h2>
                   <span class="author mb-3 d-block">Jenny Wilson</span>
                 </div>
 
                 <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                   <h2 class="mb-2"><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
                   <span class="author mb-3 d-block">Jenny Wilson</span>
                 </div>
@@ -568,12 +568,12 @@
           <div class="col-md-9 order-md-2">
 
             <div class="d-lg-flex post-entry-2">
-              <a href="single-post.html" class="me-4 thumbnail d-inline-block mb-4 mb-lg-0">
-                <img src="assets/img/post-landscape-3.jpg" alt="" class="img-fluid">
+              <a (click) = "nextPage(leisureList[0].postID)" class="me-4 thumbnail d-inline-block mb-4 mb-lg-0">
+                <img *ngIf="leisurePhotos[0]" [src]="leisurePhotos[0]" alt="" class="img-fluid">
               </a>
               <div>
-                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                <h3><a href="single-post.html">What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</a></h3>
+                <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                <h3><a (click) = "nextPage(leisureList[0].postID)" *ngIf = "leisureList[0]">{{leisureList[0].title}}</a></h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas, nobis error deserunt aliquam temporibus sapiente, laudantium dolorum itaque libero eos deleniti?</p>
                 <div class="d-flex align-items-center author">
                   <div class="photo"><img src="assets/img/person-4.jpg" alt="" class="img-fluid"></div>
@@ -587,24 +587,24 @@
             <div class="row">
               <div class="col-lg-4">
                 <div class="post-entry-1 border-bottom">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-5.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">11 Work From Home Part-Time Jobs You Can Do Now</a></h2>
+                  <a (click) = "nextPage(leisureList[1].postID)"><img *ngIf="leisurePhotos[1]" [src]="leisurePhotos[1]" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(leisureList[1].postID)" *ngIf = "leisureList[1]">{{leisureList[1].title}}</a></h2>
                   <span class="author mb-3 d-block">Jenny Wilson</span>
                   <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
                 </div>
 
                 <div class="post-entry-1">
-                  <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">5 Great Startup Tips for Female Founders</a></h2>
+                  <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(leisureList[2].postID)" *ngIf = "leisureList[2]">{{leisureList[2].title}}</a></h2>
                   <span class="author mb-3 d-block">Jenny Wilson</span>
                 </div>
               </div>
               <div class="col-lg-8">
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="assets/img/post-landscape-7.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
+                  <a (click) = "nextPage(leisureList[3].postID)"><img *ngIf="leisurePhotos[2]" [src]="leisurePhotos[2]" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h2 class="mb-2"><a (click) = "nextPage(leisureList[3].postID)" *ngIf = "leisureList[3]">{{leisureList[3].title}}</a></h2>
                   <span class="author mb-3 d-block">Jenny Wilson</span>
                   <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
                 </div>
@@ -613,38 +613,38 @@
           </div>
           <div class="col-md-3">
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
+              <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[4].postID)" *ngIf = "leisureList[4]">{{leisureList[4].title}}</a></h2>
               <span class="author mb-3 d-block">Jenny Wilson</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</a></h2>
+              <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[5].postID)" *ngIf = "leisureList[5]">{{leisureList[5].title}}</a></h2>
               <span class="author mb-3 d-block">Jenny Wilson</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">9 Half-up/half-down Hairstyles for Long and Medium Hair</a></h2>
+              <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[6].postID)" *ngIf = "leisureList[6]">{{leisureList[6].title}}</a></h2>
               <span class="author mb-3 d-block">Jenny Wilson</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">Life Insurance And Pregnancy: A Working Mom’s Guide</a></h2>
+              <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[7].postID)" *ngIf = "leisureList[7]">{{leisureList[7].title}}</a></h2>
               <span class="author mb-3 d-block">Jenny Wilson</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">The Best Homemade Masks for Face (keep the Pimples Away)</a></h2>
+              <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[8].postID)" *ngIf = "leisureList[8]">{{leisureList[8].title}}</a></h2>
               <span class="author mb-3 d-block">Jenny Wilson</span>
             </div>
 
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-              <h2 class="mb-2"><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
+              <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[9].postID)" *ngIf = "leisureList[9]">{{leisureList[9].title}}</a></h2>
               <span class="author mb-3 d-block">Jenny Wilson</span>
             </div>
           </div>
