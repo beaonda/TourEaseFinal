@@ -9,6 +9,13 @@
     height: 35px;
 }
 
+.header__wrapper header {
+  width: 100%;
+  background: url("../../assets/img/coverpic.png") no-repeat 50% 20% / cover;
+  min-height: calc(100px + 37vw);
+}
+
+
 .profile_edit {
     position: absolute;
     top: 86%;
