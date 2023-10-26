@@ -10,7 +10,7 @@ body {
   background-color: #f8fafb; }
 
 p {
-  color: #b3b3b3;
+  color: #646161;
   font-weight: 300; }
 
 
@@ -30,7 +30,7 @@ a {
   
   height: 100vh; /* Set the height to 100% of the viewport height */
   overflow: hidden;
-  background-image: url('../images/login-bg.png');
+  background-image: url('../images/back.png');
   background-size: cover; /* Adjust as needed */
   background-position: center center; /* Adjust as needed */
   background-repeat: no-repeat;
@@ -51,21 +51,70 @@ h2 {
     .form-block {
       padding: 30px; 
      margin-left: 0;
-      width: 100%;}}
+      width: 100%;
+      margin-top: 39%;
+      background-color: #ffffffbd;
+    }
+    }
 
 @media (max-width: 991.98px) {
   .content .bg {
     height: 500px;
    
-  } }
+  }
 
+}
+
+
+.logo{
+  background-image: url("../images/logo1.png");
+  background-size: 150px;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  display: block; /* Make sure the image is treated as a block element */
+  margin: 0 auto;
+  margin-top: -12%;
+
+}
 
   
-@media (max-width: 500px) {
+@media (max-width: 320px) {
   .content {
 
-    background-image: url('../images/loginphone.png');
-  } }
+    background-image: url('../images/bgtry.png');
+
+
+  }
+
+ 
+  
+ }
+
+ @media (max-width: 1024px) {
+
+
+
+ }
+
+  @media (max-width: 768px) {
+    .content {
+
+      background-image: url('../images/bgtry.png');
+     
+  
+  
+    }
+
+
+
+    .form-block{
+      margin-top: 10%;
+    }
+  
+  }
+
+
 
 .content .contents, .content .bg {
   width: 50%; }
