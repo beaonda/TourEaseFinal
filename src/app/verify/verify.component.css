@@ -64,16 +64,23 @@
   @media (max-width:768px){
   
   
-    .page-title{
+    .page-title {
       margin-top: 150px;
-    }
-    .verifytext{
-        margin-top: 60px;
     }
   
     #main{
-      background-image: url('../../assets/img/bggg.png');
+      background-image: url('../../assets/img/bgbg.png');
       
+    }
+  }
+  
+  @media (max-width:1024px){
+    #main{
+      background-image: url('../../assets/img/bgbg.png');
+      
+    }
+    .page-title{
+      margin-top: 150px;
     }
   }
 

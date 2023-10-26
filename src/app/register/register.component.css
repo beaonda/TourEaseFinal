@@ -7,6 +7,22 @@ select{
   color:black;
 }
 
+ select {
+  outline: none;
+  appearance: unset !important;
+  -moz-appearance: unset !important;
+  -webkit-appearance: unset !important;
+  -o-appearance: unset !important;
+  -ms-appearance: unset !important; }
+
+  select:focus, textarea:focus {
+    outline: none;
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    -ms-box-shadow: none !important; }
+
 .contact .php-email-form{
   width: 113%;
     margin-left: -6%;
@@ -21,24 +37,34 @@ select{
 }
 
 @media (max-width:320px){
-      .name- {
-    margin-top: 230px;
-  }
+
   .name- .moretext{
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
+ 
+
   
 }
 
 @media (max-width:768px){
-
-
-  .name- {
+  
+  
+  .page-title {
     margin-top: 150px;
   }
 
   #main{
-    background-image: url('../../assets/img/bggg.png');
+    background-image: url('../../assets/img/bgbg.png');
     
+  }
+}
+
+@media (max-width:1024px){
+  #main{
+    background-image: url('../../assets/img/bgbg.png');
+    
+  }
+  .page-title{
+    margin-top: 150px;
   }
 }

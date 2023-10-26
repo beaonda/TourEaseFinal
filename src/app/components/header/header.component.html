@@ -57,11 +57,13 @@
 
         <div class="side-nav" [ngClass]="{'show': showSideNav}">
           <a style="text-align: right;" (click)="toggleSideNav()">Close &#x2716;</a>
-          <a class="editnav" href="/home">Blog</a>
-          <a class="editnav" href="/view-post">Single Post</a>
+
+          <a class="editnav" href="/home"><i class="bi bi-house" style="font-size: 20px; margin-right:15px ;"></i>  Blog</a>
+          <!-- <a class="editnav" href="/view-post">Single Post</a> -->
+          <a class="editnav" href="/profile"><i class="bi bi-person" style="font-size: 20px; margin-right:15px ;"></i>    Profile</a>
           <div class="dropdown">
             <a (click)="showDrop()" class="editnav dropdown-toggle" id="categoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Categories
+              <i class="bi bi-grid" style="font-size: 20px; margin-right:15px ;"></i>    Categories
             </a>
             <div *ngIf = "showDropBool" id="dropdown" aria-labelledby="categoriesDropdown">
                 <!-- Add your category options here -->
@@ -76,20 +78,21 @@
                 <!-- Add more categories as needed -->
             </div>
         </div>
-          <a class="editnav" href="/about">About</a>
-          <a class="editnav" href="/contact">Contact</a>
-          <a class="editnav" href="/contact">Notification</a>
-          <a class="editnav" href="/login">Logout</a>
+          <a class="editnav" href="/about"> <i class="bi bi-info-circle" style="font-size: 20px; margin-right:15px ;"></i>  About</a>
+          <a class="editnav" href="/contact"> <i class="bi bi-telephone" style="font-size: 20px; margin-right:15px ;"></i>  Contact</a>
+          <a class="editnav" href="/contact"><i class="bi bi-bell" style="font-size: 20px; margin-right:15px ;"></i>    Notification</a>
+          <a class="editnav" href="/login"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;"></i>Logout</a>
+    
       </div>
 
 
 
       <div class="side-nav" [ngClass]="{'show': showSideNavWeb}">
         <a style="text-align: right;" (click)="toggleSideNavWeb()">Close &#x2716;</a>
-        <a class="editnav" href="/profile">Profile</a>
-        <a class="editnav" href="/contact">Notification</a>
+        <a class="editnav" href="/profile"><i class="bi bi-person" style="font-size: 20px; margin-right:15px ;"></i>    Profile</a>
+        <a class="editnav" href="/contact"><i class="bi bi-bell" style="font-size: 20px; margin-right:15px ;"></i>    Notification</a>
 
-        <a class="editnav" href="/login">Logout</a>
+        <a class="editnav" href="#"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;"></i>Logout</a>
     </div>
       </div>
     </div>
