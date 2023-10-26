@@ -27,6 +27,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot([
       { path: 'admin', component: AdminComponent },
+      { path: 'login', component: TouristComponent},
       { path: 'tourist', component: TouristComponent },
       { path: 'home', component:HomeComponent},
       { path: '', component:HomeComponent},

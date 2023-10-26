@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { WhereFilterOp, collection } from 'firebase/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { GoogleAuthProvider } from 'firebase/auth';
 import { Observable } from 'rxjs';
+import * as auth from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,15 @@ export class FireServiceService {
   user:any;
   destiItem:any;
   desti:any;
+  postItem:any;
+  post:any;
+
 
   constructor(
     public auth: AngularFireAuth, 
     public firestore: AngularFirestore
   ) { 
+
     this.usersCollection = firestore.collection<User>('users');
     this.items = this.usersCollection.valueChanges();
     auth.authState.subscribe(user => {
@@ -24,7 +29,13 @@ export class FireServiceService {
 
     this.destinationCollection = firestore.collection<Destination>('tourist_spots', (ref) =>ref.orderBy('estName').limit(50));
     this.destiItems = this.destinationCollection.valueChanges();
+
+    this.postsCollection = firestore.collection<Post>('posts', (ref) =>ref.limit(50));
+    this.postItems = this.postsCollection.valueChanges();
+    this.counterDoc = this.firestore.collection('counter').doc('counts');
   }
+
+  //Collections
 
   private usersCollection: AngularFirestoreCollection<User>;
   items: Observable<User[]>;
@@ -32,26 +43,57 @@ export class FireServiceService {
     this.usersCollection.add(item);
   }
 
-
-
   private destinationCollection: AngularFirestoreCollection<Destination>;
   destiItems: Observable<Destination[]>;
   addDestinationItem(destiItem: Destination) {
     this.destinationCollection.add(destiItem);
   }
 
+  private postsCollection: AngularFirestoreCollection<Post>;
+  postItems: Observable<Post[]>;
+  addPostItem(postItem: Post) {
+    this.postsCollection.add(postItem);
+  }
+
+  //End of Collections
+
+
+  //Authentication Functions
+
   getAuth(){
     return this.auth;
   }
+
   loginWithEmail(data:any) {
     return this.auth.signInWithEmailAndPassword(data.email, data.password);
   }
+
   signup(data:any) {
     return this.auth.createUserWithEmailAndPassword(data.email, data.pword);
   }
+
   saveDetails(data:any) {
     return this.firestore.collection("users").doc(data.uId).set(data);
   }
+
+  async getUnameExisting(uname:any): Promise<any> {
+    const collectionRef = this.firestore.collection("users");
+    const query = collectionRef.ref
+      .where('uname', '==', uname)
+      .limit(1);
+    const querySnapshot = await query.get();
+    if (querySnapshot.empty) {
+      return null;
+    } else {
+      // Extract and return the first document from the query
+      const firstDocument = querySnapshot.docs[0].data();
+      return firstDocument;
+    }
+  }
+
+  //End of auth
+
+
   saveTouristDestion(data:any){
     return this.firestore.collection("tourist_spots").doc(data.tourismID).set(data);
   }
@@ -155,14 +197,31 @@ export class FireServiceService {
       return post;
     }
   }
-  
 
   searchResults: any[] = [];
 
-
+  loginGoogle(){
+    //alert("clicked");
+    const provider = new auth.GoogleAuthProvider();
+    this.auth.signInWithPopup(provider).then(
+      (userCredential) => {
+        // User is signed in using Google.
+        const user = userCredential.user;
+        console.log(user);
+        // You can access user information here
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
   getAllTouristDestinations(){
     return this.destinationCollection;
+  }
+
+  getAllPosts(){
+    return this.postsCollection;
   }
 
   getUserDetails(data:any) {
@@ -178,14 +237,17 @@ export class FireServiceService {
     return this.usersCollection;
   }
 
-
-  getDocumentCounter(): Observable<any> {
-    const collectionRef = this.firestore.collection("counter");
-    return collectionRef.doc("counts").valueChanges();
+  counterDoc: AngularFirestoreDocument<MyDocumentType>;
+  getDocumentCounter() {
+   return this.counterDoc.valueChanges();
   }
-  updateTSPotCount(data: any): Promise<void> {
+
+  updateCount(data:any): Promise<void> {
     return this.firestore.collection("counter").doc("counts").update(data);
   }
+
+
+
 
 
   /* getOneTSpot(documentId:string): Observable<any> {
@@ -204,3 +266,15 @@ export interface Destination{
 
 }
 
+export interface MyDocumentType {
+  users: number;
+  recent_users: number;
+  tspots: number;
+  posts:number;
+  // Define other properties as needed
+}
+
+export interface Post
+{
+
+}

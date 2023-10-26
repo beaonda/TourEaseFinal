@@ -26,6 +26,8 @@ export class RegisterComponent {
   public province:any;
   public city:any;
   public exact_add:any;
+  newNum:any;
+  newNum2:any;
   
   constructor(
     public fireService: FireServiceService,
@@ -61,6 +63,22 @@ export class RegisterComponent {
           this.fireService.saveDetails(data).then(
             res=>{
               alert("Account Created");
+              //updates the counter
+              this.fireService.getDocumentCounter().subscribe((doc)=>{
+                if(doc){
+                  console.log(doc);
+                  this.newNum = 1 + doc.users;
+                  this.newNum2 = 1 + doc.recent_users;
+                  let data = {
+                    recent_users:this.newNum2,
+                    tspots : doc.tspots,
+                    users:this.newNum,
+                    posts:doc.posts
+                  }
+                  console.log(data);
+                  this.fireService.updateCount(data).catch(err => {console.error(err)});
+                }
+              });
               this.router.navigate(['verify']);
             },   
             err=>{

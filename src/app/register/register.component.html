@@ -20,7 +20,7 @@
             
     
             <div class="form mt-5">
-              <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <form method="post" role="form" class="php-email-form">
                 <div class="row">
                   <div class="form-group col-md-4">
                     <input  class="form-control" [(ngModel)]="fname" type="text" name="first_name" id="first_name" placeholder="Enter your first name" />
@@ -35,13 +35,12 @@
 
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <div class="select-list">
-                            <select [(ngModel)]="gender" name="gender" class="form-control" id="meal_preference">
-                                <option value="Vegetarian">Male</option>
-                                <option value="Kosher">Female</option>
-                                <option value="Asian Vegetarian">Rather Not Say</option>
+                            <select [(ngModel)]="gender" name="gender" class="form-control">
+                                <option [ngValue]="null" disabled >Gender</option>
+                                <option value="Male" selected ="true">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Rather Not Say" >Rather Not Say</option>
                             </select>
-                        </div>
                     </div>
                     <div class="form-group col-md-6">
                         <input  class="form-control" [(ngModel)]="bday" type="date" name="bday" id="bday" />

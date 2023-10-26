@@ -129,12 +129,29 @@ export class NewPostComponent {
 
   }
 
+  newNum:any;
+
   postCont(){
     this.fireService.savePost(this.postData).then(
       res=>{
         console.log(res);
         this.photoData(this.pic, this.blob, this.postData.postID);
         this.upload(this.postData);
+        //updates the counter
+        this.fireService.getDocumentCounter().subscribe((doc)=>{
+          if(doc){
+            console.log(doc);
+            this.newNum = 1 + doc.posts;
+            let data = {
+              recent_users:doc.recent_users,
+              tspots : doc.tspots,
+              users:doc.users,
+              posts: this.newNum
+            }
+            console.log(data);
+            this.fireService.updateCount(data).catch(err => {console.error(err)});
+          }
+        });
         alert("Posted Successfully.");
       }, err=>{
         alert(err.message);

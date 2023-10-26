@@ -13,7 +13,17 @@ export class DashboardComponent {
   constructor(
     public fireService:FireServiceService
   ){
+    this.getCounts();
+  }
 
+  counterDoc:any
+
+  getCounts(){
+    this.fireService.getDocumentCounter().subscribe((doc)=>{
+      if(doc){
+        this.counterDoc = doc;
+      }
+    });
   }
 
   ngAfterViewInit(){
@@ -22,15 +32,20 @@ export class DashboardComponent {
     const myChart = new Chart(ctx1, {
       type: "polarArea",
       data: {
-        labels: ["Nature", "Hikes & Trails", "Resorts"],
+        labels: ["Nature", "Cultural", "Industrial", "Sun&Beach", "Leisure&Ent", "Conventions", "Health"],
         datasets: [
           {
             label: "# of Votes",
-            data: [this.natureCategCount, 800, 1000],
+            data: [300, 800, 1000, 400, 1000, 800, 500],
             backgroundColor: [
-              "#0a8d95",
-              "#64c3ca",
-              "#0c3d40",
+              "#37505C",
+              "#20696C",
+              "#69A4A6",
+              "#2D3B3B",
+              "#37505C",
+              "#20696C",
+              "#69A4A6",
+
             ],
           },
         ],
@@ -63,11 +78,13 @@ export class DashboardComponent {
       },
     });
   }
+  list:any;
 
   ngOnInit(){
     /* this.getNumbers();
     this.getCategoryCount(); */
-    
+    this.list = document.querySelectorAll(".navigation li");
+    this.list[1].classList.add("hovered");
 
   }
 

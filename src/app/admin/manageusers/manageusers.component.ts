@@ -17,11 +17,13 @@ export class ManageusersComponent {
     public fireService:FireServiceService,
     public router:Router
     ){
-
+      this.retrieveUsers();
   }
+  list:any;
 
   ngOnInit(){
-    this.retrieveUsers();
+    this.list = document.querySelectorAll(".navigation li");
+    this.list[2].classList.add("hovered");
   }
 
   viewUser(){
