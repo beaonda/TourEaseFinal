@@ -19,6 +19,19 @@
     max-width: 28%;
     margin-left: 99%;
     margin-top: -12%;
+
+    
+}
+
+@media (max-width:320px){
+  .btn{
+    width: 116px;
+    height: 39px;
+    font-size:9.2px;
+
+  }
+ 
+  
 }
 
 .cont{
@@ -65,7 +78,7 @@
   
   @media (max-width:320px){
         .page-title{
-      margin-top: 230px;
+      margin-top: 250px;
     }
     .name- .moretext{
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -81,7 +94,17 @@
     }
   
     #main{
-      background-image: url('../../assets/img/bggg.png');
+      background-image: url('../../assets/img/bgbg.png');
       
+    }
+  }
+
+  @media (max-width:1024px){
+    #main{
+      background-image: url('../../assets/img/bgbg.png');
+      
+    }
+    .page-title{
+      margin-top: 150px;
     }
   }

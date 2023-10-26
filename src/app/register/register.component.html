@@ -22,21 +22,28 @@
             <div class="form mt-5">
               <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                 <div class="row">
+               
                   <div class="form-group col-md-4">
-                    <input  class="form-control" [(ngModel)]="fname" type="text" name="first_name" id="first_name" placeholder="Enter your first name" />
+                    <label for="file">First name</label>
+                    <input  class="form-control" [(ngModel)]="fname" type="text" name="first_name" id="first_name" placeholder="Juan" />
+                  </div>
+                  
+                  <div class="form-group col-md-4">
+                    <label for="file">Last name</label>
+                    <input class="form-control" [(ngModel)]="lname" type="text" name="last_name" id="last_name" placeholder="Dela Cruz" />
                   </div>
                   <div class="form-group col-md-4">
-                    <input class="form-control" [(ngModel)]="lname" type="text" name="last_name" id="last_name" placeholder="Enter your last name" />
-                  </div>
-                  <div class="form-group col-md-4">
-                    <input class="form-control" [(ngModel)]="mname" type="text" name="middle_name" id="middle_name" placeholder="Enter your middle name"/>
+                    <label for="file">Middle name</label>
+                    <input class="form-control" [(ngModel)]="mname" type="text" name="middle_name" id="middle_name" placeholder="Sanchez"/>
                   </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <div class="select-list">
-                            <select [(ngModel)]="gender" name="gender" class="form-control" id="meal_preference">
+                        <label for="file">Gender</label>
+                        <div>
+                            <select [(ngModel)]="gender" name="gender">
+                                <option value="Vegetarian">Select</option>
                                 <option value="Vegetarian">Male</option>
                                 <option value="Kosher">Female</option>
                                 <option value="Asian Vegetarian">Rather Not Say</option>
@@ -44,45 +51,55 @@
                         </div>
                     </div>
                     <div class="form-group col-md-6">
+                        <label for="file">Birthday</label>
                         <input  class="form-control" [(ngModel)]="bday" type="date" name="bday" id="bday" />
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <input class="form-control" [(ngModel)]="contact" type="text" name="phone_number" id="phone_number"  placeholder="Enter your phone number" />
+                        <label for="file">Contact number</label>
+                        <input class="form-control" [(ngModel)]="contact" type="text" name="phone_number" id="phone_number"  placeholder="0900-000-0000" />
                     </div>
                     <div class="form-group col-md-6">
-                        <input class="form-control" [(ngModel)]="email" type="text" name="email" id="email"  placeholder="Enter your email address"/>
+                        <label for="file">Email address</label>
+                        <input class="form-control" [(ngModel)]="email" type="text" name="email" id="email"  placeholder="example@gmail.com"/>
                     </div>
                   </div>
                  
                   <div class="form-group">
-                    <input class="form-control"  [(ngModel)]="country" type="text" name="country" id="country"  placeholder="Enter your country" />
+                    <label for="file">Country</label>
+                    <input class="form-control"  [(ngModel)]="country" type="text" name="country" id="country"  placeholder="Philippines" />
                     </div>
 
                     <div class="form-group">
-                        <input class="form-control"  [(ngModel)]="province" type="text" name="prov" id="prov"  placeholder="Enter your province"/>
+                        <label for="file">Province</label>
+                        <input class="form-control"  [(ngModel)]="province" type="text" name="prov" id="prov"  placeholder="e.g. Batangas, Lipa"/>
                     </div>
                 
                         <div class="form-group">
-                            <input class="form-control"  [(ngModel)]="city" type="text" name="city" id="city"  placeholder="Enter your city/municipality"/>
+                            <label for="file">City</label>
+                            <input class="form-control"  [(ngModel)]="city" type="text" name="city" id="city"  placeholder="e.g. Batangas City, Lipa City"/>
                     </div>
                 
                             <div class="form-group">
-                                <input class="form-control"  [(ngModel)]="exact_add" type="text" name="exact" id="exact"  placeholder="Enter your exact address"/>
+                                <label for="file">Exact address</label>
+                                <input class="form-control"  [(ngModel)]="exact_add" type="text" name="exact" id="exact"  placeholder="House no./ Lot no./ Street"/>
                     </div>
                 
                                 <div class="form-group">
-                                    <input class="form-control"  [(ngModel)]="uname" type="text" name="uname" id="uname"  placeholder="Enter your username"/>
+                                    <label for="file">Username</label>
+                                    <input class="form-control"  [(ngModel)]="uname" type="text" name="uname" id="uname"  placeholder="example123"/>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <input class="form-control"  [(ngModel)]="pword" type="text" name="pword" id="pword"  placeholder="Enter your password"/>
+                                        <label for="file">Password</label>
+                                        <input class="form-control"  [(ngModel)]="pword" type="text" name="pword" id="pword"  placeholder="*******"/>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input class="form-control" [(ngModel)]="pword2" type="text" name="pword2" id="pword2"  placeholder="Confirm your password"/>
+                                        <label for="file">Confirm Password</label>
+                                        <input class="form-control" [(ngModel)]="pword2" type="text" name="pword2" id="pword2"  placeholder="********"/>
                                     </div>
                                   </div>   
                                 
@@ -92,7 +109,7 @@
                   <div class="error-message"></div>
                   <div class="sent-message">Your message has been sent. Thank you!</div>
                 </div>
-                <div class="text-center"><button (click)="signUp()" type="submit" class="submit" id="submit">Submit</button></div>
+                <div class="text-center"><button (click)="signUp()" type="submit" class="submit" id="submit" style="margin-right: 20px">Submit</button><button (click)="signUp()" type="submit" class="submit" id="submit">Reset</button></div>
               </form>
             </div><!-- End Contact Form -->
     
