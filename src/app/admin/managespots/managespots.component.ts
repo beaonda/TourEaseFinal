@@ -90,18 +90,18 @@ export class ManagespotsComponent {
         res=>{
           alert("Successfully Added.");
           //updates the counter
-          this.fireService.getDocumentCounter().subscribe((doc)=>{
+          this.fireService.getDocumentCounter().then((doc)=>{
             if(doc){
-              console.log(doc);
-              this.newNum = 1 + doc.tspots;
+              /* this.newNum = 1 + doc.tspots;
               let data = {
                 recent_users:doc.recent_users,
                 tspots : this.newNum,
                 users:doc.users,
                 posts:doc.posts
-              }
-              console.log(data);
-              this.fireService.updateCount(data).catch(err => {console.error(err)});
+              } */
+              doc.tspots++;
+              
+              this.fireService.updateCount(doc).catch(err => {console.error(err)});
             }
           });
 

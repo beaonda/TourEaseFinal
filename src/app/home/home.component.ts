@@ -59,9 +59,53 @@ export class HomeComponent {
   currentPost:any;
   rawPost:any;
   getNatureList(){
+
     this.fireservice.getHomeDocuments("Nature").then((doc:any) =>{
+      var i = 0;
       for(var k in doc){
         this.natureList.push(doc[k].data());
+        switch(this.natureList[i].month){
+          case 0:
+            this.natureList[i].month = "JAN";
+            break;
+          case 1:
+            this.natureList[i].month = "FEB";
+            break;
+          case 2:
+            this.natureList[i].month = "MAR";
+            break;
+          case 3:
+            this.natureList[i].month = "APR";
+            break;
+          case 4:
+            this.natureList[i].month = "MAY";
+            break;
+          case 5:
+            this.natureList[i].month = "JUN";
+            break;
+          case 6:
+            this.natureList[i].month = "JUL";
+            break;
+          case 7:
+            this.natureList[i].month = "AUG";
+            break;
+          case 8:
+            this.natureList[i].month = "SEPT";
+            break;
+          case 9:
+            this.natureList[i].month = "OCT";
+            break;
+          case 10:
+            this.natureList[i].month = "NOV";
+            break;
+          case 11:
+            this.natureList[i].month = "DEC";
+            break;
+          /* default:
+            this.natureList[i].month = "NO";
+            break; */
+        } 
+        i++;
         this.rawPost = doc[k].data();
         this.currentPost = this.rawPost.postID;
         if(k == '0' || k == '1' || k == '3'){
@@ -84,8 +128,51 @@ export class HomeComponent {
   rawPost2:any;
   getCulturalList(){
     this.fireservice.getHomeDocuments("Cultural").then((doc:any) =>{
+      var i = 0;
       for(var k in doc){
         this.culturalList.push(doc[k].data());
+        switch(this.culturalList[i].month){
+          case 0:
+            this.culturalList[i].month = "JAN";
+            break;
+          case 1:
+            this.culturalList[i].month = "FEB";
+            break;
+          case 2:
+            this.culturalList[i].month = "MAR";
+            break;
+          case 3:
+            this.culturalList[i].month = "APR";
+            break;
+          case 4:
+            this.culturalList[i].month = "MAY";
+            break;
+          case 5:
+            this.culturalList[i].month = "JUN";
+            break;
+          case 6:
+            this.culturalList[i].month = "JUL";
+            break;
+          case 7:
+            this.culturalList[i].month = "AUG";
+            break;
+          case 8:
+            this.culturalList[i].month = "SEPT";
+            break;
+          case 9:
+            this.culturalList[i].month = "OCT";
+            break;
+          case 10:
+            this.culturalList[i].month = "NOV";
+            break;
+          case 11:
+            this.culturalList[i].month = "DEC";
+            break;
+          /* default:
+            this.natureList[i].month = "NO";
+            break; */
+        } 
+        i++;
         this.rawPost2 = doc[k].data();
         this.currentPost2 = this.rawPost2.postID;
         if(k == '0' || k == '1' || k == '3'){
@@ -107,8 +194,51 @@ export class HomeComponent {
   rawPost3:any;
   getBeachList(){
     this.fireservice.getHomeDocuments("Sun and Beach").then((doc:any) =>{
+      var i = 0;
       for(var k in doc){
         this.beachList.push(doc[k].data());
+        switch(this.beachList[i].month){
+          case 0:
+            this.beachList[i].month = "JAN";
+            break;
+          case 1:
+            this.beachList[i].month = "FEB";
+            break;
+          case 2:
+            this.beachList[i].month = "MAR";
+            break;
+          case 3:
+            this.beachList[i].month = "APR";
+            break;
+          case 4:
+            this.beachList[i].month = "MAY";
+            break;
+          case 5:
+            this.beachList[i].month = "JUN";
+            break;
+          case 6:
+            this.beachList[i].month = "JUL";
+            break;
+          case 7:
+            this.beachList[i].month = "AUG";
+            break;
+          case 8:
+            this.beachList[i].month = "SEPT";
+            break;
+          case 9:
+            this.beachList[i].month = "OCT";
+            break;
+          case 10:
+            this.beachList[i].month = "NOV";
+            break;
+          case 11:
+            this.beachList[i].month = "DEC";
+            break;
+          /* default:
+            this.natureList[i].month = "NO";
+            break; */
+        } 
+        i++;
         this.rawPost3 = doc[k].data();
         this.currentPost3 = this.rawPost3.postID;
         if(k == '0' || k == '3' || k == '4' || k == '5' || k == '6' || k == '7' || k == '8' || k == '9'){
@@ -130,8 +260,51 @@ export class HomeComponent {
   rawPost4:any;
   getLeisureList(){
     this.fireservice.getHomeDocuments("Leisure and Entertainment").then((doc:any) =>{
+      var i = 0;
       for(var k in doc){
         this.leisureList.push(doc[k].data());
+        switch(this.leisureList[i].month){
+          case 0:
+            this.leisureList[i].month = "JAN";
+            break;
+          case 1:
+            this.leisureList[i].month = "FEB";
+            break;
+          case 2:
+            this.leisureList[i].month = "MAR";
+            break;
+          case 3:
+            this.leisureList[i].month = "APR";
+            break;
+          case 4:
+            this.leisureList[i].month = "MAY";
+            break;
+          case 5:
+            this.leisureList[i].month = "JUN";
+            break;
+          case 6:
+            this.leisureList[i].month = "JUL";
+            break;
+          case 7:
+            this.leisureList[i].month = "AUG";
+            break;
+          case 8:
+            this.leisureList[i].month = "SEPT";
+            break;
+          case 9:
+            this.leisureList[i].month = "OCT";
+            break;
+          case 10:
+            this.leisureList[i].month = "NOV";
+            break;
+          case 11:
+            this.leisureList[i].month = "DEC";
+            break;
+          /* default:
+            this.natureList[i].month = "NO";
+            break; */
+        } 
+        i++;
         this.rawPost4 = doc[k].data();
         this.currentPost4 = this.rawPost4.postID;
         if(k == '0' || k == '1' || k == '3'){

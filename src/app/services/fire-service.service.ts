@@ -4,6 +4,8 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { GoogleAuthProvider } from 'firebase/auth';
 import { Observable } from 'rxjs';
 import * as auth from 'firebase/auth';
+import firebase from 'firebase/compat/app';
+import { FieldValue } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,9 @@ export class FireServiceService {
   desti:any;
   postItem:any;
   post:any;
+  commentItem:any;
+  comment:any;
+  
 
 
   constructor(
@@ -32,6 +37,9 @@ export class FireServiceService {
 
     this.postsCollection = firestore.collection<Post>('posts', (ref) =>ref.limit(50));
     this.postItems = this.postsCollection.valueChanges();
+
+    this.commentsCollection = firestore.collection<Comment>('posts').doc('docID').collection("comments");
+    this.commentItems = this.commentsCollection.valueChanges();
     this.counterDoc = this.firestore.collection('counter').doc('counts');
   }
 
@@ -53,6 +61,12 @@ export class FireServiceService {
   postItems: Observable<Post[]>;
   addPostItem(postItem: Post) {
     this.postsCollection.add(postItem);
+  }
+
+  private commentsCollection: AngularFirestoreCollection<Comment>;
+  commentItems: Observable<Comment[]>;
+  addCommentItem(commentItem: Comment) {
+    this.commentsCollection.add(commentItem);
   }
 
   //End of Collections
@@ -91,8 +105,35 @@ export class FireServiceService {
     }
   }
 
+  async getUnameFromID(uid:any): Promise<any> {
+    const collectionRef = this.firestore.collection("users");
+    const query = collectionRef.ref
+      .where('uid', '==', uid)
+      .limit(1);
+    const querySnapshot = await query.get();
+    if (querySnapshot.empty) {
+      return null;
+    } else {
+      // Extract and return the first document from the query
+      const firstDocument = querySnapshot.docs[0].data();
+      return firstDocument;
+    }
+  }
+
   //End of auth
 
+  /* incre(){
+    const docRef = this.firestore.collection('counter').doc('counts');
+
+    // Increment the 'count' field by 1
+    docRef.update({ users: firebase.firestore.FieldValue.serverTimestamp() })
+      .then(() => {
+        console.log('Document updated successfully');
+      })
+      .catch((error) => {
+        console.error('Error updating document: ', error);
+      });
+  } */
 
   saveTouristDestion(data:any){
     return this.firestore.collection("tourist_spots").doc(data.tourismID).set(data);
@@ -140,7 +181,7 @@ export class FireServiceService {
     // Create a query that counts documents based on the specified condition
     const query = collectionRef.ref
       .where('category', '==', value)
-      .limit(10); // Limit the query to a single document
+      .limit(15); // Limit the query to a single document
 
     // Perform the query and get the result
     const querySnapshot = await query.get();
@@ -161,7 +202,7 @@ export class FireServiceService {
     // Create a query that counts documents based on the specified condition
     const query = collectionRef.ref
       .where('postID', '==', value)
-      .limit(10); // Limit the query to a single document
+      .limit(1); // Limit the query to a single document
 
     // Perform the query and get the result
     const querySnapshot = await query.get();
@@ -224,6 +265,8 @@ export class FireServiceService {
     return this.postsCollection;
   }
 
+  
+
   getUserDetails(data:any) {
     return this.firestore.collection("users").doc(data.uId).valueChanges();
   }
@@ -238,16 +281,64 @@ export class FireServiceService {
   }
 
   counterDoc: AngularFirestoreDocument<MyDocumentType>;
-  getDocumentCounter() {
-   return this.counterDoc.valueChanges();
+  getDocumentCounter(): Promise<any> {
+    const docRef = this.firestore.collection("counter").doc("counts").ref;
+  
+    return docRef.get()
+      .then((doc:any) => {
+        if (doc.exists) {
+          return doc.data();
+        } else {
+          return null; // Document doesn't exist
+        }
+      })
+      .catch((error:any) => {
+        throw error;
+      });
   }
 
+  postData:any;
+  addOneView(docID:any): Promise<any> {
+    const docRef = this.firestore.collection("posts").doc(docID).ref;
+  
+    return docRef.get()
+      .then((doc:any) => {
+        if (doc.exists) {
+          this.postData = doc.data();
+          this.postData.views++;
+          
+          this.updateViews(docID, this.postData);
+          return doc.data();
+          
+        } else {
+          alert("Document was not found");
+          return null; // Document doesn't exist
+        }
+      })
+      .catch((error:any) => {
+        throw error;
+      });
+  }
+  updateViews(docID:any, data:any): Promise<void> {
+    return this.firestore.collection("posts").doc(docID).update(data);
+  }
   updateCount(data:any): Promise<void> {
     return this.firestore.collection("counter").doc("counts").update(data);
   }
 
 
+  postComment(postID:any, commentID:any, data:any){
+    return this.firestore.collection("posts").doc(postID).collection("comments").doc(commentID).set(data);
+  }
 
+  getComments(docID:any){
+    return this.firestore.collection('posts')
+    .doc(docID)
+    .collection('comments')
+    .valueChanges();
+  }
+
+  
 
 
   /* getOneTSpot(documentId:string): Observable<any> {
@@ -271,10 +362,17 @@ export interface MyDocumentType {
   recent_users: number;
   tspots: number;
   posts:number;
+  local_users:number;
+  foreign_users:number;
   // Define other properties as needed
 }
 
 export interface Post
+{
+
+}
+
+export interface Comment
 {
 
 }

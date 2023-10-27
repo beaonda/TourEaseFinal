@@ -19,7 +19,7 @@ export class DashboardComponent {
   counterDoc:any
 
   getCounts(){
-    this.fireService.getDocumentCounter().subscribe((doc)=>{
+    this.fireService.getDocumentCounter().then((doc)=>{
       if(doc){
         this.counterDoc = doc;
       }

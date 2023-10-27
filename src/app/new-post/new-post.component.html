@@ -111,7 +111,7 @@
                     </div>
 
                     <div class="form-group col-md-6">
-                      <input disabled type="text" [(ngModel)] = "post_title" name="post_title" class="inputdis" id="title" placeholder="File name" required>
+                      <input disabled type="text"  class="inputdis" id="title" placeholder="File name" required>
                     </div>
 
                    
@@ -125,7 +125,8 @@
                     <div class="error-message"></div>
                     <div class="sent-message">Your message has been posted.</div>
                   </div>
-                  <div class="text-center"><button type="submit" (click) = "savePost()">Post</button></div>
+                  <!-- userCheck() -->
+                  <div class="text-center"><button type="submit" (click) = "userCheck()">Post</button></div>
           
                  
               
