@@ -38,6 +38,7 @@ import { TrendingComponent } from './components/trending/trending.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { FooterComponent } from './components/footer/footer.component';
 import { SettingsComponent } from './settings/settings.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { SettingsComponent } from './settings/settings.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

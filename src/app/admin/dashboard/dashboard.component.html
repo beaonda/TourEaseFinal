@@ -21,7 +21,7 @@
     <div class="cardBox">
         <div class="card">
             <div>
-                <div class="numbers">+1,504</div>
+                <div class="numbers" *ngIf = "counterDoc">+{{counterDoc.recent_users}}</div>
                 <div class="cardName">New Users</div>
             </div>
 
@@ -32,7 +32,7 @@
 
         <div class="card">
             <div>
-                <div class="numbers">{{usersCount}}</div>
+                <div class="numbers" *ngIf="counterDoc">{{counterDoc.users}}</div>
                 <div class="cardName">Total Users</div>
             </div>
 
@@ -43,7 +43,7 @@
 
         <div class="card">
             <div>
-                <div class="numbers">{{tspotCount}}</div>
+                <div class="numbers" *ngIf="counterDoc">{{counterDoc.tspots}}</div>
                 <div class="cardName">Total Tourist Spots</div>
             </div>
 
@@ -54,8 +54,8 @@
 
         <div class="card">
             <div>
-                <div class="numbers">+10</div>
-                <div class="cardName">New Tourist Spot</div>
+                <div class="numbers" *ngIf="counterDoc">{{counterDoc.posts}}</div>
+                <div class="cardName">Total Blog Posts</div>
             </div>
 
             <div class="iconBx">

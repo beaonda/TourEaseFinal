@@ -91,26 +91,43 @@ export class NewPostComponent {
   touristData:any;
   postData:any;
 
+  userCheck(){
+    this.currentUser = this.fireService.getCurrentUser();
+    if(this.currentUser == null){
+      alert("User must be logged in to be able to post");
+      this.router.navigate(['login']);
+    }else{
+      //console.log(this.currentUser.uid);
+      this.fireService.getUnameFromID(this.currentUser.uid).then((res)=>{
+        
+        this.savePost(res.uname);
+      })
+      
+    }
+    
+  }
 
-  savePost(){
+
+
+  savePost(uname:any){
     var dateNow = new Date();
     var hour = dateNow.getHours();
     var minutes = dateNow.getMinutes();
     var year = dateNow.getFullYear();
     var date = dateNow.getDate();
     var month = dateNow.getMonth();
-    this.currentUser = this.fireService.getCurrentUser;
     this.fireService.getTspotDocument(this.search)
       .then((doc)=>{
         this.touristData = doc;
         console.log(this.touristData);
+        
         this.postData = {
           postID:this.firestore.createId(),
           title:this.post_title,
           location:this.tspot,
           body:this.post_body,
           rating:this.rating,
-          user: 'beaonda',
+          user: uname,
           hour: hour,
           mins: minutes,
           date: date,
@@ -129,12 +146,29 @@ export class NewPostComponent {
 
   }
 
+  newNum:any;
+
+
   postCont(){
     this.fireService.savePost(this.postData).then(
       res=>{
         console.log(res);
         this.photoData(this.pic, this.blob, this.postData.postID);
         this.upload(this.postData);
+        //updates the counter
+        this.fireService.getDocumentCounter().then((doc)=>{
+          if(doc){
+            /* this.newNum = 1 + doc.posts;
+            let data = {
+              recent_users:doc.recent_users,
+              tspots : doc.tspots,
+              users:doc.users,
+              posts: this.newNum
+            } */
+            doc.posts++;
+            this.fireService.updateCount(doc);
+          }
+        });
         alert("Posted Successfully.");
       }, err=>{
         alert(err.message);
@@ -195,10 +229,12 @@ async takePicture() {
       width:600,
       resultType:CameraResultType.DataUrl
     });
-    console.log("hello");
-    console.log('image',this.pic);
+    
+    
     this.image=this.pic.dataUrl;
     this.blob=this.dataURLtoBlob(this.pic.dataUrl);
+
+    
   } catch(e) {
     console.log(e);
   } 

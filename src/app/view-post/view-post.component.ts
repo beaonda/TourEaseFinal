@@ -1,7 +1,9 @@
 import { Component,  ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FireServiceService } from '../services/fire-service.service';
 import { GoogleMap } from '@angular/google-maps';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-view-post',
@@ -11,13 +13,16 @@ import { GoogleMap } from '@angular/google-maps';
 })
 export class ViewPostComponent {
   rating:any;
-  postID:any
+  postID:any;
+  comment:any;
 
   
 
   constructor(
     private route: ActivatedRoute,
-    public fireservice:FireServiceService
+    public fireservice:FireServiceService,
+    public router:Router,
+    public firestore:AngularFirestore
     ) { 
       
     }
@@ -37,14 +42,71 @@ export class ViewPostComponent {
 
     console.log(this.postID.toString());
     this.getPost();
+    
+    
   }
   postDoc:any;
-  postPhoto:any
+  postPhoto:any;
+  actualBody:any;
 
+  splitBody(inputText:string){
+    this.actualBody = inputText.split('\n');
+    this.actualBody = this.actualBody.filter((text:string) => text.trim() !== "");
+    console.log(this.actualBody);
+  }
+
+  items$: Observable<any[]> = new Observable<any[]>();
   getPost(){
+    this.fireservice.addOneView(this.postID);
+    this.items$ = this.fireservice.getComments(this.postID);
     this.fireservice.getPostDocument(this.postID).then((doc:any) =>{
       this.postDoc = doc;
-      console.log(doc);
+      //console.log(doc);
+      this.splitBody(this.postDoc.body);
+      switch(this.postDoc.month){
+        case 0:
+          this.postDoc.month = "JAN";
+          break;
+        case 1:
+          this.postDoc.month = "FEB";
+          break;
+        case 2:
+          this.postDoc.month = "MAR";
+          break;
+        case 3:
+          this.postDoc.month = "APR";
+          break;
+        case 4:
+          this.postDoc.month = "MAY";
+          break;
+        case 5:
+          this.postDoc.month = "JUN";
+          break;
+        case 6:
+          this.postDoc.month = "JUL";
+          break;
+        case 7:
+          this.postDoc.month = "AUG";
+          break;
+        case 8:
+          this.postDoc.month = "SEPT";
+          break;
+        case 9:
+          this.postDoc.month = "OCT";
+          break;
+        case 10:
+          this.postDoc.month = "NOV";
+          break;
+        case 11:
+          this.postDoc.month = "DEC";
+          break;
+        /* default:
+          this.natureList[i].month = "NO";
+          break; */
+      } 
+      this.center = this.postDoc.coords;
+      this.rating = this.postDoc.rating;
+      //console.log(this.center);
     }).catch(err => {
       console.log(err);
     });
@@ -54,6 +116,46 @@ export class ViewPostComponent {
     }).catch(err => {
       console.log(err);
     });
+  }
+
+  currentUser:any;
+
+  userCheck(){
+    this.currentUser = this.fireservice.getCurrentUser();
+    if(this.currentUser == null){
+      alert("User must be logged in to be able to leave a comment");
+      this.router.navigate(['login']);
+    }else{
+      //console.log(this.currentUser.uid);
+      this.fireservice.getUnameFromID(this.currentUser.uid).then((res)=>{
+        this.postComment(res.uname);
+      })
+    }
+  }
+
+  postComment(uname:string){
+    var dateNow = new Date();
+    var hour = dateNow.getHours();
+    var minutes = dateNow.getMinutes();
+    var year = dateNow.getFullYear();
+    var date = dateNow.getDate();
+    var month = dateNow.getMonth();
+    let commentData = {
+      commentID:this.firestore.createId(),
+      content: this.comment,
+      hour: hour,
+      mins: minutes,
+      date: date,
+      month: month,
+      year: year,
+      postID: this.postID,
+      user:uname
+    }
+    this.fireservice.postComment(this.postID, commentData.commentID, commentData).then(res => {
+      alert("Commented Successfully");
+    }).catch(err => {
+      console.error(err);
+    })
   }
 
 
@@ -76,7 +178,7 @@ export class ViewPostComponent {
     lat: 13.7565,
     lng: 121.0583
   };
-  zoom = 10;
+  zoom = 15;
   display: any;
 
   moveMap(event: google.maps.MapMouseEvent) {

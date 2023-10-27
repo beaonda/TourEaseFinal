@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Firestore, doc } from 'firebase/firestore';
 import { map } from 'rxjs';
@@ -62,7 +62,7 @@ export class ManagespotsComponent {
     public fireService:FireServiceService,
     public router:Router,
     public firestore:AngularFirestore){
-
+      this.retrieveDestinations();
   }
 
   
@@ -88,8 +88,23 @@ export class ManagespotsComponent {
     if(counter == 0){
       this.fireService.saveTouristDestion(tourismData).then(
         res=>{
-          console.log(res);
           alert("Successfully Added.");
+          //updates the counter
+          this.fireService.getDocumentCounter().then((doc)=>{
+            if(doc){
+              /* this.newNum = 1 + doc.tspots;
+              let data = {
+                recent_users:doc.recent_users,
+                tspots : this.newNum,
+                users:doc.users,
+                posts:doc.posts
+              } */
+              doc.tspots++;
+              
+              this.fireService.updateCount(doc).catch(err => {console.error(err)});
+            }
+          });
+
           if(this.addM){
             this.resetAdd();
           }else{
@@ -156,9 +171,14 @@ export class ManagespotsComponent {
     document.body.style.overflow = 'auto';
   }
 
+  
+
+  newNum:any;
+  list:any;
+
   ngOnInit(){
-    this.retrieveDestinations();
-    
+    this.list = document.querySelectorAll(".navigation li");
+    this.list[3].classList.add("hovered");
   }
 
   retrieveDestinations(){
@@ -174,3 +194,5 @@ export class ManagespotsComponent {
 
   }
 }
+
+

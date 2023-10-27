@@ -37,9 +37,9 @@
         <div class="right__col" style="padding: 20px;">
             <nav>
                 <ul>
-                    <li><a (click)="showSection('blogs')" data-section="blogs">blogs</a></li>
-                    <li><a (click)="showSection('photos')" data-section="photos">photos</a></li>
-                    <li><a (click)="showSection('badge')" data-section="badge">badge</a></li>
+                    <li><a class="active" (click)="handleNavigationClick($event)" data-section="blogs">blogs</a></li>
+                    <li><a (click)="handleNavigationClick($event)" data-section="photos">photos</a></li>
+                    <li><a (click)="handleNavigationClick($event)" data-section="badge">badge</a></li>
                 </ul>
               
             </nav>
