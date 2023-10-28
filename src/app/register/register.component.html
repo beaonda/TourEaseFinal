@@ -17,17 +17,17 @@
             <form #registerForm="ngForm" method="post" role="form" class="php-email-form">
                 <div class="row">
                   <div class="form-group col-md-4">
-                    <label for="first_name">First Name</label>
+                    <label for="first_name">First Name<span style="color: red; margin-left: 5px;">*</span></label>
                     <input required autocomplete="off" class="form-control" [(ngModel)]="fname" type="text" name="first_name" id="first_name" placeholder="Juan" />
                   </div>
 
                   <div class="form-group col-md-4">
-                    <label for="middle_name">Middle name</label>
+                    <label for="middle_name">Middle name <span style="color: red; margin-left: 5px;">*</span></label>
                     <input required autocomplete="off" class="form-control" [(ngModel)]="mname" type="text" name="middle_name" id="middle_name" placeholder="Sanchez"/>
                   </div>
                   
                   <div class="form-group col-md-4">
-                    <label for="last_name">Last Name</label>
+                    <label for="last_name">Last Name <span style="color: red; margin-left: 5px;">*</span></label>
                     <input required autocomplete="off" class="form-control" [(ngModel)]="lname" type="text" name="last_name" id="last_name" placeholder="Dela Cruz" />
                   </div>
 
@@ -36,7 +36,7 @@
 
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label>Gender</label>
+                        <label>Gender <span style="color: red; margin-left: 5px;">*</span></label>
                         <select required [(ngModel)]="gender" style ="width:100%" name="gender">
                             <option [ngValue] ="null" disabled selected>Select</option>
                             <option value="Male">Male</option>
@@ -45,24 +45,24 @@
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="bday">Birthday</label>
+                        <label for="bday">Birthday <span style="color: red; margin-left: 5px;">*</span></label>
                         <input required class="form-control" [(ngModel)]="bday" type="date" name="bday" id="bday" />
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="phone_number">Contact number</label>
+                        <label for="phone_number">Contact number <span style="color: red; margin-left: 5px;">*</span></label>
                         <input required autocomplete="off" class="form-control" [(ngModel)]="contact" type="tel" name="phone_number" id="phone_number"  placeholder="0900-000-0000" />
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="email">Email address</label>
+                        <label for="email">Email address <span style="color: red; margin-left: 5px;">*</span></label>
                         <input required autocomplete="off" class="form-control" [(ngModel)]="email" type="email" name="email" id="email"  placeholder="example@gmail.com"/>
                     </div>
                 </div>
                  
                 <div class="form-group">
-                    <label for="country">Country</label>
+                    <label for="country">Country <span style="color: red; margin-left: 5px;">*</span></label>
                     <select name = "country" [(ngModel)]="country" class="form-control" required>
                         <option *ngFor = "let country of countries" [value]="country.name">{{country.name}}</option>
                     </select>
@@ -70,33 +70,33 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="prov">Province</label>
+                    <label for="prov">Province <span style="color: red; margin-left: 5px;">*</span></label>
                     <input required autocomplete="off" class="form-control"  [(ngModel)]="province" type="text" name="prov" id="prov"  placeholder="e.g. Batangas, Lipa"/>
                 </div>
                 
                 <div class="form-group">
-                    <label for="city">City</label>
+                    <label for="city">City <span style="color: red; margin-left: 5px;">*</span></label>
                     <input required autocomplete="off" class="form-control"  [(ngModel)]="city" type="text" name="city" id="city"  placeholder="e.g. Batangas City, Lipa City"/>
                 </div>
                 
                 <div class="form-group">
-                    <label for="exact">Exact address</label>
+                    <label for="exact">Exact address <span style="color: red; margin-left: 5px;">*</span></label>
                     <input  autocomplete="off" class="form-control"  [(ngModel)]="exact_add" type="text" name="exact" id="exact"  placeholder="House no./ Lot no./ Street"/>
                 </div>
                 
                 <div class="form-group">
-                    <label for="uname">Username</label>
+                    <label for="uname">Username <span style="color: red; margin-left: 5px;">*</span></label>
                     <input required autocomplete="off" class="form-control"  [(ngModel)]="uname" type="text" name="uname" id="uname"  placeholder="example123"/>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="pword">Password</label>
+                        <label for="pword">Password <span style="color: red; margin-left: 5px;">*</span></label>
                         <input required autocomplete="off" class="form-control"  [(ngModel)]="pword" type="password" name="pword" id="pword"  placeholder="*******"/>
                     </div>
                     
                     <div class="form-group col-md-6">
-                        <label for="pword2">Confirm Password</label>
+                        <label for="pword2">Confirm Password <span style="color: red; margin-left: 5px;">*</span></label>
                         <input required autocomplete="off" class="form-control" [(ngModel)]="pword2" type="password" name="pword2" id="pword2"  placeholder="********"/>
                     </div>
                 </div>   
@@ -109,7 +109,7 @@
                 </div>
                 <div class="text-center">
                     <button (click)="checkUsername()" type="submit" class="submit" id="submit" style="margin-right: 20px">Submit</button>
-                    <button (click)="reset()" class="submit">Reset</button>
+                    <button (click)="reset()"type="submit" class="submit" id="submit">Reset</button>
                 </div>
                 
               </form>
