@@ -325,6 +325,10 @@ export class HomeComponent {
     this.router.navigate(['/view', postID]);
   }
 
+  viewAuthor(uname:string){
+    this.router.navigate(['/profile', uname]);
+  }
+
   ngAfterViewInit(){
 
     const swiper = new Swiper(".sliderFeaturedPosts", {

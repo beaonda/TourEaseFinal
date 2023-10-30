@@ -31,14 +31,13 @@ export class ViewPostComponent {
     this.route.paramMap.subscribe(params => {
       this.postID = params.get('postID');
       // Use this.productId to fetch and display product details
-      this.navigationLinks.forEach((link:any) => {
+    });
+  
+    this.navigationLinks.forEach((link:any) => {
         link.addEventListener("click", this.handleNavigationClick);
       });
         this.showSection("blogs");
         this.navigationLinks[0].classList.add("active"); 
-    });
-  
-    
 
     console.log(this.postID.toString());
     this.getPost();
@@ -58,11 +57,13 @@ export class ViewPostComponent {
   items$: Observable<any[]> = new Observable<any[]>();
   getPost(){
     this.fireservice.addOneView(this.postID);
+    
     this.items$ = this.fireservice.getComments(this.postID);
     this.fireservice.getPostDocument(this.postID).then((doc:any) =>{
       this.postDoc = doc;
       //console.log(doc);
       this.splitBody(this.postDoc.body);
+      this.fireservice.addOneUserProfileView(this.postDoc.user);
       switch(this.postDoc.month){
         case 0:
           this.postDoc.month = "JAN";

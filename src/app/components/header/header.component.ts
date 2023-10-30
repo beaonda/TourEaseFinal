@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import '../../../assets/js/homeMain.js';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,6 +13,11 @@ export class HeaderComponent {
   showSideNavWeb: boolean = false;
   showDropBool:any = false;
   showBurger:any = true;
+
+  nextPage(category:string){
+    this.router.navigate(['/category', category]);
+    
+  }
 
   showDrop(){
     this.showDropBool = !this.showDropBool;
@@ -30,7 +36,9 @@ export class HeaderComponent {
 
  
 
-  constructor(){
+  constructor(
+    public router:Router,
+  ){
     
   }
 

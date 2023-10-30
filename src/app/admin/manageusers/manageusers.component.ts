@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FireServiceService } from '../../services/fire-service.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-
+import { ConfirmationComponent } from 'src/app/components/confirmation/confirmation.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-manageusers',
   templateUrl: './manageusers.component.html',
@@ -13,9 +14,26 @@ export class ManageusersComponent {
   user:any;
   isModalOpen = false;
   popups:any;
+
+
+  //modal variables
+  fullName:any;
+  bday:any;
+  address:any;
+  email:any;
+  contact:any;
+  registration:any;
+  uname:any;
+  bio:any;
+  profile_photo:any;
+  cover_photo:any;
+
+
+
   constructor(
     public fireService:FireServiceService,
-    public router:Router
+    public router:Router,
+    private dialog: MatDialog
     ){
       this.retrieveUsers();
   }
@@ -26,11 +44,33 @@ export class ManageusersComponent {
     this.list[2].classList.add("hovered");
   }
 
-  viewUser(){
+  suspendUser(data:any){
+    const dialogRef = this.dialog.open(ConfirmationComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        // User clicked "OK," perform your action
+        console.log(data.uid);
+    this.fireService.moveDocumentToNewCollection("users", "suspended_users", data.uid);
+      } else {
+        // User clicked "Cancel" or closed the dialog
+      }
+    });
+    
+  }
+
+  showSuspended(){
+
+  }
+
+  userA:any
+  viewUser(user:any){
+    this.userA = user;
     var popups = document.querySelectorAll('.popup'); 
     var viewPopUp = document.querySelector("#viewPopUp");
     (viewPopUp as HTMLElement).style.display = 'block';
     document.body.style.overflow = 'hidden';
+    
   }
 
   closeView(){
@@ -49,6 +89,7 @@ export class ManageusersComponent {
       )
     ).subscribe(data => {
       this.usersList = data;
+      
     });
   }
 

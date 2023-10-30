@@ -138,6 +138,7 @@ export class NewPostComponent {
           coords: this.center,
           views: 0
         }
+        this.fireService.addOneUserProfilePost(uname);
         this.postCont();
         console.log(this.postData);
       }).catch(err => {
@@ -169,7 +170,7 @@ export class NewPostComponent {
             this.fireService.updateCount(doc);
           }
         });
-        alert("Posted Successfully.");
+        
       }, err=>{
         alert(err.message);
         console.log(err);
@@ -200,7 +201,8 @@ export class NewPostComponent {
         this.currentFileUpload = new FileUpload(file);
         this.uploadService.uploadPostPhoto(this.currentFileUpload, data).subscribe(
           percentage => {
-            
+            alert("Posted Successfully.");
+            this.router.navigate(['home']);
             /* this.percentage = Math.round(percentage ? percentage : 0); */
           },
           error => {

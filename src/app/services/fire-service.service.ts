@@ -87,7 +87,7 @@ export class FireServiceService {
   }
 
   saveDetails(data:any) {
-    return this.firestore.collection("users").doc(data.uId).set(data);
+    return this.firestore.collection("users").doc(data.uid).set(data);
   }
 
   async getUnameExisting(uname:any): Promise<any> {
@@ -119,6 +119,44 @@ export class FireServiceService {
       return firstDocument;
     }
   }
+
+  moveDocumentToNewCollection(
+    sourceCollection: string,
+    targetCollection: string,
+    documentId: string
+  ) {
+    // 1. Read the Document
+    const sourceDocRef = this.firestore.collection(sourceCollection).doc(documentId);
+    sourceDocRef.get().subscribe((docSnapshot) => {
+      if (docSnapshot.exists) {
+        const data = docSnapshot.data();
+
+        // 2. Write to the New Collection
+        const targetDocRef = this.firestore.collection(targetCollection).doc(documentId);
+        targetDocRef.set(data)
+          .then(() => {
+            console.log('Document moved to the target collection.');
+          })
+          .catch((error) => {
+            console.error('Error writing to the new collection:', error);
+          });
+
+        // 3. Delete the Original Document
+        sourceDocRef.delete()
+          .then(() => {
+            console.log('Original document deleted from the source collection.');
+          })
+          .catch((error) => {
+            console.error('Error deleting original document:', error);
+          });
+      } else {
+        console.log('Document does not exist in the source collection.');
+      }
+    }, (error) => {
+      console.error('Error reading the document:', error);
+    });
+  }
+
 
   //End of auth
 
@@ -193,6 +231,27 @@ export class FireServiceService {
       // Extract and return the first document from the query
       const natureList = querySnapshot.docs;
       return natureList;
+    }
+  }
+
+  async getUserPosts(uname:any): Promise<any> {
+    const collectionRef = this.firestore.collection("posts");
+
+    // Create a query that counts documents based on the specified condition
+    const query = collectionRef.ref
+      .where('user', '==', uname)
+      .limit(3); // Limit the query to a single document
+
+    // Perform the query and get the result
+    const querySnapshot = await query.get();
+
+    if (querySnapshot.empty) {
+      // No matching documents found, return null or handle it as needed
+      return null;
+    } else {
+      // Extract and return the first document from the query
+      const userPostList = querySnapshot.docs;
+      return userPostList;
     }
   }
 
@@ -300,7 +359,6 @@ export class FireServiceService {
   postData:any;
   addOneView(docID:any): Promise<any> {
     const docRef = this.firestore.collection("posts").doc(docID).ref;
-  
     return docRef.get()
       .then((doc:any) => {
         if (doc.exists) {
@@ -319,12 +377,57 @@ export class FireServiceService {
         throw error;
       });
   }
+  userProfileData:any;
+  addOneUserProfileView(uname:any): Promise<any> {
+    const docRef = this.firestore.collection("users").doc(uname).ref;
+    return docRef.get()
+      .then((doc:any) => {
+        if (doc.exists) {
+          this.userProfileData = doc.data();
+          this.userProfileData.views++;
+          
+          this.updateUserProfileView(uname, this.userProfileData);
+          return doc.data();
+          
+        } else {
+          alert("Document was not found");
+          return null; // Document doesn't exist
+        }
+      })
+      .catch((error:any) => {
+        throw error;
+      });
+  }
+  addOneUserProfilePost(uname:any): Promise<any> {
+    const docRef = this.firestore.collection("users").doc(uname).ref;
+    return docRef.get()
+      .then((doc:any) => {
+        if (doc.exists) {
+          this.userProfileData = doc.data();
+          this.userProfileData.posts++;
+          
+          this.updateUserProfileView(uname, this.userProfileData);
+          return doc.data();
+          
+        } else {
+          alert("Document was not found");
+          return null; // Document doesn't exist
+        }
+      })
+      .catch((error:any) => {
+        throw error;
+      });
+  }
   updateViews(docID:any, data:any): Promise<void> {
     return this.firestore.collection("posts").doc(docID).update(data);
   }
   updateCount(data:any): Promise<void> {
     return this.firestore.collection("counter").doc("counts").update(data);
   }
+  updateUserProfileView(uname:any, data:any): Promise<void> {
+    return this.firestore.collection("users").doc(uname).update(data);
+  }
+
 
 
   postComment(postID:any, commentID:any, data:any){

@@ -32,7 +32,7 @@ const routes: Routes = [
       { path: 'home', component:HomeComponent},
       { path: '', component:HomeComponent},
       { path: 'about', component:AboutComponent},
-      { path: 'category', component:CategoriesComponent},
+      { path: 'category/:category', component:CategoriesComponent},
       { path: 'view/:postID', component:ViewPostComponent},
       { path: 'contact', component:ContactComponent},
       { path: 'getstarted', component:GetstartedComponent},
@@ -43,7 +43,7 @@ const routes: Routes = [
       {path: 'admin/users', component:ManageusersComponent},
       {path: 'admin/posts', component:ManagepostsComponent},
       {path: 'admin/spots', component:ManagespotsComponent},
-      {path: 'profile', component:UserProfileComponent},
+      {path: 'profile/:uname', component:UserProfileComponent},
       {path: 'retrieve_account', component:ForgotPassComponent},
       {path: 'settings', component:SettingsComponent}
     ])],
