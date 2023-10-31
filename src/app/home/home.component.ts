@@ -30,6 +30,99 @@ export class HomeComponent {
     this.getLeisureList();
     this.getWeatherData();
     this.load.closeLoadingDialog();
+    this.getTopspots();
+    this.getRecentPosts();
+  }
+
+  truncateString(inputString: string, maxLength: number): string {
+    if (inputString.length <= maxLength) {
+      return inputString;
+    } else {
+      return inputString.substring(0, maxLength);
+    }
+  }
+
+  topPosts:any[] = [];
+
+  getTopspots(){
+    this.fireservice.getTopDocuments("posts", "views", 5).then(docs => {
+      docs.forEach((doc) => {
+        // Process each document here.
+        
+        this.topPosts.push(doc);
+       /*  console.log(this.topPosts); */
+      });
+    }).catch(err => {
+      console.error(err);
+    })
+  }
+
+
+  recentPosts:any[] = [];
+  recentPhotos:any[] = [];
+  getRecentPosts(){
+    this.fireservice.getMostRecentPosts().then(docs => {
+      if(docs == null){
+        console.log("Document not found");
+      }
+      var i = 0;
+      docs.forEach((doc) => {
+        // Process each document here.
+        this.fireservice.getPhotoDocument(doc.postID).then(res => {
+          this.recentPhotos.push(res);
+          console.log(this.recentPhotos);
+        }).catch(err => {
+          console.error(err);
+        });
+        switch(doc.month){
+          case 0:
+            doc.month = "JAN";
+            break;
+          case 1:
+            doc.month = "FEB";
+            break;
+          case 2:
+            doc.month = "MAR";
+            break;
+          case 3:
+            doc.month = "APR";
+            break;
+          case 4:
+            doc.month = "MAY";
+            break;
+          case 5:
+            doc.month = "JUN";
+            break;
+          case 6:
+            doc.month = "JUL";
+            break;
+          case 7:
+            doc.month = "AUG";
+            break;
+          case 8:
+            doc.month = "SEPT";
+            break;
+          case 9:
+            doc.month = "OCT";
+            break;
+          case 10:
+            doc.month = "NOV";
+            break;
+          case 11:
+            doc.month = "DEC";
+            break;
+          /* default:
+            this.natureList[i].month = "NO";
+            break; */
+        } 
+        this.recentPosts.push(doc);
+
+        console.log(this.recentPosts);
+      });
+    }).catch(err => {
+      alert(err);
+      console.error(err);
+    })
   }
 
   getWeatherData(){

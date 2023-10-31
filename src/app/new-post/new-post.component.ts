@@ -124,24 +124,32 @@ export class NewPostComponent {
       .then((doc)=>{
         this.touristData = doc;
         console.log(this.touristData);
-        
-        this.postData = {
-          postID:this.firestore.createId(),
-          title:this.post_title,
-          location:this.tspot,
-          body:this.post_body,
-          rating:this.rating,
-          user: uname,
-          hour: hour,
-          mins: minutes,
-          date: date,
-          month: month,
-          year: year,
-          tspotID: this.touristData.tourismID,
-          category: this.touristData.category,
-          coords: this.center,
-          views: 0
+        for(var x in this.batangasCities){
+          if(this.city == this.batangasCities[x].name){
+            let newCenter: google.maps.LatLngLiteral = {
+              lat: this.batangasCities[x].lat,
+              lng: this.batangasCities[x].lng
+            };
+            this.postData = {
+              postID:this.firestore.createId(),
+              title:this.post_title,
+              location:this.tspot,
+              body:this.post_body,
+              rating:this.rating,
+              user: uname,
+              hour: hour,
+              mins: minutes,
+              date: date,
+              month: month,
+              year: year,
+              tspotID: this.touristData.tourismID,
+              category: this.touristData.category,
+              coords: newCenter,
+              views: 0
+            }
+          }
         }
+        
         this.fireService.addOneUserProfilePost(uname);
         this.postCont();
         console.log(this.postData);

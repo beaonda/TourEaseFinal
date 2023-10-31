@@ -63,6 +63,14 @@ export class ViewPostComponent {
   longitude: number | undefined;
   locCenter!:google.maps.LatLngLiteral;
 
+  truncateString(inputString: string, maxLength: number): string {
+    if (inputString.length <= maxLength) {
+      return inputString;
+    } else {
+      return inputString.substring(0, maxLength);
+    }
+  }
+
   getLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -93,7 +101,7 @@ export class ViewPostComponent {
   postDoc:any;
   postPhoto:any;
   actualBody:any;
-  
+
   nextPage(category:string){
     this.router.navigate(['/category', category]);
   }
