@@ -19,6 +19,10 @@ export class CategoriesComponent {
 
   }
 
+  nextPage(postID:string){
+    this.router.navigate(['/view', postID]);
+  }
+
   category:any;
   raw_categ:any;
   ngOnInit(){

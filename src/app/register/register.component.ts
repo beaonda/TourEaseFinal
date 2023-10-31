@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FireServiceService } from '../services/fire-service.service';
 import { Router } from '@angular/router';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +32,8 @@ export class RegisterComponent {
   
   constructor(
     public fireService: FireServiceService,
-    public router:Router
+    public router:Router,
+    public load:LoaderService
   ){
 
   }
@@ -101,17 +103,21 @@ export class RegisterComponent {
   }
 
   checkUsername(){
+    this.load.openLoadingDialog();
     if(this.fname == '' || this.mname == '' || this.lname == '' || this.gender == null || this.bday == '' || this.country == '' || this.province == '' || this.city == '' || this.uname == '' || this.pword == '' || this.pword2 == ''){
       alert("Please fill up all the required fields");
+      this.load.closeLoadingDialog();
       return;
     }
     if(!this.isMoreThan13YearsFromNow(this.bday)){
       alert("User should atleast be 13 years old to register an account.");
+      this.load.closeLoadingDialog();
       this.reset();
       return;
     }
     if(this.hasSpecialCharacters(this.uname)){
       alert("Username should only contain letters, numbers and underscores");
+      this.load.closeLoadingDialog();
     }else{
       this.fireService.getUnameExisting(this.uname).then(res => {
         if(res == null){
@@ -119,6 +125,7 @@ export class RegisterComponent {
             if(this.pword != this.pword2){
             console.log(this.pword + this.pword2);
             alert("Passwords must match");
+            this.load.closeLoadingDialog();
             } else {
               this.signUp();
             }
@@ -128,15 +135,18 @@ export class RegisterComponent {
           
         }else{
           alert("Username is already taken");
+          this.load.closeLoadingDialog();
         }
       }).catch(err => {
         console.error(err);
+        this.load.closeLoadingDialog();
       });
     }
     
   }
 
   signUp(){
+    
     var dateNow = new Date();
     var hour = dateNow.getHours();
     var minutes = dateNow.getMinutes();
@@ -176,6 +186,7 @@ export class RegisterComponent {
           this.fireService.saveDetails(data).then(
             res=>{
               alert("Account Created");
+              this.load.closeLoadingDialog();
               //updates the counter
               this.fireService.getDocumentCounter().then((doc)=>{
                 if(doc){

@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 import { FireServiceService } from '../services/fire-service.service';
 import { Router } from '@angular/router';
-import { GoogleMap } from '@angular/google-maps';
+import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { TypesenseService } from '../services/typesense.service';
 import { FileuploadService } from '../services/fileupload.service';
 import { FirebaseStorage, getDownloadURL, uploadBytes } from '@angular/fire/storage';
@@ -14,6 +14,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { LoaderService } from '../services/loader.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class NewPostComponent {
 
   //Children
   @ViewChild(GoogleMap, { static: false }) addMap!: GoogleMap;
-
+  @ViewChild(MapMarker, {static: false}) mapMarker!: MapMarker;
 
   //Variables
   popups:any;
@@ -73,6 +74,7 @@ export class NewPostComponent {
     public uploadService: FileuploadService,
     public storage: AngularFireStorage,
     public firestore: AngularFirestore, 
+    public load: LoaderService
   ){
 
   }
@@ -92,7 +94,9 @@ export class NewPostComponent {
   postData:any;
 
   userCheck(){
+    this.load.openLoadingDialog();
     this.currentUser = this.fireService.getCurrentUser();
+    console.log(this.currentUser);
     if(this.currentUser == null){
       alert("User must be logged in to be able to post");
       this.router.navigate(['login']);
@@ -142,6 +146,7 @@ export class NewPostComponent {
         this.postCont();
         console.log(this.postData);
       }).catch(err => {
+        this.load.closeLoadingDialog();
         alert(err);
       });
 
@@ -156,6 +161,7 @@ export class NewPostComponent {
         console.log(res);
         this.photoData(this.pic, this.blob, this.postData.postID);
         this.upload(this.postData);
+        
         //updates the counter
         this.fireService.getDocumentCounter().then((doc)=>{
           if(doc){
@@ -168,12 +174,14 @@ export class NewPostComponent {
             } */
             doc.posts++;
             this.fireService.updateCount(doc);
+            
           }
         });
         
       }, err=>{
         alert(err.message);
         console.log(err);
+        this.load.closeLoadingDialog();
       }
     );
   }
@@ -201,11 +209,11 @@ export class NewPostComponent {
         this.currentFileUpload = new FileUpload(file);
         this.uploadService.uploadPostPhoto(this.currentFileUpload, data).subscribe(
           percentage => {
-            alert("Posted Successfully.");
-            this.router.navigate(['home']);
+           
             /* this.percentage = Math.round(percentage ? percentage : 0); */
           },
           error => {
+            this.load.closeLoadingDialog();
             console.log(error);
           }
         );
@@ -219,7 +227,7 @@ blob:any;
 pic:any;
 image:any;
 
-
+chosenPic:any;
 async takePicture() {
   try {
     
@@ -234,6 +242,7 @@ async takePicture() {
     
     
     this.image=this.pic.dataUrl;
+    this.chosenPic = this.image;
     this.blob=this.dataURLtoBlob(this.pic.dataUrl);
 
     
@@ -277,6 +286,9 @@ async uploadImage(postID:any, blob: any, imageData:any) {
           photoData.imageUrl = downloadURL;
           photoData.postID = postID;
           this.uploadService.savePhoto(photoData);
+          this.load.closeLoadingDialog();
+          alert("Posted Successfully.");
+          this.router.navigate(['home']);
         });
       })
     ).subscribe();
@@ -346,6 +358,7 @@ async uploadImage(postID:any, blob: any, imageData:any) {
           lng: this.batangasCities[x].lng
         };
         this.addMap.panTo(newCenter);
+        this.mapMarker.marker?.setPosition(newCenter);
         this.zoom = 13;
       }
     }

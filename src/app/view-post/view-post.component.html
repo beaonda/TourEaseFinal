@@ -20,6 +20,17 @@
                 <input [(ngModel)] = "rating" type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
             </div></span></div> 
               <h1 class="mb-5" *ngIf = "postDoc">{{postDoc.title}}</h1>
+              <div class="comment d-flex mb-4" style="margin-top: -5%;">
+                
+                <div  class="flex-grow-1 ms-2 ms-sm-3">
+                  <div  class="comment-meta d-flex align-items-baseline">
+                    <h6 class="me-2" *ngIf = "postDoc">{{postDoc.user}}</h6>
+                    
+                  </div>
+              
+                </div>
+
+              </div>
               
 
               <figure class="my-4">
@@ -58,14 +69,12 @@
                <h3 class="aside-title lline"></h3> 
                 <div class="blog__post"  style="margin-top: 30px;">
                 
-                    <google-map height="300px"
+                <google-map height="300px"
                 width="100%"
-                id="addMap"
+                id="loc_map"
                 [center]="center"
                 [zoom]="zoom"
-                (mapClick)="moveMap($event)"
-                (mapMousemove)="move($event)"
-                #addMap
+                #loc_map
                 >
                   <map-marker
                   [position]="center"
@@ -90,18 +99,19 @@
                     <google-map height="300px"
                 width="100%"
                 id="addMap"
-                [center]="center"
+                [center]="locCenter"
                 [zoom]="zoom"
-                (mapClick)="moveMap($event)"
-                (mapMousemove)="move($event)"
-                #addMap
+                #navMap
                 >
-                  <map-marker
-                  [position]="center"
-                  id = "mapMark"
+                  <!-- <map-marker
+                  [position]="locCenter"
+                  id = "nav_marker"
                   draggable="true"
+                  #nav_marker
                   >
-                  </map-marker>
+                  </map-marker> -->
+                  <map-directions-renderer *ngIf="(directionsResults$ | async) as directionsResults"
+                           [directions]="directionsResults"></map-directions-renderer>
               </google-map>
                 
                   
@@ -118,22 +128,27 @@
                <!--  <h3>Emergency Establishments</h3> -->
                <h3 class="aside-title emline"></h3> 
                 <div class="badge__item" style="margin-top: 30px;">
-                
+                <p>Showing hospitals, pharmacies, and car repair shops</p>
+                <div id="map" #mapContainer></div>
                   <google-map height="300px"
               width="100%"
-              id="addMap"
+              id="emergencyMap"
               [center]="center"
               [zoom]="zoom"
-              (mapClick)="moveMap($event)"
-              (mapMousemove)="move($event)"
-              #addMap
+              
               >
-                <map-marker
-                [position]="center"
-                id = "mapMark"
-                draggable="true"
-                >
-                </map-marker>
+              <map-marker #marker="mapMarker"
+              *ngFor="let marker of markers"
+              [position]="marker.position"
+              [label]="marker.title"
+              [title]="marker.title"
+              (click)="openInfoWindow(marker)"
+              >
+                  <map-info-window #infoWindow>
+                    {{marker.title}}
+                  </map-info-window>
+              </map-marker>
+              
             </google-map>
               
                 
@@ -158,7 +173,7 @@
               <div *ngFor="let item of items$ | async" class="comment d-flex mb-4">
                 <div class="flex-shrink-0">
                   <div class="avatar avatar-sm rounded-circle">
-                    <img class="avatar-img" src="assets/img/person-5.jpg" alt="" class="img-fluid">
+                    <img class="avatar-img" src="assets/img/person-5.jpg" alt="" style="border-radius: 50%;" class="img-fluid">
                   </div>
                 </div>
                 <div  class="flex-grow-1 ms-2 ms-sm-3">
@@ -395,29 +410,17 @@
             <div class="aside-block">
               <h3 class="aside-title">Categories</h3>
               <ul class="aside-links list-unstyled">
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Nature</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Cultural</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Industrial</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Sun and Beach</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Leisure and Entertainment</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Meetings, Incentives, Conventions, and Exhibitions </a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Health and Wellness</a></li>
+                <li><a (click) = "nextPage('nature')"><i class="bi bi-chevron-right"></i> Nature</a></li>
+                <li><a (click) = "nextPage('cultural')"><i class="bi bi-chevron-right"></i> Cultural</a></li>
+                <li><a (click) = "nextPage('industrial')"><i class="bi bi-chevron-right"></i> Industrial</a></li>
+                <li><a (click) = "nextPage('sun_and_beach')"><i class="bi bi-chevron-right"></i> Sun and Beach</a></li>
+                <li><a (click) = "nextPage('leisure')"><i class="bi bi-chevron-right"></i> Leisure and Entertainment</a></li>
+                <li><a (click) = "nextPage('mice')"><i class="bi bi-chevron-right"></i> Meetings, Incentives, Conventions, and Exhibitions </a></li>
+                <li><a (click) = "nextPage('health')"><i class="bi bi-chevron-right"></i> Health and Wellness</a></li>
               </ul>
             </div><!-- End Categories -->
 
-            <div class="aside-block">
-              <h3 class="aside-title">Tags</h3>
-              <ul class="aside-tags list-unstyled">
-                <li><a href="category.html">Business</a></li>
-                <li><a href="category.html">Culture</a></li>
-                <li><a href="category.html">Sport</a></li>
-                <li><a href="category.html">Food</a></li>
-                <li><a href="category.html">Politics</a></li>
-                <li><a href="category.html">Celebrity</a></li>
-                <li><a href="category.html">Startups</a></li>
-                <li><a href="category.html">Travel</a></li>
-              </ul>
-            </div>
+            
             
             
             <!-- <div class="aside-block">

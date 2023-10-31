@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Firestore, doc } from 'firebase/firestore';
 import { map } from 'rxjs';
 import { FireServiceService } from 'src/app/services/fire-service.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-managespots',
@@ -61,7 +62,8 @@ export class ManagespotsComponent {
   constructor(
     public fireService:FireServiceService,
     public router:Router,
-    public firestore:AngularFirestore){
+    public firestore:AngularFirestore,
+    public load:LoaderService){
       this.retrieveDestinations();
   }
 
@@ -157,11 +159,44 @@ export class ManagespotsComponent {
     this.addM = false;
   }
 
-  viewSpot(){
+  tspotView:any;
+  viewSpot(data:any){
     var popups = document.querySelectorAll('.popup'); 
     var viewPopUp = document.querySelector("#viewPopUp");
     (viewPopUp as HTMLElement).style.display = 'block';
     document.body.style.overflow = 'hidden';
+    this.tspotView = data;
+  }
+
+  editData:any;
+  editTspot(dest:any){
+    var viewPopUp = document.querySelector("#editPopUp");
+    (viewPopUp as HTMLElement).style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    this.editData = dest;
+  }
+
+  editTData(){
+    this.load.openLoadingDialog();
+    this.fireService.updateDocument("tourist_spots", this.editData.tourismID, this.editData).then(() => {
+      this.load.closeLoadingDialog();
+      alert("Updated Successfully");
+      this.closeEdit();
+    }).catch(err => {
+      console.error(err);
+    })
+  }
+
+  archiveTspot(data:any){
+    this.load.openLoadingDialog();
+    this.fireService.moveDocumentToNewCollection("tourist_spots", "archived_tourist_spots", data.tourismID);
+  }
+
+  closeEdit(){
+    var closeButtons = document.querySelector('.close');
+    var viewPopUp = document.querySelector("#editPopUp");
+    (viewPopUp as HTMLElement).style.display = 'none';
+    document.body.style.overflow = 'auto';
   }
 
   closeView(){

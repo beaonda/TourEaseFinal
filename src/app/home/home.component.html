@@ -1,5 +1,6 @@
-<app-header></app-header>
 <app-fab></app-fab>
+<app-header></app-header>
+
 <main id="main" style="margin-top: 90px;">
     <!-- ======= Hero Slider Section ======= -->
     <section id="hero-slider" class="hero-slider">
@@ -70,10 +71,11 @@
               <div class="weathercard-">
                 <h4 class="weatherh4-">WEATHER TODAY</h4>
                 <h4 class="weatherh4-">BATANGAS</h4>
-                <h6 class="weatherh6-" *ngIf = "WeatherData">{{WeatherData.weather[0].description}}</h6>
+                <h6 class="weatherh6-" *ngIf = "WeatherData">{{WeatherData.weather[0].main}}</h6>
                 <i class="bi bi-sun weatherIcon weatherimg-" *ngIf="WeatherData && WeatherData.isDay"></i>
                 <i class="bi bi-moon-stars weatherIcon weatherimg-" *ngIf="WeatherData && !WeatherData.isDay"></i>
                 <h1 class="weatherh1-" *ngIf = "WeatherData">{{WeatherData.temp_feels_like}}<sup>&deg;</sup></h1>
+                <h4 class="weatherh4-" style="margin-top: -10px;">feels like</h4>
                 <div class="weathercontainer-">
                     <div class="weatherdetails-">
                         <p>max</p>
@@ -259,7 +261,7 @@
                 <h3><a (click) = "nextPage(natureList[0].postID)" *ngIf="natureList[0]">{{natureList[0].title}}</a></h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas, nobis error deserunt aliquam temporibus sapiente, laudantium dolorum itaque libero eos deleniti?</p>
                 <div class="d-flex align-items-center author">
-                  <div class="photo"><img *ngIf="natureList[0]" [src]="naturePhotos[0]" alt="" class="img-fluid"></div>
+                  
                   <div class="name">
                     <h3 class="m-0 p-0" (click)="viewAuthor(natureList[0].user)" *ngIf="natureList[0]">{{natureList[0].user}}</h3>
                   </div>
@@ -357,7 +359,7 @@
                 <h3><a (click) = "nextPage(culturalList[0].postID)" *ngIf = "culturalList[0]">{{culturalList[0].title}}</a></h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas, nobis error deserunt aliquam temporibus sapiente, laudantium dolorum itaque libero eos deleniti?</p>
                 <div class="d-flex align-items-center author">
-                  <div class="photo"><img src="assets/img/person-4.jpg" alt="" class="img-fluid"></div>
+                  <div class="photo"></div>
                   <div class="name">
                     <h3 class="m-0 p-0" (click)="viewAuthor(culturalList[0].user)" *ngIf = "culturalList[0]">{{culturalList[0].user}}</h3>
                   </div>
@@ -451,7 +453,7 @@
               <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus exercitationem? Nihil tempore odit ab minus eveniet praesentium, similique blanditiis molestiae ut saepe perspiciatis officia nemo, eos quae cumque. Accusamus fugiat architecto rerum animi atque eveniet, quo, praesentium dignissimos</p>
 
               <div class="d-flex align-items-center author">
-                <div class="photo"><img src="assets/img/person-7.jpg" alt="" class="img-fluid"></div>
+                <div class="photo"></div>
                 <div class="name">
                   <h3 class="m-0 p-0" *ngIf = "beachList[0]" (click)="viewAuthor(beachList[0].user)">{{beachList[0].user}}</h3>
                 </div>
@@ -577,7 +579,7 @@
                 <h3><a (click) = "nextPage(leisureList[0].postID)" *ngIf = "leisureList[0]">{{leisureList[0].title}}</a></h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas, nobis error deserunt aliquam temporibus sapiente, laudantium dolorum itaque libero eos deleniti?</p>
                 <div class="d-flex align-items-center author">
-                  <div class="photo"><img src="assets/img/person-4.jpg" alt="" class="img-fluid"></div>
+                  <div class="photo"></div>
                   <div class="name">
                     <h3 class="m-0 p-0" (click)="viewAuthor(leisureList[0].user)" *ngIf = "leisureList[0]">{{leisureList[0].user}}</h3>
                   </div>

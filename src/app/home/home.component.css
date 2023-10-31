@@ -130,6 +130,8 @@
     font-family: 'Sodosans';
     color: #fcfcfc;
 }
+
+
 .weatherh4{
     letter-spacing: 4px;
     font-weight: 600;
@@ -185,8 +187,8 @@
 
 
 .weathercard-{
-  height: 507px;
-  width: 350px;
+  height: 539px;
+  width: 307px;
   background-color: rgb(10 60 66);
 
   margin: auto;
@@ -201,6 +203,21 @@
   font-family: 'Sodosans';
   color: #fcfcfc;
 }
+
+@media (max-width: 320px) {
+  .weathercard- {
+    height: 508px;
+    width: 260px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 790px) {
+  .weathercard- {
+    height: 508px;
+    width: 470px;
+  }
+}
+
 .weatherh4-{
   letter-spacing: 4px;
   font-weight: 600;
@@ -587,7 +604,8 @@
     .mobile-nav-active {
       overflow: hidden;
     }
-  
+
+
     .mobile-nav-active .mobile-nav-toggle {
       position: fixed;
       top: 15px;
@@ -832,11 +850,15 @@
     color: var(--color-white);
   }
   
-  @media (max-width: 500px) {
+  @media (max-width: 500px){
     .img-bg .img-bg-inner p {
       display: none;
     }
+
+
+  
   }
+
   
   .custom-swiper-button-next,
   .custom-swiper-button-prev {
@@ -915,11 +937,6 @@
       padding-right: 15px;
     }
 
-    .weathercard-{
-      height: 426px;
-      width: 260px;
-    }
-
     .weatherdetails-{
       font-size: 14px;
     }
@@ -937,6 +954,8 @@
     }
 
   }
+  
+  
   
   .post-content .firstcharacter {
     float: left;

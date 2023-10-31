@@ -42,6 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoadingComponent } from './components/loading/loading.component';
+import { SuspendedComponent } from './suspended/suspended.component';
+import { Confirm2Component } from './components/confirm2/confirm2.component';
 
 
 @NgModule({
@@ -71,7 +73,9 @@ import { LoadingComponent } from './components/loading/loading.component';
     FooterComponent,
     SettingsComponent,
     ConfirmationComponent,
-    LoadingComponent
+    LoadingComponent,
+    SuspendedComponent,
+    Confirm2Component
   ],
   imports: [
     BrowserModule,

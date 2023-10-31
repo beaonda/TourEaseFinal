@@ -43,7 +43,7 @@
                         <td>City/Municipality</td>
                         <td>Category</td>
                         <!-- <td>Status</td> -->
-                        <td>View Photo</td>
+                        <td>View</td>
                         <td>Action</td>
                     </tr>
                 </thead>
@@ -55,7 +55,7 @@
                         <td>{{dest.category}}</td>
                         <!-- <td>{{dest.status}}</td> -->
                         <td>
-                            <button class="viewButton" (click) = "viewSpot()">View</button>
+                            <button class="viewButton" (click) = "viewSpot(dest)">View</button>
                             <!-- <div class="popup">
                                 <div class="popup-content">
                                     <span class="close">&times;</span>
@@ -75,9 +75,9 @@
                             <div class="decision-dropdown">
                                 <button class="decision-button">Select</button>
                                 <div class="dropdown-content">
-                                    <a href="#" class="edit">Edit</a>
-                                    <a href="#" class="archive">Archive</a>
-                                    <a href="#" class="feature">Feature</a>
+                                    <a (click)="editTspot(dest)" class="edit">Edit</a>
+                                    <a (click)="archiveTspot(dest)" class="archive">Archive</a>
+                                    <a class="feature">Feature</a>
                                 </div>
                             </div>
                         </td>
@@ -92,6 +92,7 @@
     </div>
 
 
+    <!--Popup for Adding-->
     <div class="popup" id="addPopUp">
         <div class="popup-content">
             <span class="close" (click)="closeAdd()">&times;</span>
@@ -180,39 +181,28 @@
     </div>
 
 
+    <!--Popup for Viewing-->
     <div class="popup" id="viewPopUp">
         <div class="popup-content">
             <span class="close" (click)="closeView()">&times;</span>
             <h2 class="titlespot">View Tourist Spot</h2>
             <div>
                 <br>
-                <form action="#" method="Tourist Destination">
-                    <div class="form-group">
+                <form  action="#" method="Tourist Destination">
+                    <div  class="form-group">
                         <label for="placeName">Name of Place: </label>
-                        <input type="text" id="placeName" name="placeName" required>
+                        <input *ngIf = "tspotView" [(ngModel)]="tspotView.estName" type="text" id="placeName" name="placeName" disabled>
                     </div>
         
                     <div class="form-group">
                         
                         <label for="city">City/Municipality</label>
-                        <input type="text" id="city" name="city" required>
+                        <input *ngIf = "tspotView" [(ngModel)]="tspotView.city" type="text" id="city" name="city" disabled>
                     </div>
 
                     <div class="form-group">
                         <label for="category">Category</label>
-                        <select id="category" name="category" required>
-                            <option value="default">Select</option>
-                            <option value="Nature">Nature</option>
-                            <option value="Cultural">Cultural</option>
-                            <option value="Sun and Beach">Sun and Beach</option>
-                            <option value="Leisure and Entertainment">Leisure & Entertainment</option>
-                            <option value="MICE">Meetings, Incentives, Conventions, and Exhibitions</option>
-                            <option value="Health and Wellness">Health, Wellness, and Retirement</option>
-                            <option value="Cruise and Nautical">Cruise & Nautical</option>
-                            <option value="Diving and Marine Sports">Diving and Marine Sports</option>
-                            <option value="Education">Education</option>
-                            
-                           </select>
+                        <input *ngIf = "tspotView" [(ngModel)]="tspotView.category" type="text" id="category" name="category" disabled>
                     </div>
         
         
@@ -227,17 +217,74 @@
             <br>
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea id="description" name="description" required></textarea>
+                        <textarea *ngIf = "tspotView" [(ngModel)]="tspotView.desc" id="description" name="description" disabled></textarea>
+                    </div>
+        
+                    <div *ngIf = "tspotView" class="form-group">
+                        <label for="photos">Photo</label>
+                        <p *ngIf = "tspotView.photo == 'No Photo Yet'">No Photo Yet</p>
+                        <img *ngIf = "tspotView.photo != 'No Photo Yet'" />
+                    </div>
+                </form>
+              
+            </div>
+        </div>
+    </div>
+
+
+    <!--Popup for editing-->
+    <div class="popup" id="editPopUp">
+        <div class="popup-content">
+            <span class="close" (click)="closeEdit()">&times;</span>
+            <h2 class="titlespot">Edit Tourist Spot</h2>
+            <div>
+                <br>
+                <form *ngIf="editData" method="POST">
+                    <div class="form-group">
+                        <label for="placeName">Name of Place</label>
+                        <input [(ngModel)]="editData.estName" type="text" id="placeName" name="placeName" required>
+                    </div>
+        
+                    <div class="form-group">
+                        
+                        <label for="city">City/Municipality</label>
+                        <select [(ngModel)]="editData.city" id="city" name="city" required>
+                            <option *ngFor = "let cities of batangasCities" [value]="cities.name">{{cities.name}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select [(ngModel)]="editData.category" id="category" name="category" required>
+                            <option value="default">Select</option>
+                            <option value="Nature">Nature</option>
+                            <option value="Cultural">Cultural</option>
+                            <option value="Industrial">Industrial</option>
+                            <option value="Sun and Beach">Sun and Beach</option>
+                            <option value="Leisure and Entertainment">Leisure & Entertainment</option>
+                            <option value="MICE">Meetings, Incentives, Conventions, and Exhibitions</option>
+                            <option value="Health and Wellness">Health, Wellness, and Retirement</option>
+                            <option value="Cruise and Nautical">Cruise & Nautical</option>
+                            <option value="Diving and Marine Sports">Diving and Marine Sports</option>
+                            <option value="Education">Education</option>
+                           </select>
+                    </div>
+                <br>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea [(ngModel)]="editData.desc" id="description" name="description" required></textarea>
                     </div>
         
                     <div class="form-group">
                         <label for="photos">Photo</label>
-                        <input type="file" id="photos" name="photos" accept="image/*" required>
+                        <input [(ngModel)]="photo" type="file" id="photos" name="photos" accept="image/*" required>
+                        <img *ngIf = "editData.photo != 'No Photo Yet'" />
                     </div>
         
                     <div class="form-group">
-                        <button type="submit" class="buttonform">Submit</button>
+                        <button (click) = "editTData()" type="submit" class="buttonform">Update</button>
                     </div>
+                    
                 </form>
               
             </div>

@@ -11,24 +11,15 @@
         <ul>
           <li><a href="/home">Home</a></li>
 
-          <li class="dropdown"><a href="/category"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li class="dropdown"><a><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a (click) = "nextPage('nature')">Nature</a></li>
-              <!-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li> -->
               <li><a (click) = "nextPage('cultural')">Cultural</a></li>
               <li><a (click) = "nextPage('industrial')">Industrial</a></li>
               <li><a (click) = "nextPage('sun_and_beach')">Sun and Beach</a></li>
               <li><a (click) = "nextPage('leisure')">Leisure and Entertainment</a></li>
               <li><a (click) = "nextPage('mice')">Meetings, Incentives, Conventions, and Exhibitions</a></li>
-              <li><a (click) = "nextPage('health')">Health Wellness</a></li>
+              <li><a (click) = "nextPage('health')">Health & Wellness</a></li>
             </ul>
           </li>
 
@@ -55,7 +46,7 @@
           </form>
         </div>
 
-        <div class="side-nav" [ngClass]="{'show': showSideNav}">
+        <div class="side-nav" [ngClass]="{'show': showSideNav}" >
           <a style="text-align: right;" (click)="toggleSideNav()">Close &#x2716;</a>
 
           <a class="editnav" href="/home"><i class="bi bi-house" style="font-size: 20px; margin-right:15px ;"></i>  Blog</a>
@@ -81,18 +72,21 @@
           <a class="editnav" href="/about"> <i class="bi bi-info-circle" style="font-size: 20px; margin-right:15px ;"></i>  About</a>
           <a class="editnav" href="/contact"> <i class="bi bi-telephone" style="font-size: 20px; margin-right:15px ;"></i>  Contact</a>
           <a class="editnav" href="/contact"><i class="bi bi-bell" style="font-size: 20px; margin-right:15px ;"></i>    Notification</a>
-          <a class="editnav" href="/login"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;"></i>Logout</a>
-    
+          <a class="editnav" (click)="logout()"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;"></i>Logout</a>
+          <a class="editnav" href="/login"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;"></i>Log In</a>
       </div>
 
 
 
       <div class="side-nav" [ngClass]="{'show': showSideNavWeb}">
         <a style="text-align: right;" (click)="toggleSideNavWeb()">Close &#x2716;</a>
-        <a class="editnav" href="/profile"><i class="bi bi-person" style="font-size: 20px; margin-right:15px ;"></i>    Profile</a>
-        <a class="editnav" href="/contact"><i class="bi bi-bell" style="font-size: 20px; margin-right:15px ;"></i>    Notification</a>
+        <a class="editnav" *ngIf ="user" (click)="goProfile()"><i class="bi bi-person" style="font-size: 20px; margin-right:15px ;"></i>Profile</a>
+        <a class="editnav" *ngIf ="user"><i class="bi bi-bell" style="font-size: 20px; margin-right:15px ;"></i>    Notification</a>
 
-        <a class="editnav" href="#"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;"></i>Logout</a>
+        <a class="editnav" *ngIf ="user" (click)="logout()"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;" ></i>Logout</a>
+
+        <a class="editnav" *ngIf ="!(user)" href="/login"><i class="bi bi-box-arrow-in-right" style="font-size: 20px; margin-right:15px ;" ></i>Log In</a>
+        <a class="editnav" *ngIf ="!(user)" href="/register"><i class="bi bi-person-add" style="font-size: 20px; margin-right:15px ;" ></i>Register</a>
     </div>
       </div>
     </div>
@@ -104,7 +98,7 @@
     
   </header>  
   
-  
+
 
 <!--  ----------------- NOTIFICATION----------- -->
 <!-- 
@@ -173,3 +167,4 @@
     </div>
     
 </div>  -->
+

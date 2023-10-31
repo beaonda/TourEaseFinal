@@ -18,6 +18,7 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 import { SettingsComponent } from './settings/settings.component';
+import { SuspendedComponent } from './suspended/suspended.component';
 
 
 const routes: Routes = [
@@ -45,7 +46,8 @@ const routes: Routes = [
       {path: 'admin/spots', component:ManagespotsComponent},
       {path: 'profile/:uname', component:UserProfileComponent},
       {path: 'retrieve_account', component:ForgotPassComponent},
-      {path: 'settings', component:SettingsComponent}
+      {path: 'settings', component:SettingsComponent},
+      {path: 'suspended', component:SuspendedComponent}
     ])],
   exports: [RouterModule]
 })

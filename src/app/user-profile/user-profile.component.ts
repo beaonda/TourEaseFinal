@@ -19,8 +19,13 @@ export class UserProfileComponent {
       
     }
 
+    showSettings:boolean = false;
   goToSettings() {
-      this.router.navigate(['/settings']);
+      this.showSettings = !this.showSettings;
+  }
+
+  nextPage(postID:string){
+    this.router.navigate(['/view', postID]);
   }
 
   getUser(){

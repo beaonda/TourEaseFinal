@@ -9,15 +9,15 @@
             <h3 class="category-title">Category: {{this.category}}</h3>
 
             <div *ngFor = "let post of postList; let i = index" class="d-md-flex post-entry-2 half">
-              <a *ngIf = "post" href="single-post.html" class="me-4 thumbnail">
+              <a *ngIf = "post" (click)="nextPage(post.postID)" class="me-4 thumbnail">
                 <img [src]="photoList[i]" alt="" class="img-fluid">
               </a>
               <div *ngIf = "post">
-                <div class="post-meta"><span class="date">{{this.category}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                <h3><a href="single-post.html">{{post.title}}</a></h3>
+                <div class="post-meta"><span class="date">{{this.category}}</span> <span class="mx-1">&bullet;</span> <span>{{post.month + ' ' + post.date + 'th ' + post.year}}</span></div>
+                <h3><a (click)="nextPage(post.postID)">{{post.title}}</a></h3>
                 <p>{{post.body}}...</p>
                 <div class="d-flex align-items-center author">
-                  <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
+                  <div class="photo"></div>
                   <div class="name">
                     <h3 class="m-0 p-0">{{post.user}}</h3>
                   </div>

@@ -6,6 +6,7 @@ import { FireServiceService } from '../services/fire-service.service';
 import { Conditional } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { WeatherService } from '../services/weather.service';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-home',
@@ -20,13 +21,15 @@ export class HomeComponent {
   constructor(
     public fireservice:FireServiceService,
     public router: Router,
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    public load: LoaderService
   ){
     this.getNatureList();
     this.getCulturalList();
     this.getBeachList();
     this.getLeisureList();
     this.getWeatherData();
+    this.load.closeLoadingDialog();
   }
 
   getWeatherData(){
