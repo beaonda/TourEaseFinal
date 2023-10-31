@@ -114,36 +114,36 @@
             <div class="row g-5">
               <div class="col-lg-4 border-start custom-border">
                 <div class="post-entry-1" *ngIf="recentPosts[0]">
-                  <a href="single-post.html"><img *ngIf = "recentPhotos[0]" [src]="recentPhotos[0].imageUrl" alt="" class="img-fluid"></a>
+                  <a (click) = "nextPage(recentPosts[0].postID)"><img *ngIf = "recentPhotos[0]" [src]="recentPhotos[0].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[0]">{{recentPosts[0].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[0].month + ' ' + recentPosts[0].date + 'th ' + recentPosts[0].year}}</span></div>
-                  <h2><a href="single-post.html">{{recentPosts[0].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[0].postID)">{{recentPosts[0].title}}</a></h2>
                 </div>
                 <div class="post-entry-1" *ngIf = "recentPosts[1]">
-                  <a href="single-post.html"><img *ngIf = "recentPhotos[1]" [src]="recentPhotos[1].imageUrl" alt="" class="img-fluid"></a>
+                  <a (click) = "nextPage(recentPosts[1].postID)"><img *ngIf = "recentPhotos[1]" [src]="recentPhotos[1].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[1]">{{recentPosts[1].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[1].month + ' ' + recentPosts[1].date + 'th ' + recentPosts[1].year}}</span></div>
-                  <h2><a href="single-post.html">{{recentPosts[1].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[1].postID)">{{recentPosts[1].title}}</a></h2>
                 </div>
                 <div class="post-entry-1" *ngIf = "recentPosts[2]">
-                  <a href="single-post.html"><img *ngIf = "recentPhotos[2]" [src]="recentPhotos[2].imageUrl" alt="" class="img-fluid"></a>
+                  <a (click) = "nextPage(recentPosts[2].postID)"><img *ngIf = "recentPhotos[2]" [src]="recentPhotos[2].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[2]">{{recentPosts[2].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[2].month + ' ' + recentPosts[2].date + 'th ' + recentPosts[2].year}}</span></div>
-                  <h2><a href="single-post.html">{{recentPosts[2].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[2].postID)">{{recentPosts[2].title}}</a></h2>
                 </div>
               </div>
               <div class="col-lg-4 border-start custom-border">
                 <div class="post-entry-1" *ngIf = "recentPosts[3]">
-                  <a href="single-post.html"><img *ngIf = "recentPhotos[3]" [src]="recentPhotos[3].imageUrl" alt="" class="img-fluid"></a>
+                  <a (click) = "nextPage(recentPosts[3].postID)"><img *ngIf = "recentPhotos[3]" [src]="recentPhotos[3].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[3]">{{recentPosts[3].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[3].month + ' ' + recentPosts[3].date + 'th ' + recentPosts[3].year}}</span></div>
-                  <h2><a href="single-post.html">{{recentPosts[3].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[3].postID)">{{recentPosts[3].title}}</a></h2>
                 </div>
                 <div class="post-entry-1" *ngIf = "recentPosts[4]">
-                  <a href="single-post.html"><img *ngIf = "recentPhotos[4]" [src]="recentPhotos[4].imageUrl" alt="" class="img-fluid"></a>
+                  <a (click) = "nextPage(recentPosts[4].postID)"><img *ngIf = "recentPhotos[4]" [src]="recentPhotos[4].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[4]">{{recentPosts[4].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[4].month + ' ' + recentPosts[4].date + 'th ' + recentPosts[4].year}}</span></div>
-                  <h2><a href="single-post.html">{{recentPosts[4].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[4].postID)">{{recentPosts[4].title}}</a></h2>
                 </div>
                 <div class="post-entry-1" *ngIf = "recentPosts[5]">
-                  <a href="single-post.html"><img *ngIf = "recentPhotos[5]" [src]="recentPhotos[5].imageUrl" alt="" class="img-fluid"></a>
+                  <a (click) = "nextPage(recentPosts[5].postID)"><img *ngIf = "recentPhotos[5]" [src]="recentPhotos[5].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[5]">{{recentPosts[5].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[5].month + ' ' + recentPosts[5].date + 'th ' + recentPosts[5].year}}</span></div>
-                  <h2><a href="single-post.html">{{recentPosts[5].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[5].postID)">{{recentPosts[5].title}}</a></h2>
                 </div>
               </div>
 

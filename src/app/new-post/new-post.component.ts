@@ -360,7 +360,7 @@ async uploadImage(postID:any, blob: any, imageData:any) {
           lat: this.batangasCities[x].lat,
           lng: this.batangasCities[x].lng
         };
-        this.addMap.panTo(newCenter);
+        //this.addMap.panTo(newCenter);
         this.center = newCenter;
         this.mapMarker.marker?.setPosition(newCenter);
         this.zoom = 13;
