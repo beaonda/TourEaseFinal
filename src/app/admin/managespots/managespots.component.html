@@ -19,76 +19,191 @@
 
     <!-- ======================= Cards ================== -->
    
-    <!-- ================ Order Details List ================= -->
-    <div class="regdetails">
-        <div class="row">
-            <div class="col">
-                <button type="button" (click)="addOne()" class="addOneBtn btn btn-primary">Add</button>
-                
-            </div>
-            <div class="col">
-                <button type="button" (click)="addMany()" class="btn btn-success" style="margin-left: -89%;">Add Many</button>
-            </div>
-        </div>
-        <div class="recentOrders">
-            <div class="cardHeader">
-                <h2>Spots</h2>
-           
-            </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <td>Name of Place</td>
-                        <td>City/Municipality</td>
-                        <td>Category</td>
-                        <!-- <td>Status</td> -->
-                        <td>View</td>
-                        <td>Action</td>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor = "let dest of destList">
-                        <td>{{dest.estName}}</td>
-                        <td>{{dest.city}}</td>
-                        <td>{{dest.category}}</td>
-                        <!-- <td>{{dest.status}}</td> -->
-                        <td>
-                            <button class="viewButton" (click) = "viewSpot(dest)">View</button>
-                            <!-- <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>All Information</h2>
-                                    <div>
-                                        <strong>User Information</strong>
-                                        <br>
-                                        <strong>Last Name:</strong> Guerrero<br>
-                                        <strong>First Name:</strong> Marie Kaila<br>
-                                        <strong>Middle Name:</strong> [Add Middle Name here]
-                                    </div>
-                                </div>
-                            </div> -->
-                            
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a (click)="editTspot(dest)" class="edit">Edit</a>
-                                    <a (click)="archiveTspot(dest)" class="archive">Archive</a>
-                                    <a class="feature">Feature</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
+    <div class="right__col" style="margin-bottom: 100px;">
+  
+        <nav>
+            <ul class ="ulmap">
+                <li class="maplink"><a (click)="showSection('blogs')" data-section="blogs" >ACTIVE</a></li>
+                <li class="maplink"><a (click)="showSection('photos')" data-section="photos">ARCHIVED</a></li>
+            </ul>
+          
+        </nav>
 
       
+
+        <!-- Blogs Section -->
+        <div id="blogs" class="blogs__section content-section">
+         <h3 class="aside-title lline"></h3> 
+          <div class="blog__post"  style="margin-top: 30px;">
+            
+            <div class="regdetails">
+                <div class="row">
+                    <div class="col">
+                        <button type="button" (click)="addOne()" class="addOneBtn btn btn-primary">Add</button>
+                        
+                    </div>
+                    <div class="col">
+                        <button type="button" (click)="addMany()" class="btn btn-success" style="margin-left: -89%;">Add Many</button>
+                    </div>
+                </div>
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Spots</h2>
+                   
+                    </div>
+        
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name of Place</td>
+                                <td>City/Municipality</td>
+                                <td>Category</td>
+                                <!-- <td>Status</td> -->
+                                <td>View</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            <tr *ngFor = "let dest of destList">
+                                <td>{{dest.estName}}</td>
+                                <td>{{dest.city}}</td>
+                                <td>{{dest.category}}</td>
+                                <!-- <td>{{dest.status}}</td> -->
+                                <td>
+                                    <button class="viewButton" (click) = "viewSpot(dest)">View</button>
+                                    <!-- <div class="popup">
+                                        <div class="popup-content">
+                                            <span class="close">&times;</span>
+                                            <h2>All Information</h2>
+                                            <div>
+                                                <strong>User Information</strong>
+                                                <br>
+                                                <strong>Last Name:</strong> Guerrero<br>
+                                                <strong>First Name:</strong> Marie Kaila<br>
+                                                <strong>Middle Name:</strong> [Add Middle Name here]
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    
+                                  </td>
+                                <td>
+                                    <div class="decision-dropdown">
+                                        <button class="decision-button">Select</button>
+                                        <div class="dropdown-content">
+                                            <a (click)="editTspot(dest)" class="edit">Edit</a>
+                                            <a (click)="archiveTspot(dest)" class="archive">Archive</a>
+                                            <a class="feature">Feature</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+        
+                        </tbody>
+                    </table>
+                </div>
+        
+              
+                </div>
+          </div>
         </div>
+        <!-- End of Blogs Section -->
+
+        <!-- Photos Section -->
+        <div id="photos" class="photos content-section">
+        
+      <h3 class="aside-title nline"></h3> 
+            <div class="photo-gallery" style="margin-top: 30px;">
+          
+                <div class="regdetails">
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" (click)="addOne()" class="addOneBtn btn btn-primary">Add</button>
+                            
+                        </div>
+                        <div class="col">
+                            <button type="button" (click)="addMany()" class="btn btn-success" style="margin-left: -89%;">Add Many</button>
+                        </div>
+                    </div>
+                    <div class="recentOrders">
+                        <div class="cardHeader">
+                            <h2>Spots</h2>
+                       
+                        </div>
+            
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>Name of Place</td>
+                                    <td>City/Municipality</td>
+                                    <td>Category</td>
+                                    <!-- <td>Status</td> -->
+                                    <td>View</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+            
+                            <tbody>
+                                <tr *ngFor = "let dest of destList">
+                                    <td>{{dest.estName}}</td>
+                                    <td>{{dest.city}}</td>
+                                    <td>{{dest.category}}</td>
+                                    <!-- <td>{{dest.status}}</td> -->
+                                    <td>
+                                        <button class="viewButton" (click) = "viewSpot(dest)">View</button>
+                                        <!-- <div class="popup">
+                                            <div class="popup-content">
+                                                <span class="close">&times;</span>
+                                                <h2>All Information</h2>
+                                                <div>
+                                                    <strong>User Information</strong>
+                                                    <br>
+                                                    <strong>Last Name:</strong> Guerrero<br>
+                                                    <strong>First Name:</strong> Marie Kaila<br>
+                                                    <strong>Middle Name:</strong> [Add Middle Name here]
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        
+                                      </td>
+                                    <td>
+                                        <div class="decision-dropdown">
+                                            <button class="decision-button">Select</button>
+                                            <div class="dropdown-content">
+                                                <a (click)="editTspot(dest)" class="edit">Edit</a>
+                                                <a (click)="archiveTspot(dest)" class="archive">Archive</a>
+                                                <a class="feature">Feature</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+            
+                            </tbody>
+                        </table>
+                    </div>
+            
+                  
+                    </div>
+            
+          </div>
+        </div>
+        <!-- End of Photos Section -->
+
+        <!-- Modal for Zoomed-in Photo -->
+ 
+
+        <!-- Badge Section -->
+   
+        <!-- End of Badge Section -->
+    </div>
+
+
+
+
+
+
+    <!-- ================ Order Details List ================= -->
+    
     </div>
 
 

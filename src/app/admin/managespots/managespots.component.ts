@@ -9,7 +9,7 @@ import { LoaderService } from 'src/app/services/loader.service';
 @Component({
   selector: 'app-managespots',
   templateUrl: './managespots.component.html',
-  styleUrls: ['./managespots.component.css', '../../../assets/css/adminPages.css']
+  styleUrls: ['./managespots.component.css', '../../../assets/css/adminPages.css', '../../../assets/css/homePages.css']
 })
 export class ManagespotsComponent {
   isModalOpen = false;
@@ -67,6 +67,46 @@ export class ManagespotsComponent {
       this.retrieveDestinations();
   }
 
+  handleNavigationClick(event:any) {
+    const targetId = event.target.getAttribute("data-section");
+    if (targetId) {
+        this.showSection(targetId);
+
+        // Remove the "active" class from all navigation links
+        this.navigationLinks.forEach((link:any) => {
+            link.classList.remove("active");
+        });
+
+        // Add the "active" class to the clicked link
+        event.target.classList.add("active");
+    }
+  }
+
+  showSection(sectionId:any) {
+    const sections = document.querySelectorAll(".content-section");
+    
+    sections.forEach((section) => {
+      if(section instanceof HTMLElement){
+        section.style.display = "none";
+      }
+    });
+
+    const selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.style.display = "block";
+    }
+
+  }
+
+  navigationLinks:any;
+  zoomedImg:any;
+  modal:any;
+  photos:any;
+
+  ngAfterViewInit(){
+    this.showSection("blogs");
+    this.navigationLinks[0].classList.add("active"); 
+   }
   
 
   uploadData(){

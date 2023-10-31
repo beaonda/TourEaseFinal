@@ -18,125 +18,296 @@
     </div>
 
     <!-- ======================= Cards ================== -->
+    <div class="right__col" style="margin-bottom: 100px;">
+  
+        <nav>
+            <ul class ="ulmap">
+                <li class="maplink"><a (click)="showSection('blogs')" data-section="blogs" >ACTIVE</a></li>
+                <li class="maplink"><a (click)="showSection('photos')" data-section="photos">SUSPENDED</a></li>
+            </ul>
+          
+        </nav>
+
+      
+
+        <!-- Blogs Section -->
+        <div id="blogs" class="blogs__section content-section">
+         <h3 class="aside-title lline"></h3> 
+          <div class="blog__post"  style="margin-top: 30px;">
+            <div class="regdetails">
+              <!--   <div class="row">
+                    <div class="col">
+                        <button type="button" (click) = "showSuspended()" class="addOneBtn btn btn-primary">Suspended</button>
+                    </div>
+                </div> -->
+                    
+                
+                <div class="recentOrders" >
+                    <div class="cardHeader">
+                        <h2>Users Information</h2>
+                   
+                    </div>
+        
+                    <table>
+                        <thead>
+                            <tr>
+                             <!--    <td>User ID</td> -->
+                                <td>Name</td>
+                                <td>Username</td>
+                        <!--       <td>Contact</td> -->
+                                <td>Email</td>
+                                <td>Action</td>
+                                <td>Action</td>
+        
+        
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            <tr *ngFor = "let user of usersList">
+                                      <td>{{user.fname + ' ' + user.mname + ' ' + user.lname}} </td> 
+                                    <!--    <td>{{user.uid}}</td> -->
+                                        <td>{{user.uname}}</td>
+                                    <!--    <td>{{user.contact}}</td> -->
+                                       <td>{{user.email}}</td>
+                               
+                                
+                                <td>
+                                    <button class="edit-button"  type="location" (click) = "viewUser(user)">View All</button>
+                                </td>
+        
+                                <td>
+                                    <button (click)="suspendUser(user)" class="delete-button">Suspend</button>
+                                </td>
+                              
+                                
+                                
+                            </tr>
+                            
+                           
+                        </tbody>
+                    </table>
+            </div>
+        
+        
+            <div class="popup" id="viewPopUp">
+                <div class="popup-content">
+                    <span class="close" (click)="closeView()">&times;</span>
+                    <h2 class="titlespot">View User Info</h2>
+                    <div>
+                        <br>
+                        <form action="#" method="Tourist Destination" *ngIf = "userA">
+                            <h4>Personal Information</h4>
+                            <div class="form-group">
+                                <label for="placeName">Name of User: </label>
+                                <input type="text" name="fullName" class="form-control" [value]="userA.fname + ' ' + userA.mname + ' ' + userA.lname" disabled>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="city">Birthday</label>
+                                <input type="text" [value]="userA.bday" name="bday" class="form-control" disabled>
+                            </div>
+                
+                            <div class="form-group">
+                                <label for="city">Address</label>
+                                <input type="text"  [value]="userA.exact_ad + ', ' + userA.city + ', ' + userA.province + ', ' + userA.country" name="address" class="form-control" disabled>
+                            </div>
+        
+                        <h4>Contact Info</h4>
+                            <div class="form-group">
+                                <label for="city">Email</label>
+                                <input type="text" [value]="userA.email" name="email" class="form-control" disabled>
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="city">Contact No.</label>
+                                <input type="text" [value]="userA.contact" name="contact" class="form-control" disabled>
+                            </div>
+        
+                        <h4>System Info</h4>
+                            <div class="form-group">
+                                <label for="city">Username</label>
+                                <input type="text" [value]="userA.uname" name="uname" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Profile Picture</label>
+                                <input type="text" [value]="userA.profile_photo" name="profile_photo" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Cover Photo</label>
+                                <input type="text" [value]="userA.cover_photo" name="cover_photo" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Bio</label>
+                                <input type="text" [value]="userA.bio" name="bio" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Registered Since:</label>
+                                <input type="text" [value]="userA.registred" name="registration" class="form-control" disabled>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="buttonform">Suspend</button>
+                                <button type="submit" class="buttonform">Profile</button>
+                            </div>
+                        </form>
+                      
+                    </div>
+                </div>
+            </div>
+        
+            </div>
+            
+          </div>
+        </div>
+        <!-- End of Blogs Section -->
+
+        <!-- Photos Section -->
+        <div id="photos" class="photos content-section">
+        
+      <h3 class="aside-title nline"></h3> 
+            <div class="photo-gallery" style="margin-top: 30px;">
+                <div class="regdetails">
+                    <!--   <div class="row">
+                          <div class="col">
+                              <button type="button" (click) = "showSuspended()" class="addOneBtn btn btn-primary">Suspended</button>
+                          </div>
+                      </div> -->
+                          
+                      
+                      <div class="recentOrders" >
+                          <div class="cardHeader">
+                              <h2>Users Information</h2>
+                         
+                          </div>
+              
+                          <table>
+                              <thead>
+                                  <tr>
+                                   <!--    <td>User ID</td> -->
+                                      <td>Name</td>
+                                      <td>Username</td>
+                              <!--       <td>Contact</td> -->
+                                      <td>Email</td>
+                                      <td>Action</td>
+                                      <td>Action</td>
+              
+              
+                                  </tr>
+                              </thead>
+              
+                              <tbody>
+                                  <tr *ngFor = "let user of usersList">
+                                            <td>{{user.fname + ' ' + user.mname + ' ' + user.lname}} </td> 
+                                          <!--    <td>{{user.uid}}</td> -->
+                                              <td>{{user.uname}}</td>
+                                          <!--    <td>{{user.contact}}</td> -->
+                                             <td>{{user.email}}</td>
+                                     
+                                      
+                                      <td>
+                                          <button class="edit-button"  type="location" (click) = "viewUser(user)">View All</button>
+                                      </td>
+              
+                                      <td>
+                                          <button (click)="suspendUser(user)" class="delete-button">Suspend</button>
+                                      </td>
+                                    
+                                      
+                                      
+                                  </tr>
+                                  
+                                 
+                              </tbody>
+                          </table>
+                  </div>
+              
+              
+                  <div class="popup" id="viewPopUp">
+                      <div class="popup-content">
+                          <span class="close" (click)="closeView()">&times;</span>
+                          <h2 class="titlespot">View User Info</h2>
+                          <div>
+                              <br>
+                              <form action="#" method="Tourist Destination" *ngIf = "userA">
+                                  <h4>Personal Information</h4>
+                                  <div class="form-group">
+                                      <label for="placeName">Name of User: </label>
+                                      <input type="text" name="fullName" class="form-control" [value]="userA.fname + ' ' + userA.mname + ' ' + userA.lname" disabled>
+                                  </div>
+              
+                                  <div class="form-group">
+                                      <label for="city">Birthday</label>
+                                      <input type="text" [value]="userA.bday" name="bday" class="form-control" disabled>
+                                  </div>
+                      
+                                  <div class="form-group">
+                                      <label for="city">Address</label>
+                                      <input type="text"  [value]="userA.exact_ad + ', ' + userA.city + ', ' + userA.province + ', ' + userA.country" name="address" class="form-control" disabled>
+                                  </div>
+              
+                              <h4>Contact Info</h4>
+                                  <div class="form-group">
+                                      <label for="city">Email</label>
+                                      <input type="text" [value]="userA.email" name="email" class="form-control" disabled>
+                                  </div>
+              
+                                  <div class="form-group">
+                                      <label for="city">Contact No.</label>
+                                      <input type="text" [value]="userA.contact" name="contact" class="form-control" disabled>
+                                  </div>
+              
+                              <h4>System Info</h4>
+                                  <div class="form-group">
+                                      <label for="city">Username</label>
+                                      <input type="text" [value]="userA.uname" name="uname" class="form-control" disabled>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="city">Profile Picture</label>
+                                      <input type="text" [value]="userA.profile_photo" name="profile_photo" class="form-control" disabled>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="city">Cover Photo</label>
+                                      <input type="text" [value]="userA.cover_photo" name="cover_photo" class="form-control" disabled>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="city">Bio</label>
+                                      <input type="text" [value]="userA.bio" name="bio" class="form-control" disabled>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="city">Registered Since:</label>
+                                      <input type="text" [value]="userA.registred" name="registration" class="form-control" disabled>
+                                  </div>
+                                  <div class="form-group">
+                                      <button type="submit" class="buttonform">Suspend</button>
+                                      <button type="submit" class="buttonform">Profile</button>
+                                  </div>
+                              </form>
+                            
+                          </div>
+                      </div>
+                  </div>
+              
+                  </div>
+            
+          </div>
+        </div>
+        <!-- End of Photos Section -->
+
+        <!-- Modal for Zoomed-in Photo -->
+ 
+
+        <!-- Badge Section -->
+   
+        <!-- End of Badge Section -->
+    </div>
+
+
+
+
+
+
+
+    
    
     <!-- ================ Order Details List ================= -->
-    <div class="regdetails">
-        <div class="row">
-            <div class="col">
-                <button type="button" (click) = "showSuspended()" class="addOneBtn btn btn-primary">Suspended</button>
-            </div>
-        </div>
-            
-        
-        <div class="recentOrders" >
-            <div class="cardHeader">
-                <h2>Users Information</h2>
-           
-            </div>
-
-            <table>
-                <thead>
-                    <tr>
-                     <!--    <td>User ID</td> -->
-                        <td>Name</td>
-                        <td>Username</td>
-                <!--       <td>Contact</td> -->
-                        <td>Email</td>
-                        <td>Action</td>
-                        <td>Action</td>
-
-
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor = "let user of usersList">
-                              <td>{{user.fname + ' ' + user.mname + ' ' + user.lname}} </td> 
-                            <!--    <td>{{user.uid}}</td> -->
-                                <td>{{user.uname}}</td>
-                            <!--    <td>{{user.contact}}</td> -->
-                               <td>{{user.email}}</td>
-                       
-                        
-                        <td>
-                            <button class="edit-button"  type="location" (click) = "viewUser(user)">View All</button>
-                        </td>
-
-                        <td>
-                            <button (click)="suspendUser(user)" class="delete-button">Suspend</button>
-                        </td>
-                      
-                        
-                        
-                    </tr>
-                    
-                   
-                </tbody>
-            </table>
-    </div>
-
-
-    <div class="popup" id="viewPopUp">
-        <div class="popup-content">
-            <span class="close" (click)="closeView()">&times;</span>
-            <h2 class="titlespot">View User Info</h2>
-            <div>
-                <br>
-                <form action="#" method="Tourist Destination" *ngIf = "userA">
-                    <h4>Personal Information</h4>
-                    <div class="form-group">
-                        <label for="placeName">Name of User: </label>
-                        <input type="text" name="fullName" class="form-control" [value]="userA.fname + ' ' + userA.mname + ' ' + userA.lname" disabled>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="city">Birthday</label>
-                        <input type="text" [value]="userA.bday" name="bday" class="form-control" disabled>
-                    </div>
-        
-                    <div class="form-group">
-                        <label for="city">Address</label>
-                        <input type="text"  [value]="userA.exact_ad + ', ' + userA.city + ', ' + userA.province + ', ' + userA.country" name="address" class="form-control" disabled>
-                    </div>
-
-                <h4>Contact Info</h4>
-                    <div class="form-group">
-                        <label for="city">Email</label>
-                        <input type="text" [value]="userA.email" name="email" class="form-control" disabled>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="city">Contact No.</label>
-                        <input type="text" [value]="userA.contact" name="contact" class="form-control" disabled>
-                    </div>
-
-                <h4>System Info</h4>
-                    <div class="form-group">
-                        <label for="city">Username</label>
-                        <input type="text" [value]="userA.uname" name="uname" class="form-control" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">Profile Picture</label>
-                        <input type="text" [value]="userA.profile_photo" name="profile_photo" class="form-control" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">Cover Photo</label>
-                        <input type="text" [value]="userA.cover_photo" name="cover_photo" class="form-control" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">Bio</label>
-                        <input type="text" [value]="userA.bio" name="bio" class="form-control" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">Registered Since:</label>
-                        <input type="text" [value]="userA.registred" name="registration" class="form-control" disabled>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="buttonform">Suspend</button>
-                        <button type="submit" class="buttonform">Profile</button>
-                    </div>
-                </form>
-              
-            </div>
-        </div>
-    </div>
+   
