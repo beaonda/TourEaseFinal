@@ -124,12 +124,7 @@ export class NewPostComponent {
       .then((doc)=>{
         this.touristData = doc;
         console.log(this.touristData);
-        for(var x in this.batangasCities){
-          if(this.city == this.batangasCities[x].name){
-            let newCenter: google.maps.LatLngLiteral = {
-              lat: this.batangasCities[x].lat,
-              lng: this.batangasCities[x].lng
-            };
+        
             this.postData = {
               postID:this.firestore.createId(),
               title:this.post_title,
@@ -144,11 +139,11 @@ export class NewPostComponent {
               year: year,
               tspotID: this.touristData.tourismID,
               category: this.touristData.category,
-              coords: newCenter,
+              coords: this.center,
               views: 0
             }
-          }
-        }
+          
+        
         
         this.fireService.addOneUserProfilePost(uname);
         this.postCont();
@@ -366,6 +361,7 @@ async uploadImage(postID:any, blob: any, imageData:any) {
           lng: this.batangasCities[x].lng
         };
         this.addMap.panTo(newCenter);
+        this.center = newCenter;
         this.mapMarker.marker?.setPosition(newCenter);
         this.zoom = 13;
       }
