@@ -13,6 +13,9 @@
   text-align: center;
 }
 
+.rating input[type="radio"]:checked ~ label {
+  color: #21757f;
+}
 
 
 .rating input[type="radio"] {

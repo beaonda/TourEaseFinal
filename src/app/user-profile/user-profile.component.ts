@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FireServiceService } from '../services/fire-service.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,11 +9,63 @@ import { Router } from '@angular/router';
 })
 export class UserProfileComponent {
 
- 
-  constructor(private router: Router) { }
+  user:any;
+  sameUser:boolean = false;
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    public fireservice: FireServiceService
+    ) { 
+      
+    }
 
+    showSettings:boolean = false;
   goToSettings() {
-      this.router.navigate(['/settings']);
+      this.showSettings = !this.showSettings;
+  }
+
+  nextPage(postID:string){
+    this.router.navigate(['/view', postID]);
+  }
+
+  getUser(){
+    this.fireservice.getUnameExisting(this.uname).then(doc => {
+      this.user = doc;
+      if(this.user.profile_photo == "Not Yet Available"){
+        this.user.profile_photo = "../../assets/img/profilepic.png";
+      }
+      this.currentUser = this.fireservice.getCurrentUser();
+      if(this.user.uid == this.currentUser.uid){
+        console.log("Same User");
+        
+        this.sameUser = true;
+      }
+      console.log(doc);
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+  postList:any[] = [];
+  photoList:any[] = [];
+  getPosts(){
+    this.fireservice.getUserPosts(this.uname).then((list) =>{
+      var i = 0;
+      for(var k in list){
+        this.postList.push(list[k].data());
+        var postID = this.postList[i].postID;
+        this.fireservice.getPhotoDocument(postID).then(doc =>{
+            this.photoList.push(doc.imageUrl);
+            console.log(this.photoList);
+        }).catch(err => {
+          console.log(err);
+        });
+        i++;
+      }
+    
+      console.log(this.postList);
+    }).catch(err =>{
+      console.error(err);
+    })
   }
 
   handleNavigationClick(event:any) {
@@ -57,6 +110,8 @@ export class UserProfileComponent {
   this.showSection("blogs");
   this.navigationLinks[0].classList.add("active"); 
  }
+ uname:any;
+ currentUser:any;
 
   ngOnInit(){ 
     this.photos = document.querySelectorAll('.zoomable');
@@ -69,6 +124,14 @@ export class UserProfileComponent {
             this.modal!.style.display = 'block';
             this.zoomedImg!.src = photo.src;
         });
+      });
+
+      
+      this.route.paramMap.subscribe(params => {
+        this.uname = params.get('uname');
+        this.getUser();
+        this.getPosts();
+        // Use this.productId to fetch and display product details
       });
   }
 

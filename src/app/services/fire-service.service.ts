@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { GoogleAuthProvider } from 'firebase/auth';
-import { Observable } from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import * as auth from 'firebase/auth';
 import firebase from 'firebase/compat/app';
 import { FieldValue } from '@angular/fire/firestore';
+import { LoaderService } from './loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class FireServiceService {
 
   constructor(
     public auth: AngularFireAuth, 
-    public firestore: AngularFirestore
+    public firestore: AngularFirestore,
+    public load: LoaderService
   ) { 
 
     this.usersCollection = firestore.collection<User>('users');
@@ -86,8 +88,12 @@ export class FireServiceService {
     return this.auth.createUserWithEmailAndPassword(data.email, data.pword);
   }
 
+  signOut() {
+    return this.auth.signOut();
+  }
+
   saveDetails(data:any) {
-    return this.firestore.collection("users").doc(data.uId).set(data);
+    return this.firestore.collection("users").doc(data.uid).set(data);
   }
 
   async getUnameExisting(uname:any): Promise<any> {
@@ -120,6 +126,90 @@ export class FireServiceService {
     }
   }
 
+  suspendUser(user:any, data:any){
+    return this.firestore.collection("users").doc(user.uid).collection("suspension").doc(data.id).set(data);
+  }
+
+  collectionExists(documentPath: string, subcollectionName: string): Observable<boolean> {
+    const docRef = this.firestore.doc(documentPath);
+    
+    return docRef.snapshotChanges().pipe(
+      switchMap(doc => {
+        if (doc.payload.exists) {
+          // The document exists, check if the subcollection exists
+          const subcollectionRef = docRef.collection(subcollectionName);
+          return subcollectionRef.snapshotChanges().pipe(
+            map(subcollection => subcollection.length > 0) // Subcollection exists if length is greater than 0
+          );
+        } else {
+          // The document doesn't exist, subcollection cannot exist
+          return new Observable<boolean>(observer => observer.next(false));
+        }
+      })
+    );
+  }
+
+  moveDocumentToNewCollection(
+    sourceCollection: string,
+    targetCollection: string,
+    documentId: string
+  ) {
+    // 1. Read the Document
+    const sourceDocRef = this.firestore.collection(sourceCollection).doc(documentId);
+    sourceDocRef.get().subscribe((docSnapshot) => {
+      if (docSnapshot.exists) {
+        const data = docSnapshot.data();
+        // 2. Write to the New Collection
+        const targetDocRef = this.firestore.collection(targetCollection).doc(documentId);
+        targetDocRef.set(data)
+          .then(() => {
+            console.log('Document moved to the target collection.');
+           
+          })
+          .catch((error) => {
+            this.load.closeLoadingDialog();
+            console.error('Error writing to the new collection:', error);
+          });
+
+        // 3. Delete the Original Document
+        sourceDocRef.delete()
+          .then(() => {
+            console.log('Original document deleted from the source collection.');
+            alert("Archived Successfully")
+            this.load.closeLoadingDialog();
+          })
+          .catch((error) => {
+            this.load.closeLoadingDialog();
+            console.error('Error deleting original document:', error);
+          });
+      } else {
+        this.load.closeLoadingDialog();
+        console.log('Document does not exist in the source collection.');
+      }
+    }, (error) => {
+      this.load.closeLoadingDialog();
+      console.error('Error reading the document:', error);
+    });
+  }
+
+  async addNewFieldToDocument(
+    collectionName: string,
+    documentId: string,
+    newFieldKey: string,
+    newFieldValue: any
+  ) {
+    try {
+      // Reference to the document
+      const docRef = this.firestore.collection(collectionName).doc(documentId);
+
+      // Use set with merge: true to add the new field without overwriting existing fields
+      await docRef.set({ [newFieldKey]: newFieldValue }, { merge: true });
+    } catch (error) {
+      console.error('Error adding a new field to the document:', error);
+    }
+  }
+
+
   //End of auth
 
   /* incre(){
@@ -134,6 +224,12 @@ export class FireServiceService {
         console.error('Error updating document: ', error);
       });
   } */
+
+  updateDocument(collectionName: string, docId: string, data: any): Promise<void> {
+    const docRef = this.firestore.collection(collectionName).doc(docId);
+
+    return docRef.update(data);
+  }
 
   saveTouristDestion(data:any){
     return this.firestore.collection("tourist_spots").doc(data.tourismID).set(data);
@@ -193,6 +289,27 @@ export class FireServiceService {
       // Extract and return the first document from the query
       const natureList = querySnapshot.docs;
       return natureList;
+    }
+  }
+
+  async getUserPosts(uname:any): Promise<any> {
+    const collectionRef = this.firestore.collection("posts");
+
+    // Create a query that counts documents based on the specified condition
+    const query = collectionRef.ref
+      .where('user', '==', uname)
+      .limit(3); // Limit the query to a single document
+
+    // Perform the query and get the result
+    const querySnapshot = await query.get();
+
+    if (querySnapshot.empty) {
+      // No matching documents found, return null or handle it as needed
+      return null;
+    } else {
+      // Extract and return the first document from the query
+      const userPostList = querySnapshot.docs;
+      return userPostList;
     }
   }
 
@@ -275,6 +392,7 @@ export class FireServiceService {
   }
   getCurrentUser(){
     return this.user;
+    
   }
   getAllUsers(){
     return this.usersCollection;
@@ -300,7 +418,6 @@ export class FireServiceService {
   postData:any;
   addOneView(docID:any): Promise<any> {
     const docRef = this.firestore.collection("posts").doc(docID).ref;
-  
     return docRef.get()
       .then((doc:any) => {
         if (doc.exists) {
@@ -319,12 +436,55 @@ export class FireServiceService {
         throw error;
       });
   }
+  userProfileData:any;
+  addOneUserProfileView(uname:string) {
+    this.getUnameExisting(uname).then(doc => {
+      if(doc != null){
+        this.userProfileData = doc;
+        this.userProfileData.views++;
+        this.updateUserProfileView(this.userProfileData.uid, this.userProfileData);
+      }
+    }).catch(err =>{
+      console.error(err);
+    })
+  }
+  addOneUserProfilePost(uname:any) {
+    this.getUnameExisting(uname).then(doc => {
+      if(doc != null){
+        this.userProfileData = doc;
+        this.userProfileData.posts++;
+        this.updateUserProfileView(this.userProfileData.uid, this.userProfileData);
+      }
+    }).catch(err =>{
+      console.error(err);
+    })
+     /*  .then((doc:any) => {
+        if (doc.exists) {
+          this.userProfileData = doc.data();
+          this.userProfileData.posts++;
+          
+          this.updateUserProfileView(uname, this.userProfileData);
+          return doc.data();
+          
+        } else {
+          alert("Document was not found");
+          return null; // Document doesn't exist
+        }
+      })
+      .catch((error:any) => {
+        throw error;
+      }); */
+  }
   updateViews(docID:any, data:any): Promise<void> {
     return this.firestore.collection("posts").doc(docID).update(data);
   }
   updateCount(data:any): Promise<void> {
     return this.firestore.collection("counter").doc("counts").update(data);
   }
+  updateUserProfileView(uid:any, data:any): Promise<void> {
+    return this.firestore.collection("users").doc(uid).update(data);
+  }
+
 
 
   postComment(postID:any, commentID:any, data:any){

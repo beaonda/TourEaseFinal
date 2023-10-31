@@ -39,6 +39,11 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { FooterComponent } from './components/footer/footer.component';
 import { SettingsComponent } from './settings/settings.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { LoadingComponent } from './components/loading/loading.component';
+import { SuspendedComponent } from './suspended/suspended.component';
+import { Confirm2Component } from './components/confirm2/confirm2.component';
 
 
 @NgModule({
@@ -66,7 +71,11 @@ import { HttpClientModule } from '@angular/common/http';
     FabComponent,
     TrendingComponent,
     FooterComponent,
-    SettingsComponent
+    SettingsComponent,
+    ConfirmationComponent,
+    LoadingComponent,
+    SuspendedComponent,
+    Confirm2Component
   ],
   imports: [
     BrowserModule,
@@ -81,7 +90,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatIconModule,
     GoogleMapsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

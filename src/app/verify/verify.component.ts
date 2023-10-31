@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FireServiceService } from '../services/fire-service.service';
 import { Router } from '@angular/router';
+import { LoaderService } from '../services/loader.service';
 
 @Component({
   selector: 'app-verify',
@@ -12,17 +13,18 @@ export class VerifyComponent {
   user:any;
   constructor(
     public router:Router, 
-    public fireService:FireServiceService
+    public fireService:FireServiceService,
+    public load:LoaderService
   ) {
-
+    this.user = this.fireService.getCurrentUser();
+    console.log(this.user);
+    this.load.closeLoadingDialog();
   }
 
   link:any;
   ngOnInit() {
-    this.user = this.fireService.getCurrentUser();
-    console.log(this.user);
-    this.email = '' + this.user.email;
-
+    console.log(this.user.email);
+    this.email = this.user.email;
     if(this.user.emailVerified == false){
       this.user.sendEmailVerification();
     } else {
@@ -30,6 +32,10 @@ export class VerifyComponent {
     }
 
   /*   this.link = document.getElementById("click")?.addEventListener('click', this.clickHere); */
+  }
+
+  ngAfterViewInit(){
+    
   }
 
   clickHere(){

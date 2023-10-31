@@ -1,9 +1,12 @@
-import { Component,  ViewChild } from '@angular/core';
+import { Component,  ElementRef,  ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FireServiceService } from '../services/fire-service.service';
-import { GoogleMap } from '@angular/google-maps';
+import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import {MapDirectionsService} from '@angular/google-maps';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-view-post',
@@ -16,38 +19,85 @@ export class ViewPostComponent {
   postID:any;
   comment:any;
 
+  @ViewChild(GoogleMap, { static: false }) loc_map!: GoogleMap;
+  @ViewChild(GoogleMap, { static: false }) navMap!: GoogleMap;
+  @ViewChild(GoogleMap, { static: false }) emergencyMap!: GoogleMap;
+  @ViewChild(MapMarker, { static: false }) nav_marker!: MapMarker;
   
+
 
   constructor(
     private route: ActivatedRoute,
     public fireservice:FireServiceService,
     public router:Router,
-    public firestore:AngularFirestore
+    public firestore:AngularFirestore,
+    public mapDirectionsService: MapDirectionsService
+    
     ) { 
-      
+      this.getLocation();
     }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.postID = params.get('postID');
       // Use this.productId to fetch and display product details
-      this.navigationLinks.forEach((link:any) => {
-        link.addEventListener("click", this.handleNavigationClick);
-      });
-        this.showSection("blogs");
-        this.navigationLinks[0].classList.add("active"); 
+      this.getPost();
     });
   
-    
+    this.navigationLinks.forEach((link:any) => {
+        link.addEventListener("click", this.handleNavigationClick);
+      });
+    this.showSection("blogs");
+    this.navigationLinks[0].classList.add("active"); 
 
     console.log(this.postID.toString());
-    this.getPost();
-    
     
   }
+
+  ngAfterViewInit(){
+    
+  }
+
+
+  latitude: number | undefined;
+  longitude: number | undefined;
+  locCenter!:google.maps.LatLngLiteral;
+
+  getLocation() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        // Get the latitude and longitude from the position object
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.locCenter  = {
+          lat: this.latitude,
+          lng: this.longitude,
+        };
+        this.navMap.panTo(this.locCenter);
+        this.nav_marker.marker?.setPosition(this.locCenter);
+      },
+      (error) => {
+        console.error('Error getting location:', error);
+      });
+    } else {
+      console.error('Geolocation is not supported in this browser.');
+    }
+  }
+
+
+  directionsResults$!: Observable<google.maps.DirectionsResult|undefined>;
+
+  
+
+
   postDoc:any;
   postPhoto:any;
   actualBody:any;
+  
+  nextPage(category:string){
+    this.router.navigate(['/category', category]);
+  }
+
 
   splitBody(inputText:string){
     this.actualBody = inputText.split('\n');
@@ -56,13 +106,17 @@ export class ViewPostComponent {
   }
 
   items$: Observable<any[]> = new Observable<any[]>();
+  newCenter!: google.maps.LatLngLiteral;
+  newMarkerPos!:google.maps.LatLngLiteral;
   getPost(){
     this.fireservice.addOneView(this.postID);
+    
     this.items$ = this.fireservice.getComments(this.postID);
     this.fireservice.getPostDocument(this.postID).then((doc:any) =>{
       this.postDoc = doc;
       //console.log(doc);
       this.splitBody(this.postDoc.body);
+      this.fireservice.addOneUserProfileView(this.postDoc.user);
       switch(this.postDoc.month){
         case 0:
           this.postDoc.month = "JAN";
@@ -105,6 +159,63 @@ export class ViewPostComponent {
           break; */
       } 
       this.center = this.postDoc.coords;
+      this.newCenter = {
+        lat: this.postDoc.coords.lat,
+        lng: this.postDoc.coords.lng,
+      };
+      console.log(this.locCenter);
+
+      const request: google.maps.DirectionsRequest = {
+        destination: this.newCenter,
+        origin: this.locCenter,
+        travelMode: google.maps.TravelMode.DRIVING
+      };
+      this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map((response:any) => response.result));
+      
+      const request2 = {
+        location: this.newCenter,
+        radius: 1000, // Adjust the radius as needed (in meters)
+        type: 'hospital',
+      };
+
+      const map2 = new google.maps.Map(document.getElementById('map')!, {
+        center: this.newCenter,
+        zoom: this.zoom, // Adjust the zoom level as needed
+      });
+      const service = new google.maps.places.PlacesService(map2);
+
+        const types = ['hospital', 'pharmacy', 'car_repair']; // Add your desired types here
+
+        types.forEach(type => {
+          const request = {
+            location: this.newCenter,
+            radius: 2000, // Adjust the radius as needed
+            type: type, // Use the current type in the request
+          };
+          
+          service.nearbySearch(request, (results, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+              // Handle the results for the current type
+              results!.forEach(result => {
+                console.log(result);
+                /* this.newMarkerPos = {
+                  lat: result.geometry!.location!.lat(),
+                  lng: result.geometry!.location!.lng(),
+                };
+                console.log(this.newMarkerPos);
+                this.addMarker(this.newMarkerPos); */
+                const marker = new google.maps.Marker({
+                  position: result!.geometry!.location,
+                  map: map2,
+                  title: result.name,
+                });
+                this.addMarker(result.geometry?.location, result);
+                // You can do further processing here
+              });
+            }
+          });
+        });
+      this.loc_map.panTo(this.newCenter);
       this.rating = this.postDoc.rating;
       //console.log(this.center);
     }).catch(err => {
@@ -158,20 +269,24 @@ export class ViewPostComponent {
     })
   }
 
+  @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow;
 
-  @ViewChild(GoogleMap, { static: false }) addMap!: GoogleMap;
+  openInfoWindow(marker:any) {
+    this.infoWindow.open(marker.title);
+  }
 
-  markers:any;
-  addMarker() {
+  markers:any[] = [];
+  addMarker(pos:any, result:any) {
     this.markers.push({
-      position: this.center,
+      position: pos,
       label: {
-        color: 'red',
+        color: 'blue',
         text: 'Marker label ' + (this.markers.length + 1),
       },
-      title: 'Marker title ' + (this.markers.length + 1),
+      title: result.name,
       options: { animation: google.maps.Animation.BOUNCE },
     });
+    console.log(this.markers[0].title);
   }
 
   center: google.maps.LatLngLiteral = {
@@ -181,20 +296,9 @@ export class ViewPostComponent {
   zoom = 15;
   display: any;
 
-  moveMap(event: google.maps.MapMouseEvent) {
-
-    if (event.latLng != null) this.center = (event.latLng.toJSON());
-
-  }
-
-  move(event: google.maps.MapMouseEvent) {
-    if (event.latLng != null) this.display = event.latLng.toJSON();
-  }
-
+  
   showSection(sectionId:any) {
     const sections = document.querySelectorAll(".content-section");
-    
-    
     sections.forEach((section) => {
       if(section instanceof HTMLElement){
         section.style.display = "none";

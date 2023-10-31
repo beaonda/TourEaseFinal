@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import '../../../assets/js/homeMain.js';
-
+import { Router } from '@angular/router';
+import { FireServiceService } from 'src/app/services/fire-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { Confirm2Component } from '../confirm2/confirm2.component';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +16,45 @@ export class HeaderComponent {
   showSideNavWeb: boolean = false;
   showDropBool:any = false;
   showBurger:any = true;
+  user:any;
+  currentUser:any;
+  constructor(
+    public router:Router,
+    public fireservice:FireServiceService,
+    private dialog: MatDialog,
+    public auth:AngularFireAuth
+  ){
+    this.auth.authState.subscribe((user) => {
+      this.user = user;
+    });
+  }
+
+  nextPage(category:string){
+    this.router.navigate(['/category', category]);
+  }
+
+  goProfile(){
+    this.fireservice.getUnameFromID(this.user.uid).then(doc => {
+      this.currentUser = doc;
+      this.router.navigate(['profile', this.currentUser.uname]);
+    }).catch(err => {
+      console.error(err);
+    });
+  }
+
+  openConfirmDialog(): void {
+    const dialogRef = this.dialog.open(Confirm2Component);
+  
+    dialogRef.afterClosed().subscribe((result:any) => {
+      if (result) {
+        // User clicked "Confirm"
+        // Implement your action here
+        this.fireservice.signOut();
+      } else {
+        // User clicked "Cancel" or closed the dialog
+      }
+    });
+  }
 
   showDrop(){
     this.showDropBool = !this.showDropBool;
@@ -30,14 +73,17 @@ export class HeaderComponent {
 
  
 
-  constructor(){
-    
-  }
+  
 
 
   ngAfterViewInit(){
     
   
+  }
+
+  logout(){
+    this.openConfirmDialog();
+    
   }
 
  

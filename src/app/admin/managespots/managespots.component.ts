@@ -4,11 +4,12 @@ import { Router } from '@angular/router';
 import { Firestore, doc } from 'firebase/firestore';
 import { map } from 'rxjs';
 import { FireServiceService } from 'src/app/services/fire-service.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-managespots',
   templateUrl: './managespots.component.html',
-  styleUrls: ['./managespots.component.css', '../../../assets/css/adminPages.css']
+  styleUrls: ['./managespots.component.css', '../../../assets/css/adminPages.css', '../../../assets/css/homePages.css']
 })
 export class ManagespotsComponent {
   isModalOpen = false;
@@ -61,10 +62,51 @@ export class ManagespotsComponent {
   constructor(
     public fireService:FireServiceService,
     public router:Router,
-    public firestore:AngularFirestore){
+    public firestore:AngularFirestore,
+    public load:LoaderService){
       this.retrieveDestinations();
   }
 
+  handleNavigationClick(event:any) {
+    const targetId = event.target.getAttribute("data-section");
+    if (targetId) {
+        this.showSection(targetId);
+
+        // Remove the "active" class from all navigation links
+        this.navigationLinks.forEach((link:any) => {
+            link.classList.remove("active");
+        });
+
+        // Add the "active" class to the clicked link
+        event.target.classList.add("active");
+    }
+  }
+
+  showSection(sectionId:any) {
+    const sections = document.querySelectorAll(".content-section");
+    
+    sections.forEach((section) => {
+      if(section instanceof HTMLElement){
+        section.style.display = "none";
+      }
+    });
+
+    const selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.style.display = "block";
+    }
+
+  }
+
+  navigationLinks:any;
+  zoomedImg:any;
+  modal:any;
+  photos:any;
+
+  ngAfterViewInit(){
+    this.showSection("blogs");
+    this.navigationLinks[0].classList.add("active"); 
+   }
   
 
   uploadData(){
@@ -157,11 +199,44 @@ export class ManagespotsComponent {
     this.addM = false;
   }
 
-  viewSpot(){
+  tspotView:any;
+  viewSpot(data:any){
     var popups = document.querySelectorAll('.popup'); 
     var viewPopUp = document.querySelector("#viewPopUp");
     (viewPopUp as HTMLElement).style.display = 'block';
     document.body.style.overflow = 'hidden';
+    this.tspotView = data;
+  }
+
+  editData:any;
+  editTspot(dest:any){
+    var viewPopUp = document.querySelector("#editPopUp");
+    (viewPopUp as HTMLElement).style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    this.editData = dest;
+  }
+
+  editTData(){
+    this.load.openLoadingDialog();
+    this.fireService.updateDocument("tourist_spots", this.editData.tourismID, this.editData).then(() => {
+      this.load.closeLoadingDialog();
+      alert("Updated Successfully");
+      this.closeEdit();
+    }).catch(err => {
+      console.error(err);
+    })
+  }
+
+  archiveTspot(data:any){
+    this.load.openLoadingDialog();
+    this.fireService.moveDocumentToNewCollection("tourist_spots", "archived_tourist_spots", data.tourismID);
+  }
+
+  closeEdit(){
+    var closeButtons = document.querySelector('.close');
+    var viewPopUp = document.querySelector("#editPopUp");
+    (viewPopUp as HTMLElement).style.display = 'none';
+    document.body.style.overflow = 'auto';
   }
 
   closeView(){

@@ -6,6 +6,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from "firebase/compat/app";
 import "firebase/auth";
 import { GoogleAuthProvider } from 'firebase/auth';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-tourist',
@@ -20,7 +21,8 @@ export class TouristComponent {
   constructor(
     public fireService:FireServiceService,
     public router:Router,
-    public fireAuth:AngularFireAuth
+    public fireAuth:AngularFireAuth,
+    public load:LoaderService
   ){
 
   }
@@ -33,19 +35,36 @@ export class TouristComponent {
   }
 
   login(){
-
+    this.load.openLoadingDialog();
     if(this.containsEmail()){
       this.fireService.loginWithEmail({email:this.email, password:this.pword}).then((res:any)=>{
         console.log(res);
         this.user = this.fireService.getCurrentUser();
-        if(this.user.emailVerified){
-          this.router.navigate(['home']);
-        }else if (this.user.emailVerified == false){  
-          this.router.navigate(['verify']);
-        }else{
-          alert("User Error");
-        }
+        console.log(this.user.uid);
+        this.fireService.collectionExists("users/" + this.user.uid, "suspension").subscribe(exists => {
+          if (exists) {
+            this.load.closeLoadingDialog();
+            this.router.navigate(['suspended']);
+          } else {
+              if(this.user.emailVerified){
+                this.load.closeLoadingDialog();
+                this.router.navigate(['home']);
+                
+
+              }else if (this.user.emailVerified == false){  
+                this.load.closeLoadingDialog();
+                this.router.navigate(['verify']);
+                
+              }else{
+                this.load.closeLoadingDialog();
+                alert("User Error");
+                
+              }
+          }
+        });
+      
       }, (err:any)=>{
+        this.load.closeLoadingDialog();
         alert(err.message);
         console.log(err)
       });
@@ -59,18 +78,23 @@ export class TouristComponent {
             console.log(res);
             this.user = this.fireService.getCurrentUser();
             if(this.user.emailVerified){
+              this.load.closeLoadingDialog();
               this.router.navigate(['home']);
             }else if (this.user.emailVerified == false){  
+              this.load.closeLoadingDialog();
               this.router.navigate(['verify']);
             }else{
+              this.load.closeLoadingDialog();
               alert("User Error");
             }
           }, (err:any)=>{
+            this.load.closeLoadingDialog();
             alert(err.message);
             console.log(err)
           });
         }
       }).catch(err => {
+        this.load.closeLoadingDialog();
         console.log("error");
       });
     }
