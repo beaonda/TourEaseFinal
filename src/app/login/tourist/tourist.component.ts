@@ -11,7 +11,7 @@ import { LoaderService } from '../../services/loader.service';
 @Component({
   selector: 'app-tourist',
   templateUrl: './tourist.component.html',
-  styleUrls: ['./tourist.component.css', '../admin/assets/css/style.css']
+  styleUrls: ['./tourist.component.css', '../admin/assets/css/style.css', '../admin/assets/css/style2.css']
 })
 export class TouristComponent {
   email:any;
@@ -24,7 +24,9 @@ export class TouristComponent {
     public fireAuth:AngularFireAuth,
     public load:LoaderService
   ){
-
+    fireAuth.authState.subscribe(user => {
+      this.user = user;
+    });
   }
 
   containsEmail() {
@@ -39,7 +41,6 @@ export class TouristComponent {
     if(this.containsEmail()){
       this.fireService.loginWithEmail({email:this.email, password:this.pword}).then((res:any)=>{
         console.log(res);
-        this.user = this.fireService.getCurrentUser();
         console.log(this.user.uid);
         this.fireService.collectionExists("users/" + this.user.uid, "suspension").subscribe(exists => {
           if (exists) {
@@ -49,16 +50,6 @@ export class TouristComponent {
               if(this.user.emailVerified){
                 this.load.closeLoadingDialog();
                 this.router.navigate(['home']);
-                
-
-              }else if (this.user.emailVerified == false){  
-                this.load.closeLoadingDialog();
-                this.router.navigate(['verify']);
-                
-              }else{
-                this.load.closeLoadingDialog();
-                alert("User Error");
-                
               }
           }
         });

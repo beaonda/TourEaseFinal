@@ -1,18 +1,10 @@
 /* Reset some default styles */
-@import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
-
 
 .bodycont, html {
     margin: 0;
     padding: 0;
 }
 
-  
-@font-face {
-    font-family: 'Sodosans';
-    src: url('../../assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
-         url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
-  }
   
 
 .verlogo{

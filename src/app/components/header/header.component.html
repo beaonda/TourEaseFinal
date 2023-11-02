@@ -1,57 +1,58 @@
 <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-      <a href="/home" class="logo d-flex align-items-center">
-
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    <a href="/home" class="logo d-flex align-items-center">
       <img src="../assets/img/logo1.png" alt="">
+    </a>
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li class="dropdown"><a><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <ul>
+            <li><a (click) = "nextPage('nature')">Nature</a></li>
+            <li><a (click) = "nextPage('cultural')">Cultural</a></li>
+            <li><a (click) = "nextPage('industrial')">Industrial</a></li>
+            <li><a (click) = "nextPage('sun_and_beach')">Sun and Beach</a></li>
+            <li><a (click) = "nextPage('leisure')">Leisure and Entertainment</a></li>
+            <li><a (click) = "nextPage('mice')">Meetings, Incentives, Conventions, and Exhibitions</a></li>
+            <li><a (click) = "nextPage('health')">Health & Wellness</a></li>
+          </ul>
+        </li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="position-relative">
+      <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+      <i class="bi bi-list mx-2 mobilenav" (click)="toggleSideNav()"></i>
+      <i class="bi bi-list mx-2 webnav" [ngClass]="{'show': showBurger}" (click)="toggleSideNavWeb()"></i> 
+      <!--<div class="bi bi-list toggle-button" (click)="toggleSideNav()">☰</div> -->
+      <div class="search-form-wrap js-search-form-wrap">
+        <form action="search-result.html" class="search-form">
+          <span class="icon bi-search"></span>
+          <input type="text" placeholder="Search" class="form-control">
+          <button class="btn js-search-close"><span class="bi-list"></span></button>
+        </form>
+      </div>
+
+
+
+
+        <!--Web Side Nav-->
+      <div class="side-nav" [ngClass]="{'show': showSideNavWeb}">
+        <a style="text-align: right;" (click)="toggleSideNavWeb()">Close &#x2716;</a>
+        <a class="editnav" *ngIf ="user" (click)="goProfile()"><i class="bi bi-person" style="font-size: 20px; margin-right:15px ;"></i>Profile</a>
+        <a class="editnav" *ngIf ="user"><i class="bi bi-bell" style="font-size: 20px; margin-right:15px ;"></i>    Notification</a>
+        <a class="editnav" *ngIf ="user" (click)="logout()"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;" ></i>Logout</a>
+        <a class="editnav" *ngIf ="!(user)" href="/login"><i class="bi bi-box-arrow-in-right" style="font-size: 20px; margin-right:15px ;" ></i>Log In</a>
+        <a class="editnav" *ngIf ="!(user)" href="/register"><i class="bi bi-person-add" style="font-size: 20px; margin-right:15px ;" ></i>Register</a>
+      </div>
       
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="/home">Home</a></li>
-
-          <li class="dropdown"><a><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a (click) = "nextPage('nature')">Nature</a></li>
-              <li><a (click) = "nextPage('cultural')">Cultural</a></li>
-              <li><a (click) = "nextPage('industrial')">Industrial</a></li>
-              <li><a (click) = "nextPage('sun_and_beach')">Sun and Beach</a></li>
-              <li><a (click) = "nextPage('leisure')">Leisure and Entertainment</a></li>
-              <li><a (click) = "nextPage('mice')">Meetings, Incentives, Conventions, and Exhibitions</a></li>
-              <li><a (click) = "nextPage('health')">Health & Wellness</a></li>
-            </ul>
-          </li>
-
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="position-relative ">
-
-
-
-        <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
-
-        <i class="bi bi-list mx-2 mobilenav" (click)="toggleSideNav()"></i>
-        <i class="bi bi-list mx-2 webnav" [ngClass]="{'show': showBurger}" (click)="toggleSideNavWeb()"></i> 
-<!--         <div class="bi bi-list toggle-button" (click)="toggleSideNav()">☰</div> -->
-     
-        <div class="search-form-wrap js-search-form-wrap">
-          <form action="search-result.html" class="search-form">
-            <span class="icon bi-search"></span>
-            <input type="text" placeholder="Search" class="form-control">
-            <button class="btn js-search-close"><span class="bi-list"></span></button>
-          </form>
-        </div>
-
-        <div class="side-nav" [ngClass]="{'show': showSideNav}" >
-          <a style="text-align: right;" (click)="toggleSideNav()">Close &#x2716;</a>
-
-          <a class="editnav" href="/home"><i class="bi bi-house" style="font-size: 20px; margin-right:15px ;"></i>  Blog</a>
-          <!-- <a class="editnav" href="/view-post">Single Post</a> -->
-          <a class="editnav" href="/profile"><i class="bi bi-person" style="font-size: 20px; margin-right:15px ;"></i>    Profile</a>
+      <!--Mobile Side Nav-->
+      <div class="side-nav" [ngClass]="{'show': showSideNav}" >
+        <a style="text-align: right;" (click)="toggleSideNav()">Close &#x2716;</a>
+        <a class="editnav" href="/home"><i class="bi bi-house" style="font-size: 20px; margin-right:15px ;"></i>  Home</a>
+        <a class="editnav" *ngIf ="user" href="/profile"><i class="bi bi-person" style="font-size: 20px; margin-right:15px ;"></i>    Profile</a>
           <div class="dropdown">
             <a (click)="showDrop()" class="editnav dropdown-toggle" id="categoriesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="bi bi-grid" style="font-size: 20px; margin-right:15px ;"></i>    Categories
@@ -68,35 +69,16 @@
 
                 <!-- Add more categories as needed -->
             </div>
-        </div>
+          </div>
           <a class="editnav" href="/about"> <i class="bi bi-info-circle" style="font-size: 20px; margin-right:15px ;"></i>  About</a>
           <a class="editnav" href="/contact"> <i class="bi bi-telephone" style="font-size: 20px; margin-right:15px ;"></i>  Contact</a>
-          <a class="editnav" href="/contact"><i class="bi bi-bell" style="font-size: 20px; margin-right:15px ;"></i>    Notification</a>
-          <a class="editnav" (click)="logout()"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;"></i>Logout</a>
-          <a class="editnav" href="/login"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;"></i>Log In</a>
-      </div>
+          <a class="editnav" *ngIf ="user" href="/contact"><i class="bi bi-bell" style="font-size: 20px; margin-right:15px ;"></i>    Notification</a>
+          <a class="editnav" *ngIf ="user" (click)="logout()"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;"></i>Logout</a>
+          <a class="editnav" *ngIf ="!user" href="/login"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;"></i>Log In</a>
+      
 
 
-
-      <div class="side-nav" [ngClass]="{'show': showSideNavWeb}">
-        <a style="text-align: right;" (click)="toggleSideNavWeb()">Close &#x2716;</a>
-        <a class="editnav" *ngIf ="user" (click)="goProfile()"><i class="bi bi-person" style="font-size: 20px; margin-right:15px ;"></i>Profile</a>
-        <a class="editnav" *ngIf ="user"><i class="bi bi-bell" style="font-size: 20px; margin-right:15px ;"></i>    Notification</a>
-
-        <a class="editnav" *ngIf ="user" (click)="logout()"><i class="bi bi-box-arrow-right" style="font-size: 20px; margin-right:15px ;" ></i>Logout</a>
-
-        <a class="editnav" *ngIf ="!(user)" href="/login"><i class="bi bi-box-arrow-in-right" style="font-size: 20px; margin-right:15px ;" ></i>Log In</a>
-        <a class="editnav" *ngIf ="!(user)" href="/register"><i class="bi bi-person-add" style="font-size: 20px; margin-right:15px ;" ></i>Register</a>
-    </div>
-      </div>
-    </div>
-
-
-
-
-    <!-- Side Navigation -->
-    
-  </header>  
+ 
   
 
 

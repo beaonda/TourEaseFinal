@@ -466,6 +466,23 @@ export class FireServiceService {
       .then((querySnapshot) => querySnapshot!.docs.map((doc) => doc.data()));
   }
 
+  getFourMostRecentPosts(): Promise<any[]> {
+    
+    return this.firestore
+      .collection("posts", (ref) =>
+        ref
+          .orderBy('year', 'desc')
+          .orderBy('month', 'desc')
+          .orderBy('date', 'desc')
+          .orderBy('hour', 'desc')
+          .orderBy('mins', 'desc')
+          .limit(4)
+      )
+      .get()
+      .toPromise()
+      .then((querySnapshot) => querySnapshot!.docs.map((doc) => doc.data()));
+  }
+
   getTopDocuments(collectionName: string, fieldToSortBy: string, limit: number): Promise<any[]> {
     return this.firestore
       .collection(collectionName, (ref) =>

@@ -140,8 +140,9 @@
               <map-marker #marker="mapMarker"
               *ngFor="let marker of markers"
               [position]="marker.position"
-              [label]="marker.title"
               [title]="marker.title"
+              
+              [icon] = "marker.icon"
               (click)="openInfoWindow(marker)"
               >
                   <map-info-window #infoWindow>

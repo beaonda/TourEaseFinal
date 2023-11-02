@@ -2,3 +2,9 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 html, body { height: 100%; }
 body { margin: 0; }
+
+@font-face {
+    font-family: 'Sodosans';
+    src: url('assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
+         url('assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+  }

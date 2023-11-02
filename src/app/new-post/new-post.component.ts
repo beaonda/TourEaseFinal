@@ -353,7 +353,7 @@ async uploadImage(postID:any, blob: any, imageData:any) {
     this.search = result; // Set the input value to the selected result
     this.showResults = false; // Hide the results
     this.city = this.estCityList[i];
-    this.tspot = result + ", " + this.city;
+    this.tspot = result + ", " + this.city; 
     for(var x in this.batangasCities){
       if(this.city == this.batangasCities[x].name){
         let newCenter: google.maps.LatLngLiteral = {

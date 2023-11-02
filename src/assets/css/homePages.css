@@ -12,20 +12,7 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-
-@import '../../../node_modules/swiper/swiper.min.css';
-@import '../../../node_modules/glightbox/dist/css/glightbox.css';
-@import '../../../node_modules/bootstrap-icons/font/bootstrap-icons.css';
-@import '../../../node_modules/aos/dist/aos.css';
 @import './variables.css';
-
-
-@font-face {
-  font-family: 'Sodosans';
-  src: url('../fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
-       url('../fonts/sodosans/SoDoSans-Regular.woff') format('woff');
-}
-
 
 
   

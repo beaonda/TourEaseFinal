@@ -13,7 +13,7 @@
                 <img [src]="photoList[i]" alt="" class="img-fluid">
               </a>
               <div *ngIf = "post">
-                <div class="post-meta"><span class="date">{{this.category}}</span> <span class="mx-1">&bullet;</span> <span>{{post.month + ' ' + post.date + 'th ' + post.year}}</span></div>
+                <div class="post-meta"><span class="date">{{this.category}}</span> <span class="mx-1">&bullet;</span> <span>{{post.month + ' ' + post.date+ ' ' + post.year}}</span></div>
                 <h3><a (click)="nextPage(post.postID)">{{post.title}}</a></h3>
                 <p>{{post.body}}...</p>
                 <div class="d-flex align-items-center author">
@@ -28,7 +28,7 @@
 
             <div class="text-start py-4">
               <div class="custom-pagination">
-                <a href="#" class="prev">Prevous</a>
+                <a href="#" class="prev">Previous</a>
                 <a href="#" class="active">1</a>
                 <a href="#">2</a>
                 <a href="#">3</a>
@@ -177,43 +177,21 @@
               </div>
             </div>
 
-            <div class="aside-block">
-              <h3 class="aside-title">Video</h3>
-              <div class="video-post">
-                <a href="https://www.youtube.com/watch?v=AiFfDjmd0jU" class="glightbox link-video">
-                  <span class="bi-play-fill"></span>
-                  <img src="assets/img/post-landscape-5.jpg" alt="" class="img-fluid">
-                </a>
-              </div>
-            </div><!-- End Video -->
-
+            
             <div class="aside-block">
               <h3 class="aside-title">Categories</h3>
               <ul class="aside-links list-unstyled">
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Business</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Culture</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Sport</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Food</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Politics</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Celebrity</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Startups</a></li>
-                <li><a href="category.html"><i class="bi bi-chevron-right"></i> Travel</a></li>
+                <li><a (click) = "goCateg('nature')"><i class="bi bi-chevron-right"></i> Nature</a></li>
+                <li><a (click) = "goCateg('cultural')"><i class="bi bi-chevron-right"></i> Cultural</a></li>
+                <li><a (click) = "goCateg('industrial')"><i class="bi bi-chevron-right"></i> Industrial</a></li>
+                <li><a (click) = "goCateg('sun_and_beach')"><i class="bi bi-chevron-right"></i> Sun and Beach</a></li>
+                <li><a (click) = "goCateg('leisure')"><i class="bi bi-chevron-right"></i> Leisure and Entertainment</a></li>
+                <li><a (click) = "goCateg('mice')"><i class="bi bi-chevron-right"></i> Meetings, Incentives, Conventions, and Exhibitions </a></li>
+                <li><a (click) = "goCateg('health')"><i class="bi bi-chevron-right"></i> Health and Wellness</a></li>
               </ul>
             </div><!-- End Categories -->
 
-            <div class="aside-block">
-              <h3 class="aside-title">Tags</h3>
-              <ul class="aside-tags list-unstyled">
-                <li><a href="category.html">Business</a></li>
-                <li><a href="category.html">Culture</a></li>
-                <li><a href="category.html">Sport</a></li>
-                <li><a href="category.html">Food</a></li>
-                <li><a href="category.html">Politics</a></li>
-                <li><a href="category.html">Celebrity</a></li>
-                <li><a href="category.html">Startups</a></li>
-                <li><a href="category.html">Travel</a></li>
-              </ul>
-            </div><!-- End Tags -->
+            
 
           </div>
 

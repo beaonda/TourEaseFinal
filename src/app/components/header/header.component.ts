@@ -47,9 +47,8 @@ export class HeaderComponent {
   
     dialogRef.afterClosed().subscribe((result:any) => {
       if (result) {
-        // User clicked "Confirm"
-        // Implement your action here
         this.fireservice.signOut();
+        this.router.navigate(['login']);
       } else {
         // User clicked "Cancel" or closed the dialog
       }
@@ -83,7 +82,6 @@ export class HeaderComponent {
 
   logout(){
     this.openConfirmDialog();
-    
   }
 
  

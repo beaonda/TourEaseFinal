@@ -1,9 +1,4 @@
   
-@font-face {
-  font-family: 'Sodosans';
-  src: url('../../assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
-       url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
-}
 
 .rating label {
   cursor: pointer;

@@ -217,7 +217,8 @@ export class ViewPostComponent {
                   map: map2,
                   title: result.name,
                 });
-                this.addMarker(result.geometry?.location, result);
+                
+                this.addMarker(result.geometry?.location, result, type);
                 // You can do further processing here
               });
             }
@@ -284,7 +285,15 @@ export class ViewPostComponent {
   }
 
   markers:any[] = [];
-  addMarker(pos:any, result:any) {
+  addMarker(pos:any, result:any, type:string) {
+    let newType;
+    if(type == 'hospital'){
+      newType = '../../assets/img/hospi.png';
+    }else if(type == 'pharmacy'){
+      newType = '../../assets/img/pharma.png';
+    }else if(type == 'car_repair'){
+      newType = '../../assets/img/repair.png';
+    }
     this.markers.push({
       position: pos,
       label: {
@@ -293,6 +302,10 @@ export class ViewPostComponent {
       },
       title: result.name,
       options: { animation: google.maps.Animation.BOUNCE },
+      icon: {
+        url: newType,
+        scaledSize: new google.maps.Size(50, 50)
+      }
     });
     console.log(this.markers[0].title);
   }
