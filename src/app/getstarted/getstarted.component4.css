@@ -1,0 +1,71 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label, button, .option-button {
+  font-family: 'Sodosans';
+}
+
+.section {
+    display: none;
+    margin-top: 40px;
+}
+.visible {
+    display: block;
+}
+button {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.progress {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    background-color: white;
+}
+
+.step {
+    width: 20px;
+    height: 5px;
+    background-color: #ddd;
+    margin: 0 5px;
+    display: inline-block;
+  }
+  
+  .step.active {
+    background-color: #ffd800; 
+  }
+  
+
+.bodycont {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    height: 100vh;
+    overflow: hidden;
+    background-size: cover; 
+  background-position: center center;
+  background-repeat: no-repeat;
+    background-image: url('../../assets/img/reg_bg.png');
+    background-size: 100% 100vh;
+    background-repeat: no-repeat;
+
+}
+
+.section {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    max-width: 800px;
+    height: 526px;
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    transition: transform 0.5s;
+}
