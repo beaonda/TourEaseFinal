@@ -6,7 +6,7 @@ import { FireServiceService } from 'src/app/services/fire-service.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css', '../../../assets/css/adminPages.css']
+  styleUrls: ['./dashboard.component.css', '../../../assets/css/adminPages.css', '../../../assets/css/adminPages1.css']
 })
 export class DashboardComponent {
 

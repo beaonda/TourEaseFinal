@@ -14,7 +14,7 @@ interface Section {
 @Component({
   selector: 'app-getstarted',
   templateUrl: './getstarted.component.html',
-  styleUrls: ['./getstarted.component.css']
+  styleUrls: ['./getstarted.component.css','./getstarted.component1.css']
 })
 export class GetstartedComponent {
     sections: Section[] = [

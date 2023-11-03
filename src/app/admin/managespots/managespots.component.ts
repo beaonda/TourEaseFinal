@@ -14,7 +14,7 @@ import { TypesenseService } from 'src/app/services/typesense.service';
 @Component({
   selector: 'app-managespots',
   templateUrl: './managespots.component.html',
-  styleUrls: ['./managespots.component.css', '../../../assets/css/adminPages.css', '../../../assets/css/homePages.css']
+  styleUrls: ['./managespots.component.css', '../../../assets/css/adminPages.css', '../../../assets/css/homePages.css', '../../../assets/css/adminPages1.css']
 })
 export class ManagespotsComponent {
   isModalOpen = false;
