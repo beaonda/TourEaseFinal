@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import "../../../assets/js/loginMain.js";
 import { FireServiceService } from '../../services/fire-service.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -46,11 +45,9 @@ export class TouristComponent {
           if (exists) {
             this.load.closeLoadingDialog();
             this.router.navigate(['suspended']);
-          } else {
-              if(this.user.emailVerified){
-                this.load.closeLoadingDialog();
-                this.router.navigate(['home']);
-              }
+          } else {  
+            this.load.closeLoadingDialog();
+            this.router.navigate(['verify']);
           }
         });
       

@@ -2,18 +2,19 @@
 <app-fab></app-fab>
 
 <div class="header__wrapper">
-    <header></header>
+    <header><button class="header_edit" *ngIf="showSettings"><i class="bi bi-camera"></i></button></header>
     <div class="cols__container">
       <div class="left__col">
         <div class="img__container">
             <img *ngIf = "user" [src]="user.profile_photo" alt="Kaila Guerrero" />
-            
+            <button  class="profile_edit" *ngIf="showSettings"><i class="bi bi-camera"></i></button> 
         </div>
         <h2 *ngIf = "user">{{user.fname + ' ' + user.lname}}</h2>
         <p *ngIf = "user">@{{user.uname}}</p>
+        <button *ngIf = "showSettings"id="follow-button">Save</button>
         <!-- <button id="follow-button">Follow</button> -->
         <div *ngIf ="user">
-        <button *ngIf="sameUser" id="settings-button" (click)="goToSettings()">
+        <button *ngIf="sameUser && !showSettings" id="settings-button" (click)="goToSettings()">
             <i class="bi bi-gear"></i>  
         </button>
         </div>
@@ -35,18 +36,18 @@
     </div>
 
     <div *ngIf="showSettings" class="right__col" style="padding:20px">
-        <h1 class="page.title" style="margin-top: 8%;">Account Settings</h1>
+        <h1 class="page.title" style="margin-top: 8%;">Profile Settings</h1>
         <form>
-            <div class="form-group" style="margin-top:3%">
-                <input type="text" name="edit_name" class="form-control" id="edit_name" placeholder="Edit your name" required>
-         </div>
+            <!-- <div class="form-group" style="margin-top:3%">
+                <input [(ngModel)]="edit_name" type="text" name="edit_name" class="form-control" id="edit_name" placeholder="Edit your name">
+            </div> -->
     
               <div class="form-group" style="margin-top:10px" >
-                <input type="text" name="edit_name" class="form-control" id="edit_name" placeholder="Edit your username" required>
+                <input [(ngModel)]="edit_uname" type="text" name="edit_uname" class="form-control" id="edit_uname" placeholder="Edit your username">
               </div>
 
               <div class="form-group" style="margin-top:10px">
-                <textarea id="post_body"  class="form-control" name="post" rows="7" placeholder="Edit your bio" required #textArea></textarea>
+                <textarea id="edit_bio"  class="form-control" name="edit_bio" rows="7" placeholder="Edit your bio" #textArea></textarea>
               </div>
               
 
@@ -58,8 +59,8 @@
             <nav>
                 <ul>
                     <li><a class="active" (click)="handleNavigationClick($event)" data-section="blogs">blogs</a></li>
-                    <li><a (click)="handleNavigationClick($event)" data-section="photos">photos</a></li>
-                    <li><a (click)="handleNavigationClick($event)" data-section="badge">badge</a></li>
+                    <li><a (click)="handleNavigationClick($event)" data-section="photos">gallery</a></li>
+                    <li><a (click)="handleNavigationClick($event)" data-section="badge">passport</a></li>
                 </ul>
               
             </nav>

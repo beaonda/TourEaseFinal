@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Firestore, doc } from 'firebase/firestore';
-import { map } from 'rxjs';
+import { finalize, map } from 'rxjs';
 import { FireServiceService } from 'src/app/services/fire-service.service';
 import { LoaderService } from 'src/app/services/loader.service';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Capacitor } from '@capacitor/core';
+import { FileuploadService } from 'src/app/services/fileupload.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { TypesenseService } from 'src/app/services/typesense.service';
 
 @Component({
   selector: 'app-managespots',
@@ -63,7 +68,11 @@ export class ManagespotsComponent {
     public fireService:FireServiceService,
     public router:Router,
     public firestore:AngularFirestore,
-    public load:LoaderService){
+    public load:LoaderService,
+    public uploadService:FileuploadService,
+    public storage: AngularFireStorage,
+    public typesense:TypesenseService,
+    public changeDetector: ChangeDetectorRef,){
       this.retrieveDestinations();
   }
 
@@ -80,6 +89,33 @@ export class ManagespotsComponent {
         // Add the "active" class to the clicked link
         event.target.classList.add("active");
     }
+  }
+
+  searchResults:any;
+  showResults:boolean = false;
+  estNameList: string[] = []; 
+  searchRaw:any;
+  search:any;
+  estCityList: string[] = [];
+
+  searchSpot(){
+    this.showResults = true;
+    this.estNameList = [];
+    this.estCityList = [];
+    this.typesense.searchEst(this.search)
+      .then((res) => {
+        if(res){
+          console.log(res);
+          this.destList = res;
+          console.log(res); 
+        }else{
+          console.log("undefined res")
+        }
+       
+      })
+      .catch((err:any) => {
+        
+      });
   }
 
   showSection(sectionId:any) {
@@ -107,6 +143,83 @@ export class ManagespotsComponent {
     this.showSection("blogs");
     this.navigationLinks[0].classList.add("active"); 
    }
+
+  blob:any;
+  pic:any;
+  image:any;
+
+  chosenPic:any;
+  async takePicture() {
+    try {
+      
+      if(Capacitor.getPlatform() !='web') await Camera.requestPermissions();
+      this.pic = await Camera.getPhoto({
+        quality: 90,
+        //allowEditing:false,
+        source:CameraSource.Photos,
+        width:600,
+        resultType:CameraResultType.DataUrl
+      });
+      
+      
+      this.image=this.pic.dataUrl;
+      this.chosenPic = this.image;
+      this.blob=this.dataURLtoBlob(this.pic.dataUrl);
+
+      
+    } catch(e) {
+      console.log(e);
+    } 
+  }
+
+  dataURLtoBlob(dataurl:any) {
+    var arr = dataurl.split(','), mime=arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]), n= bstr.length, u8arr =new Uint8Array(n);
+    while(n--){
+        u8arr[n]=bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr],{type:mime});
+  }
+
+  async photoData(image:any, blob:any, est_id:any, uname:any){
+    try{
+      const url = await this.uploadImage(est_id,blob,image,uname);
+    } catch(e) {
+      console.log(e);
+    }
+  }
+  
+  async uploadImage(postID:any, blob: any, imageData:any, uname:any) {
+    try { 
+      const currentDate = Date.now();
+      const filePath = 'postImages/' + currentDate +'.'+ imageData.format;
+      const fileRef =  this.storage.ref(filePath);
+      const task = this.storage.upload(filePath, blob);
+      let photoData = {
+        imageUrl:'',
+        postID:'',
+        uploadTime: currentDate,
+        user:''
+      };
+      
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((downloadURL:any) => {
+            photoData.imageUrl = downloadURL;
+            photoData.postID = postID;
+            photoData.user = uname;
+            this.uploadService.savePhoto(photoData);
+            this.load.closeLoadingDialog();
+            alert("Posted Successfully.");
+            this.router.navigate(['home']);
+          });
+        })
+      ).subscribe();
+      console.log('task: ', task);
+    } catch (e) {
+      throw(e);
+    } 
+  }
   
 
   uploadData(){

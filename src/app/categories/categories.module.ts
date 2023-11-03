@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FabComponent } from '../components/fab/fab.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
-
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { FooterComponent } from '../components/footer/footer.component';
     CommonModule,
     HeaderComponent,
     FabComponent,
-    FooterComponent
+    FooterComponent,
+    ButtonsModule
   ]
 })
 export class CategoriesModule { }

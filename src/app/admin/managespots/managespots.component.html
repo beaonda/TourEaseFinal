@@ -7,7 +7,7 @@
 
         <div class="search">
             <label>
-                <input type="text" placeholder="Search here">
+                <input (input)="searchSpot()" [(ngModel)]="search" type="text" placeholder="Search here">
                 <i class="bi bi-search iconbi"></i>
             </label>
         </div>
@@ -392,8 +392,8 @@
         
                     <div class="form-group">
                         <label for="photos">Photo</label>
-                        <input [(ngModel)]="photo" type="file" id="photos" name="photos" accept="image/*" required>
-                        <img *ngIf = "editData.photo != 'No Photo Yet'" />
+                        <button (click)="takePicture()" [(ngModel)]="photo" id="photos" name="photos">Choose Photo</button>
+                        <img [src] = "chosenPic" style="width: 100%;"/>
                     </div>
         
                     <div class="form-group">

@@ -162,7 +162,7 @@ export class NewPostComponent {
     this.fireService.savePost(this.postData).then(
       res=>{
         console.log(res);
-        this.photoData(this.pic, this.blob, this.postData.postID);
+        this.photoData(this.pic, this.blob, this.postData.postID, this.postData.user);
         this.upload(this.postData);
         
         //updates the counter
@@ -263,15 +263,15 @@ dataURLtoBlob(dataurl:any) {
   return new Blob([u8arr],{type:mime});
 }
 
-async photoData(image:any, blob:any, est_id:any){
+async photoData(image:any, blob:any, est_id:any, uname:any){
   try{
-    const url = await this.uploadImage(est_id,blob,image);
+    const url = await this.uploadImage(est_id,blob,image,uname);
   } catch(e) {
     console.log(e);
   }
 }
 
-async uploadImage(postID:any, blob: any, imageData:any) {
+async uploadImage(postID:any, blob: any, imageData:any, uname:any) {
   try { 
     const currentDate = Date.now();
     const filePath = 'postImages/' + currentDate +'.'+ imageData.format;
@@ -281,6 +281,7 @@ async uploadImage(postID:any, blob: any, imageData:any) {
       imageUrl:'',
       postID:'',
       uploadTime: currentDate,
+      user:''
     };
     
     task.snapshotChanges().pipe(
@@ -288,6 +289,7 @@ async uploadImage(postID:any, blob: any, imageData:any) {
         fileRef.getDownloadURL().subscribe((downloadURL:any) => {
           photoData.imageUrl = downloadURL;
           photoData.postID = postID;
+          photoData.user = uname;
           this.uploadService.savePhoto(photoData);
           this.load.closeLoadingDialog();
           alert("Posted Successfully.");
