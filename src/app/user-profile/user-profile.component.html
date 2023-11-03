@@ -85,7 +85,7 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
                     dolor at eros vehicula hendrerit.
                 </p>
-                  <img class="photo-gallery" *ngIf = "photoList[i]" (click)="nextPage(post.postID)" [src]="photoList[i]" alt="Blog Post 1" />
+                  <img *ngIf = "photoList[i]"(click)="nextPage(post.postID)" [src]="photoList[i]" alt="Blog Post 1" />
               
                  <p *ngIf = "!(postList)">No posts as of the moment</p>
               </div>

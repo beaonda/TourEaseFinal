@@ -5,7 +5,7 @@ import { FireServiceService } from 'src/app/services/fire-service.service';
 @Component({
   selector: 'app-manageposts',
   templateUrl: './manageposts.component.html',
-  styleUrls: ['./manageposts.component.css', '../../../assets/css/adminPages.css']
+  styleUrls: ['./manageposts.component.css', '../../../assets/css/adminPages.css', '../../../assets/css/adminPages1.css']
 })
 export class ManagepostsComponent {
 
