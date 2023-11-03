@@ -1,0 +1,108 @@
+
+
+
+  
+@font-face {
+    font-family: 'Sodosans';
+    src: url('../../assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
+         url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+  }
+
+.page-title{
+    margin-top: 150px;
+}
+
+.verlogo{
+    max-width: 28%;
+    margin-left: 99%;
+    margin-top: -12%;
+}
+
+.cont{
+    margin-bottom: -10%;
+}
+
+.email{
+    color:#21757f
+}
+
+#main{
+    background-image: url('../../assets/img/backgrounds.png');
+    background-size: cover; 
+    height: 100vh;/* Optional: Adjusts how the image covers the element */
+  }
+
+
+  
+.contact .php-email-form{
+    width: 113%;
+      margin-left: -6%;
+      height: 60vh;
+  }
+  
+  #main{
+    background-image: url('../../assets/img/backg.png');
+    background-size: cover; 
+    height: 100vh;
+    /* Optional: Adjusts how the image covers the element */
+  }
+  
+  @media (max-width:320px){
+        .page-title {
+      margin-top: 230px;
+    }
+    .name- .moretext{
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .verifytext{
+        margin-top: 10px;
+    }
+    
+  }
+  
+  @media (max-width:768px){
+  
+  
+    .page-title {
+      margin-top: 150px;
+    }
+  
+    #main{
+      background-image: url('../../assets/img/bgbg.png');
+      
+    }
+  }
+  
+  @media (max-width:1024px){
+    #main{
+      background-image: url('../../assets/img/bgbg.png');
+      
+    }
+    .page-title{
+      margin-top: 150px;
+    }
+  }
+
+
+.click{
+    color:#f6c826;
+}
+
+.right-logo{
+    max-width: 23%;
+    margin-left: 82%;
+    margin-top: -6%;
+}
+
+.verifytext{
+    text-align: center;
+    padding:10px;
+    size: 40px;
+}
+
+.contverify{
+    padding: 172px;
+    margin-top: -12%;
+    margin-bottom: -3%;
+}
