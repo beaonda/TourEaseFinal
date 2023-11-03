@@ -201,7 +201,7 @@
     content: "";
     background: rgb(0, 0, 0);
     background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
-    opacity: 0.5;
+    opacity: 1.5;
     bottom: 0;
     left: 0;
     right: 0;
