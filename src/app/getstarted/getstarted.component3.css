@@ -1,0 +1,49 @@
+
+button:focus {
+    outline: none;
+}
+
+h2 {
+    color: #013227;
+    
+}
+
+p {
+    color: #555;
+    margin-top: -10px;
+    margin-left: 90px;
+    margin-right: 90px;
+    font-size: 14px;
+    
+}
+.option-button {
+    padding: 10px 7px;
+    border: 2px solid #013227;
+    width: 100px;
+    margin: 12px;
+    margin-left: 2%;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #013227;
+    width: calc(33.33% - 80px);
+    display: inline-block;
+  }
+  .option-button.selected {
+    background-color: #013227; 
+    color: #fff;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; 
+  }
+  
+  .options {
+    margin: 0 10px; 
+  }
+
+
+button:hover {
+    opacity: 0.8;
+}

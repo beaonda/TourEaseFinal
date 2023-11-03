@@ -1,58 +1,8 @@
 @import '../../assets/css/variables.css';
 
-button:focus {
-    outline: none;
-}
-
-h2 {
-    color: #013227;
-    
-}
-
-p {
-    color: #555;
-    margin-top: -10px;
-    margin-left: 90px;
-    margin-right: 90px;
-    font-size: 14px;
-    
-}
-.option-button {
-    padding: 10px 7px;
-    border: 2px solid #013227;
-    width: 100px;
-    margin: 12px;
-    margin-left: 2%;
-    border-radius: 10px;
-    cursor: pointer;
-    color: #013227;
-    width: calc(33.33% - 80px); /* Adjust width for three columns */
-    display: inline-block;
-  }
-  .option-button.selected {
-    background-color: #013227; /* Change this color to the selected color */
-    color: #fff;
-  }
-
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px; /* Adjust the margin as needed */
-  }
-  
-  .options {
-    margin: 0 10px; /* Add some space between buttons */
-  }
-
-
-button:hover {
-    opacity: 0.8;
-}
-
-/* Media Queries for Tablet */
 @media (max-width: 768px) {
     .section {
-        height: 520px; /* Adjust the height for tablet */
+        height: 520px; 
     }
 
     body{
@@ -69,25 +19,24 @@ button:hover {
         border-radius: 10px;
         cursor: pointer;
         color: #013227;
-        width: calc(33.33% - 10px); /* Adjust width for three columns */
+        width: calc(33.33% - 10px); 
         display: inline-block;
         font-size:11px ;
       }
 }
 
-/* Media Queries for Phones */
+
 @media (max-width: 480px) {
     .section {
         height: 500px;
-        margin-top: 46px; /* Adjust the height for phone */
+        margin-top: 46px;
     }
     body {
-        max-width: 100%; /* Allow full width on smaller screens */
+        max-width: 100%;
         padding: 10px;
-        background-size: 100% 100vh; /* Adjust padding for smaller screens */
-    }
+        background-size: 100% 100vh; }
     .progress {
-        margin-bottom: 20px; /* Adjust margin for progress */
+        margin-bottom: 20px; 
     }
     p {
         color: #555;
@@ -108,7 +57,7 @@ button:hover {
         border-radius: 10px;
         cursor: pointer;
         color: #013227;
-        width: calc(33.33% - 10px); /* Adjust width for three columns */
+        width: calc(33.33% - 10px); 
         display: inline-block;
         font-size:11px ;
       }
