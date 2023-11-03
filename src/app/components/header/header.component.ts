@@ -9,7 +9,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css', '../../../assets/css/homePages.css']
+  styleUrls: ['./header.component.css','./header.component1.css','./header.component2.css', './header.component3.css',  './header.component4.css', '../../../assets/css/homePages.css', '../../../assets/css/homePages1.css', '../../../assets/css/homePages2.css', '../../../assets/css/homePages3.css', '../../../assets/css/homePages4.css', '../../../assets/css/homePages5.css', '../../../assets/css/homePages6.css', '../../../assets/css/homePages7.css', '../../../assets/css/homePages8.css']
 })
 export class HeaderComponent {
   showSideNav: boolean = false;

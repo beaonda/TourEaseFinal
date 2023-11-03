@@ -1,0 +1,80 @@
+body {
+    color: rgba(var(--color-primary-rgb), 1);
+  }
+  
+  a {
+    color: var(--color-links);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: var(--color-links-hover);
+    text-decoration: none;
+  }
+  
+  .span.date{
+    color: #0a3c42;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,a,label,p, button {
+    font-family:'Sodosans';
+  }
+
+  /*--------------------------------------------------------------
+  # Sections & Section Header
+  --------------------------------------------------------------*/
+  section {
+    padding: 40px 0;
+    overflow: hidden;
+  }
+  
+  .section-header {
+    border-bottom: 2px solid #0a3c42;
+  }
+  
+  .section-header h2 {
+    font-size: 50px;
+    color: #0a3c42;
+  }
+  
+  .section-header p {
+    margin-bottom: 0;
+  }
+  
+  /*--------------------------------------------------------------
+  # Scroll top button
+  --------------------------------------------------------------*/
+  .scroll-top {
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    right: 15px;
+    bottom: 15px;
+    z-index: 99999;
+    background: var(--color-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    transition: all 0.4s;
+  }
+  
+  .scroll-top i {
+    font-size: 24px;
+    color: #fff;
+    line-height: 0;
+  }
+  
+  .scroll-top:hover {
+    background: rgba(var(--color-primary-rgb), 0.8);
+    color: #fff;
+  }
+  
+  .scroll-top.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  

@@ -19,7 +19,7 @@
                 <div class="d-flex align-items-center author">
                   <div class="photo"></div>
                   <div class="name">
-                    <h3 class="m-0 p-0">{{post.user}}</h3>
+                    <h3 class="m-0 p-0"><i class="bi bi-person" style="margin-right: 10px;"></i>{{post.user}}</h3>
                   </div>
                 </div>
               </div>
@@ -54,13 +54,41 @@
 
                 <!-- Popular -->
                 <div class="tab-pane fade show active" id="pills-popular" role="tabpanel" aria-labelledby="pills-popular-tab">
-                  <div *ngFor = "let posts of topPosts" class="post-entry-1 border-bottom">
-                    <div class="post-meta" *ngIf = "posts"><span class="date">{{posts.category}}</span> <span class="mx-1">&bullet;</span> <span>{{posts.month + ' ' + posts.date+ ' ' + posts.year}}</span></div>
-                    <h2 class="mb-2" *ngIf = "posts"><a href="#">{{posts.title}}</a></h2>
-                    <span class="author mb-3 d-block" *ngIf = "posts">{{posts.user}}</span>
+                  <div class="post-entry-1 border-bottom">
+                    <div class="post-meta"><span class="date">Sport</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                    <h2 class="mb-2"><a href="#">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
+                    <span class="author mb-3 d-block" style="color:#2b939f; margin-top: -7px;"><i class="bi bi-person" style="margin-right: 10px;"></i>Jenny Wilson</span>
                   </div>
 
-                  
+                  <div class="post-entry-1 border-bottom">
+                    <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                    <h2 class="mb-2"><a href="#">17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</a></h2>
+                    <span class="author mb-3 d-block" style="color:#2b939f; margin-top: -7px;"><i class="bi bi-person" style="margin-right: 10px;"></i>Jenny Wilson</span>
+                  </div>
+
+                  <div class="post-entry-1 border-bottom">
+                    <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                    <h2 class="mb-2"><a href="#">9 Half-up/half-down Hairstyles for Long and Medium Hair</a></h2>
+                    <span class="author mb-3 d-block" style="color:#2b939f; margin-top: -7px;"><i class="bi bi-person" style="margin-right: 10px;"></i>Jenny Wilson</span>
+                  </div>
+
+                  <div class="post-entry-1 border-bottom">
+                    <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                    <h2 class="mb-2"><a href="#">Life Insurance And Pregnancy: A Working Mom’s Guide</a></h2>
+                    <span class="author mb-3 d-block" style="color:#2b939f; margin-top: -7px;"><i class="bi bi-person" style="margin-right: 10px;"></i>Jenny Wilson</span>
+                  </div>
+
+                  <div class="post-entry-1 border-bottom">
+                    <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                    <h2 class="mb-2"><a href="#">The Best Homemade Masks for Face (keep the Pimples Away)</a></h2>
+                    <span class="author mb-3 d-block" style="color:#2b939f; margin-top: -7px;"><i class="bi bi-person" style="margin-right: 10px;"></i>Jenny Wilson</span>
+                  </div>
+
+                  <div class="post-entry-1 border-bottom">
+                    <div class="post-meta"><span class="date">Lifestyle</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                    <h2 class="mb-2"><a href="#">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
+                    <span class="author mb-3 d-block" style="color:#2b939f; margin-top: -7px;"><i class="bi bi-person" style="margin-right: 10px;"></i>Jenny Wilson</span>
+                  </div>
                 </div> <!-- End Popular -->
 
               </div>
