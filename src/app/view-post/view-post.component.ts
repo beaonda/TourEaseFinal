@@ -107,6 +107,10 @@ export class ViewPostComponent {
     this.router.navigate(['/category', category]);
   }
 
+  topPage(postID:string){
+    this.router.navigate(['/view', postID]);
+  }
+
 
   splitBody(inputText:string){
     this.actualBody = inputText.split('\n');

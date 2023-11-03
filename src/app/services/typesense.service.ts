@@ -52,7 +52,7 @@ export class TypesenseService {
     return new Promise((resolve, reject) => {
       this.client.collections('tourist_spots')
         .documents()
-        .search({ q: query, query_by: 'estName' })
+        .search({ q: query, query_by: 'estName'})
         .then((searchResults) => {
           const res = searchResults.hits;
           const list = res!.map((result) => result.document);

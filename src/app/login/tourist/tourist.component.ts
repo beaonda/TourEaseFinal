@@ -64,17 +64,15 @@ export class TouristComponent {
           console.log(res);
           this.fireService.loginWithEmail({email:res.email, password:this.pword}).then((res:any)=>{
             console.log(res);
-            this.user = this.fireService.getCurrentUser();
-            if(this.user.emailVerified){
-              this.load.closeLoadingDialog();
-              this.router.navigate(['home']);
-            }else if (this.user.emailVerified == false){  
-              this.load.closeLoadingDialog();
-              this.router.navigate(['verify']);
-            }else{
-              this.load.closeLoadingDialog();
-              alert("User Error");
-            }
+            this.fireService.collectionExists("users/" + this.user.uid, "suspension").subscribe(exists => {
+              if (exists) {
+                this.load.closeLoadingDialog();
+                this.router.navigate(['suspended']);
+              } else {  
+                this.load.closeLoadingDialog();
+                this.router.navigate(['verify']);
+              }
+            });
           }, (err:any)=>{
             this.load.closeLoadingDialog();
             alert(err.message);

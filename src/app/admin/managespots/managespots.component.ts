@@ -23,9 +23,10 @@ export class ManagespotsComponent {
   city:any;
   category:any;
   status:any;
-  description:any;
+  description:any = null;
   photo:any;
   destList:any;
+  archivedList:any;
 
   batangasCities = [
     {name: 'Agoncillo'},
@@ -74,6 +75,7 @@ export class ManagespotsComponent {
     public typesense:TypesenseService,
     public changeDetector: ChangeDetectorRef,){
       this.retrieveDestinations();
+      this.retrieveArchived();
   }
 
   handleNavigationClick(event:any) {
@@ -140,8 +142,7 @@ export class ManagespotsComponent {
   photos:any;
 
   ngAfterViewInit(){
-    this.showSection("blogs");
-    this.navigationLinks[0].classList.add("active"); 
+     
    }
 
   blob:any;
@@ -181,37 +182,33 @@ export class ManagespotsComponent {
     return new Blob([u8arr],{type:mime});
   }
 
-  async photoData(image:any, blob:any, est_id:any, uname:any){
+  async photoData(image:any, blob:any, tspotData:any){
     try{
-      const url = await this.uploadImage(est_id,blob,image,uname);
+      const url = await this.uploadImage(tspotData,blob,image);
     } catch(e) {
       console.log(e);
     }
   }
   
-  async uploadImage(postID:any, blob: any, imageData:any, uname:any) {
+  async uploadImage(tspotData:any, blob: any, imageData:any) {
     try { 
       const currentDate = Date.now();
-      const filePath = 'postImages/' + currentDate +'.'+ imageData.format;
+      const filePath = 'tspotImages/' + currentDate +'.'+ imageData.format;
       const fileRef =  this.storage.ref(filePath);
       const task = this.storage.upload(filePath, blob);
       let photoData = {
         imageUrl:'',
         postID:'',
         uploadTime: currentDate,
-        user:''
       };
       
       task.snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((downloadURL:any) => {
             photoData.imageUrl = downloadURL;
-            photoData.postID = postID;
-            photoData.user = uname;
-            this.uploadService.savePhoto(photoData);
+            tspotData.photo = downloadURL;
+            this.uploadService.saveTspotPhoto(tspotData);
             this.load.closeLoadingDialog();
-            alert("Posted Successfully.");
-            this.router.navigate(['home']);
           });
         })
       ).subscribe();
@@ -228,7 +225,7 @@ export class ManagespotsComponent {
       estName:this.placeName,
       city:this.city,
       category:this.category,
-      desc:"No Description Yet",
+      desc:this.description,
       photo:"No Photo Yet"
     }
     let counter = 0;
@@ -243,7 +240,9 @@ export class ManagespotsComponent {
     if(counter == 0){
       this.fireService.saveTouristDestion(tourismData).then(
         res=>{
+          
           alert("Successfully Added.");
+          this.photoData(this.pic, this.blob, tourismData);
           //updates the counter
           this.fireService.getDocumentCounter().then((doc)=>{
             if(doc){
@@ -255,6 +254,29 @@ export class ManagespotsComponent {
                 posts:doc.posts
               } */
               doc.tspots++;
+              switch(tourismData.category){
+                case "Nature":
+                  doc.nature++;
+                  break;
+                case "Cultural":
+                  doc.cultural++;
+                  break;
+                case "Industrial":
+                  doc.industrial++;
+                  break;
+                case "Sun and Beach":
+                  doc.sab++;
+                  break;
+                case "Leisure and Entertainment":
+                  doc.leisure++;
+                  break;
+                case "MICE":
+                  doc.conventions++;
+                  break;
+                case "Health and Wellness":
+                  doc.health++;
+                  break;
+              }
               
               this.fireService.updateCount(doc).catch(err => {console.error(err)});
             }
@@ -326,12 +348,14 @@ export class ManagespotsComponent {
     var viewPopUp = document.querySelector("#editPopUp");
     (viewPopUp as HTMLElement).style.display = 'block';
     document.body.style.overflow = 'hidden';
+    this.chosenPic = dest.photo;
     this.editData = dest;
   }
 
   editTData(){
     this.load.openLoadingDialog();
     this.fireService.updateDocument("tourist_spots", this.editData.tourismID, this.editData).then(() => {
+      this.photoData(this.pic, this.blob, this.editData);
       this.load.closeLoadingDialog();
       alert("Updated Successfully");
       this.closeEdit();
@@ -343,6 +367,25 @@ export class ManagespotsComponent {
   archiveTspot(data:any){
     this.load.openLoadingDialog();
     this.fireService.moveDocumentToNewCollection("tourist_spots", "archived_tourist_spots", data.tourismID);
+  }
+
+  retrieveTspot(data:any){
+    this.load.openLoadingDialog();
+    this.fireService.moveDocumentToNewCollection("archived_tourist_spots","tourist_spots", data.tourismID);
+  }
+
+  async featureTspot(data:any){
+    this.load.openLoadingDialog();
+    try {
+      await this.fireService.copyDocumentWithAdditionalFields(
+        'tourist_spots',
+        data.tourismID,
+        'featured_spots'
+      );
+      this.load.closeLoadingDialog();
+    } catch (error) {
+      // Handle errors
+    }
   }
 
   closeEdit(){
@@ -367,6 +410,8 @@ export class ManagespotsComponent {
   ngOnInit(){
     this.list = document.querySelectorAll(".navigation li");
     this.list[3].classList.add("hovered");
+    this.showSection("blogs");
+    
   }
 
   retrieveDestinations(){
@@ -378,6 +423,19 @@ export class ManagespotsComponent {
       )
     ).subscribe(data => {
       this.destList = data;
+    });
+
+  }
+
+  retrieveArchived(){
+    this.fireService.getArchivedDestinations().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.archivedList = data;
     });
 
   }

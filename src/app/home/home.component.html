@@ -9,43 +9,19 @@
           <div class="col-12">
             <div class="swiper sliderFeaturedPosts">
               <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <a href="" class="img-bg d-flex align-items-end" style="background-image: url('assets/img/slider0.png');">
-                    <div class="img-bg-inner">
-                      <h2>Summit Serenity: Conquering Mt. Maculot's Majestic Peaks</h2>
-                      <p>Embark on a hiking adventure to the summit of Mt. Maculot, where breathtaking panoramic views await. This blog details the trekking trail, camping options, and the exhilarating experience of reaching the summit. Whether you're a seasoned hiker or a nature lover, Mt. Maculot promises an unforgettable journey.
+
+
+                <div *ngFor="let slide of sliderList" class="swiper-slide">
+                  <a *ngIf = "slide" class="img-bg d-flex align-items-end" [style.background-image]="'url(' + slide.data.photo + ')'">
+                    <div *ngIf = "slide" class="img-bg-inner">
+                      <h2>{{slide.data.estName}}</h2>
+                      <p>{{slide.data.desc}}
                       </p>
                     </div>
                   </a>
                 </div>
-
-                <div class="swiper-slide">
-                  <a href="" class="img-bg d-flex align-items-end" style="background-image: url('assets/img/slider2.png');">
-                    <div class="img-bg-inner">
-                      <h2>Beneath the Waves: Exploring the Wonders of Anilao's Diving Paradise</h2>
-                      <p>Dive into the mesmerizing underwater world of Anilao, a haven for divers seeking vibrant coral reefs, diverse marine life, and crystal-clear waters. Discover the best dive sites, underwater photography tips, and the unique marine species that make Anilao a must-visit destination for diving enthusiasts.</p>
-                    </div>
-                  </a>
-                </div>
-
-                <div class="swiper-slide">
-                  <a href="" class="img-bg d-flex align-items-end" style="background-image: url('assets/img/slider3.png');">
-                    <div class="img-bg-inner">
-                      <h2>Time-Traveling to Grandeur: Fortune Island's Ruins and Azure Waters</h2>
-                      <p>Explore the allure of Fortune Island, a historical gem just off the coast. Uncover the story behind its Grecian-inspired ruins, soak up the sun on pristine beaches, and take a dip in the clear blue waters. This blog invites readers to discover the perfect blend of history, nature, and relaxation on Fortune Island.</p>
-                    </div>
-                  </a>
-                </div>
-
-                <div class="swiper-slide">
-                  <a href="" class="img-bg d-flex align-items-end" style="background-image: url('assets/img/slider4.jpg');">
-                    <div class="img-bg-inner">
-                      <h2>Luxury by the Shore: Indulgence at Palm Beach Resort</h2>
-                      <p>Experience the epitome of beachfront luxury at Palm Beach Resort. This blog delves into the world of opulent accommodations, gourmet dining, and rejuvenating spa experiences that this resort has to offer. From stunning ocean views to personalized services, Palm Beach Resort is a sanctuary for travelers seeking a lavish coastal retreat.</p>
-                    </div>
-                  </a>
-                </div>
               </div>
+                
               <div class="custom-swiper-button-next">
                 <span class="bi-chevron-right"></span>
               </div>
@@ -58,6 +34,7 @@
           </div>
         </div>
       </div>
+      
     </section><!-- End Hero Slider Section -->
 
     <!-- ======= Post Grid Section ======= -->
@@ -616,8 +593,8 @@
                   <a (click) = "nextPage(leisureList[3].postID)"><img *ngIf="leisurePhotos[2]" [src]="leisurePhotos[2]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>{{leisureList[3].month + ' ' + leisureList[3].date + 'th ' + leisureList[3].year}}</span></div>
                   <h2 class="mb-2"><a (click) = "nextPage(leisureList[3].postID)" *ngIf = "leisureList[3]">{{leisureList[3].title}}</a></h2>
-                  <span class="author mb-3 d-block" (click)="viewAuthor(leisureList[3].user)" *ngIf = "leisureList[3]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{leisureList[3].user}}</span>
-                  <p class="mb-4 d-block">{{truncateString(leisureList[0].body, 150)}}..</p>
+                  <span class="author mb-3 d-block" (click)="viewAuthor(leisureList[3].user)" *ngIf = "leisureList[3]">{{leisureList[3].user}}</span>
+                  <p class="mb-4 d-block">{{truncateString(leisureList[3].body, 150)}}..</p>
                 </div>
               </div>
             </div>

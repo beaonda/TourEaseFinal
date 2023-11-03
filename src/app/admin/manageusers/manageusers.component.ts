@@ -40,6 +40,7 @@ export class ManageusersComponent {
     public firestore:AngularFirestore
     ){
       this.retrieveUsers();
+      this.getSuspendedList();
   }
   list:any;
 
@@ -88,6 +89,19 @@ export class ManageusersComponent {
   ngOnInit(){
     this.list = document.querySelectorAll(".navigation li");
     this.list[2].classList.add("hovered");
+  }
+
+  suspendedUsers:any;
+  getSuspendedList(){
+    this.fireService.getUsersWithSuspendedSubcollection()
+    .then((users) => {
+      this.suspendedUsers = users;
+      console.log(this.suspendedUsers);
+    })
+    .catch((error) => {
+      // Handle errors, e.g., display an error message
+      console.error('Error fetching users with suspended subcollection:', error);
+    });
   }
 
  
@@ -146,15 +160,25 @@ export class ManageusersComponent {
   }
 
   retrieveUsers(): void {
-    this.fireService.getAllUsers().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
-        )
-      )
-    ).subscribe(data => {
-      this.usersList = data;
-      
+    this.fireService.getUsersWithoutSuspendedSubcollection()
+    .then((users) => {
+      this.usersList = users;
+      console.log(this.suspendedUsers);
+    })
+    .catch((error) => {
+      // Handle errors, e.g., display an error message
+    });
+  }
+
+  unsuspend(udata:any){
+    this.load.openLoadingDialog();
+    this.fireService.deleteSubcollection("users", udata.uid, "suspension").then(() => {
+      console.log('User Suspension Lifted');
+      this.load.closeLoadingDialog();
+    })
+    .catch((error) => {
+      this.load.closeLoadingDialog();
+      console.error('Error deleting subcollection:', error);
     });
   }
 
