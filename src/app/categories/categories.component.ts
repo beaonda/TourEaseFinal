@@ -16,7 +16,7 @@ export class CategoriesComponent {
     public router:Router,
     public firestore:AngularFirestore
   ){
-
+    this.getTopspots();
   }
 
   nextPage(postID:string){
@@ -25,10 +25,76 @@ export class CategoriesComponent {
 
   category:any;
   raw_categ:any;
+
+  ngOnDestroy(){
+    this.postList = [];
+      this.photoList = [];
+  }
+
+  goCateg(category:string){
+    this.router.navigate(['/category', category]);
+  }
+
+  topPosts:any[] = [];
+
+  getTopspots(){
+    this.fireservice.getTopDocuments("posts", "views", 5).then(docs => {
+      docs.forEach((doc) => {
+        // Process each document here.
+        switch(doc.month){
+          case 0:
+            doc.month = "JAN";
+            break;
+          case 1:
+            doc.month = "FEB";
+            break;
+          case 2:
+            doc.month = "MAR";
+            break;
+          case 3:
+            doc.month = "APR";
+            break;
+          case 4:
+            doc.month = "MAY";
+            break;
+          case 5:
+            doc.month = "JUN";
+            break;
+          case 6:
+            doc.month = "JUL";
+            break;
+          case 7:
+            doc.month = "AUG";
+            break;
+          case 8:
+            doc.month = "SEPT";
+            break;
+          case 9:
+            doc.month = "OCT";
+            break;
+          case 10:
+            doc.month = "NOV";
+            break;
+          case 11:
+            doc.month = "DEC";
+            break;
+          /* default:
+            this.natureList[i].month = "NO";
+            break; */
+        } 
+        this.topPosts.push(doc);
+       /*  console.log(this.topPosts); */
+      });
+    }).catch(err => {
+      console.error(err);
+    })
+  }
+
   ngOnInit(){
-    this.postList = [];
-    this.postList = [];
+    
     this.route.paramMap.subscribe(params => {
+      this.postList = [];
+      this.photoList = [];
       this.raw_categ = params.get('category');
       if(this.raw_categ == "sun_and_beach"){
         this.category = "Sun and Beach";
@@ -65,6 +131,8 @@ export class CategoriesComponent {
     }
   }
 
+  
+
   postList:any[] = [];
   photoList:any[] = [];
   getDocs(){
@@ -73,6 +141,47 @@ export class CategoriesComponent {
       for(var k in res){
         this.postList.push(res[k].data());
         this.postList[i].body = this.truncateString(this.postList[i].body, 160);
+        switch(this.postList[i].month){
+          case 0:
+            this.postList[i].month = "JAN";
+            break;
+          case 1:
+            this.postList[i].month = "FEB";
+            break;
+          case 2:
+            this.postList[i].month = "MAR";
+            break;
+          case 3:
+            this.postList[i].month = "APR";
+            break;
+          case 4:
+            this.postList[i].month = "MAY";
+            break;
+          case 5:
+            this.postList[i].month = "JUN";
+            break;
+          case 6:
+            this.postList[i].month = "JUL";
+            break;
+          case 7:
+            this.postList[i].month = "AUG";
+            break;
+          case 8:
+            this.postList[i].month = "SEPT";
+            break;
+          case 9:
+            this.postList[i].month = "OCT";
+            break;
+          case 10:
+            this.postList[i].month = "NOV";
+            break;
+          case 11:
+            this.postList[i].month = "DEC";
+            break;
+          /* default:
+            this.natureList[i].month = "NO";
+            break; */
+        } 
         var postID = this.postList[i].postID;
         this.fireservice.getPhotoDocument(postID).then(doc =>{
             this.photoList.push(doc.imageUrl);

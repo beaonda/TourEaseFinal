@@ -35,6 +35,7 @@ export class ViewPostComponent {
     
     ) { 
       this.getLocation();
+      this.getTopspots();
     }
 
   ngOnInit(): void {
@@ -217,7 +218,8 @@ export class ViewPostComponent {
                   map: map2,
                   title: result.name,
                 });
-                this.addMarker(result.geometry?.location, result);
+                
+                this.addMarker(result.geometry?.location, result, type);
                 // You can do further processing here
               });
             }
@@ -277,6 +279,60 @@ export class ViewPostComponent {
     })
   }
 
+  topPosts:any[] = [];
+  getTopspots(){
+    this.fireservice.getTopDocuments("posts", "views", 5).then(docs => {
+      docs.forEach((doc) => {
+        // Process each document here.
+        switch(doc.month){
+          case 0:
+            doc.month = "JAN";
+            break;
+          case 1:
+            doc.month = "FEB";
+            break;
+          case 2:
+            doc.month = "MAR";
+            break;
+          case 3:
+            doc.month = "APR";
+            break;
+          case 4:
+            doc.month = "MAY";
+            break;
+          case 5:
+            doc.month = "JUN";
+            break;
+          case 6:
+            doc.month = "JUL";
+            break;
+          case 7:
+            doc.month = "AUG";
+            break;
+          case 8:
+            doc.month = "SEPT";
+            break;
+          case 9:
+            doc.month = "OCT";
+            break;
+          case 10:
+            doc.month = "NOV";
+            break;
+          case 11:
+            doc.month = "DEC";
+            break;
+          /* default:
+            this.natureList[i].month = "NO";
+            break; */
+        } 
+        this.topPosts.push(doc);
+       /*  console.log(this.topPosts); */
+      });
+    }).catch(err => {
+      console.error(err);
+    })
+  }
+
   @ViewChild(MapInfoWindow) infoWindow!: MapInfoWindow;
 
   openInfoWindow(marker:any) {
@@ -284,7 +340,15 @@ export class ViewPostComponent {
   }
 
   markers:any[] = [];
-  addMarker(pos:any, result:any) {
+  addMarker(pos:any, result:any, type:string) {
+    let newType;
+    if(type == 'hospital'){
+      newType = '../../assets/img/hospi.png';
+    }else if(type == 'pharmacy'){
+      newType = '../../assets/img/pharma.png';
+    }else if(type == 'car_repair'){
+      newType = '../../assets/img/repair.png';
+    }
     this.markers.push({
       position: pos,
       label: {
@@ -293,6 +357,10 @@ export class ViewPostComponent {
       },
       title: result.name,
       options: { animation: google.maps.Animation.BOUNCE },
+      icon: {
+        url: newType,
+        scaledSize: new google.maps.Size(50, 50)
+      }
     });
     console.log(this.markers[0].title);
   }

@@ -1,9 +1,77 @@
-  
-@font-face {
-  font-family: 'Sodosans';
-  src: url('../../assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
-       url('../../assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
+/* Styles for default view (laptop) */
+.header_edit {
+  margin-top: 267px;
+  margin-left: 1391px;
+  background-color: #21757f;
+  border: none;
+  border-radius: 50%;
+  width:35px;
+  height: 35px;
 }
+
+.header__wrapper header {
+width: 100%;
+background: url("../../assets/img/coverpic.png") no-repeat 50% 20% / cover;
+min-height: calc(100px + 37vw);
+}
+
+
+.profile_edit {
+  position: absolute;
+  top: 86%;
+  left: 77%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  width:35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+  background-color: #185c64;
+}
+
+.bi-camera {
+  color: white;
+  font-size: 20px;
+}
+
+/* Styles for screens with maximum width of 768px (tablets) */
+@media (max-width: 768px) {
+  .header_edit {
+      margin-top: 22%;
+      margin-left: 92%;
+  }
+  
+  .profile_edit {
+      top: 80%;
+      left: 75%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header_edit {
+      margin-top: 20%;
+  margin-left: 94%;
+  }
+
+ 
+}
+
+/* Styles for screens with maximum width of 320px (small mobile screens) */
+@media (max-width: 320px) {
+  .header_edit {
+      margin-top: 61%;
+      margin-bottom: 2%;
+      margin-left: 86%;
+  }
+  
+  .profile_edit {
+      top: 90%;
+  left: 80%;
+  }
+}
+
+
+
 
 .rating label {
   cursor: pointer;
@@ -228,8 +296,11 @@ nav ul li a.active {
 }
 
 .blog__post img {
-    max-width: 236px; /* Set the maximum width to the container width */
-    max-height: 236px; /* Adjust the maximum height as per your requirements */
+  width: 677px;
+  height: 310px; /* Set a specific height */
+  object-fit: cover; /* This property ensures the image covers the specified dimensions */
+  max-width: 100%;
+  cursor: pointer; /* Add cursor style to indicate clickable *//* Adjust the maximum height as per your requirements */
 }
 
 .badge__item {

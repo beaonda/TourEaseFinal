@@ -46,7 +46,7 @@ const routes: Routes = [
       {path: 'admin/spots', component:ManagespotsComponent},
       {path: 'profile/:uname', component:UserProfileComponent},
       {path: 'retrieve_account', component:ForgotPassComponent},
-      {path: 'settings', component:SettingsComponent},
+      {path: 'settings/:uname', component:SettingsComponent},
       {path: 'suspended', component:SuspendedComponent}
     ])],
   exports: [RouterModule]

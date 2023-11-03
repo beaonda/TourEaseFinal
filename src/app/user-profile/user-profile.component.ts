@@ -11,6 +11,8 @@ export class UserProfileComponent {
 
   user:any;
   sameUser:boolean = false;
+  edit_uname:any;
+  edit_bio:any;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -69,6 +71,7 @@ export class UserProfileComponent {
   }
 
   handleNavigationClick(event:any) {
+    this.navigationLinks = document.querySelectorAll("nav ul li a");
     const targetId = event.target.getAttribute("data-section");
     if (targetId) {
         this.showSection(targetId);

@@ -68,11 +68,13 @@ export class TypesenseService {
   
 }
 
+
+
 export interface SearchResult {
   document: {
     estName: string;
-    city:string
-    // Add other properties if they exist
+    city:string;
+    category:string;// Add other properties if they exist
   };
 
   // Add other properties if they exist
