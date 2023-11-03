@@ -65,15 +65,15 @@
         
                         <tbody>
                             <tr *ngFor = "let user of usersList">
-                                      <td>{{user.fname + ' ' + user.mname + ' ' + user.lname}} </td> 
+                                      <td>{{user.data.fname + ' ' + user.data.mname + ' ' + user.data.lname}} </td> 
                                     <!--    <td>{{user.uid}}</td> -->
-                                        <td>{{user.uname}}</td>
+                                        <td>{{user.data.uname}}</td>
                                     <!--    <td>{{user.contact}}</td> -->
-                                       <td>{{user.email}}</td>
+                                       <td>{{user.data.email}}</td>
                                
                                 
                                 <td>
-                                    <button class="edit-button"  type="location" (click) = "viewUser(user)">View All</button>
+                                    <button class="edit-button"  type="location" (click) = "viewUser(user.data)">View All</button>
                                 </td>
         
                                 <td>
@@ -176,7 +176,7 @@
                       
                       <div class="recentOrders" >
                           <div class="cardHeader">
-                              <h2>Users Information</h2>
+                              <h2>Suspended Users</h2>
                          
                           </div>
               
@@ -196,20 +196,20 @@
                               </thead>
               
                               <tbody>
-                                  <tr *ngFor = "let user of usersList">
-                                            <td>{{user.fname + ' ' + user.mname + ' ' + user.lname}} </td> 
+                                  <tr *ngFor = "let sus of suspendedUsers">
+                                            <td>{{sus.data.fname + ' ' + sus.data.mname + ' ' + sus.data.lname}} </td> 
                                           <!--    <td>{{user.uid}}</td> -->
-                                              <td>{{user.uname}}</td>
+                                              <td>{{sus.data.uname}}</td>
                                           <!--    <td>{{user.contact}}</td> -->
-                                             <td>{{user.email}}</td>
+                                             <td>{{sus.data.email}}</td>
                                      
                                       
                                       <td>
-                                          <button class="edit-button"  type="location" (click) = "viewUser(user)">View All</button>
+                                          <button class="edit-button"  type="location" (click) = "viewUser(sus.data)">View All</button>
                                       </td>
               
                                       <td>
-                                          <button (click)="suspendUser(user)" class="delete-button">Suspend</button>
+                                          <button (click)="unsuspend(sus.data)" class="delete-button">Lift Suspension</button>
                                       </td>
                                     
                                       

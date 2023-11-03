@@ -204,6 +204,13 @@ export class RegisterComponent {
                   }else{
                     doc.foreign_users++;
                   }
+                  if(this.gender == "Female"){
+                    doc.female++;
+                  }else if(this.gender == "Male"){
+                    doc.male++;
+                  }else{
+                    doc.notSay++;
+                  }
                   doc.users++;
                   doc.recent_users++;
                   console.log(data);

@@ -93,7 +93,7 @@
                                         <div class="dropdown-content">
                                             <a (click)="editTspot(dest)" class="edit">Edit</a>
                                             <a (click)="archiveTspot(dest)" class="archive">Archive</a>
-                                            <a class="feature">Feature</a>
+                                            <a (click)="featureTspot(dest)" class="feature">Feature</a>
                                         </div>
                                     </div>
                                 </td>
@@ -127,7 +127,7 @@
                     </div>
                     <div class="recentOrders">
                         <div class="cardHeader">
-                            <h2>Spots</h2>
+                            <h2>Archived Spots</h2>
                        
                         </div>
             
@@ -144,13 +144,13 @@
                             </thead>
             
                             <tbody>
-                                <tr *ngFor = "let dest of destList">
-                                    <td>{{dest.estName}}</td>
-                                    <td>{{dest.city}}</td>
-                                    <td>{{dest.category}}</td>
+                                <tr *ngFor = "let arch of archivedList">
+                                    <td>{{arch.estName}}</td>
+                                    <td>{{arch.city}}</td>
+                                    <td>{{arch.category}}</td>
                                     <!-- <td>{{dest.status}}</td> -->
                                     <td>
-                                        <button class="viewButton" (click) = "viewSpot(dest)">View</button>
+                                        <button class="viewButton" (click) = "viewSpot(arch)">View</button>
                                         <!-- <div class="popup">
                                             <div class="popup-content">
                                                 <span class="close">&times;</span>
@@ -168,12 +168,8 @@
                                       </td>
                                     <td>
                                         <div class="decision-dropdown">
-                                            <button class="decision-button">Select</button>
-                                            <div class="dropdown-content">
-                                                <a (click)="editTspot(dest)" class="edit">Edit</a>
-                                                <a (click)="archiveTspot(dest)" class="archive">Archive</a>
-                                                <a class="feature">Feature</a>
-                                            </div>
+                                            <button class="viewButton" (click)="retrieveTspot(arch)">Retrieve</button>
+                                            
                                         </div>
                                     </td>
                                 </tr>
@@ -239,9 +235,6 @@
                             <option value="Leisure and Entertainment">Leisure & Entertainment</option>
                             <option value="MICE">Meetings, Incentives, Conventions, and Exhibitions</option>
                             <option value="Health and Wellness">Health, Wellness, and Retirement</option>
-                            <option value="Cruise and Nautical">Cruise & Nautical</option>
-                            <option value="Diving and Marine Sports">Diving and Marine Sports</option>
-                            <option value="Education">Education</option>
                             
                            </select>
                     </div>
@@ -281,7 +274,8 @@
         
                     <div class="form-group">
                         <label for="photos">Photo</label>
-                        <input [(ngModel)]="photo" type="file" id="photos" name="photos" accept="image/*" required>
+                        <button (click)="takePicture()" [(ngModel)]="photo" id="photos" name="photos">Choose Photo</button>
+                        <img *ngIf = "chosenPic" [src] = "chosenPic" style="width: 100%;"/>
                     </div>
         
                     <div class="form-group">
@@ -338,7 +332,7 @@
                     <div *ngIf = "tspotView" class="form-group">
                         <label for="photos">Photo</label>
                         <p *ngIf = "tspotView.photo == 'No Photo Yet'">No Photo Yet</p>
-                        <img *ngIf = "tspotView.photo != 'No Photo Yet'" />
+                        <img style="width: 100%;" *ngIf = "tspotView.photo != 'No Photo Yet'" [src] = "tspotView.photo"/>
                     </div>
                 </form>
               
@@ -392,8 +386,8 @@
         
                     <div class="form-group">
                         <label for="photos">Photo</label>
-                        <button (click)="takePicture()" [(ngModel)]="photo" id="photos" name="photos">Choose Photo</button>
-                        <img [src] = "chosenPic" style="width: 100%;"/>
+                        <button (click)="takePicture()" [(ngModel)]="photo" id="photos" name="photos">Choose Another Photo</button>
+                        <img *ngIf = "chosenPic" [src] = "chosenPic" style="width: 100%;"/>
                     </div>
         
                     <div class="form-group">

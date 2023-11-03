@@ -46,4 +46,8 @@ export class FileuploadService {
   savePhoto(data:any){
     return this.firestore.collection("post_photos").doc(data.postID).set(data);
   }
+
+  saveTspotPhoto(data:any){
+    return this.firestore.collection("tourist_spots").doc(data.tourismID).update(data)  ;
+  }
 }

@@ -32,6 +32,7 @@ export class HomeComponent {
     this.load.closeLoadingDialog();
     this.getTopspots();
     this.getRecentPosts();
+    this.getSliderFiles();
   }
 
   truncateString(inputString: string, maxLength: number): string {
@@ -40,6 +41,19 @@ export class HomeComponent {
     } else {
       return inputString.substring(0, maxLength);
     }
+  }
+
+
+  sliderList:any;
+  getSliderFiles(){
+    this.fireservice.getTop5Descending()
+      .then((documents) => {
+        this.sliderList = documents;
+      })
+      .catch((error) => {
+        // Handle errors, e.g., display an error message
+        console.error('Error fetching top 5 documents:', error);
+      });
   }
 
   topPosts:any[] = [];

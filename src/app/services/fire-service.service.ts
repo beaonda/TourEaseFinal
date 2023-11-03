@@ -5,7 +5,7 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { Observable, map, switchMap } from 'rxjs';
 import * as auth from 'firebase/auth';
 import firebase from 'firebase/compat/app';
-import { FieldValue, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { DocumentData, FieldValue, QueryDocumentSnapshot, QuerySnapshot } from '@angular/fire/firestore';
 import { LoaderService } from './loader.service';
 
 @Injectable({
@@ -19,6 +19,8 @@ export class FireServiceService {
   post:any;
   commentItem:any;
   comment:any;
+  archivedSpotItem:any;
+  archiveSpot:any;
   
 
 
@@ -36,6 +38,9 @@ export class FireServiceService {
 
     this.destinationCollection = firestore.collection<Destination>('tourist_spots', (ref) =>ref.orderBy('estName').limit(50));
     this.destiItems = this.destinationCollection.valueChanges();
+
+    this.archivedSpotsCollection = firestore.collection<Destination>('archived_tourist_spots', (ref) =>ref.limit(50));
+    this.archivedSpotItems = this.archivedSpotsCollection.valueChanges();
 
     this.postsCollection = firestore.collection<Post>('posts', (ref) =>ref.limit(50));
     this.postItems = this.postsCollection.valueChanges();
@@ -69,6 +74,12 @@ export class FireServiceService {
   commentItems: Observable<Comment[]>;
   addCommentItem(commentItem: Comment) {
     this.commentsCollection.add(commentItem);
+  }
+
+  private archivedSpotsCollection: AngularFirestoreCollection<Comment>;
+  archivedSpotItems: Observable<Destination[]>;
+  addArchivedSpotItem(archivedSpotItem: Comment) {
+    this.archivedSpotsCollection.add(archivedSpotItem);
   }
 
   //End of Collections
@@ -147,6 +158,94 @@ export class FireServiceService {
         }
       })
     );
+  }
+
+  getTop5Descending(): Promise<any[]> {
+    return this.firestore
+      .collection('featured_spots', (ref) => ref.orderBy('dateFeatured', 'desc').limit(5))
+      .get()
+      .toPromise()
+      .then((querySnapshot) => {
+        const top5Documents: any[] = [];
+        querySnapshot!.forEach((doc) => {
+          top5Documents.push({ id: doc.id, data: doc.data() });
+        });
+        return top5Documents;
+      })
+      .catch((error) => {
+        throw error; // Handle errors as needed
+      });
+  }
+
+  deleteSubcollection(parentCollection: string, parentId: string, subcollection: string): Promise<void> {
+    // Reference to the parent document
+    const parentDocRef = this.firestore.collection(parentCollection).doc(parentId);
+
+    // Reference to the subcollection
+    const subcollectionRef = parentDocRef.collection(subcollection);
+
+    return subcollectionRef.get().toPromise().then((querySnapshot) => {
+      // Delete all documents in the subcollection
+      const batch = this.firestore.firestore.batch();
+      querySnapshot!.docs.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      // Commit the batch to delete all documents in the subcollection
+      return batch.commit();
+    });
+  }
+
+  async getUsersWithoutSuspendedSubcollection(): Promise<any[]> {
+    const usersCollection = this.firestore.collection('users');
+    const usersWithoutSuspended: any[] = [];
+
+    try {
+      const querySnapshot = await usersCollection.get().toPromise();
+
+      for (const docChange of querySnapshot!.docs) {
+        const docData = docChange.data();
+        const uid = docChange.id;
+
+        const subcollectionRef = docChange.ref.collection('suspension');
+        const subcollectionQuerySnapshot = await subcollectionRef.get();
+
+        if (subcollectionQuerySnapshot.empty) {
+          // The user does not have a 'suspended' subcollection
+          usersWithoutSuspended.push({ id: uid, data: docData });
+        }
+      }
+
+      return usersWithoutSuspended;
+    } catch (error) {
+      throw error; // Handle errors as needed
+    }
+  }
+
+  async getUsersWithSuspendedSubcollection(): Promise<any[]> {
+    const usersCollection = this.firestore.collection('users');
+    const usersWithSuspended: any[] = [];
+
+    try {
+      const querySnapshot = await usersCollection.get().toPromise();
+
+      for (const docChange of querySnapshot!.docs) {
+        const docData = docChange.data();
+        const uid = docChange.id;
+
+        const subcollectionRef = usersCollection.doc(uid).collection('suspension');
+        const subcollectionQuerySnapshot = await subcollectionRef.get().toPromise();
+
+        if (!subcollectionQuerySnapshot!.empty) {
+          // The user has a 'suspended' subcollection
+          usersWithSuspended.push({ id: uid, data: docData });
+        }
+      }
+
+      return usersWithSuspended;
+    } catch (error) {
+      throw error; // Handle errors as needed
+    }
   }
 
   moveDocumentToNewCollection(
@@ -239,6 +338,34 @@ export class FireServiceService {
   }
   resetPassword(email: string) {
     return this.auth.sendPasswordResetEmail(email);
+  }
+
+  async copyDocumentWithAdditionalFields(sourceCollection: string, sourceDocumentId: string, targetCollection: string): Promise<void> {
+    try {
+      // Step 1: Get the source document
+      const sourceDocumentRef = this.firestore.collection(sourceCollection).doc(sourceDocumentId);
+      const sourceDocumentSnapshot = await sourceDocumentRef.get().toPromise();
+      if (!sourceDocumentSnapshot!.exists) {
+        throw new Error('Source document not found');
+      }
+      const currentDate = Date.now();
+      const additionalFields: { [key: string]: any } = {
+        dateFeatured: currentDate,
+      };
+
+      // Step 2: Create a new document with additional fields
+      const newDocumentData = {
+        ...sourceDocumentSnapshot!.data() as Record<string, any>, // Copy all existing fields
+        ...additionalFields // Add the additional fields
+      };
+
+      // Step 3: Write the new document to the target collection
+      const targetCollectionRef = this.firestore.collection(targetCollection);
+      await targetCollectionRef.add(newDocumentData);
+    } catch (error) {
+      console.error('Error copying document:', error);
+      throw error;
+    }
   }
 
 
@@ -376,6 +503,10 @@ export class FireServiceService {
 
   getAllTouristDestinations(){
     return this.destinationCollection;
+  }
+
+  getArchivedDestinations(){
+    return this.archivedSpotsCollection;
   }
 
   getAllPosts(){
