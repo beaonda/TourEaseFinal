@@ -96,7 +96,7 @@ export class NewPostComponent {
   userCheck(){
     this.load.openLoadingDialog();
     this.currentUser = this.fireService.getCurrentUser();
-    console.log(this.currentUser);
+    /* console.log(this.currentUser); */
     if(this.currentUser == null){
       alert("User must be logged in to be able to post");
       this.router.navigate(['login']);
@@ -123,7 +123,7 @@ export class NewPostComponent {
     this.fireService.getTspotDocument(this.search)
       .then((doc)=>{
         this.touristData = doc;
-        console.log(this.touristData);
+        /* console.log(this.touristData); */
         
             this.postData = {
               postID:this.firestore.createId(),
@@ -147,7 +147,7 @@ export class NewPostComponent {
         
         this.fireService.addOneUserProfilePost(uname);
         this.postCont();
-        console.log(this.postData);
+        /* console.log(this.postData); */
       }).catch(err => {
         this.load.closeLoadingDialog();
         alert(err);
@@ -161,7 +161,7 @@ export class NewPostComponent {
   postCont(){
     this.fireService.savePost(this.postData).then(
       res=>{
-        console.log(res);
+       /*  console.log(res); */
         this.photoData(this.pic, this.blob, this.postData.postID, this.postData.user);
         this.upload(this.postData);
         
@@ -200,7 +200,7 @@ export class NewPostComponent {
 
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
-    console.log(this.selectedFiles);
+    /* console.log(this.selectedFiles); */
   }
 
   upload(data:any): void {
@@ -334,7 +334,7 @@ async uploadImage(postID:any, blob: any, imageData:any, uname:any) {
     this.typesense.searchEst(this.search)
       .then((res) => {
         if(res){
-          console.log(res);
+         /*  console.log(res); */
           
           for(var k in res){
            this.estNameList.push(res[k].estName);
@@ -351,7 +351,7 @@ async uploadImage(postID:any, blob: any, imageData:any, uname:any) {
   }
 
   selectResult(result: string, i:number) {
-    console.log(result);
+   /*  console.log(result); */
     this.search = result; // Set the input value to the selected result
     this.showResults = false; // Hide the results
     this.city = this.estCityList[i];

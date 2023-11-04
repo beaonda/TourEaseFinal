@@ -99,9 +99,9 @@ export class DashboardComponent {
 
   async getNumbers(){
     this.usersCount = await this.fireService.getDocumentCount('users');
-    console.log(this.usersCount); 
+    /* console.log(this.usersCount);  */
     this.tspotCount = await this.fireService.getDocumentCount('tourist_spots');
-    console.log(this.tspotCount); 
+   /*  console.log(this.tspotCount);  */
   }
 
   async getCategoryCount() {

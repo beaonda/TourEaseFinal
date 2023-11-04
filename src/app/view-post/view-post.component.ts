@@ -51,7 +51,7 @@ export class ViewPostComponent {
     this.showSection("blogs");
     this.navigationLinks[0].classList.add("active"); 
 
-    console.log(this.postID.toString());
+  /*   console.log(this.postID.toString()); */
     
   }
 
@@ -115,7 +115,7 @@ export class ViewPostComponent {
   splitBody(inputText:string){
     this.actualBody = inputText.split('\n');
     this.actualBody = this.actualBody.filter((text:string) => text.trim() !== "");
-    console.log(this.actualBody);
+    /* console.log(this.actualBody); */
   }
 
   items$: Observable<any[]> = new Observable<any[]>();
@@ -176,7 +176,7 @@ export class ViewPostComponent {
         lat: this.postDoc.coords.lat,
         lng: this.postDoc.coords.lng,
       };
-      console.log(this.locCenter);
+      /* console.log(this.locCenter); */
 
       const request: google.maps.DirectionsRequest = {
         destination: this.newCenter,
@@ -210,7 +210,7 @@ export class ViewPostComponent {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
               // Handle the results for the current type
               results!.forEach(result => {
-                console.log(result);
+                /* console.log(result); */
                 /* this.newMarkerPos = {
                   lat: result.geometry!.location!.lat(),
                   lng: result.geometry!.location!.lng(),
@@ -237,7 +237,7 @@ export class ViewPostComponent {
     });
     this.fireservice.getPhotoDocument(this.postID).then((doc:any) =>{
       this.postPhoto = doc;
-      console.log(doc);
+      /* console.log(doc); */
     }).catch(err => {
       console.log(err);
     });
@@ -366,7 +366,7 @@ export class ViewPostComponent {
         scaledSize: new google.maps.Size(50, 50)
       }
     });
-    console.log(this.markers[0].title);
+   /*  console.log(this.markers[0].title); */
   }
 
   center: google.maps.LatLngLiteral = {

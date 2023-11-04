@@ -24,8 +24,8 @@ import { ManagepostsComponent } from './admin/manageposts/manageposts.component'
 import { firebaseConfig } from './firebase-config';
 import { AngularFireModule } from '@angular/fire/compat';
 import { FormsModule } from '@angular/forms';
-import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 import { NewPostComponent } from './new-post/new-post.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';

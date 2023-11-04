@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { FireServiceService } from '../../services/fire-service.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from "firebase/compat/app";
-import "firebase/auth";
-import { GoogleAuthProvider } from 'firebase/auth';
 import { LoaderService } from '../../services/loader.service';
 
 @Component({
@@ -26,6 +23,10 @@ export class TouristComponent {
     fireAuth.authState.subscribe(user => {
       this.user = user;
     });
+  }
+
+  nav(where:any){
+    this.router.navigate([where]);
   }
 
   containsEmail() {

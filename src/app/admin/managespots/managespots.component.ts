@@ -107,9 +107,8 @@ export class ManagespotsComponent {
     this.typesense.searchEst(this.search)
       .then((res) => {
         if(res){
-          console.log(res);
+          /* console.log(res); */
           this.destList = res;
-          console.log(res); 
         }else{
           console.log("undefined res")
         }
@@ -233,7 +232,7 @@ export class ManagespotsComponent {
     for(var key in this.destList){
       if(tourismData.estName.toUpperCase() === this.destList[key].estName.toUpperCase()){
         counter++;
-        console.log(tourismData.estName.toUpperCase() + this.destList[key].estName.toUpperCase());
+        /* console.log(tourismData.estName.toUpperCase() + this.destList[key].estName.toUpperCase()); */
       }
     }
     
@@ -295,7 +294,7 @@ export class ManagespotsComponent {
         }
       );
     }else{
-      console.log(counter);
+      /* console.log(counter); */
       
       alert("The Name of the Place already exists.")
     }

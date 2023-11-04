@@ -25,7 +25,7 @@ export class ManagepostsComponent {
       )
     ).subscribe(data => {
       this.postList = data;
-      console.log(this.postList);
+      /* console.log(this.postList); */
     });
   }
 

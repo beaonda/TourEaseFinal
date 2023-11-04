@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Option {
   name: string;
@@ -17,6 +18,13 @@ interface Section {
   styleUrls: ['./getstarted.component.css','./getstarted.component1.css','./getstarted.component3.css','./getstarted.component4.css']
 })
 export class GetstartedComponent {
+
+    constructor(
+      public router: Router
+    ){
+
+    }
+
     sections: Section[] = [
         {
           title: 'Reason for visiting?',
@@ -82,6 +90,10 @@ export class GetstartedComponent {
       this.currentSection++;
       this.progressSteps[this.currentSection] = true;
     }
+  }
+
+  nav(where:any){
+    this.router.navigate([where]);
   }
 
   goBack() {

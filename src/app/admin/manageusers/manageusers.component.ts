@@ -96,7 +96,7 @@ export class ManageusersComponent {
     this.fireService.getUsersWithSuspendedSubcollection()
     .then((users) => {
       this.suspendedUsers = users;
-      console.log(this.suspendedUsers);
+      /* console.log(this.suspendedUsers); */
     })
     .catch((error) => {
       // Handle errors, e.g., display an error message
@@ -117,7 +117,7 @@ export class ManageusersComponent {
       if (result === true) {
         // User clicked "OK," perform your action
         this.load.openLoadingDialog();
-        console.log(data.uid);
+        /* console.log(data.uid); */
         const suspendData = {
           reason:reason,
           day: day,
@@ -163,7 +163,7 @@ export class ManageusersComponent {
     this.fireService.getUsersWithoutSuspendedSubcollection()
     .then((users) => {
       this.usersList = users;
-      console.log(this.suspendedUsers);
+      /* console.log(this.suspendedUsers); */
     })
     .catch((error) => {
       // Handle errors, e.g., display an error message
@@ -173,7 +173,7 @@ export class ManageusersComponent {
   unsuspend(udata:any){
     this.load.openLoadingDialog();
     this.fireService.deleteSubcollection("users", udata.uid, "suspension").then(() => {
-      console.log('User Suspension Lifted');
+      alert('User Suspension Lifted');
       this.load.closeLoadingDialog();
     })
     .catch((error) => {

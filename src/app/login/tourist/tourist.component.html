@@ -55,7 +55,7 @@
                       <input type="checkbox" checked="checked"/>
                       <div class="control__indicator"></div>
                     </label>
-                    <span><a href="/retrieve_account" class="forgot-pass">Forgot Password</a></span> 
+                    <span><a (click)="nav('retrieve_account')" class="forgot-pass">Forgot Password</a></span> 
                   </div>
 
                   <button (click)="login()" type="submit" class="btn btn-pill text-white btn-block btn-primary" [disabled] = "loginForm.invalid" style="padding: 2px 30px; margin-left: 35%; background-color: #21757f; border-color: #21757f;" >Log In</button> <!-- Adjusted padding -->

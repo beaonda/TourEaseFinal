@@ -231,7 +231,7 @@
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
           <h2>Nature Tourism</h2>
-          <div><a href="category/nature" class="more">See All Natural Spots</a></div>
+          <div><a (click)="goCateg('nature')" class="more">See All Natural Spots</a></div>
         </div>
 
         <div class="row" *ngIf = "natureList">
@@ -329,7 +329,7 @@
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
           <h2>Culture and History</h2>
-          <div><a href="category.html" class="more">See All Cultural Spots</a></div>
+          <div><a (click)="goCateg('cultural')" class="more">See All Cultural Spots</a></div>
         </div>
 
         <div class="row">
@@ -426,7 +426,7 @@
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
           <h2>Sun and Beach</h2>
-          <div><a href="category.html" class="more">See All Beaches</a></div>
+          <div><a (click)="goCateg('sun_and_beach')" class="more">See All Beaches</a></div>
         </div>
 
         <div class="row g-5">
@@ -549,7 +549,7 @@
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
           <h2>Leisure and Entertainment</h2>
-          <div><a href="category.html" class="more">See All Entertainment Spots</a></div>
+          <div><a (click)="goCateg('leisure')" class="more">See All Entertainment Spots</a></div>
         </div>
 
         <div class="row">

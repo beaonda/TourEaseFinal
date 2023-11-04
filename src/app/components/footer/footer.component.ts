@@ -28,6 +28,10 @@ export class FooterComponent {
     this.router.navigate(['/view', postID]);
   }
 
+  nav(where:any){
+    this.router.navigate([where]);
+  }
+
   recentPosts:any[] = [];
   recentPhotos:any[] = [];
   getRecentPosts(){

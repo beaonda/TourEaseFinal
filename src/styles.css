@@ -8,3 +8,5 @@ body { margin: 0; }
     src: url('assets/fonts/sodosans/SoDoSans-Regular.woff2') format('woff2'),
          url('assets/fonts/sodosans/SoDoSans-Regular.woff') format('woff');
   }
+
+  @import "~aos/dist/aos.css";

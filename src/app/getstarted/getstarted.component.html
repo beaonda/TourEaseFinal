@@ -21,7 +21,7 @@
         <button id="nextBtn" (click)="goNext()">Next</button>
       </div>
       <div class="options" *ngIf="currentSection === sections.length - 1">
-        <a id="viewMoreBtn" href="homepage.html"><button>Explore More</button></a>
+        <a id="viewMoreBtn" (click)="nav('home')"><button>Explore More</button></a>
       </div>
     </div>
   </div>

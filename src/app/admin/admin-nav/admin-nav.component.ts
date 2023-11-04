@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-nav',
@@ -7,9 +8,20 @@ import { Component } from '@angular/core';
 })
 export class AdminNavComponent {
   list:any;
+
+  constructor(
+    public router: Router
+  ){
+
+  }
+
   ngOnInit(){
     
     
+  }
+
+  nav(where:any){
+    this.router.navigate([where]);
   }
 
 }
