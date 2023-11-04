@@ -11,7 +11,7 @@ import { LoaderService } from '../services/loader.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css','./home.component1.css', './home.component2.css', './home.component8.css','./home.component3.css', './home.component4.css', './home.component5.css', './home.component6.css', './home.component7.css', '../../assets/css/homePages.css', '../../assets/css/homePages1.css', '../../assets/css/homePages2.css', '../../assets/css/homePages3.css', '../../assets/css/homePages4.css', '../../assets/css/homePages5.css', '../../assets/css/homePages6.css', '../../assets/css/homePages7.css', '../../assets/css/homePages8.css', '../../assets/css/homePages9.css']
+  styleUrls: ['./home.component.css','./home.component1.css', './home.component2.css', './home.component8.css','./home.component3.css', './home.component4.css', './home.component5.css', './home.component6.css', './home.component7.css', '../../assets/css/homePages.css', '../../assets/css/homePages1.css', '../../assets/css/homePages2.css', '../../assets/css/homePages3.css', '../../assets/css/homePages4.css', '../../assets/css/homePages5.css', '../../assets/css/homePages6.css', '../../assets/css/homePages7.css', '../../assets/css/homePages8.css', '../../assets/css/homePages9.css' ,'../../assets/css/variables.css']
 })
 export class HomeComponent {
 

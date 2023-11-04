@@ -9,7 +9,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Component({
   selector: 'app-manageusers',
   templateUrl: './manageusers.component.html',
-  styleUrls: ['./manageusers.component.css', '../../../assets/css/adminPages.css', '../../../assets/css/homePages.css', '../../../assets/css/adminPages1.css']
+  styleUrls: ['./manageusers.component.css', '../../../assets/css/adminPages.css', '../../../assets/css/homePages.css','../../../assets/css/homePages1.css', '../../../assets/css/homePages2.css', '../../../assets/css/homePages3.css', '../../../assets/css/homePages4.css', '../../../assets/css/homePages5.css', '../../../assets/css/homePages6.css', '../../../assets/css/homePages7.css', '../../../assets/css/homePages8.css', '../../../assets/css/homePages9.css', '../../../assets/css/adminPages1.css']
 })
 export class ManageusersComponent {
   usersList:any;

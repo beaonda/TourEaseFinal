@@ -69,37 +69,127 @@
 }
 
 nav ul li a.active {
-  font-weight: 1000; /* Change the styling as desired */
-  color: #000000;   /* Change the color as desired */
-  border-bottom: 2px solid #000000; /* Add a line below the active link */
-  margin-bottom: -2px; /* Adjust this value to control the line's position */
+  font-weight: 1000;
+  color: #000000; 
+  border-bottom: 2px solid #000000; 
+  margin-bottom: -2px;
 }
 
 .blog__post img {
-  width: 677px;
-  height: 310px; /* Set a specific height */
-  object-fit: cover; /* This property ensures the image covers the specified dimensions */
+  width: 679px;
+  height: 310px; 
+  object-fit: cover; 
   max-width: 100%;
-  cursor: pointer; /* Add cursor style to indicate clickable *//* Adjust the maximum height as per your requirements */
+  cursor: pointer; 
 }
 
 .badge__item {
   text-align: center;
+  position: relative;
 }
 
 .badge__item img {
-    max-width: 250px; /* Set the maximum width to the container width */
-    max-height: 250px; /* Adjust the maximum height as per your requirements */
+    max-width: 760px;
+    max-height: 500px; 
+    z-index: 1
+}
+.places1{
+  z-index: 2;
+  position: relative;
+  margin-top: -55%;
+  margin-left: 15%;
+}
+.places2{
+  z-index: 2;
+  position: relative;
+  margin-left: 15%;
+}
+@media (min-width:320px) and (max-width:330px){
+  .badge__item img {
+    max-width: 280px;
+    max-height: 170px; 
+}
+.places1{
+  z-index: 2;
+  position: relative;
+  margin-top: -90%;
+  margin-left: 15%;
+  font-size: 10px;
+}
+.places2{
+  z-index: 2;
+  position: relative;
+  margin-left: 15%;
+  font-size: 10px;
+}
+.blog__post img {
+  width: 345px;
+  height: 180px; 
+}
+
+}
+@media (min-width: 331px) and (max-width: 500px) {
+  .badge__item img {
+    max-width: 280px;
+    max-height: 170px; 
+  }
+  .places1{
+    z-index: 2;
+    position: relative;
+    margin-top: -229px;
+    margin-left: 22%;
+    font-size: 10px;
+  }
+  .places2{
+    z-index: 2;
+    position: relative;
+    margin-left: 22%;
+    font-size: 10px;
+  }
+}
+
+
+@media (min-width:768px)and(min-width:868px){
+  .badge__item img {
+    max-width: 581px;
+    max-height: 330px;
+}
+.blog__post img {
+  width: 345px;
+  height: 180px; 
+}
+
+}
+
+@media (min-width:1024px) and (max-width:1100px){
+  .badge__item img {
+    max-width: 463px; 
+    max-height: 301px;
+}
+
+.places1{
+  z-index: 2;
+  position: relative;
+  margin-top: -59%;
+  margin-left: 20%;
+  font-size: 15px;
+}
+.places2{
+  z-index: 2;
+  position: relative;
+  margin-left: 20%;
+  font-size: 15px;
+}
 }
 
 /* Add styles for the Settings button */
 #settings-button {
-  background-color: #21757f; /* Change to your desired background color */
-  color: #fff; /* Text color */
-  padding: 10px 25px; /* Adjust padding as needed */
+  background-color: #21757f;
+  color: #fff; 
+  padding: 10px 25px;
   border: none;
-  border-radius: 5px; /* Rounded corners */
-  font-size: 16px; /* Font size */
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease; /* Smooth hover transition */
   margin-top: 20px; /* Add margin to push the button down */

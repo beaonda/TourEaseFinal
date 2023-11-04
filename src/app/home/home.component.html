@@ -14,7 +14,7 @@
                 <div *ngFor="let slide of sliderList" class="swiper-slide">
                   <a *ngIf = "slide" class="img-bg d-flex align-items-end" [style.background-image]="'url(' + slide.data.photo + ')'">
                     <div *ngIf = "slide" class="img-bg-inner">
-                      <h2>{{slide.data.estName}}</h2>
+                      <h2 style="text-transform: uppercase;">{{slide.data.estName}}</h2>
                       <p>{{slide.data.desc}}
                       </p>
                     </div>
