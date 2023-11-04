@@ -87,11 +87,6 @@
       grid-template-columns: 1fr 2fr;
       gap: 50px;
     }
-    .blog__post img {
-      max-width: 595px;
-      max-height: 486px;
-      text-align: center;
-    }
 
     .header__wrapper header{
       min-height: calc(100px + 15vw);

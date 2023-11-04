@@ -20,7 +20,17 @@
     <!-- ======================= Cards ================== -->
    
     <div class="right__col" style="margin-bottom: 100px;">
-  
+        <div class="regdetails">
+            <div class="row">
+                <div class="col">
+                    <button type="button" (click)="addOne()" class="addOneBtn btn btn-primary">Add</button>
+                    
+                </div>
+                <div class="col">
+                    <button type="button" (click)="addMany()" class="btn btn-success" style="margin-left: -89%;">Add Many</button>
+                </div>
+            </div></div>
+
         <nav>
             <ul class ="ulmap">
                 <li class="maplink"><a (click)="showSection('blogs')" data-section="blogs" >ACTIVE</a></li>
@@ -37,15 +47,6 @@
           <div class="blog__post"  style="margin-top: 30px;">
             
             <div class="regdetails">
-                <div class="row">
-                    <div class="col">
-                        <button type="button" (click)="addOne()" class="addOneBtn btn btn-primary">Add</button>
-                        
-                    </div>
-                    <div class="col">
-                        <button type="button" (click)="addMany()" class="btn btn-success" style="margin-left: -89%;">Add Many</button>
-                    </div>
-                </div>
                 <div class="recentOrders">
                     <div class="cardHeader">
                         <h2>Spots</h2>
@@ -116,15 +117,6 @@
             <div class="photo-gallery" style="margin-top: 30px;">
           
                 <div class="regdetails">
-                    <div class="row">
-                        <div class="col">
-                            <button type="button" (click)="addOne()" class="addOneBtn btn btn-primary">Add</button>
-                            
-                        </div>
-                        <div class="col">
-                            <button type="button" (click)="addMany()" class="btn btn-success" style="margin-left: -89%;">Add Many</button>
-                        </div>
-                    </div>
                     <div class="recentOrders">
                         <div class="cardHeader">
                             <h2>Archived Spots</h2>
