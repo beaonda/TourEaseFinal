@@ -37,15 +37,57 @@
       
     </section><!-- End Hero Slider Section -->
 
+  <!--   <section id="posts" class="posts">
+      <div class="container" data-aos="fade-up">
+        <div class="col-12">
+
+          <div class="post-placeholder"></div>
+        </div>
+        <div class="row g-5">
+          <div class="col-lg-4">
+            <div class="post-entry-1 lg">
+              <div class="caption-line2"></div>
+              <div class="caption-line1"></div>
+              <div class="caption-line1"></div>
+            <br>
+              <div class="caption-line2"></div>
+              <div class="caption-line1"></div>
+              <div class="caption-line1"></div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="post-entry-1 lg">
+              <div class="caption-line2"></div>
+              <div class="caption-line1"></div>
+              <div class="caption-line1"></div>
+              <br>
+              <div class="caption-line2"></div>
+              <div class="caption-line1"></div>
+              <div class="caption-line1"></div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="post-entry-1 lg">
+              <div class="caption-line2"></div>
+              <div class="caption-line1"></div>
+              <div class="caption-line1"></div>
+              <br>
+              <div class="caption-line2"></div>
+              <div class="caption-line1"></div>
+              <div class="caption-line1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    
     <!-- ======= Post Grid Section ======= -->
     <section id="posts" class="posts">
       <div class="container" data-aos="fade-up">
         <div class="row g-5">
           <div class="col-lg-4">
-            <div class="post-entry-1 lg">
+            <div class="post-entry-1 lg" style="background-color: rgb(17 101 111); padding: 45px; text-align: center; color:white">
 
-
-              <div class="weathercard-">
                 <h4 class="weatherh4-">WEATHER TODAY</h4>
                 <h4 class="weatherh4-">BATANGAS</h4>
                 <h6 class="weatherh6-" *ngIf = "WeatherData">{{WeatherData.weather[0].main}}</h6>
@@ -63,7 +105,7 @@
                         <span *ngIf = "WeatherData">{{WeatherData.temp_min}}<sup>&deg;</sup></span>
                     </div>
                 </div>
-            </div>
+            
 
 
 

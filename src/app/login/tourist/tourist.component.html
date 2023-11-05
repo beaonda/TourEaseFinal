@@ -2,28 +2,48 @@
      <style>
 
 .form-block{
-  margin-top: -10%;
+  margin: -10% auto;
 }
 
 
-@media (max-width:320px){
-  .form-block{
-      margin-top: 10%;
-    }
+/*  (e.g., small phones) */
+@media (max-width: 320px) {
+  .form-block {
+    margin-top: -6%;
+    
+  }
 }
 
-@media (max-width:768px){
-  .form-block{
-      margin-top: 10%;
-    }
+/*  (e.g., big screen phones) */
+@media (min-width: 321px) and (max-width: 480px) {
+  .form-block {
+    margin-top: 5%;
+   
+  }
 }
 
-@media (max-width:1024px){
-  .form-block{
-      margin-top: 2%;
-    }
+/* (e.g., small tablets) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .form-block {
+    margin-top: 2%;
+  
+  }
 }
 
+/*  (e.g., larger tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .form-block {
+    margin-top: -2%;
+
+  }
+}
+
+/* (e.g., laptops and desktops) */
+/* @media (min-width: 1025px) {
+  .form-block {
+
+  }
+} */
      </style>
     <div class="container" >
      
