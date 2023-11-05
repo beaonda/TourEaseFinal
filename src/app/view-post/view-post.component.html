@@ -15,11 +15,11 @@
               <div style="text-align: right; margin-top: -49px; margin-bottom: 30px;"class="post-meta"> <span class="mx-1"><i class="bi bi-people-fill"></i></span><span class="views" *ngIf = "postDoc">{{postDoc.views}}</span><span> 
                 <div  class="rating" id="rating">
 
-                <input  [(ngModel)] = "rating" type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
-                <input  [(ngModel)] = "rating" type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
-                <input [(ngModel)] = "rating" type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
-                <input [(ngModel)] = "rating" type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
-                <input [(ngModel)] = "rating" type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                <input  [(ngModel)] = "rating" type="radio" id="star5" name="rate" value="5" /><label for="star5" disabled></label>
+                <input  [(ngModel)] = "rating" type="radio" id="star4" name="rate" value="4" /><label for="star4" disabled></label>
+                <input [(ngModel)] = "rating" type="radio" id="star3" name="rate" value="3" /><label for="star3" disabled></label>
+                <input [(ngModel)] = "rating" type="radio" id="star2" name="rate" value="2" /><label for="star2" disabled></label>
+                <input [(ngModel)] = "rating" type="radio" id="star1" name="rate" value="1" /><label for="star1" disabled></label>
             </div></span></div> 
               <h1 class="mb-5"  *ngIf = "postDoc">{{postDoc.title}}</h1>
               <div class="comment d-flex mb-4" style="margin-top: -7%;">

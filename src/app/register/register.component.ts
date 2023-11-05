@@ -181,7 +181,8 @@ export class RegisterComponent {
             cover_photo: "Not Yet Available",
             bio: "No bio yet",
             posts: 0,
-            views: 0
+            views: 0,
+            profile_views:0
           }
           this.fireService.saveDetails(data).then(
             res=>{

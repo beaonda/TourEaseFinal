@@ -61,7 +61,7 @@
                   <button (click)="login()" type="submit" class="btn btn-pill text-white btn-block btn-primary" [disabled] = "loginForm.invalid" style="padding: 2px 30px; margin-left: 35%; background-color: #21757f; border-color: #21757f;" >Log In</button> <!-- Adjusted padding -->
                   
                  <!--  <div class="text-center my-4 text-muted"><span > Or Sign In with <a (click)="loginWithGoogle()" style="color: #21757f;">Google</a></span></div> -->
-                  <div class="text-center my-4 text-muted" style="font-size: 15px;"> Doesn't have an account?  <a href="/register" style="color: #978b07;">Create Account</a></div>
+                  <div class="text-center my-4 text-muted" style="font-size: 15px;"> Doesn't have an account?  <a (click)="nav('register')" style="color: #978b07;">Create Account</a></div>
                 </form>
               </div>
             </div>

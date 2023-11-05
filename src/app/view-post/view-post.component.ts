@@ -128,6 +128,7 @@ export class ViewPostComponent {
     this.fireservice.getPostDocument(this.postID).then((doc:any) =>{
       this.postDoc = doc;
       //console.log(doc);
+      this.rating = this.postDoc.rating;
       this.splitBody(this.postDoc.body);
       this.fireservice.addOneUserProfileView(this.postDoc.user);
       switch(this.postDoc.month){

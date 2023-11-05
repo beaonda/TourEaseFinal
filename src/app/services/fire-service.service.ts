@@ -634,22 +634,17 @@ export class FireServiceService {
     }).catch(err =>{
       console.error(err);
     })
-     /*  .then((doc:any) => {
-        if (doc.exists) {
-          this.userProfileData = doc.data();
-          this.userProfileData.posts++;
-          
-          this.updateUserProfileView(uname, this.userProfileData);
-          return doc.data();
-          
-        } else {
-          alert("Document was not found");
-          return null; // Document doesn't exist
-        }
-      })
-      .catch((error:any) => {
-        throw error;
-      }); */
+  }
+  addOneUserProfileVisit(uname:any) {
+    this.getUnameExisting(uname).then(doc => {
+      if(doc != null){
+        this.userProfileData = doc;
+        this.userProfileData.profile_views++;
+        this.updateUserProfileView(this.userProfileData.uid, this.userProfileData);
+      }
+    }).catch(err =>{
+      console.error(err);
+    })
   }
   updateViews(docID:any, data:any): Promise<void> {
     return this.firestore.collection("posts").doc(docID).update(data);

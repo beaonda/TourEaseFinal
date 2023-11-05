@@ -41,6 +41,10 @@ export class UserProfileComponent {
         console.log("Same User");
         
         this.sameUser = true;
+
+      }else{
+        //Add Profile Visits
+        this.fireservice.addOneUserProfileVisit(this.uname);
       }
       console.log(doc);
     }).catch(err => {
