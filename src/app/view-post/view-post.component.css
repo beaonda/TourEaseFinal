@@ -78,8 +78,39 @@
   }
 
 
-
   
+  .post-placeholder {
+    background-color: #e6e2e2; 
+    height: 350px;
+    width: 100%; 
+  }
+  
+  .post-caption {
+    margin-top: 10px; 
+  }
+  
+  .caption-line {
+    background-color: #e6e2e2; 
+    height: 10px;
+    margin-bottom: 14px;
+    width: 100%; 
+  }
+  .caption-line1 {
+    background-color:#e6e2e2;
+    height: 10px; 
+    margin-bottom: 5px; 
+    width: 20%; }
+
+  .caption-line2 {
+    background-color: #e6e2e2; 
+    height: 36px;
+    margin-top: 39px;
+    margin-bottom: 17px;
+    width: 100%; 
+  }
+
+
+
 .content-section {
     display: none;
     transition: transform 0.5s ease-in-out;
@@ -126,7 +157,7 @@
     margin-left: 320px;
 }
   
- @media (max-width:380px) {
+@media (min-width: 320px) and (max-width: 480px) {
 .ulmap a{
     font-size: 14px;
     margin-right: -24px;
