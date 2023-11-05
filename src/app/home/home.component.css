@@ -45,3 +45,23 @@
   .footer .credits a {
     color: var(--color-white);
   }
+  
+  .post-placeholder {
+    background-color: #e6e2e2; 
+    height: 350px;
+    width: 100%; 
+  }
+  
+  .caption-line1 {
+    background-color:#e6e2e2;
+    height: 10px; 
+    margin-bottom: 5px; 
+    width: 100%; }
+
+  .caption-line2 {
+    background-color: #e6e2e2; 
+    height: 169px;
+    margin-top: 39px;
+    margin-bottom: 17px;
+    width: 100%;
+  }

@@ -156,39 +156,7 @@
   
   
   
-  
-  
-  .weathercard-{
-    height: 539px;
-    width: 307px;
-    background-color: rgb(10 60 66);
-  
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 20px 20px 22px rgba(0,0,0,0.2);
-    border-radius: 8px;
-    font-family: 'Sodosans';
-    color: #fcfcfc;
-  }
-  
-  @media (max-width: 320px) {
-    .weathercard- {
-      height: 508px;
-      width: 260px;
-    }
-  }
-  
-  @media (min-width: 768px) and (max-width: 790px) {
-    .weathercard- {
-      height: 508px;
-      width: 470px;
-    }
-  }
+
   
   .weatherh4-{
     letter-spacing: 4px;
