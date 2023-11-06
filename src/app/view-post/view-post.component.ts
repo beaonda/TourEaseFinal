@@ -38,17 +38,28 @@ export class ViewPostComponent {
       this.getTopspots();
     }
 
+  everythingLoaded:boolean = false;
   ngOnInit(): void {
+   
+    const intervalId = setInterval(() => {
+      if(
+        this.postDoc &&
+        this.topPosts.length > 0 &&
+        this.postPhoto
+        ){
+          this.everythingLoaded = true;
+          clearInterval(intervalId);
+        }
+    }, 500);
+
+
     this.route.paramMap.subscribe(params => {
       this.postID = params.get('postID');
       // Use this.productId to fetch and display product details
       this.getPost();
     });
   
-    this.navigationLinks.forEach((link:any) => {
-        link.addEventListener("click", this.handleNavigationClick);
-      });
-    this.showSection("blogs");
+    
     this.navigationLinks[0].classList.add("active"); 
 
   /*   console.log(this.postID.toString()); */
@@ -56,7 +67,7 @@ export class ViewPostComponent {
   }
 
   ngAfterViewInit(){
-    
+    this.showSection("blogs");
   }
 
 

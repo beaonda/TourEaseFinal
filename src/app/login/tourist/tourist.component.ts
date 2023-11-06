@@ -25,15 +25,15 @@ export class TouristComponent {
     });
   }
 
-  nav(where:any){
-    this.router.navigate([where]);
-  }
-
   containsEmail() {
     // Define a regular expression for matching email addresses
     const emailRegex = /\S+@\S+\.\S+/;
     // Use the test method to check if the text contains an email
     return emailRegex.test(this.email);
+  }
+
+  nav(where:any){
+    this.router.navigate([where]);
   }
 
   login(){

@@ -52,22 +52,7 @@
                         <td>{{post.location}}</td>
                         <td>{{post.category}}</td>
                         <td>
-                            <button class="viewButton">View</button>
-                            <div class="popup">
-                                <div class="popup-content">
-                                    <span class="close">&times;</span>
-                                    <h2>Other Information</h2>
-                                    <div>
-                                        <br>
-                                        <strong>Description</strong>
-                                        <br>
-                                       <p>hellllllllllllllllllllllllllllllllllllllllllllllllllllllllooooooooooooooooooooooooooo</p>
-                                        <br>
-                                        <strong>Photos</strong>
-                                      
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="viewButton" (click)="viewPost(post.postID)">View</button>
                           </td>
                         <td>
                             <div class="decision-dropdown">
@@ -88,3 +73,6 @@
       
         </div>
     </div>
+
+
+    

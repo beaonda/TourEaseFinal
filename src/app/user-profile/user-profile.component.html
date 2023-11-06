@@ -2,16 +2,16 @@
 <app-fab></app-fab>
 
 <div class="header__wrapper">
-    <header><button class="header_edit" *ngIf="showSettings"><i class="bi bi-camera"></i></button></header>
+    <header [style.background-image]="'url(' + user.cover_photo + ')'"><button class="header_edit" *ngIf="showSettings" (click)="takePicture('cover')"><i class="bi bi-camera"></i></button></header>
     <div class="cols__container">
       <div class="left__col">
         <div class="img__container">
             <img *ngIf = "user" [src]="user.profile_photo" alt="Kaila Guerrero" />
-            <button  class="profile_edit" *ngIf="showSettings"><i class="bi bi-camera"></i></button> 
+            <button class="profile_edit" *ngIf="showSettings" (click)="takePicture('pfp')"><i class="bi bi-camera"></i></button> 
         </div>
         <h2 *ngIf = "user">{{user.fname + ' ' + user.lname}}</h2>
         <p *ngIf = "user">@{{user.uname}}</p>
-        <button *ngIf = "showSettings"id="follow-button">Save</button>
+        <button *ngIf = "showSettings" id="follow-button" (click)="saveChanges()">Save</button>
         <!-- <button id="follow-button">Follow</button> -->
         <div *ngIf ="user">
         <button *ngIf="sameUser && !showSettings" id="settings-button" (click)="goToSettings()">
@@ -38,9 +38,6 @@
     <div *ngIf="showSettings" class="right__col" style="padding:20px">
         <h1 class="page.title" style="margin-top: 8%;">Profile Settings</h1>
         <form>
-            <!-- <div class="form-group" style="margin-top:3%">
-                <input [(ngModel)]="edit_name" type="text" name="edit_name" class="form-control" id="edit_name" placeholder="Edit your name">
-            </div> -->
     
               <div class="form-group" style="margin-top:10px" >
                 <input [(ngModel)]="edit_uname" type="text" name="edit_uname" class="form-control" id="edit_uname" placeholder="Edit your username">
@@ -72,18 +69,16 @@
               <h3>Blogs</h3>
               <div *ngFor = "let post of postList; let i = index" class="blog__post">
                 <div *ngIf = "postList" class="rating" id="rating">
-<!-- <label style="margin-right: 80px; font-size: 15px;">Rating</label> -->
-                    <input  [ngModel]="post.rating" type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
-                    <input  [ngModel]="post.rating" type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
-                    <input  [ngModel]="post.rating" type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
-                    <input  [ngModel]="post.rating" type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
-                    <input  [ngModel]="post.rating" type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                    <input  [ngModel]="post.rating"  type="radio" id="star5" [name]="'rate_' + i" value="5" /><label for="star5"></label>
+                    <input  [ngModel]="post.rating" type="radio" id="star4" [name]="'rate_' + i" value="4" /><label for="star4"></label>
+                    <input  [ngModel]="post.rating" type="radio" id="star3" [name]="'rate_' + i" value="3" /><label for="star3"></label>
+                    <input  [ngModel]="post.rating" type="radio" id="star2" [name]="'rate_' + i" value="2" /><label for="star2"></label>
+                    <input  [ngModel]="post.rating" type="radio" id="star1" [name]="'rate_' + i" value="1" /><label for="star1"></label>
                 </div>
 
                 <h4 *ngIf = "postList" (click)="nextPage(post.postID)">{{post.title}}</h4>
                 <p (click)="nextPage(post.postID)" *ngIf = "postList">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
-                    dolor at eros vehicula hendrerit.
+                    {{truncateString(post.body, 150)}}...
                 </p>
                   <img *ngIf = "photoList[i]"(click)="nextPage(post.postID)" [src]="photoList[i]" alt="Blog Post 1" />
               
@@ -97,12 +92,7 @@
             <div id="photos" class="photos content-section">
                 <h3>Photos</h3>
                 <div class="photo-gallery">
-                    <img class="zoomable" src="../../assets/img/img_1.avif" alt="Photo" />
-                    <img class="zoomable" src="../../assets/img/img_2.avif" alt="Photo" />
-                    <img class="zoomable" src="../../assets/img/img_3.avif" alt="Photo" />
-                    <img class="zoomable" src="../../assets/img/img_4.avif" alt="Photo" />
-                    <img class="zoomable" src="../../assets/img/img_5.avif" alt="Photo" />
-                    <img class="zoomable" src="../../assets/img/img_6.avif" alt="Photo" />
+                    <img *ngFor = "let photo of galleryPhotos" [src] = "photo.imageUrl" class="zoomable" alt="Photo" />
                 </div>
             </div>
             <!-- End of Photos Section -->

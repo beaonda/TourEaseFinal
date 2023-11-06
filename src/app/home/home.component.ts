@@ -35,6 +35,57 @@ export class HomeComponent {
     this.getSliderFiles();
   }
 
+  everythingLoaded:boolean = false;
+
+  ngOnInit(){
+
+
+    const intervalId = setInterval(() => {
+      if(
+        this.natureList.length > 0 && 
+        this.culturalList.length > 0 && 
+        this.beachList.length > 0 &&
+        this.leisureList.length > 0 &&
+        this.WeatherData &&
+        this.topPosts.length > 0 &&
+        this.sliderList 
+        ){
+          this.everythingLoaded = true;
+          clearInterval(intervalId);
+        }
+    }, 500);
+    
+    
+
+    const selectHeader = document.querySelector('#header');
+    if (selectHeader) {
+      document?.addEventListener('scroll', () => {
+      window.scrollY > 100 ? selectHeader.classList.add('sticked') : selectHeader.classList.remove('sticked');
+      });
+    }
+
+    
+  
+	/**
+	 * Scroll top button
+	 */
+	const scrollTop = document.querySelector('.scroll-top');
+	if (scrollTop) {
+	  const togglescrollTop = function() {
+		window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+	  }
+	  window?.addEventListener('load', togglescrollTop);
+	  document?.addEventListener('scroll', togglescrollTop);
+	  scrollTop!.addEventListener('click', (event: Event) =>{
+      window.scrollTo({
+		  top: 0,
+		  behavior: 'smooth'
+	  });
+    } );
+	}
+    
+  }
+
   truncateString(inputString: string, maxLength: number): string {
     if (inputString.length <= maxLength) {
       return inputString;
@@ -474,37 +525,7 @@ export class HomeComponent {
     
   }
   
-  ngOnInit(){
-
-
-    const selectHeader = document.querySelector('#header');
-    if (selectHeader) {
-      document?.addEventListener('scroll', () => {
-      window.scrollY > 100 ? selectHeader.classList.add('sticked') : selectHeader.classList.remove('sticked');
-      });
-    }
-
-    
   
-	/**
-	 * Scroll top button
-	 */
-	const scrollTop = document.querySelector('.scroll-top');
-	if (scrollTop) {
-	  const togglescrollTop = function() {
-		window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-	  }
-	  window?.addEventListener('load', togglescrollTop);
-	  document?.addEventListener('scroll', togglescrollTop);
-	  scrollTop!.addEventListener('click', (event: Event) =>{
-      window.scrollTo({
-		  top: 0,
-		  behavior: 'smooth'
-	  });
-    } );
-	}
-    
-  }
 
   
 }

@@ -2,28 +2,29 @@
 <app-fab></app-fab>
 <main id="main" style="margin-top: 90px;">
 
-    <section class="single-post-content">
+  
+    <section class="single-post-content" *ngIf = "everythingLoaded">
       <div class="container">
+        
         <div class="row">
+          
           <div class="col-md-9 post-content" data-aos="fade-up">
+            <div class="post-meta" *ngIf = "!everythingLoaded">
+              <div class="caption-line1"></div>
+              <div class="caption-line1"></div>
+              <div class="caption-line2"></div>
+          
+              <div class="post-placeholder"></div>
+              <div class="post-caption">
+                <div class="caption-line" style="margin-top: 37px;"></div>
+                <div class="caption-line"></div>
+                <div class="caption-line" style="margin-bottom: 200px;"></div>
+              </div>
+            </div>
+            
 
             <!-- ======= Single Post Content ======= -->
-            <div class="single-post">
-             
-            <!--   <div class="post-meta">
-                <div class="caption-line1"></div>
-                <div class="caption-line1"></div>
-                <div class="caption-line2"></div>
-          
-                <div class="post-placeholder"></div>
-                <div class="post-caption">
-                  <div class="caption-line" style="margin-top: 37px;"></div>
-                  <div class="caption-line"></div>
-                  <div class="caption-line" style="margin-bottom: 200px;"></div>
-                </div>
-              </div> -->
-
-           
+            <div class="single-post" *ngIf = "everythingLoaded">
               <div class="post-meta"><span class="date" *ngIf = "postDoc">{{postDoc.category}}</span> <span class="mx-1">&bullet;</span> <span *ngIf = "postDoc">{{postDoc.month + ' ' + postDoc.date + 'th ' + postDoc.year}}</span></div>
              <!-- <div class="post-meta"><span><i class="bi bi-person-fill"></i></span><h6 class="post-meta" *ngIf = "postDoc">{{postDoc.user}}</h6></div>  -->
              <div class="post-meta"> <span class="mx-1"><i class="bi bi-person-fill"></i></span><span *ngIf = "postDoc">{{postDoc.user}}</span><span></span></div> 

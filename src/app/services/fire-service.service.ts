@@ -122,6 +122,27 @@ export class FireServiceService {
     }
   }
 
+  async getUserPhotos(value: any): Promise<any> {
+    const collectionRef = this.firestore.collection("post_photos");
+
+    // Create a query that counts documents based on the specified condition
+    const query = collectionRef.ref
+      .where('user', '==', value)
+      .limit(15); // Limit the query to a single document
+
+    // Perform the query and get the result
+    const querySnapshot = await query.get();
+
+    if (querySnapshot.empty) {
+      // No matching documents found, return null or handle it as needed
+      return null;
+    } else {
+      // Extract and return the first document from the query
+      const photoList = querySnapshot.docs;
+      return photoList;
+    }
+  }
+
   async getUnameFromID(uid:any): Promise<any> {
     const collectionRef = this.firestore.collection("users");
     const query = collectionRef.ref
