@@ -18,6 +18,10 @@ export class ViewPostComponent {
   rating:any;
   postID:any;
   comment:any;
+  
+  toggleLabelColor(label: HTMLElement) {
+    label.classList.toggle('active');
+  }
 
   @ViewChild(GoogleMap, { static: false }) loc_map!: GoogleMap;
   @ViewChild(GoogleMap, { static: false }) navMap!: GoogleMap;
@@ -38,6 +42,7 @@ export class ViewPostComponent {
       this.getTopspots();
     }
 
+    
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.postID = params.get('postID');

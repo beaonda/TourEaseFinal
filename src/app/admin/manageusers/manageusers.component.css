@@ -228,3 +228,36 @@ nav ul li a.active {
   font-size: 20px;
   font-weight: bold;
 }
+
+ 
+.post-placeholder {
+  background-color: #e6e2e2; 
+  height: 350px;
+  width: 100%; 
+}
+
+
+
+.post-caption {
+  margin-top: 10px; 
+}
+
+.caption-line {
+  background-color: #e6e2e2; 
+  height: 10px;
+  margin-bottom: 14px;
+  width: 100%; 
+}
+.caption-line1 {
+  background-color:#e6e2e2;
+  height: 48px;
+  margin-bottom: 5px;
+  width: 30%;}
+
+.caption-line2 {
+  background-color: #e6e2e2; 
+  height: 36px;
+  margin-top: 39px;
+  margin-bottom: 17px;
+  width: 100%; 
+}

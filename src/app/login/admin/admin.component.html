@@ -5,6 +5,10 @@
   margin-top: 1%;
 }
 
+input::placeholder {
+  color:#21757f;
+  font-size: 14px;
+}
 
 @media (max-width:320px){
   .form-block{
@@ -39,12 +43,12 @@
               </div>
               <form action="#" method="post">
                 <div class="form-group first">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" style="padding: 5px; margin-bottom: 15px;"> <!-- Added padding -->
+                  
+                  <input type="text" class="form-control" id="username" placeholder="Username or Email" style="padding: 5px; margin-bottom: 15px;"> <!-- Added padding -->
                 </div>
                 <div class="form-group last mb-4">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" style="padding: 5px;"> <!-- Added padding -->
+               
+                  <input type="password" class="form-control" id="password"  placeholder="Password" style="padding: 5px;"> <!-- Added padding -->
                 </div>
                 
                 <div class="d-flex mb-4 align-items-center justify-content-between"> <!-- Added justify-content-between -->
