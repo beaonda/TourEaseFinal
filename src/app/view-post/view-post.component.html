@@ -87,7 +87,7 @@
                <h3 class="aside-title lline"></h3> 
                 <div class="blog__post"  style="margin-top: 30px;">
                 
-                <google-map height="300px"
+                <google-map height="400px"
                 width="100%"
                 id="loc_map"
                 [center]="center"
@@ -114,7 +114,7 @@
             <h3 class="aside-title nline"></h3> 
                   <div class="photo-gallery" style="margin-top: 30px;">
                 
-                    <google-map height="300px"
+                    <google-map height="400px"
                 width="100%"
                 id="addMap"
                 [center]="locCenter"
@@ -146,9 +146,14 @@
                <!--  <h3>Emergency Establishments</h3> -->
                <h3 class="aside-title emline"></h3> 
                 <div class="badge__item" style="margin-top: 30px;">
-                <p>Showing hospitals, pharmacies, and car repair shops</p>
+                <div class="toggle-container" style="margin-bottom: 30px;">
+                  <label class="toggle-label" #pharmacyLabel (click)="toggleLabelColor(pharmacyLabel)"><i class="bi bi-prescription"></i></label>
+                  <label class="toggle-label" #hospitalLabel (click)="toggleLabelColor(hospitalLabel)"><i class="bi bi-hospital"></i></label>
+                  <label class="toggle-label" #carLabel (click)="toggleLabelColor(carLabel)"><i class="bi bi-ev-front"></i>
+                  </label>
+                </div>
                 <div id="map" #mapContainer></div>
-                  <google-map height="300px"
+                  <google-map height="400px"
               width="100%"
               id="emergencyMap"
               [center]="center"

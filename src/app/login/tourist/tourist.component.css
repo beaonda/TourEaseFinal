@@ -8,6 +8,10 @@
 body{
   font-family: 'Sodosans';
 }
+input::placeholder {
+  color:#21757f;
+  font-size: 14px;
+}
 
 .content{
   font-family: 'Sodosans';
