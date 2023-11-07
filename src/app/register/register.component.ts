@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FireServiceService } from '../services/fire-service.service';
 import { Router } from '@angular/router';
 import { LoaderService } from '../services/loader.service';
+import * as Aos from 'aos';
 
 @Component({
   selector: 'app-register',
@@ -39,7 +40,16 @@ export class RegisterComponent {
   }
 
   ngOnInit(){
+    aos_init();
 
+    function aos_init() {
+      Aos.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+      });
+    }
   }
 
   hasSpecialCharacters(text:string) {

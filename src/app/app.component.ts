@@ -16,6 +16,6 @@ export class AppComponent {
 
   public open(modal:any): void {
     this.modalService.open(modal);
-
+    
   }
 }

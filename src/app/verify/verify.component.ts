@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FireServiceService } from '../services/fire-service.service';
 import { Router } from '@angular/router';
 import { LoaderService } from '../services/loader.service';
+import * as Aos from 'aos';
 
 @Component({
   selector: 'app-verify',
@@ -29,6 +30,16 @@ export class VerifyComponent {
       this.user.sendEmailVerification();
     } else {
       this.router.navigate(['home']);
+    }
+    aos_init();
+
+    function aos_init() {
+      Aos.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+      });
     }
 
   /*   this.link = document.getElementById("click")?.addEventListener('click', this.clickHere); */

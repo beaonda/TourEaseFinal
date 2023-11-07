@@ -288,7 +288,6 @@ export class UserProfileComponent {
       if(
         this.postList.length > 0 &&
         this.photoList.length > 0 &&
-        this.galleryPhotos.length > 0 &&
         this.user
         ){
           this.everythingLoaded = true;
