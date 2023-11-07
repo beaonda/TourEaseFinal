@@ -1,9 +1,55 @@
 <app-fab></app-fab>
 <app-header></app-header>
 
+
+
 <main id="main" style="margin-top: 90px;">
+
+  <section id="posts" class="posts" *ngIf = "!everythingLoaded">
+    <div class="container" data-aos="fade-up">
+      <div class="col-12">
+  
+        <div class="post-placeholder"></div>
+      </div>
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <div class="post-entry-1 lg">
+            <div class="caption-line2"></div>
+            <div class="caption-line1"></div>
+            <div class="caption-line1"></div>
+          <br>
+            <div class="caption-line2"></div>
+            <div class="caption-line1"></div>
+            <div class="caption-line1"></div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="post-entry-1 lg">
+            <div class="caption-line2"></div>
+            <div class="caption-line1"></div>
+            <div class="caption-line1"></div>
+            <br>
+            <div class="caption-line2"></div>
+            <div class="caption-line1"></div>
+            <div class="caption-line1"></div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="post-entry-1 lg">
+            <div class="caption-line2"></div>
+            <div class="caption-line1"></div>
+            <div class="caption-line1"></div>
+            <br>
+            <div class="caption-line2"></div>
+            <div class="caption-line1"></div>
+            <div class="caption-line1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
     <!-- ======= Hero Slider Section ======= -->
-    <section id="hero-slider" class="hero-slider">
+    <section id="hero-slider" class="hero-slider" *ngIf = "everythingLoaded">
       <div class="container-md" data-aos="fade-in">
         <div class="row">
           <div class="col-12">
@@ -37,52 +83,10 @@
       
     </section><!-- End Hero Slider Section -->
 
-  <!--   <section id="posts" class="posts">
-      <div class="container" data-aos="fade-up">
-        <div class="col-12">
-
-          <div class="post-placeholder"></div>
-        </div>
-        <div class="row g-5">
-          <div class="col-lg-4">
-            <div class="post-entry-1 lg">
-              <div class="caption-line2"></div>
-              <div class="caption-line1"></div>
-              <div class="caption-line1"></div>
-            <br>
-              <div class="caption-line2"></div>
-              <div class="caption-line1"></div>
-              <div class="caption-line1"></div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="post-entry-1 lg">
-              <div class="caption-line2"></div>
-              <div class="caption-line1"></div>
-              <div class="caption-line1"></div>
-              <br>
-              <div class="caption-line2"></div>
-              <div class="caption-line1"></div>
-              <div class="caption-line1"></div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="post-entry-1 lg">
-              <div class="caption-line2"></div>
-              <div class="caption-line1"></div>
-              <div class="caption-line1"></div>
-              <br>
-              <div class="caption-line2"></div>
-              <div class="caption-line1"></div>
-              <div class="caption-line1"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
+ 
     
     <!-- ======= Post Grid Section ======= -->
-    <section id="posts" class="posts">
+    <section id="posts" class="posts" *ngIf = "everythingLoaded">
       <div class="container" data-aos="fade-up">
         <div class="row g-5">
           <div class="col-lg-4">
@@ -268,12 +272,12 @@
 
 
 
-    <section class="category-section">
+    <section class="category-section" *ngIf = "everythingLoaded">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
           <h2>Nature Tourism</h2>
-          <div><a href="category/nature" class="more">See All Natural Spots</a></div>
+          <div><a (click)="goCateg('nature')" class="more">See All Natural Spots</a></div>
         </div>
 
         <div class="row" *ngIf = "natureList">
@@ -366,12 +370,12 @@
     </section><!-- End Culture Category Section -->
 
     <!-- ======= Business Category Section ======= -->
-    <section class="category-section">
+    <section class="category-section" *ngIf = "everythingLoaded">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
           <h2>Culture and History</h2>
-          <div><a href="category.html" class="more">See All Cultural Spots</a></div>
+          <div><a (click)="goCateg('cultural')" class="more">See All Cultural Spots</a></div>
         </div>
 
         <div class="row">
@@ -463,12 +467,12 @@
     </section><!-- End Cultural Category Section -->
 
     <!-- =======Sun and Beach Category Section ======= -->
-    <section class="category-section">
+    <section class="category-section" *ngIf = "everythingLoaded">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
           <h2>Sun and Beach</h2>
-          <div><a href="category.html" class="more">See All Beaches</a></div>
+          <div><a (click)="goCateg('sun_and_beach')" class="more">See All Beaches</a></div>
         </div>
 
         <div class="row g-5">
@@ -586,12 +590,12 @@
 
 
 
-    <section class="category-section">
+    <section class="category-section" *ngIf = "everythingLoaded">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
           <h2>Leisure and Entertainment</h2>
-          <div><a href="category.html" class="more">See All Entertainment Spots</a></div>
+          <div><a (click)="goCateg('leisure')" class="more">See All Entertainment Spots</a></div>
         </div>
 
         <div class="row">

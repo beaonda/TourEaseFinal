@@ -48,6 +48,11 @@ export class FileuploadService {
   }
 
   saveTspotPhoto(data:any){
-    return this.firestore.collection("tourist_spots").doc(data.tourismID).update(data)  ;
+    return this.firestore.collection("tourist_spots").doc(data.tourismID).update(data);
+  }
+
+  //saves cover and profile photo
+  saveProfilePhoto(data:any){
+    return this.firestore.collection("users").doc(data.uid).update(data);
   }
 }

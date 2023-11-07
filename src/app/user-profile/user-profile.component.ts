@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FireServiceService } from '../services/fire-service.service';
+import { FileuploadService } from '../services/fileupload.service';
+import { Capacitor } from '@capacitor/core';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { FileUpload } from '../models/FileUpload';
+import { LoaderService } from '../services/loader.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,15 +23,141 @@ export class UserProfileComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public fireservice: FireServiceService
+    public fireservice: FireServiceService,
+    public uploadService: FileuploadService,
+    public storage: AngularFireStorage,
+    public load: LoaderService
     ) { 
-      
+      this.load.openLoadingDialog();
+    }
+
+    currentFileUpload?: FileUpload;
+    selectedFiles?:FileList;
+    blob:any;
+    profileBlob:any;
+    coverBlob:any;
+    pic:any;
+    profilePic:any;
+    coverPic:any;
+    image:any;
+
+    chosenPic:any;
+    type:any;
+
+    async takePicture(type:any) {
+      try {   
+        if(type == 'pfp'){
+         
+          if(Capacitor.getPlatform() !='web') await Camera.requestPermissions();
+          this.profilePic = await Camera.getPhoto({
+            quality: 90,
+            source:CameraSource.Photos,
+            width:600,
+            resultType:CameraResultType.DataUrl
+          });
+          console.log("pfp");
+          this.user.profile_photo = this.profilePic.dataUrl;
+          this.type = type;
+          this.profileBlob=this.dataURLtoBlob(this.profilePic.dataUrl);
+        }else if(type == 'cover'){
+         
+          if(Capacitor.getPlatform() !='web') await Camera.requestPermissions();
+          this.coverPic = await Camera.getPhoto({
+            quality: 90,
+            //allowEditing:false,
+            source:CameraSource.Photos,
+            width:600,
+            resultType:CameraResultType.DataUrl
+          });
+          console.log("cover");
+          this.user.cover_photo = this.coverPic.dataUrl;
+          this.type = type;
+          this.coverBlob=this.dataURLtoBlob(this.coverPic.dataUrl);
+        }else{
+          console.log("none");
+        }
+      } catch(e) {
+        console.log(e);
+      } 
+    }
+    
+    dataURLtoBlob(dataurl:any) {
+      var arr = dataurl.split(','), mime=arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n= bstr.length, u8arr =new Uint8Array(n);
+      while(n--){
+          u8arr[n]=bstr.charCodeAt(n);
+      }
+      return new Blob([u8arr],{type:mime});
+    }
+    
+    async photoData(image:any, blob:any){
+      try{
+        const url = await this.uploadImage(blob,image);
+      } catch(e) {
+        console.log(e);
+      }
+    }
+    
+    async uploadImage( blob: any, imageData:any) {
+      try { 
+
+        if(this.type == "pfp"){
+          const currentDate = Date.now();
+          const filePath = 'profile_pictures/' + currentDate +'.'+ imageData.format;
+          const fileRef =  this.storage.ref(filePath);
+          const task = this.storage.upload(filePath, blob);
+          
+          task.snapshotChanges().pipe(
+            finalize(() => {
+              fileRef.getDownloadURL().subscribe((downloadURL:any) => {
+                this.user.profile_photo = downloadURL;
+                this.uploadService.saveProfilePhoto(this.user);
+                this.load.closeLoadingDialog();
+                alert("Saved Successfully.");
+                this.showSettings = false;
+              });
+            })
+          ).subscribe();
+          console.log('task: ', task);
+        }else if(this.type = "cover"){
+          const currentDate = Date.now();
+          const filePath = 'cover_photos/' + currentDate +'.'+ imageData.format;
+          const fileRef =  this.storage.ref(filePath);
+          const task = this.storage.upload(filePath, blob);
+          
+          task.snapshotChanges().pipe(
+            finalize(() => {
+              fileRef.getDownloadURL().subscribe((downloadURL:any) => {
+                this.user.cover_photo = downloadURL;
+                this.uploadService.saveProfilePhoto(this.user);
+                this.load.closeLoadingDialog();
+                alert("Saved Successfully.");
+                this.showSettings = false;
+              });
+            })
+          ).subscribe();
+          console.log('task: ', task);
+        }
+        
+      } catch (e) {
+        throw(e);
+      } 
     }
 
     showSettings:boolean = false;
   goToSettings() {
       this.showSettings = !this.showSettings;
   }
+
+  truncateString(inputString: string, maxLength: number): string {
+    if (inputString.length <= maxLength) {
+      return inputString;
+    } else {
+      return inputString.substring(0, maxLength);
+    }
+  }
+
+
 
   nextPage(postID:string){
     this.router.navigate(['/view', postID]);
@@ -36,11 +169,18 @@ export class UserProfileComponent {
       if(this.user.profile_photo == "Not Yet Available"){
         this.user.profile_photo = "../../assets/img/profilepic.png";
       }
+      if(this.user.cover_photo == "Not Yet Available"){
+        this.user.cover_photo = "../../assets/img/coverpic.png";
+      }
       this.currentUser = this.fireservice.getCurrentUser();
       if(this.user.uid == this.currentUser.uid){
         console.log("Same User");
         
         this.sameUser = true;
+
+      }else{
+        //Add Profile Visits
+        this.fireservice.addOneUserProfileVisit(this.uname);
       }
       console.log(doc);
     }).catch(err => {
@@ -70,25 +210,37 @@ export class UserProfileComponent {
     })
   }
 
-  handleNavigationClick(event:any) {
-    this.navigationLinks = document.querySelectorAll("nav ul li a");
-    const targetId = event.target.getAttribute("data-section");
-    if (targetId) {
-        this.showSection(targetId);
-
-        // Remove the "active" class from all navigation links
-        this.navigationLinks.forEach((link:any) => {
-            link.classList.remove("active");
-        });
-
-        // Add the "active" class to the clicked link
-        event.target.classList.add("active");
+  saveChanges(){
+    this.load.openLoadingDialog();
+    if(this.profilePic){
+      this.photoData(this.profilePic, this.profileBlob);
     }
+    if(this.coverPic){
+      this.photoData(this.coverPic, this.coverBlob);
+    }
+    if(this.edit_bio){
+      console.log(this.user.bio);
+      console.log(this.edit_bio);
+      this.user.bio = this.edit_bio;
+      this.uploadService.saveProfilePhoto(this.user).then(res => {
+        this.load.closeLoadingDialog();
+        alert("Updated Successfully");
+        this.showSettings = false;
+      });
+    }
+   
   }
+
+  activeSection: string | null = null;
 
   showSection(sectionId:any) {
     const sections = document.querySelectorAll(".content-section");
-    
+    this.navigationLinks.forEach((link:any) => {
+      link.classList.remove("active");
+    });
+
+    this.activeSection = sectionId;
+
     sections.forEach((section) => {
       if(section instanceof HTMLElement){
         section.style.display = "none";
@@ -107,6 +259,19 @@ export class UserProfileComponent {
   modal:any;
   photos:any;
 
+  galleryPhotos:any[] = [];
+  getGallery(){
+    this.fireservice.getUserPhotos(this.uname).then((doc:any) =>{
+      var i = 0;
+      for(var k in doc){
+        this.galleryPhotos.push(doc[k].data());
+ 
+      }
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
 
 
  ngAfterViewInit(){
@@ -116,7 +281,22 @@ export class UserProfileComponent {
  uname:any;
  currentUser:any;
 
+
+ everythingLoaded:boolean = false;
   ngOnInit(){ 
+    const intervalId = setInterval(() => {
+      if(
+        this.postList.length > 0 &&
+        this.photoList.length > 0 &&
+        this.galleryPhotos.length > 0 &&
+        this.user
+        ){
+          this.everythingLoaded = true;
+          this.load.closeLoadingDialog();
+          clearInterval(intervalId);
+          
+        }
+    }, 500);
     this.photos = document.querySelectorAll('.zoomable');
     this.modal = document.getElementById('myModal');
     this.zoomedImg = document.getElementById('zoomedImg') as HTMLImageElement;
@@ -134,6 +314,7 @@ export class UserProfileComponent {
         this.uname = params.get('uname');
         this.getUser();
         this.getPosts();
+        this.getGallery();
         // Use this.productId to fetch and display product details
       });
   }

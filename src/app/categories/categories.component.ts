@@ -116,7 +116,7 @@ export class CategoriesComponent {
         this.category = "Industrial";
       }else{
         this.category = this.raw_categ;
-        console.log(this.category);
+        /* console.log(this.category); */
       }
       // Use this.productId to fetch and display product details
       this.getDocs();
@@ -185,14 +185,14 @@ export class CategoriesComponent {
         var postID = this.postList[i].postID;
         this.fireservice.getPhotoDocument(postID).then(doc =>{
             this.photoList.push(doc.imageUrl);
-            console.log(this.photoList);
+            /* console.log(this.photoList); */
         }).catch(err => {
           console.log(err);
         });
         i++;
       }
     
-      console.log(this.postList);
+      /* console.log(this.postList); */
     }).catch(err =>{
       console.error(err);
     })

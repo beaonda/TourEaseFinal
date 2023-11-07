@@ -35,6 +35,57 @@ export class HomeComponent {
     this.getSliderFiles();
   }
 
+  everythingLoaded:boolean = false;
+
+  ngOnInit(){
+
+
+    const intervalId = setInterval(() => {
+      if(
+        this.natureList.length > 0 && 
+        this.culturalList.length > 0 && 
+        this.beachList.length > 0 &&
+        this.leisureList.length > 0 &&
+        this.WeatherData &&
+        this.topPosts.length > 0 &&
+        this.sliderList 
+        ){
+          this.everythingLoaded = true;
+          clearInterval(intervalId);
+        }
+    }, 500);
+    
+    
+
+    const selectHeader = document.querySelector('#header');
+    if (selectHeader) {
+      document?.addEventListener('scroll', () => {
+      window.scrollY > 100 ? selectHeader.classList.add('sticked') : selectHeader.classList.remove('sticked');
+      });
+    }
+
+    
+  
+	/**
+	 * Scroll top button
+	 */
+	const scrollTop = document.querySelector('.scroll-top');
+	if (scrollTop) {
+	  const togglescrollTop = function() {
+		window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
+	  }
+	  window?.addEventListener('load', togglescrollTop);
+	  document?.addEventListener('scroll', togglescrollTop);
+	  scrollTop!.addEventListener('click', (event: Event) =>{
+      window.scrollTo({
+		  top: 0,
+		  behavior: 'smooth'
+	  });
+    } );
+	}
+    
+  }
+
   truncateString(inputString: string, maxLength: number): string {
     if (inputString.length <= maxLength) {
       return inputString;
@@ -125,15 +176,12 @@ export class HomeComponent {
             case 11:
               doc.month = "DEC";
               break;
-            /* default:
-              this.natureList[i].month = "NO";
-              break; */
           } 
           
          
         });
-        console.log(this.recentPhotos);
-        console.log(this.recentPosts);
+       /*  console.log(this.recentPhotos);
+        console.log(this.recentPosts); */
       }
       
     }).catch(err => {
@@ -147,7 +195,7 @@ export class HomeComponent {
     .then(response=>response.json())
     .then(data=>{
       this.setWeatherData(data);
-      console.log(data);
+      /* console.log(data); */
   })
 
     // let data = JSON.parse('{"coord":{"lon":72.85,"lat":19.01},"weather":[{"id":721,"main":"Haze","description":"haze","icon":"50n"}],"base":"stations","main":{"temp":297.15,"feels_like":297.4,"temp_min":297.15,"temp_max":297.15,"pressure":1013,"humidity":69},"visibility":3500,"wind":{"speed":3.6,"deg":300},"clouds":{"all":20},"dt":1580141589,"sys":{"type":1,"id":9052,"country":"IN","sunrise":1580089441,"sunset":1580129884},"timezone":19800,"id":1275339,"name":"Mumbai","cod":200}');
@@ -442,6 +490,14 @@ export class HomeComponent {
     this.router.navigate(['/profile', uname]);
   }
 
+  goCateg(categ:string){
+    this.router.navigate(['/category', categ]);
+  }
+
+  nav(where:any){
+    this.router.navigate([where]);
+  }
+
   ngAfterViewInit(){
 
     const swiper = new Swiper(".sliderFeaturedPosts", {
@@ -469,37 +525,7 @@ export class HomeComponent {
     
   }
   
-  ngOnInit(){
-
-
-    const selectHeader = document.querySelector('#header');
-    if (selectHeader) {
-      document?.addEventListener('scroll', () => {
-      window.scrollY > 100 ? selectHeader.classList.add('sticked') : selectHeader.classList.remove('sticked');
-      });
-    }
-
-    
   
-	/**
-	 * Scroll top button
-	 */
-	const scrollTop = document.querySelector('.scroll-top');
-	if (scrollTop) {
-	  const togglescrollTop = function() {
-		window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
-	  }
-	  window?.addEventListener('load', togglescrollTop);
-	  document?.addEventListener('scroll', togglescrollTop);
-	  scrollTop!.addEventListener('click', (event: Event) =>{
-      window.scrollTo({
-		  top: 0,
-		  behavior: 'smooth'
-	  });
-    } );
-	}
-    
-  }
 
   
 }

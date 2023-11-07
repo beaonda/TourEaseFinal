@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { FireServiceService } from 'src/app/services/fire-service.service';
 
@@ -9,9 +10,17 @@ import { FireServiceService } from 'src/app/services/fire-service.service';
 })
 export class ManagepostsComponent {
 
-  constructor(public fireService:FireServiceService){
+  constructor(public fireService:FireServiceService, public router:Router){
     this.getPosts();
   }
+
+
+  postA:any;
+  viewPost(post:any){
+    this.router.navigate(['view', post]);
+  }
+
+  
 
   list:any;
   postList:any;
@@ -63,7 +72,7 @@ export class ManagepostsComponent {
       )
     ).subscribe(data => {
       this.postList = data;
-      console.log(this.postList);
+      /* console.log(this.postList); */
     });
   }
 

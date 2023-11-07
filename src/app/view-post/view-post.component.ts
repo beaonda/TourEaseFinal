@@ -42,28 +42,68 @@ export class ViewPostComponent {
       this.getTopspots();
     }
 
-    
+  everythingLoaded:boolean = false;
+  navigationLinks:any;
   ngOnInit(): void {
+    
+    const intervalId = setInterval(() => {
+      if(
+        this.postDoc &&
+        this.topPosts.length > 0 &&
+        this.postPhoto
+        ){
+          this.everythingLoaded = true;
+          clearInterval(intervalId);
+        }
+    }, 500);
+
+
     this.route.paramMap.subscribe(params => {
       this.postID = params.get('postID');
       // Use this.productId to fetch and display product details
       this.getPost();
     });
+    this.navigationLinks = document.querySelectorAll("nav ul li a");
+    this.showSection('blogs');
+  }
+
   
-    this.navigationLinks.forEach((link:any) => {
-        link.addEventListener("click", this.handleNavigationClick);
+ ngAfterViewInit(){
+  let map2 = new google.maps.Map(document.getElementById('map')!, {
+    center: this.newCenter,
+    zoom: this.zoom, // Adjust the zoom level as needed
+  });
+  const service = new google.maps.places.PlacesService(map2);
+
+    const types = ['hospital', 'pharmacy', 'car_repair']; // Add your desired types here
+
+    types.forEach(type => {
+      const request = {
+        location: this.newCenter,
+        radius: 2000, // Adjust the radius as needed
+        type: type, // Use the current type in the request
+      };
+      
+      service.nearbySearch(request, (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          // Handle the results for the current type
+          results!.forEach(result => {
+            console.log(result);
+            /* this.newMarkerPos = {
+              lat: result.geometry!.location!.lat(),
+              lng: result.geometry!.location!.lng(),
+            };
+            console.log(this.newMarkerPos);
+            this.addMarker(this.newMarkerPos); */
+
+            
+            this.addMarker(result.geometry?.location, result, type);
+            // You can do further processing here
+          });
+        }
       });
-    this.showSection("blogs");
-    this.navigationLinks[0].classList.add("active"); 
-
-    console.log(this.postID.toString());
-    
-  }
-
-  ngAfterViewInit(){
-    
-  }
-
+    });
+ }
 
   latitude: number | undefined;
   longitude: number | undefined;
@@ -87,8 +127,8 @@ export class ViewPostComponent {
           lat: this.latitude,
           lng: this.longitude,
         };
-        this.navMap.panTo(this.locCenter);
-        this.nav_marker.marker?.setPosition(this.locCenter);
+        /* this.navMap.panTo(this.locCenter); */
+        /* this.nav_marker.marker!.setPosition(this.locCenter); */
       },
       (error) => {
         console.error('Error getting location:', error);
@@ -120,7 +160,7 @@ export class ViewPostComponent {
   splitBody(inputText:string){
     this.actualBody = inputText.split('\n');
     this.actualBody = this.actualBody.filter((text:string) => text.trim() !== "");
-    console.log(this.actualBody);
+    /* console.log(this.actualBody); */
   }
 
   items$: Observable<any[]> = new Observable<any[]>();
@@ -133,6 +173,7 @@ export class ViewPostComponent {
     this.fireservice.getPostDocument(this.postID).then((doc:any) =>{
       this.postDoc = doc;
       //console.log(doc);
+      this.rating = this.postDoc.rating;
       this.splitBody(this.postDoc.body);
       this.fireservice.addOneUserProfileView(this.postDoc.user);
       switch(this.postDoc.month){
@@ -181,7 +222,7 @@ export class ViewPostComponent {
         lat: this.postDoc.coords.lat,
         lng: this.postDoc.coords.lng,
       };
-      console.log(this.locCenter);
+      /* console.log(this.locCenter); */
 
       const request: google.maps.DirectionsRequest = {
         destination: this.newCenter,
@@ -196,45 +237,8 @@ export class ViewPostComponent {
         type: 'hospital',
       };
 
-      const map2 = new google.maps.Map(document.getElementById('map')!, {
-        center: this.newCenter,
-        zoom: this.zoom, // Adjust the zoom level as needed
-      });
-      const service = new google.maps.places.PlacesService(map2);
-
-        const types = ['hospital', 'pharmacy', 'car_repair']; // Add your desired types here
-
-        types.forEach(type => {
-          const request = {
-            location: this.newCenter,
-            radius: 2000, // Adjust the radius as needed
-            type: type, // Use the current type in the request
-          };
-          
-          service.nearbySearch(request, (results, status) => {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-              // Handle the results for the current type
-              results!.forEach(result => {
-                console.log(result);
-                /* this.newMarkerPos = {
-                  lat: result.geometry!.location!.lat(),
-                  lng: result.geometry!.location!.lng(),
-                };
-                console.log(this.newMarkerPos);
-                this.addMarker(this.newMarkerPos); */
-                const marker = new google.maps.Marker({
-                  position: result!.geometry!.location,
-                  map: map2,
-                  title: result.name,
-                });
-                
-                this.addMarker(result.geometry?.location, result, type);
-                // You can do further processing here
-              });
-            }
-          });
-        });
-      this.loc_map.panTo(this.newCenter);
+      
+      this.center = this.newCenter;
       this.rating = this.postDoc.rating;
       //console.log(this.center);
     }).catch(err => {
@@ -242,11 +246,13 @@ export class ViewPostComponent {
     });
     this.fireservice.getPhotoDocument(this.postID).then((doc:any) =>{
       this.postPhoto = doc;
-      console.log(doc);
+      /* console.log(doc); */
     }).catch(err => {
       console.log(err);
     });
   }
+
+
 
   currentUser:any;
 
@@ -371,7 +377,7 @@ export class ViewPostComponent {
         scaledSize: new google.maps.Size(50, 50)
       }
     });
-    console.log(this.markers[0].title);
+   /*  console.log(this.markers[0].title); */
   }
 
   center: google.maps.LatLngLiteral = {
@@ -381,9 +387,16 @@ export class ViewPostComponent {
   zoom = 15;
   display: any;
 
-  
+  activeSection: string | null = null;
+
   showSection(sectionId:any) {
     const sections = document.querySelectorAll(".content-section");
+    this.navigationLinks.forEach((link:any) => {
+      link.classList.remove("active");
+    });
+
+    this.activeSection = sectionId;
+
     sections.forEach((section) => {
       if(section instanceof HTMLElement){
         section.style.display = "none";
@@ -396,28 +409,7 @@ export class ViewPostComponent {
     }
 
   }
-
-
-
-  handleNavigationClick = (event:any) => {
-    const targetId = event.target.getAttribute("data-section");
-    if (targetId) {
-        this.showSection(targetId);
-
-        // Remove the "active" class from all navigation links
-        this.navigationLinks.forEach((link:any) => {
-            link.classList.remove("active");
-        });
-
-        // Add the "active" class to the clicked link
-        event.target.classList.add("active");
-    }
-}
-
-  photos = document.querySelectorAll('.zoomable');
-  modal = document.getElementById('myModal');
-  zoomedImg = document.getElementById('zoomedImg') as HTMLImageElement;
-  navigationLinks = document.querySelectorAll("nav ul li a");
+ 
 
 
 }

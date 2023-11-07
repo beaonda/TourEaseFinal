@@ -18,7 +18,7 @@ export class ForgotPassComponent {
   email:any;
   clickHere(){
     if(this.email != null){
-
+      this.fireService.resetPassword(this.email);
     }
   }
 

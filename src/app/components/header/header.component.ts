@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import '../../../assets/js/homeMain.js';
 import { Router } from '@angular/router';
 import { FireServiceService } from 'src/app/services/fire-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Confirm2Component } from '../confirm2/confirm2.component';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import * as Aos from 'aos';
 
 @Component({
   selector: 'app-header',
@@ -30,7 +30,11 @@ export class HeaderComponent {
   }
 
   nextPage(category:string){
-    this.router.navigate(['/category', category]);
+    this.router.navigate(['category', category]);
+  }
+
+  nav(where:any){
+    this.router.navigate([where]);
   }
 
   goProfile(){
@@ -58,6 +62,8 @@ export class HeaderComponent {
   showDrop(){
     this.showDropBool = !this.showDropBool;
   }
+
+  
  
 
   toggleSideNav() {
@@ -87,6 +93,17 @@ export class HeaderComponent {
  
 
   ngOnInit(){
+
+    aos_init();
+
+    function aos_init() {
+      Aos.init({
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+      });
+    }
     
     /**
    * Mobile nav toggle
@@ -167,3 +184,5 @@ export class HeaderComponent {
 
   }
 }
+
+

@@ -2,7 +2,8 @@
 <app-fab></app-fab>
 
 <div class="header__wrapper">
-    <header><button class="header_edit" *ngIf="showSettings"><i class="bi bi-camera"></i></button></header>
+    <header *ngIf="everythingLoaded" [style.background-image]="'url(' + user.cover_photo + ')'"><button class="header_edit" *ngIf="showSettings" (click)="takePicture('cover')"><i class="bi bi-camera"></i></button></header>
+    <header *ngIf="!everythingLoaded"></header>
     <div class="cols__container">
 
 
@@ -13,7 +14,8 @@
       <div class="left__col">
         <div class="img__container">
             <img *ngIf = "user" [src]="user.profile_photo" alt="Kaila Guerrero" />
-            <button  class="profile_edit" *ngIf="showSettings"><i class="bi bi-camera"></i></button> 
+            <img *ngIf = "!user" src="../../assets/img/profilepic.png" alt="Kaila Guerrero" />
+            <button class="profile_edit" *ngIf="showSettings" (click)="takePicture('pfp')"><i class="bi bi-camera"></i></button> 
         </div>
 
 
@@ -37,7 +39,8 @@
         
         <h2 *ngIf = "user">{{user.fname + ' ' + user.lname}}</h2>
         <p *ngIf = "user">@{{user.uname}}</p>
-        <button *ngIf = "showSettings"id="follow-button">Save</button>
+        <button *ngIf = "showSettings" id="follow-button" (click)="saveChanges()">Save</button>
+        <button *ngIf = "showSettings" id="follow-button" (click)="showSettings = false; showSection('blogs');">Cancel</button>
         <!-- <button id="follow-button">Follow</button> -->
         <div *ngIf ="user">
         <button *ngIf="sameUser && !showSettings" id="settings-button" (click)="goToSettings()">
@@ -45,8 +48,8 @@
         </button>
         </div>
         <ul class="about" *ngIf = "user">
-            <li ><span>4,073</span>Photos</li>
-            <li><span>{{user.posts}}</span>Blog Posts</li>
+            <li ><span>{{user.profile_views}}</span>Visits</li>
+            <li><span>{{user.posts}}</span>Posts</li>
             <li><span>{{user.views}}</span>Views</li>
         </ul>
         <div class="content">
@@ -59,16 +62,13 @@
     <div *ngIf="showSettings" class="right__col" style="padding:20px">
         <h1 class="page.title" style="margin-top: 8%;">Profile Settings</h1>
         <form>
-            <!-- <div class="form-group" style="margin-top:3%">
-                <input [(ngModel)]="edit_name" type="text" name="edit_name" class="form-control" id="edit_name" placeholder="Edit your name">
-            </div> -->
     
-              <div class="form-group" style="margin-top:10px" >
+              <!-- <div class="form-group" style="margin-top:10px" >
                 <input [(ngModel)]="edit_uname" type="text" name="edit_uname" class="form-control" id="edit_uname" placeholder="Edit your username">
-              </div>
+              </div> -->
 
               <div class="form-group" style="margin-top:10px">
-                <textarea id="edit_bio"  class="form-control" name="edit_bio" rows="7" placeholder="Edit your bio" #textArea></textarea>
+                <textarea [(ngModel)]="edit_bio" id="edit_bio"  class="form-control" name="edit_bio" rows="7" placeholder="Edit your bio" #textArea></textarea>
               </div>
               
 
@@ -79,9 +79,9 @@
         <div *ngIf="!showSettings" class="right__col" style="padding: 20px;">
             <nav>
                 <ul>
-                    <li><a class="active" (click)="handleNavigationClick($event)" data-section="blogs">blogs</a></li>
-                    <li><a (click)="handleNavigationClick($event)" data-section="photos">gallery</a></li>
-                    <li><a (click)="handleNavigationClick($event)" data-section="badge">passport</a></li>
+                  <li><a [class.active]="activeSection === 'blogs'" (click)="showSection('blogs')" data-section="blogs">blogs</a></li>
+                  <li><a [class.active]="activeSection === 'photos'" (click)="showSection('photos')" data-section="photos">gallery</a></li>
+                  <li><a [class.active]="activeSection === 'badge'" (click)="showSection('badge')" data-section="badge">passport</a></li>
                 </ul>
               
             </nav>
@@ -90,7 +90,7 @@
 
             <!-- Blogs Section -->
             <div id="blogs" class="blogs__section content-section" >
-         <!--        <div class="post-meta">
+                <div  class="post-meta" *ngIf = "!everythingLoaded">
                     <div class="caption-line3"></div>
                     <div class="caption-line2"></div>
                     <div class="post-caption">
@@ -101,28 +101,20 @@
               
                     <div class="post-placeholder" style="margin-bottom: 200px;"></div>
                 
-                  </div> -->
-
-
-
-             
-            <h3>Blogs</h3>
-               
+                </div>
 
               <div *ngFor = "let post of postList; let i = index" class="blog__post">
                 <div *ngIf = "postList" class="rating" id="rating">
-<!-- <label style="margin-right: 80px; font-size: 15px;">Rating</label> -->
-                    <input  [ngModel]="post.rating" type="radio" id="star5" name="rate" value="5" /><label for="star5"></label>
-                    <input  [ngModel]="post.rating" type="radio" id="star4" name="rate" value="4" /><label for="star4"></label>
-                    <input  [ngModel]="post.rating" type="radio" id="star3" name="rate" value="3" /><label for="star3"></label>
-                    <input  [ngModel]="post.rating" type="radio" id="star2" name="rate" value="2" /><label for="star2"></label>
-                    <input  [ngModel]="post.rating" type="radio" id="star1" name="rate" value="1" /><label for="star1"></label>
+                    <input  [ngModel]="post.rating"  type="radio" id="star5" [name]="'rate_' + i" value="5" /><label for="star5"></label>
+                    <input  [ngModel]="post.rating" type="radio" id="star4" [name]="'rate_' + i" value="4" /><label for="star4"></label>
+                    <input  [ngModel]="post.rating" type="radio" id="star3" [name]="'rate_' + i" value="3" /><label for="star3"></label>
+                    <input  [ngModel]="post.rating" type="radio" id="star2" [name]="'rate_' + i" value="2" /><label for="star2"></label>
+                    <input  [ngModel]="post.rating" type="radio" id="star1" [name]="'rate_' + i" value="1" /><label for="star1"></label>
                 </div>
 
                 <h4 *ngIf = "postList" (click)="nextPage(post.postID)">{{post.title}}</h4>
                 <p (click)="nextPage(post.postID)" *ngIf = "postList">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec
-                    dolor at eros vehicula hendrerit.
+                    {{truncateString(post.body, 150)}}...
                 </p>
                   <img *ngIf = "photoList[i]"(click)="nextPage(post.postID)" [src]="photoList[i]" alt="Blog Post 1" />
               
@@ -134,14 +126,8 @@
 
             <!-- Photos Section -->
             <div id="photos" class="photos content-section">
-                <h3>Photos</h3>
                 <div class="photo-gallery">
-                    <img class="zoomable" src="../../assets/img/img_1.avif" alt="Photo" />
-                    <img class="zoomable" src="../../assets/img/img_2.avif" alt="Photo" />
-                    <img class="zoomable" src="../../assets/img/img_3.avif" alt="Photo" />
-                    <img class="zoomable" src="../../assets/img/img_4.avif" alt="Photo" />
-                    <img class="zoomable" src="../../assets/img/img_5.avif" alt="Photo" />
-                    <img class="zoomable" src="../../assets/img/img_6.avif" alt="Photo" />
+                    <img *ngFor = "let photo of galleryPhotos" [src] = "photo.imageUrl" class="zoomable" alt="Photo" />
                 </div>
             </div>
             <!-- End of Photos Section -->
@@ -156,18 +142,24 @@
 
             <!-- Badge Section -->
             <div id="badge" class="badge__section content-section">
-              <h3>Passport</h3>
-              <div class="containers">
+              <div class="containers" >
                
-                <img src="../../assets/img/pass.png" style="text-align: center;" class="passport" alt="First Blog Post Badge" />
-             
-                <div class="text-overlay">
-                  <img src="../../assets/img/badge1.png">
-                  <img src="../../assets/img/badge2.png">
-                  <img src="../../assets/img/badge3.png">
-                  <img src="../../assets/img/badge4.png">
-                 
+                <div class = "passcont">
+                  <img src="../../assets/img/badge1.png" id = "top_rater" class="stamp">
+                  <img src="../../assets/img/badge3.png" id = "developer" class="stamp">
+                  <img src="../../assets/img/badge4.png" id = "tourease" class="stamp">
+                  <img src="../../assets/img/badge5.png" id = "verified" class="stamp">
+                  <img src="../../assets/img/badge6.png" id = "nomad" class="stamp">
+                  <img src="../../assets/img/badge7.png" id = "tree" class="stamp">
+
+                  <div class ="textInfo">
+                    <h6>Username: </h6>
+                    <h6>Age: </h6>
+                  </div>
                 </div>
+               <!--  <img src="../../assets/img/pass.png" style="text-align: center;" class="passport" alt="First Blog Post Badge" /> -->
+             
+                  
 
               </div>
               
