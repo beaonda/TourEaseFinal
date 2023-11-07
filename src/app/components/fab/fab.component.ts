@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,11 +8,17 @@ import { Router } from '@angular/router';
 })
 export class FabComponent {
 
+  @Input() dataFromParent: any; 
   constructor(public router:Router){
 
   }
   onFabClick(){
-    this.router.navigate(['new_post']);
+    if(this.dataFromParent){
+      this.router.navigate(['new_post', this.dataFromParent]);
+    }else{
+      this.router.navigate(['new_post']);
+    }
+    
   }
 
 }

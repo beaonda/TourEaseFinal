@@ -1,4 +1,6 @@
-.weather{
+.hideSlider{
+  display:none;
+}.weather{
   max-width: 100%;
 }
 

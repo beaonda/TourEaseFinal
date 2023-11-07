@@ -230,7 +230,7 @@ export class ManagespotsComponent {
     let counter = 0;
 
     for(var key in this.destList){
-      if(tourismData.estName.toUpperCase() === this.destList[key].estName.toUpperCase()){
+      if(tourismData.estName.toUpperCase() === this.destList[key].estName.toUpperCase() && tourismData.city.toUpperCase === this.destList[key].city.toUpperCase){
         counter++;
         /* console.log(tourismData.estName.toUpperCase() + this.destList[key].estName.toUpperCase()); */
       }
@@ -375,16 +375,21 @@ export class ManagespotsComponent {
 
   async featureTspot(data:any){
     this.load.openLoadingDialog();
-    try {
-      await this.fireService.copyDocumentWithAdditionalFields(
-        'tourist_spots',
-        data.tourismID,
-        'featured_spots'
-      );
-      this.load.closeLoadingDialog();
-    } catch (error) {
-      // Handle errors
+    if(data.photo != "No Photo Yet"){
+      try {
+        await this.fireService.copyDocumentWithAdditionalFields(
+          'tourist_spots',
+          data.tourismID,
+          'featured_spots'
+        );
+        this.load.closeLoadingDialog();
+      } catch (error) {
+        // Handle errors
+      }
+    }else{
+      alert("A tourist spot must have a photo to be featured.");
     }
+    
   }
 
   closeEdit(){

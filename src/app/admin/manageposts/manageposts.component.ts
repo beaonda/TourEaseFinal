@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
+import { ConfirmationComponent } from 'src/app/components/confirmation/confirmation.component';
 import { FireServiceService } from 'src/app/services/fire-service.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-manageposts',
@@ -10,8 +13,10 @@ import { FireServiceService } from 'src/app/services/fire-service.service';
 })
 export class ManagepostsComponent {
 
-  constructor(public fireService:FireServiceService, public router:Router){
+  constructor(public fireService:FireServiceService, public router:Router, public load:LoaderService, private dialog: MatDialog){
     this.getPosts();
+    this.retrieveArchived();
+    
   }
 
 
@@ -20,7 +25,48 @@ export class ManagepostsComponent {
     this.router.navigate(['view', post]);
   }
 
-  
+  async archivePost(post:any){
+    const dialogRef = this.dialog.open(ConfirmationComponent);
+    var reason:string;
+    dialogRef.componentInstance.textEntered.subscribe((enteredText:string) => reason = enteredText);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        this.load.openLoadingDialog;
+        this.fireService.moveDocumentToNewCollectionWithReason("posts","archived_posts", post.postID, reason);
+        this.fireService.getDocumentCounter().then((doc)=>{
+          if(doc){
+            /* this.newNum = 1 + doc.posts;
+            let data = {
+              recent_users:doc.recent_users,
+              tspots : doc.tspots,
+              users:doc.users,
+              posts: this.newNum
+            } */
+            doc.posts--;
+            this.fireService.updateCount(doc);
+          }
+        });
+      } else {
+        // User clicked "Cancel" or closed the dialog
+      }
+    });
+   
+  }
+
+
+  archivedList:any;
+  retrieveArchived(){
+    this.fireService.getArchivedPosts().snapshotChanges().pipe(
+      map((changes:any) =>
+        changes.map((c:any) =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe((data:any) => {
+      this.archivedList = data;
+    });
+
+  }
 
   list:any;
   postList:any;

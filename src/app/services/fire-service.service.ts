@@ -21,6 +21,8 @@ export class FireServiceService {
   comment:any;
   archivedSpotItem:any;
   archiveSpot:any;
+  archivePostItem:any;
+  archivePost:any;
   
 
 
@@ -47,6 +49,10 @@ export class FireServiceService {
 
     this.commentsCollection = firestore.collection<Comment>('posts').doc('docID').collection("comments");
     this.commentItems = this.commentsCollection.valueChanges();
+
+    this.archivePostCollection = firestore.collection<Post>('archived_posts', (ref) =>ref.limit(50));
+    this.archivePostItems = this.archivePostCollection.valueChanges();
+
     this.counterDoc = this.firestore.collection('counter').doc('counts');
   }
 
@@ -76,10 +82,16 @@ export class FireServiceService {
     this.commentsCollection.add(commentItem);
   }
 
-  private archivedSpotsCollection: AngularFirestoreCollection<Comment>;
+  private archivedSpotsCollection: AngularFirestoreCollection<Destination>;
   archivedSpotItems: Observable<Destination[]>;
   addArchivedSpotItem(archivedSpotItem: Comment) {
     this.archivedSpotsCollection.add(archivedSpotItem);
+  }
+
+  private archivePostCollection: AngularFirestoreCollection<Post>;
+  archivePostItems: Observable<Post[]>;
+  addArchivedPostItem(archivedSpotItem: Comment) {
+    this.archivePostCollection.add(archivedSpotItem);
   }
 
   //End of Collections
@@ -159,7 +171,7 @@ export class FireServiceService {
   }
 
   suspendUser(user:any, data:any){
-    return this.firestore.collection("users").doc(user.uid).collection("suspension").doc(data.id).set(data);
+    return this.firestore.collection("users").doc(user.data.id).collection("suspension").doc(data.id).set(data);
   }
 
   collectionExists(documentPath: string, subcollectionName: string): Observable<boolean> {
@@ -312,6 +324,63 @@ export class FireServiceService {
     });
   }
 
+  moveDocumentToNewCollectionWithReason(
+    sourceCollection: string,
+    targetCollection: string,
+    documentId: string,
+    reason:string
+  ) {
+    // 1. Read the Document
+    const sourceDocRef = this.firestore.collection(sourceCollection).doc(documentId);
+    sourceDocRef.get().subscribe((docSnapshot) => {
+      if (docSnapshot.exists) {
+        const data = docSnapshot.data();
+        // 2. Write to the New Collection
+        const targetDocRef = this.firestore.collection(targetCollection).doc(documentId);
+        targetDocRef.set(data)
+          .then(() => {
+            console.log('Document moved to the target collection.');
+            this.addFieldToDocument("archived_posts", documentId, "reason", reason);
+          })
+          .catch((error) => {
+            this.load.closeLoadingDialog();
+            console.error('Error writing to the new collection:', error);
+          });
+
+        // 3. Delete the Original Document
+        sourceDocRef.delete()
+          .then(() => {
+            console.log('Original document deleted from the source collection.');
+            alert("Archived Successfully")
+            this.load.closeLoadingDialog();
+          })
+          .catch((error) => {
+            this.load.closeLoadingDialog();
+            console.error('Error deleting original document:', error);
+          });
+      } else {
+        this.load.closeLoadingDialog();
+        console.log('Document does not exist in the source collection.');
+      }
+    }, (error) => {
+      this.load.closeLoadingDialog();
+      console.error('Error reading the document:', error);
+    });
+  }
+
+
+  async addFieldToDocument(collectionName: string, documentId: string, fieldName: string, fieldValue: any): Promise<void> {
+    const docRef = this.firestore.collection(collectionName).doc(documentId);
+
+    return docRef.set({ [fieldName]: fieldValue }, { merge: true })
+      .then(() => {
+        console.log('Document updated successfully.');
+      })
+      .catch((error) => {
+        console.error('Error updating document:', error);
+      });
+  }
+
   async addNewFieldToDocument(
     collectionName: string,
     documentId: string,
@@ -404,6 +473,27 @@ export class FireServiceService {
     // Create a query that counts documents based on the specified condition
     const query = collectionRef.ref
       .where('estName', '==', value)
+      .limit(1); // Limit the query to a single document
+
+    // Perform the query and get the result
+    const querySnapshot = await query.get();
+
+    if (querySnapshot.empty) {
+      // No matching documents found, return null or handle it as needed
+      return null;
+    } else {
+      // Extract and return the first document from the query
+      const firstDocument = querySnapshot.docs[0].data();
+      return firstDocument;
+    }
+  }
+
+  async getTspotDocumentWithID(value: any): Promise<any> {
+    const collectionRef = this.firestore.collection("tourist_spots");
+
+    // Create a query that counts documents based on the specified condition
+    const query = collectionRef.ref
+      .where('tourismID', '==', value)
       .limit(1); // Limit the query to a single document
 
     // Perform the query and get the result
@@ -528,6 +618,11 @@ export class FireServiceService {
 
   getArchivedDestinations(){
     return this.archivedSpotsCollection;
+  }
+
+  
+  getArchivedPosts(){
+    return this.archivePostCollection;
   }
 
   getAllPosts(){
@@ -698,8 +793,9 @@ export class FireServiceService {
     return documentRef.valueChanges();
   } */
 
-}
+  
 
+}
 
 export interface User{
 

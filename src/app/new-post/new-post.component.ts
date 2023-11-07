@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, Renderer2, ViewChild } from '@angular/core';
 import { FireServiceService } from '../services/fire-service.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleMap, MapMarker } from '@angular/google-maps';
 import { TypesenseService } from '../services/typesense.service';
 import { FileuploadService } from '../services/fileupload.service';
@@ -62,6 +62,9 @@ export class NewPostComponent {
   btnUpPhoto:any;
   minutes:any;
 
+  desti:any;
+
+
   //Default Functions
 
   constructor(
@@ -74,13 +77,38 @@ export class NewPostComponent {
     public uploadService: FileuploadService,
     public storage: AngularFireStorage,
     public firestore: AngularFirestore, 
-    public load: LoaderService
+    public load: LoaderService,
+    private route: ActivatedRoute
   ){
-
+    
   }
 
   ngOnInit(){
-    
+    this.route.params.subscribe((params) => {
+      if (params['reviewId']) {
+        const reviewId = params['reviewId']; // The "id" parameter is optional here
+        // Your code for handling the user ID
+        this.fireService.getTspotDocumentWithID(reviewId).then(res => {
+          this.desti = res;
+          this.city = res.city;
+          this.search = res.estName;
+          for(var x in this.batangasCities){
+            if(this.city == this.batangasCities[x].name){
+              let newCenter: google.maps.LatLngLiteral = {
+                lat: this.batangasCities[x].lat,
+                lng: this.batangasCities[x].lng
+              };
+              //this.addMap.panTo(newCenter);
+              this.center = newCenter;
+              this.mapMarker.marker?.setPosition(newCenter);
+              this.zoom = 13;
+            }
+        }
+      });
+      } else {
+        // Handle the case when "id" is not provided
+      }
+    });
   }
 
   
