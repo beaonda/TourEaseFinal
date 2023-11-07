@@ -25,7 +25,7 @@
     <div class="position-relative">
       <a class="mx-2 js-search-open"><span class="bi-search"></span></a>
       <i class="bi bi-list mx-2 mobilenav" (click)="toggleSideNav()"></i>
-      <i class="bi bi-list mx-2 webnav" [ngClass]="{'show': showBurger}" (click)="toggleSideNavWeb()"></i> 
+      <i class="bi bi-list mx-2 webnav" style="cursor:pointer" [ngClass]="{'show': showBurger}" (click)="toggleSideNavWeb()"></i> 
       <!--<div class="bi bi-list toggle-button" (click)="toggleSideNav()">☰</div> -->
       <div class="search-form-wrap js-search-form-wrap">
         <form action="search-result.html" class="search-form">
