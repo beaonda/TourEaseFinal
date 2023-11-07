@@ -1,6 +1,7 @@
 .header_edit {
-    margin-top: 267px;
-    margin-left: 1391px;
+    margin-top: 255px;
+    margin-left: 930px;
+ 
     background-color: #21757f;
     border: none;
     border-radius: 50%;
@@ -35,7 +36,7 @@
   }
   
   /* Styles for screens with maximum width of 768px (tablets) */
-  @media (max-width: 768px) {
+/*   @media (max-width: 768px) {
     .header_edit {
         margin-top: 22%;
         margin-left: 92%;
@@ -45,19 +46,19 @@
         top: 80%;
         left: 75%;
     }
-  }
+  } */
   
-  @media (max-width: 1024px) {
+/*   @media (max-width: 1024px) {
     .header_edit {
-        margin-top: 20%;
+        margin-top: 43%;
     margin-left: 94%;
     }
   
    
-  }
+  } */
   
   /* Styles for screens with maximum width of 320px (small mobile screens) */
-  @media (max-width: 320px) {
+/*   @media (max-width: 320px) {
     .header_edit {
         margin-top: 61%;
         margin-bottom: 2%;
@@ -69,8 +70,58 @@
     left: 80%;
     }
   }
+   */
   
-  
+
+/*  (e.g., small phones) */
+@media (max-width: 320px) {
+  .profile_edit {
+    top: 90%;
+left: 80%;
+}
+.header_edit{
+  margin-top: 170px;
+  margin-left: 260px;
+}
+}
+
+/*  (e.g., big screen phones) */
+@media (min-width: 321px) and (max-width: 480px) {
+  .header_edit{
+    margin-top: 200px;
+    margin-left: 325px;
+  }
+}
+
+/* (e.g., small tablets) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .header_edit{
+    margin-top: 322px;
+    margin-left: 690px;
+  }
+  .profile_edit {
+    top: 80%;
+    left: 75%;
+}
+}
+
+/*  (e.g., larger tablets) */
+@media(min-width: 900px)and(max-width: 1100px) {
+  .header_edit{
+    margin-top: 255px;
+    margin-left: 930px;
+  }
+}
+
+@media(min-width: 1440px) {
+  .header_edit{
+    margin-top: 371px;
+    margin-left: 1327px;
+  }
+}
+
+
+
   
   .header__wrapper header {
     width: 100%;
