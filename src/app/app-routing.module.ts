@@ -39,7 +39,6 @@ const routes: Routes = [
       { path: 'getstarted', component:GetstartedComponent},
       {path: 'register', component:RegisterComponent},
       {path: 'verify', component:VerifyComponent},
-      {path: 'new_post', component:NewPostComponent},
       {path: 'admin/dashboard', component:DashboardComponent},
       {path: 'admin/users', component:ManageusersComponent},
       {path: 'admin/posts', component:ManagepostsComponent},
@@ -47,7 +46,9 @@ const routes: Routes = [
       {path: 'profile/:uname', component:UserProfileComponent},
       {path: 'retrieve_account', component:ForgotPassComponent},
       {path: 'settings/:uname', component:SettingsComponent},
-      {path: 'suspended', component:SuspendedComponent}
+      {path: 'suspended', component:SuspendedComponent},
+      {path: 'new_post', component:NewPostComponent},
+      {path: 'new_post/:reviewId', component:NewPostComponent}
     ])],
   exports: [RouterModule]
 })

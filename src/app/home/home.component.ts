@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 /* import '../../assets/js/homeMain.js'; */
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import Swiper from 'swiper';
 import { FireServiceService } from '../services/fire-service.service';
 import { Conditional } from '@angular/compiler';
 import { Router } from '@angular/router';
 import { WeatherService } from '../services/weather.service';
 import { LoaderService } from '../services/loader.service';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +29,7 @@ export class HomeComponent {
     this.getBeachList();
     this.getLeisureList();
     this.getWeatherData();
+    this.getWeatherPrediction();
     this.load.closeLoadingDialog();
     this.getTopspots();
     this.getRecentPosts();
@@ -39,7 +40,6 @@ export class HomeComponent {
 
   ngOnInit(){
 
-
     const intervalId = setInterval(() => {
       if(
         this.natureList.length > 0 && 
@@ -48,10 +48,30 @@ export class HomeComponent {
         this.leisureList.length > 0 &&
         this.WeatherData &&
         this.topPosts.length > 0 &&
-        this.sliderList 
+        this.sliderList.length >0
         ){
           this.everythingLoaded = true;
           clearInterval(intervalId);
+          const swiper = new Swiper(".sliderFeaturedPosts", {
+            spaceBetween: 0,
+            speed: 5000,
+            centeredSlides: true,
+            loop: true,
+            slideToClickedSlide: true,
+            modules: [Pagination, Autoplay, Navigation],
+            autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            },
+            pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            },
+            navigation: {
+            nextEl: ".custom-swiper-button-next",
+            prevEl: ".custom-swiper-button-prev",
+            },
+          });
         }
     }, 500);
     
@@ -100,6 +120,7 @@ export class HomeComponent {
     this.fireservice.getTop5Descending()
       .then((documents) => {
         this.sliderList = documents;
+        
       })
       .catch((error) => {
         // Handle errors, e.g., display an error message
@@ -195,7 +216,19 @@ export class HomeComponent {
     .then(response=>response.json())
     .then(data=>{
       this.setWeatherData(data);
-      /* console.log(data); */
+      console.log(data);
+  })
+
+    // let data = JSON.parse('{"coord":{"lon":72.85,"lat":19.01},"weather":[{"id":721,"main":"Haze","description":"haze","icon":"50n"}],"base":"stations","main":{"temp":297.15,"feels_like":297.4,"temp_min":297.15,"temp_max":297.15,"pressure":1013,"humidity":69},"visibility":3500,"wind":{"speed":3.6,"deg":300},"clouds":{"all":20},"dt":1580141589,"sys":{"type":1,"id":9052,"country":"IN","sunrise":1580089441,"sunset":1580129884},"timezone":19800,"id":1275339,"name":"Mumbai","cod":200}');
+    // this.setWeatherData(data);
+  }
+
+  getWeatherPrediction(){
+    fetch('https://api.openweathermap.org/data/2.5/forecast?q=Batangas,PH&appid=acde409f699e5c16e2b46cbb70e8fd66')
+    .then(response=>response.json())
+    .then(data=>{
+      /* this.setWeatherData(data); */
+      console.log(data);
   })
 
     // let data = JSON.parse('{"coord":{"lon":72.85,"lat":19.01},"weather":[{"id":721,"main":"Haze","description":"haze","icon":"50n"}],"base":"stations","main":{"temp":297.15,"feels_like":297.4,"temp_min":297.15,"temp_max":297.15,"pressure":1013,"humidity":69},"visibility":3500,"wind":{"speed":3.6,"deg":300},"clouds":{"all":20},"dt":1580141589,"sys":{"type":1,"id":9052,"country":"IN","sunrise":1580089441,"sunset":1580129884},"timezone":19800,"id":1275339,"name":"Mumbai","cod":200}');
@@ -494,33 +527,18 @@ export class HomeComponent {
     this.router.navigate(['/category', categ]);
   }
 
+  review(spot:any){
+    console.log(spot);
+    this.router.navigate(['/new_post', spot]);
+  }
+
   nav(where:any){
     this.router.navigate([where]);
   }
 
   ngAfterViewInit(){
-
-    const swiper = new Swiper(".sliderFeaturedPosts", {
-      spaceBetween: 0,
-      speed: 5000,
-      centeredSlides: true,
-      loop: true,
-      slideToClickedSlide: true,
-      modules: [Pagination, Autoplay, Navigation],
-      autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-      },
-      pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      },
-      navigation: {
-      nextEl: ".custom-swiper-button-next",
-      prevEl: ".custom-swiper-button-prev",
-      },
-    });
-
+    console.log("After View Init");
+    
     
     
   }

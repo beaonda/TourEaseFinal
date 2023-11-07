@@ -166,6 +166,7 @@ export class ViewPostComponent {
   items$: Observable<any[]> = new Observable<any[]>();
   newCenter!: google.maps.LatLngLiteral;
   newMarkerPos!:google.maps.LatLngLiteral;
+  dataToPass:any;
   getPost(){
     this.fireservice.addOneView(this.postID);
     
@@ -173,6 +174,7 @@ export class ViewPostComponent {
     this.fireservice.getPostDocument(this.postID).then((doc:any) =>{
       this.postDoc = doc;
       //console.log(doc);
+      this.dataToPass = this.postDoc.tspotID;
       this.rating = this.postDoc.rating;
       this.splitBody(this.postDoc.body);
       this.fireservice.addOneUserProfileView(this.postDoc.user);

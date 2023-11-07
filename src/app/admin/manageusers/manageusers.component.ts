@@ -81,8 +81,8 @@ export class ManageusersComponent {
   photos:any;
 
   ngAfterViewInit(){
-    this.showSection("blogs");
-    this.navigationLinks[0].classList.add("active"); 
+   /*  this.showSection("blogs");
+    this.navigationLinks[0].classList.add("active");  */
    }
 
 
@@ -125,6 +125,7 @@ export class ManageusersComponent {
           year: year,
           id: this.firestore.createId(),
         }
+        console.log(data);
         this.fireService.suspendUser(data, suspendData).then(res =>{
           this.load.closeLoadingDialog();
           alert("Suspended Successfully");

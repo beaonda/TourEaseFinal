@@ -49,17 +49,15 @@
     </div>
   </section>
     <!-- ======= Hero Slider Section ======= -->
-    <section id="hero-slider" class="hero-slider" *ngIf = "everythingLoaded">
+    <section id="hero-slider" class="hero-slider" >
       <div class="container-md" data-aos="fade-in">
         <div class="row">
           <div class="col-12">
             <div class="swiper sliderFeaturedPosts">
               <div class="swiper-wrapper">
-
-
                 <div *ngFor="let slide of sliderList" class="swiper-slide">
-                  <a *ngIf = "slide" class="img-bg d-flex align-items-end" [style.background-image]="'url(' + slide.data.photo + ')'">
-                    <div *ngIf = "slide" class="img-bg-inner">
+                  <a (click) ="review(slide.data.tourismID)" *ngIf = "slide" class="img-bg d-flex align-items-end" [style.background-image]="'url(' + slide.data.photo + ')'">
+                    <div *ngIf = "slide" class="img-bg-inner" >
                       <h2 style="text-transform: uppercase;">{{slide.data.estName}}</h2>
                       <p>{{slide.data.desc}}
                       </p>
