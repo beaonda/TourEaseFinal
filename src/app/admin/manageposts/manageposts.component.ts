@@ -25,6 +25,44 @@ export class ManagepostsComponent {
   list:any;
   postList:any;
 
+  handleNavigationClick(event:any) {
+    const targetId = event.target.getAttribute("data-section");
+    if (targetId) {
+        this.showSection(targetId);
+
+        // Remove the "active" class from all navigation links
+        this.navigationLinks.forEach((link:any) => {
+            link.classList.remove("active");
+        });
+
+        // Add the "active" class to the clicked link
+        event.target.classList.add("active");
+    }
+  }
+
+  
+  showSection(sectionId:any) {
+    const sections = document.querySelectorAll(".content-section");
+    
+    sections.forEach((section) => {
+      if(section instanceof HTMLElement){
+        section.style.display = "none";
+      }
+    });
+
+    const selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.style.display = "block";
+    }
+
+  }
+
+  navigationLinks:any;
+  zoomedImg:any;
+  modal:any;
+  photos:any;
+
+
   getPosts(){
     this.fireService.getAllPosts().snapshotChanges().pipe(
       map(changes =>
@@ -38,8 +76,13 @@ export class ManagepostsComponent {
     });
   }
 
+
+
   ngOnInit(){
     this.list = document.querySelectorAll(".navigation li");
     this.list[4].classList.add("hovered");
+    this.showSection("blogs");
+    
   }
+
 }

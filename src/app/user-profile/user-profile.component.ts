@@ -28,45 +28,54 @@ export class UserProfileComponent {
     public storage: AngularFireStorage,
     public load: LoaderService
     ) { 
-      
+      this.load.openLoadingDialog();
     }
 
     currentFileUpload?: FileUpload;
     selectedFiles?:FileList;
     blob:any;
+    profileBlob:any;
+    coverBlob:any;
     pic:any;
+    profilePic:any;
+    coverPic:any;
     image:any;
 
     chosenPic:any;
+    type:any;
 
     async takePicture(type:any) {
-      try {
-        
-        if(Capacitor.getPlatform() !='web') await Camera.requestPermissions();
-        this.pic = await Camera.getPhoto({
-          quality: 90,
-          //allowEditing:false,
-          source:CameraSource.Photos,
-          width:600,
-          resultType:CameraResultType.DataUrl
-        });
-        
-        
-        this.image=this.pic.dataUrl;
-
+      try {   
         if(type == 'pfp'){
+         
+          if(Capacitor.getPlatform() !='web') await Camera.requestPermissions();
+          this.profilePic = await Camera.getPhoto({
+            quality: 90,
+            source:CameraSource.Photos,
+            width:600,
+            resultType:CameraResultType.DataUrl
+          });
           console.log("pfp");
-          this.user.profile_photo = this.image;
+          this.user.profile_photo = this.profilePic.dataUrl;
+          this.type = type;
+          this.profileBlob=this.dataURLtoBlob(this.profilePic.dataUrl);
         }else if(type == 'cover'){
+         
+          if(Capacitor.getPlatform() !='web') await Camera.requestPermissions();
+          this.coverPic = await Camera.getPhoto({
+            quality: 90,
+            //allowEditing:false,
+            source:CameraSource.Photos,
+            width:600,
+            resultType:CameraResultType.DataUrl
+          });
           console.log("cover");
-          this.user.cover_photo = this.image;
+          this.user.cover_photo = this.coverPic.dataUrl;
+          this.type = type;
+          this.coverBlob=this.dataURLtoBlob(this.coverPic.dataUrl);
         }else{
           console.log("none");
         }
-        
-        this.blob=this.dataURLtoBlob(this.pic.dataUrl);
-    
-        
       } catch(e) {
         console.log(e);
       } 
@@ -91,28 +100,45 @@ export class UserProfileComponent {
     
     async uploadImage( blob: any, imageData:any) {
       try { 
-        const currentDate = Date.now();
-        const filePath = 'profile_pictures/' + currentDate +'.'+ imageData.format;
-        const fileRef =  this.storage.ref(filePath);
-        const task = this.storage.upload(filePath, blob);
-        let photoData = {
-          imageUrl:'',
-          postID:'',
-          uploadTime: currentDate,
-          user:''
-        };
+
+        if(this.type == "pfp"){
+          const currentDate = Date.now();
+          const filePath = 'profile_pictures/' + currentDate +'.'+ imageData.format;
+          const fileRef =  this.storage.ref(filePath);
+          const task = this.storage.upload(filePath, blob);
+          
+          task.snapshotChanges().pipe(
+            finalize(() => {
+              fileRef.getDownloadURL().subscribe((downloadURL:any) => {
+                this.user.profile_photo = downloadURL;
+                this.uploadService.saveProfilePhoto(this.user);
+                this.load.closeLoadingDialog();
+                alert("Saved Successfully.");
+                this.showSettings = false;
+              });
+            })
+          ).subscribe();
+          console.log('task: ', task);
+        }else if(this.type = "cover"){
+          const currentDate = Date.now();
+          const filePath = 'cover_photos/' + currentDate +'.'+ imageData.format;
+          const fileRef =  this.storage.ref(filePath);
+          const task = this.storage.upload(filePath, blob);
+          
+          task.snapshotChanges().pipe(
+            finalize(() => {
+              fileRef.getDownloadURL().subscribe((downloadURL:any) => {
+                this.user.cover_photo = downloadURL;
+                this.uploadService.saveProfilePhoto(this.user);
+                this.load.closeLoadingDialog();
+                alert("Saved Successfully.");
+                this.showSettings = false;
+              });
+            })
+          ).subscribe();
+          console.log('task: ', task);
+        }
         
-        task.snapshotChanges().pipe(
-          finalize(() => {
-            fileRef.getDownloadURL().subscribe((downloadURL:any) => {
-              this.user.profile_photo = downloadURL;
-              this.uploadService.saveProfilePhoto(this.user);
-              this.load.closeLoadingDialog();
-              alert("Saved Successfully.");
-            });
-          })
-        ).subscribe();
-        console.log('task: ', task);
       } catch (e) {
         throw(e);
       } 
@@ -185,28 +211,36 @@ export class UserProfileComponent {
   }
 
   saveChanges(){
-    this.photoData(this.pic, this.blob);
-  }
-
-  handleNavigationClick(event:any) {
-    this.navigationLinks = document.querySelectorAll("nav ul li a");
-    const targetId = event.target.getAttribute("data-section");
-    if (targetId) {
-        this.showSection(targetId);
-
-        // Remove the "active" class from all navigation links
-        this.navigationLinks.forEach((link:any) => {
-            link.classList.remove("active");
-        });
-
-        // Add the "active" class to the clicked link
-        event.target.classList.add("active");
+    this.load.openLoadingDialog();
+    if(this.profilePic){
+      this.photoData(this.profilePic, this.profileBlob);
     }
+    if(this.coverPic){
+      this.photoData(this.coverPic, this.coverBlob);
+    }
+    if(this.edit_bio){
+      console.log(this.user.bio);
+      console.log(this.edit_bio);
+      this.user.bio = this.edit_bio;
+      this.uploadService.saveProfilePhoto(this.user).then(res => {
+        this.load.closeLoadingDialog();
+        alert("Updated Successfully");
+        this.showSettings = false;
+      });
+    }
+   
   }
+
+  activeSection: string | null = null;
 
   showSection(sectionId:any) {
     const sections = document.querySelectorAll(".content-section");
-    
+    this.navigationLinks.forEach((link:any) => {
+      link.classList.remove("active");
+    });
+
+    this.activeSection = sectionId;
+
     sections.forEach((section) => {
       if(section instanceof HTMLElement){
         section.style.display = "none";
@@ -247,7 +281,22 @@ export class UserProfileComponent {
  uname:any;
  currentUser:any;
 
+
+ everythingLoaded:boolean = false;
   ngOnInit(){ 
+    const intervalId = setInterval(() => {
+      if(
+        this.postList.length > 0 &&
+        this.photoList.length > 0 &&
+        this.galleryPhotos.length > 0 &&
+        this.user
+        ){
+          this.everythingLoaded = true;
+          this.load.closeLoadingDialog();
+          clearInterval(intervalId);
+          
+        }
+    }, 500);
     this.photos = document.querySelectorAll('.zoomable');
     this.modal = document.getElementById('myModal');
     this.zoomedImg = document.getElementById('zoomedImg') as HTMLImageElement;

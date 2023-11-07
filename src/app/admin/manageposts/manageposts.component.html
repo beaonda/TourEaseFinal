@@ -22,57 +22,183 @@
     <!-- ================ Order Details List ================= -->
     <div class="regdetails">
         <div class="container mt-4">
-         
+            <nav>
+                <ul class ="ulmap">
+                    <li class="maplink"><a (click)="showSection('blogs')" data-section="blogs" >ACTIVE</a></li>
+                    <li class="maplink"><a (click)="showSection('photos')" data-section="photos">ARCHIVED</a></li>
+                </ul>
+              
+            </nav>
         </div>
-        <div class="recentOrders">
-           
 
-            <div class="cardHeader">
-                <h2>Posts</h2>
-           
-            </div>
+   <!--      <div id="blogs" class="blogs__section content-section">
+            <h3 class="aside-title lline"></h3> 
+             <div class="blog__post"  style="margin-top: 30px;">
+               <div class="regdetails">
+                   <div class="recentOrders" >
+                    
+                <div class="post-meta">
+                <div class="caption-line1"></div>
+                <div class="caption-line2"></div>
+          
+                <div class="post-placeholder"></div>
+              </div>
+                       
+               </div> -->
+       
 
-            <table>
-                <thead>
-                    <tr>
-                        <td>Date</td>
-                        <td>Title</td>
-    
-                        <td>Name of Establishment</td>
-                        <td>Filter</td>
-                        <td>View</td>
-                        <td>Action</td>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor="let post of postList">
-                        <td>{{post.date + '/' + post.month + '/' + post.year}}</td>
-                        <td>{{post.title}}</td>
-                        <td>{{post.location}}</td>
-                        <td>{{post.category}}</td>
-                        <td>
-                            <button class="viewButton" (click)="viewPost(post.postID)">View</button>
-                          </td>
-                        <td>
-                            <div class="decision-dropdown">
-                                <button class="decision-button">Select</button>
-                                <div class="dropdown-content">
-                                    <a class="accept">Accept</a>
-                                    <a class="reject">Reject</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
+            <div id="blogs" class="blogs__section content-section">
+                <h3 class="aside-title lline"></h3> 
+                 <div class="blog__post"  style="margin-top: 30px;">
                    
-                </tbody>
-            </table>
+                   <div class="regdetails">
+                       <div class="recentOrders">
+                           <div class="cardHeader">
+                               <h2>Spots</h2>
+                          
+                           </div>
+                           <table>
+                            <thead>
+                                <tr>
+                                    <td>Date</td>
+                                    <td>Title</td>
+                
+                                    <td>Name of Establishment</td>
+                                    <td>Filter</td>
+                                    <td>View</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+            
+                            <tbody>
+                                <tr *ngFor="let post of postList">
+                                    <td>{{post.date + '/' + post.month + '/' + post.year}}</td>
+                                    <td>{{post.title}}</td>
+                                    <td>{{post.location}}</td>
+                                    <td>{{post.category}}</td>
+                                    <td>
+                                        <button class="viewButton">View</button>
+                                        <div class="popup">
+                                            <div class="popup-content">
+                                                <span class="close">&times;</span>
+                                                <h2>Other Information</h2>
+                                                <div>
+                                                    <br>
+                                                    <strong>Description</strong>
+                                                    <br>
+                                                   <p>hellllllllllllllllllllllllllllllllllllllllllllllllllllllllooooooooooooooooooooooooooo</p>
+                                                    <br>
+                                                    <strong>Photos</strong>
+                                                  
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </td>
+                                    <td>
+                                        <div class="decision-dropdown">
+                                            <button class="decision-button">Select</button>
+                                            <div class="dropdown-content">
+                                                <a href="#" class="accept">Accept</a>
+                                                <a href="#" class="reject">Reject</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+            
+                               
+                            </tbody>
+                        </table>
+
+
+                           
+                       </div>
+               
+                     
+                       </div>
+                 </div>
+               </div>
+               <!-- End of Blogs Section -->
+       
+               <!-- Photos Section -->
+               <div id="photos" class="photos content-section">
+               
+             <h3 class="aside-title nline"></h3> 
+                   <div class="photo-gallery" style="margin-top: 30px;">
+                 
+                       <div class="regdetails">
+                           <div class="recentOrders">
+                               <div class="cardHeader">
+                                   <h2>Archived Spots</h2>
+                              
+                               </div>
+                               <table>
+                                <thead>
+                                    <tr>
+                                        <td>Date</td>
+                                        <td>Title</td>
+                    
+                                        <td>Name of Establishment</td>
+                                        <td>Filter</td>
+                                        <td>View</td>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+                
+                                <tbody>
+                                    <tr *ngFor="let post of postList">
+                                        <td>{{post.date + '/' + post.month + '/' + post.year}}</td>
+                                        <td>{{post.title}}</td>
+                                        <td>{{post.location}}</td>
+                                        <td>{{post.category}}</td>
+                                        <td>
+                                            <button class="viewButton">View</button>
+                                            <div class="popup">
+                                                <div class="popup-content">
+                                                    <span class="close">&times;</span>
+                                                    <h2>Other Information</h2>
+                                                    <div>
+                                                        <br>
+                                                        <strong>Description</strong>
+                                                        <br>
+                                                       <p>hellllllllllllllllllllllllllllllllllllllllllllllllllllllllooooooooooooooooooooooooooo</p>
+                                                        <br>
+                                                        <strong>Photos</strong>
+                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </td>
+                                        <td>
+                                            <div class="decision-dropdown">
+                                                <button class="decision-button">Select</button>
+                                                <div class="dropdown-content">
+                                                    <a href="#" class="accept">Accept</a>
+                                                    <a href="#" class="reject">Reject</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                
+                                   
+                                </tbody>
+                            </table>
+                               
+                           </div>
+                   
+                         
+                           </div>
+                   
+                 </div>
+               </div>
+               <!-- End of Photos Section -->
+       
+               <!-- Modal for Zoomed-in Photo -->
+        
+       
+               <!-- Badge Section -->
+          
+               <!-- End of Badge Section -->
+           </div>
+       
         </div>
-
-      
-        </div>
-    </div>
-
-
-    
+ 

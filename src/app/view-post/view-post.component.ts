@@ -18,6 +18,10 @@ export class ViewPostComponent {
   rating:any;
   postID:any;
   comment:any;
+  
+  toggleLabelColor(label: HTMLElement) {
+    label.classList.toggle('active');
+  }
 
   @ViewChild(GoogleMap, { static: false }) loc_map!: GoogleMap;
   @ViewChild(GoogleMap, { static: false }) navMap!: GoogleMap;
@@ -39,8 +43,9 @@ export class ViewPostComponent {
     }
 
   everythingLoaded:boolean = false;
+  navigationLinks:any;
   ngOnInit(): void {
-   
+    
     const intervalId = setInterval(() => {
       if(
         this.postDoc &&
@@ -58,18 +63,47 @@ export class ViewPostComponent {
       // Use this.productId to fetch and display product details
       this.getPost();
     });
+    this.navigationLinks = document.querySelectorAll("nav ul li a");
+    this.showSection('blogs');
+  }
+
   
-    
-    this.navigationLinks[0].classList.add("active"); 
+ ngAfterViewInit(){
+  let map2 = new google.maps.Map(document.getElementById('map')!, {
+    center: this.newCenter,
+    zoom: this.zoom, // Adjust the zoom level as needed
+  });
+  const service = new google.maps.places.PlacesService(map2);
 
-  /*   console.log(this.postID.toString()); */
-    
-  }
+    const types = ['hospital', 'pharmacy', 'car_repair']; // Add your desired types here
 
-  ngAfterViewInit(){
-    this.showSection("blogs");
-  }
+    types.forEach(type => {
+      const request = {
+        location: this.newCenter,
+        radius: 2000, // Adjust the radius as needed
+        type: type, // Use the current type in the request
+      };
+      
+      service.nearbySearch(request, (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          // Handle the results for the current type
+          results!.forEach(result => {
+            console.log(result);
+            /* this.newMarkerPos = {
+              lat: result.geometry!.location!.lat(),
+              lng: result.geometry!.location!.lng(),
+            };
+            console.log(this.newMarkerPos);
+            this.addMarker(this.newMarkerPos); */
 
+            
+            this.addMarker(result.geometry?.location, result, type);
+            // You can do further processing here
+          });
+        }
+      });
+    });
+ }
 
   latitude: number | undefined;
   longitude: number | undefined;
@@ -93,8 +127,8 @@ export class ViewPostComponent {
           lat: this.latitude,
           lng: this.longitude,
         };
-        this.navMap.panTo(this.locCenter);
-        this.nav_marker.marker?.setPosition(this.locCenter);
+        /* this.navMap.panTo(this.locCenter); */
+        /* this.nav_marker.marker!.setPosition(this.locCenter); */
       },
       (error) => {
         console.error('Error getting location:', error);
@@ -203,45 +237,8 @@ export class ViewPostComponent {
         type: 'hospital',
       };
 
-      const map2 = new google.maps.Map(document.getElementById('map')!, {
-        center: this.newCenter,
-        zoom: this.zoom, // Adjust the zoom level as needed
-      });
-      const service = new google.maps.places.PlacesService(map2);
-
-        const types = ['hospital', 'pharmacy', 'car_repair']; // Add your desired types here
-
-        types.forEach(type => {
-          const request = {
-            location: this.newCenter,
-            radius: 2000, // Adjust the radius as needed
-            type: type, // Use the current type in the request
-          };
-          
-          service.nearbySearch(request, (results, status) => {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-              // Handle the results for the current type
-              results!.forEach(result => {
-                /* console.log(result); */
-                /* this.newMarkerPos = {
-                  lat: result.geometry!.location!.lat(),
-                  lng: result.geometry!.location!.lng(),
-                };
-                console.log(this.newMarkerPos);
-                this.addMarker(this.newMarkerPos); */
-                const marker = new google.maps.Marker({
-                  position: result!.geometry!.location,
-                  map: map2,
-                  title: result.name,
-                });
-                
-                this.addMarker(result.geometry?.location, result, type);
-                // You can do further processing here
-              });
-            }
-          });
-        });
-      this.loc_map.panTo(this.newCenter);
+      
+      this.center = this.newCenter;
       this.rating = this.postDoc.rating;
       //console.log(this.center);
     }).catch(err => {
@@ -254,6 +251,8 @@ export class ViewPostComponent {
       console.log(err);
     });
   }
+
+
 
   currentUser:any;
 
@@ -388,9 +387,16 @@ export class ViewPostComponent {
   zoom = 15;
   display: any;
 
-  
+  activeSection: string | null = null;
+
   showSection(sectionId:any) {
     const sections = document.querySelectorAll(".content-section");
+    this.navigationLinks.forEach((link:any) => {
+      link.classList.remove("active");
+    });
+
+    this.activeSection = sectionId;
+
     sections.forEach((section) => {
       if(section instanceof HTMLElement){
         section.style.display = "none";
@@ -403,28 +409,7 @@ export class ViewPostComponent {
     }
 
   }
-
-
-
-  handleNavigationClick = (event:any) => {
-    const targetId = event.target.getAttribute("data-section");
-    if (targetId) {
-        this.showSection(targetId);
-
-        // Remove the "active" class from all navigation links
-        this.navigationLinks.forEach((link:any) => {
-            link.classList.remove("active");
-        });
-
-        // Add the "active" class to the clicked link
-        event.target.classList.add("active");
-    }
-}
-
-  photos = document.querySelectorAll('.zoomable');
-  modal = document.getElementById('myModal');
-  zoomedImg = document.getElementById('zoomedImg') as HTMLImageElement;
-  navigationLinks = document.querySelectorAll("nav ul li a");
+ 
 
 
 }

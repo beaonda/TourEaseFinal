@@ -2,16 +2,19 @@
 <app-fab></app-fab>
 
 <div class="header__wrapper">
-    <header [style.background-image]="'url(' + user.cover_photo + ')'"><button class="header_edit" *ngIf="showSettings" (click)="takePicture('cover')"><i class="bi bi-camera"></i></button></header>
+    <header *ngIf="everythingLoaded" [style.background-image]="'url(' + user.cover_photo + ')'"><button class="header_edit" *ngIf="showSettings" (click)="takePicture('cover')"><i class="bi bi-camera"></i></button></header>
+    <header *ngIf="!everythingLoaded"></header>
     <div class="cols__container">
       <div class="left__col">
         <div class="img__container">
             <img *ngIf = "user" [src]="user.profile_photo" alt="Kaila Guerrero" />
+            <img *ngIf = "!user" src="../../assets/img/profilepic.png" alt="Kaila Guerrero" />
             <button class="profile_edit" *ngIf="showSettings" (click)="takePicture('pfp')"><i class="bi bi-camera"></i></button> 
         </div>
         <h2 *ngIf = "user">{{user.fname + ' ' + user.lname}}</h2>
         <p *ngIf = "user">@{{user.uname}}</p>
         <button *ngIf = "showSettings" id="follow-button" (click)="saveChanges()">Save</button>
+        <button *ngIf = "showSettings" id="follow-button" (click)="showSettings = false; showSection('blogs');">Cancel</button>
         <!-- <button id="follow-button">Follow</button> -->
         <div *ngIf ="user">
         <button *ngIf="sameUser && !showSettings" id="settings-button" (click)="goToSettings()">
@@ -39,12 +42,12 @@
         <h1 class="page.title" style="margin-top: 8%;">Profile Settings</h1>
         <form>
     
-              <div class="form-group" style="margin-top:10px" >
+              <!-- <div class="form-group" style="margin-top:10px" >
                 <input [(ngModel)]="edit_uname" type="text" name="edit_uname" class="form-control" id="edit_uname" placeholder="Edit your username">
-              </div>
+              </div> -->
 
               <div class="form-group" style="margin-top:10px">
-                <textarea id="edit_bio"  class="form-control" name="edit_bio" rows="7" placeholder="Edit your bio" #textArea></textarea>
+                <textarea [(ngModel)]="edit_bio" id="edit_bio"  class="form-control" name="edit_bio" rows="7" placeholder="Edit your bio" #textArea></textarea>
               </div>
               
 
@@ -55,9 +58,9 @@
         <div *ngIf="!showSettings" class="right__col" style="padding: 20px;">
             <nav>
                 <ul>
-                    <li><a class="active" (click)="handleNavigationClick($event)" data-section="blogs">blogs</a></li>
-                    <li><a (click)="handleNavigationClick($event)" data-section="photos">gallery</a></li>
-                    <li><a (click)="handleNavigationClick($event)" data-section="badge">passport</a></li>
+                  <li><a [class.active]="activeSection === 'blogs'" (click)="showSection('blogs')" data-section="blogs">blogs</a></li>
+                  <li><a [class.active]="activeSection === 'photos'" (click)="showSection('photos')" data-section="photos">gallery</a></li>
+                  <li><a [class.active]="activeSection === 'badge'" (click)="showSection('badge')" data-section="badge">passport</a></li>
                 </ul>
               
             </nav>
@@ -66,7 +69,19 @@
 
             <!-- Blogs Section -->
             <div id="blogs" class="blogs__section content-section" >
-              <h3>Blogs</h3>
+                <div  class="post-meta" *ngIf = "!everythingLoaded">
+                    <div class="caption-line3"></div>
+                    <div class="caption-line2"></div>
+                    <div class="post-caption">
+                        <div class="caption-line" style="margin-top: 37px;"></div>
+                        <div class="caption-line"></div>
+                        <div class="caption-line" style="margin-bottom: 30px;"></div>
+                      </div>
+              
+                    <div class="post-placeholder" style="margin-bottom: 200px;"></div>
+                
+                </div>
+
               <div *ngFor = "let post of postList; let i = index" class="blog__post">
                 <div *ngIf = "postList" class="rating" id="rating">
                     <input  [ngModel]="post.rating"  type="radio" id="star5" [name]="'rate_' + i" value="5" /><label for="star5"></label>
@@ -90,7 +105,6 @@
 
             <!-- Photos Section -->
             <div id="photos" class="photos content-section">
-                <h3>Photos</h3>
                 <div class="photo-gallery">
                     <img *ngFor = "let photo of galleryPhotos" [src] = "photo.imageUrl" class="zoomable" alt="Photo" />
                 </div>
@@ -107,17 +121,28 @@
 
             <!-- Badge Section -->
             <div id="badge" class="badge__section content-section">
-              <h3>Passport</h3>
-              <img src="../../assets/img/passport.png" style="max-width: 100%; max-height: 100vh;" alt="First Blog Post Badge" />
-              <div class="badge__item">
-                  <h4>My Passport</h4>
-                  <p>
-                      Congratulations on your new passport! You've officially
-                      joined the blogging community.
-                  </p>
+              <div class="containers" >
+               
+                <div class = "passcont">
+                  <img src="../../assets/img/badge1.png" id = "top_rater" class="stamp">
+                  <img src="../../assets/img/badge3.png" id = "developer" class="stamp">
+                  <img src="../../assets/img/badge4.png" id = "tourease" class="stamp">
+                  <img src="../../assets/img/badge5.png" id = "verified" class="stamp">
+                  <img src="../../assets/img/badge6.png" id = "nomad" class="stamp">
+                  <img src="../../assets/img/badge7.png" id = "tree" class="stamp">
+
+                  <div class ="textInfo">
+                    <h6>Username: </h6>
+                    <h6>Age: </h6>
+                  </div>
+                </div>
+               <!--  <img src="../../assets/img/pass.png" style="text-align: center;" class="passport" alt="First Blog Post Badge" /> -->
+             
+                  
+
               </div>
-              <h5 class="places1">Villa Neyra</h5>
-              <h5 class="places2">La Verginia</h5>
+              
+              
           
             </div>
             <!-- End of Badge Section -->
