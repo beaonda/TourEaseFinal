@@ -74,6 +74,14 @@
   width: 100%; 
 }
 
+.post-placeholder1 {
+  background-color: #e6e2e2; 
+  height: 80px;
+  width: 100%; 
+}
+
+
+
 
 
 .post-caption {
@@ -99,11 +107,27 @@
   margin-bottom: 17px;
   width: 23%; 
 }
+
+.caption-line22 {
+  background-color: #e6e2e2; 
+  height: 27px;
+  margin-bottom: 33px;
+  width: 62%;
+  margin-left: 38px;
+}
 .caption-line3 {
   background-color: #e6e2e2; 
   height: 36px;
   margin-bottom: 17px;
   width:35%;
+}
+
+.caption-line32 {
+  background-color: #e6e2e2;
+  height: 36px;
+  margin-top: 42px;
+  margin-bottom: -23px;
+  width: 100%;
 }
 
 nav ul li a.active {

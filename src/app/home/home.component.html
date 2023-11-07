@@ -135,34 +135,34 @@
                 <div class="post-entry-1" *ngIf="recentPosts[0]">
                   <a (click) = "nextPage(recentPosts[0].postID)"><img *ngIf = "recentPhotos[0]" [src]="recentPhotos[0].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[0]">{{recentPosts[0].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[0].month + ' ' + recentPosts[0].date + 'th ' + recentPosts[0].year}}</span></div>
-                  <h2><a (click) = "nextPage(recentPosts[0].postID)">{{recentPosts[0].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[0].postID)" style="cursor:pointer">{{recentPosts[0].title}}</a></h2>
                 </div>
                 <div class="post-entry-1" *ngIf = "recentPosts[1]">
                   <a (click) = "nextPage(recentPosts[1].postID)"><img *ngIf = "recentPhotos[1]" [src]="recentPhotos[1].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[1]">{{recentPosts[1].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[1].month + ' ' + recentPosts[1].date + 'th ' + recentPosts[1].year}}</span></div>
-                  <h2><a (click) = "nextPage(recentPosts[1].postID)">{{recentPosts[1].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[1].postID)"  style="cursor:pointer">{{recentPosts[1].title}}</a></h2>
                 </div>
                 <div class="post-entry-1" *ngIf = "recentPosts[2]">
                   <a (click) = "nextPage(recentPosts[2].postID)"><img *ngIf = "recentPhotos[2]" [src]="recentPhotos[2].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[2]">{{recentPosts[2].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[2].month + ' ' + recentPosts[2].date + 'th ' + recentPosts[2].year}}</span></div>
-                  <h2><a (click) = "nextPage(recentPosts[2].postID)">{{recentPosts[2].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[2].postID)"  style="cursor:pointer">{{recentPosts[2].title}}</a></h2>
                 </div>
               </div>
               <div class="col-lg-4 border-start custom-border">
                 <div class="post-entry-1" *ngIf = "recentPosts[3]">
                   <a (click) = "nextPage(recentPosts[3].postID)"><img *ngIf = "recentPhotos[3]" [src]="recentPhotos[3].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[3]">{{recentPosts[3].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[3].month + ' ' + recentPosts[3].date + 'th ' + recentPosts[3].year}}</span></div>
-                  <h2><a (click) = "nextPage(recentPosts[3].postID)">{{recentPosts[3].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[3].postID)"  style="cursor:pointer">{{recentPosts[3].title}}</a></h2>
                 </div>
                 <div class="post-entry-1" *ngIf = "recentPosts[4]">
                   <a (click) = "nextPage(recentPosts[4].postID)"><img *ngIf = "recentPhotos[4]" [src]="recentPhotos[4].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[4]">{{recentPosts[4].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[4].month + ' ' + recentPosts[4].date + 'th ' + recentPosts[4].year}}</span></div>
-                  <h2><a (click) = "nextPage(recentPosts[4].postID)">{{recentPosts[4].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[4].postID)"  style="cursor:pointer">{{recentPosts[4].title}}</a></h2>
                 </div>
                 <div class="post-entry-1" *ngIf = "recentPosts[5]">
                   <a (click) = "nextPage(recentPosts[5].postID)"><img *ngIf = "recentPhotos[5]" [src]="recentPhotos[5].imageUrl" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date" *ngIf = "recentPosts[5]">{{recentPosts[5].category}}</span> <span class="mx-1">&bullet;</span> <span>{{recentPosts[5].month + ' ' + recentPosts[5].date + 'th ' + recentPosts[5].year}}</span></div>
-                  <h2><a (click) = "nextPage(recentPosts[5].postID)">{{recentPosts[5].title}}</a></h2>
+                  <h2><a (click) = "nextPage(recentPosts[5].postID)"  style="cursor:pointer">{{recentPosts[5].title}}</a></h2>
                 </div>
               </div>
 
@@ -285,7 +285,7 @@
               </a>
               <div>
                 <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>{{natureList[0].month + ' ' + natureList[0].date + 'th ' + natureList[0].year}}</span></div>
-                <h3><a (click) = "nextPage(natureList[0].postID)" *ngIf="natureList[0]">{{natureList[0].title}}</a></h3>
+                <h3><a (click) = "nextPage(natureList[0].postID)" *ngIf="natureList[0]"  style="cursor:pointer">{{natureList[0].title}}</a></h3>
                 <p>{{truncateString(natureList[0].body, 200)}}..</p>
                 <div class="d-flex align-items-center author">
                   
@@ -301,14 +301,14 @@
                 <div *ngIf = "natureList[1]" class="post-entry-1 border-bottom">
                   <a (click) = "nextPage(natureList[1].postID)"><img [src]="naturePhotos[1]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>{{natureList[1].month + ' ' + natureList[1].date + 'th ' + natureList[1].year}}</span></div>
-                  <h2 class="mb-2"><a (click) = "nextPage(natureList[1].postID)" *ngIf="natureList[1]">{{natureList[1].title}}</a></h2>
+                  <h2 class="mb-2"><a (click) = "nextPage(natureList[1].postID)" *ngIf="natureList[1]"  style="cursor:pointer">{{natureList[1].title}}</a></h2>
                   <span class="author mb-3 d-block"  (click)="viewAuthor(natureList[1].user)" *ngIf="natureList[1]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{natureList[1].user}}</span> 
                   <p class="mb-4 d-block">{{truncateString(natureList[1].body, 200)}}..</p>
                 </div>
 
                 <div *ngIf = "natureList[2]" class="post-entry-1">
                   <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>{{natureList[2].month + ' ' + natureList[2].date + 'th ' + natureList[2].year}}</span></div>
-                  <h2 class="mb-2"><a (click) = "nextPage(natureList[2].postID)" *ngIf="natureList[2]">{{natureList[2].title}}</a></h2>
+                  <h2 class="mb-2"><a (click) = "nextPage(natureList[2].postID)" *ngIf="natureList[2]"  style="cursor:pointer">{{natureList[2].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(natureList[2].user)" *ngIf="natureList[2]"><i class="bi bi-person" style="margin-right: 10px;"></i> {{natureList[2].user}}</span>
                 </div>
               </div>
@@ -316,7 +316,7 @@
                 <div *ngIf = "natureList[3]" class="post-entry-1">
                   <a (click) = "nextPage(natureList[3].postID)"><img *ngIf="natureList[2]" [src]="naturePhotos[2]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>{{natureList[3].month + ' ' + natureList[3].date + 'th ' + natureList[3].year}}</span></div>
-                  <h2 class="mb-2"><a (click) = "nextPage(natureList[3].postID)" *ngIf="natureList[3]">{{natureList[3].title}}</a></h2>
+                  <h2 class="mb-2"><a (click) = "nextPage(natureList[3].postID)" *ngIf="natureList[3]"  style="cursor:pointer">{{natureList[3].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(natureList[3].user)" *ngIf="natureList[3]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{natureList[3].user}}</span>
                   <p class="mb-4 d-block">{{truncateString(natureList[3].body, 150)}}..</p>
                 </div>
@@ -327,37 +327,37 @@
           <div *ngIf = "natureList[4]" class="col-md-3">
             <div class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>{{natureList[4].month + ' ' + natureList[4].date + 'th ' + natureList[4].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(natureList[4].postID)" *ngIf="natureList[4]">{{natureList[4].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[4].postID)" *ngIf="natureList[4]"  style="cursor:pointer">{{natureList[4].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(natureList[4].user)" *ngIf="natureList[4]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{natureList[4].user}}</span>
             </div>
 
             <div *ngIf = "natureList[5]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>{{natureList[5].month + ' ' + natureList[5].date + 'th ' + natureList[5].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(natureList[5].postID)" *ngIf="natureList[5]">{{natureList[5].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[5].postID)" *ngIf="natureList[5]"  style="cursor:pointer">{{natureList[5].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(natureList[5].user)" *ngIf="natureList[5]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{natureList[5].user}}</span>
             </div>
 
             <div *ngIf = "natureList[6]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>{{natureList[6].month + ' ' + natureList[6].date + 'th ' + natureList[6].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(natureList[6].postID)" *ngIf="natureList[6]">{{natureList[6].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[6].postID)" *ngIf="natureList[6]"  style="cursor:pointer">{{natureList[6].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(natureList[6].user)" *ngIf="natureList[6]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{natureList[6].user}}</span>
             </div>
 
             <div *ngIf = "natureList[7]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>{{natureList[7].month + ' ' + natureList[7].date + 'th ' + natureList[7].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(natureList[7].postID)" *ngIf="natureList[7]">{{natureList[7].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[7].postID)" *ngIf="natureList[7]"  style="cursor:pointer">{{natureList[7].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(natureList[7].user)" *ngIf="natureList[7]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{natureList[7].user}}</span>
             </div>
 
             <div *ngIf = "natureList[8]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>{{natureList[8].month + ' ' + natureList[8].date + 'th ' + natureList[8].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(natureList[8].postID)" *ngIf="natureList[8]">{{natureList[8].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[8].postID)" *ngIf="natureList[8]"  style="cursor:pointer">{{natureList[8].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(natureList[8].user)" *ngIf="natureList[8]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{natureList[8].user}}</span>
             </div>
 
             <div *ngIf = "natureList[9]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Nature</span> <span class="mx-1">&bullet;</span> <span>{{natureList[9].month + ' ' + natureList[9].date + 'th ' + natureList[9].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(natureList[9].postID)" *ngIf="natureList[9]">{{natureList[9].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(natureList[9].postID)" *ngIf="natureList[9]"  style="cursor:pointer">{{natureList[9].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(natureList[9].user)" *ngIf="natureList[9]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{natureList[9].user}}</span>
             </div>
           </div>
@@ -383,7 +383,7 @@
               </a>
               <div>
                 <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{culturalList[0].month + ' ' + culturalList[0].date + 'th ' + culturalList[0].year}}</span></div>
-                <h3><a (click) = "nextPage(culturalList[0].postID)" *ngIf = "culturalList[0]">{{culturalList[0].title}}</a></h3>
+                <h3><a (click) = "nextPage(culturalList[0].postID)" *ngIf = "culturalList[0]" style="cursor:pointer">{{culturalList[0].title}}</a></h3>
                 <p>{{truncateString(culturalList[0].body, 300)}}..</p>
                 <div class="d-flex align-items-center author">
                   <div class="photo"></div>
@@ -399,14 +399,14 @@
                 <div *ngIf = "culturalList[1]" class="post-entry-1 border-bottom">
                   <a (click) = "nextPage(culturalList[1].postID)"><img *ngIf = "culturalList[1]" [src]="culturalPhotos[1]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{culturalList[1].month + ' ' + culturalList[1].date + 'th ' + culturalList[1].year}}</span></div>
-                  <h2 class="mb-2"><a (click) = "nextPage(culturalList[1].postID)" *ngIf = "culturalList[1]">{{culturalList[1].title}}</a></h2>
+                  <h2 class="mb-2"><a (click) = "nextPage(culturalList[1].postID)" *ngIf = "culturalList[1]"  style="cursor:pointer">{{culturalList[1].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(culturalList[1].user)" *ngIf = "culturalList[1]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{culturalList[1].user}}</span>
                   <p class="mb-4 d-block">{{truncateString(culturalList[1].body, 150)}}..</p>
                 </div>
 
                 <div *ngIf = "culturalList[2]" class="post-entry-1">
                   <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{culturalList[2].month + ' ' + culturalList[2].date + 'th ' + culturalList[2].year}}</span></div>
-                  <h2 class="mb-2"><a (click) = "nextPage(culturalList[2].postID)" *ngIf = "culturalList[2]">{{culturalList[2].title}}</a></h2>
+                  <h2 class="mb-2"><a (click) = "nextPage(culturalList[2].postID)" *ngIf = "culturalList[2]"  style="cursor:pointer">{{culturalList[2].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(culturalList[2].user)" *ngIf = "culturalList[2]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{culturalList[2].user}}</span>
                 </div>
               </div>
@@ -414,7 +414,7 @@
                 <div *ngIf = "culturalList[3]" class="post-entry-1">
                   <a (click) = "nextPage(culturalList[2].postID)"><img [src]="culturalPhotos[2]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{culturalList[3].month + ' ' + culturalList[3].date + 'th ' + culturalList[3].year}}</span></div>
-                  <h2 class="mb-2"><a (click) = "nextPage(culturalList[3].postID)" *ngIf = "culturalList[3]">{{culturalList[3].title}}</a></h2>
+                  <h2 class="mb-2"><a (click) = "nextPage(culturalList[3].postID)" *ngIf = "culturalList[3]"  style="cursor:pointer">{{culturalList[3].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(culturalList[3].user)" *ngIf = "culturalList[3]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{culturalList[3].user}}</span>
                   <p class="mb-4 d-block">{{truncateString(culturalList[3].body, 150)}}..</p>
                 </div>
@@ -424,37 +424,37 @@
           <div class="col-md-3">
             <div *ngIf = "culturalList[4]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{culturalList[4].month + ' ' + culturalList[4].date + 'th ' + culturalList[4].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(culturalList[4].postID)" *ngIf = "culturalList[4]">{{culturalList[4].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[4].postID)" *ngIf = "culturalList[4]"  style="cursor:pointer">{{culturalList[4].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(culturalList[4].user)" *ngIf = "culturalList[4]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{culturalList[4].user}}</span>
             </div>
 
             <div *ngIf = "culturalList[5]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{culturalList[5].month + ' ' + culturalList[5].date + 'th ' + culturalList[5].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(culturalList[5].postID)" *ngIf = "culturalList[5]">{{culturalList[5].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[5].postID)" *ngIf = "culturalList[5]"  style="cursor:pointer">{{culturalList[5].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(culturalList[5].user)" *ngIf = "culturalList[5]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{culturalList[5].user}}</span>
             </div>
 
             <div *ngIf = "culturalList[6]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{culturalList[6].month + ' ' + culturalList[6].date + 'th ' + culturalList[6].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(culturalList[6].postID)" *ngIf = "culturalList[6]">{{culturalList[6].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[6].postID)" *ngIf = "culturalList[6]"  style="cursor:pointer">{{culturalList[6].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(culturalList[6].user)" *ngIf = "culturalList[6]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{culturalList[6].user}}</span>
             </div>
 
             <div *ngIf = "culturalList[7]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{culturalList[7].month + ' ' + culturalList[7].date + 'th ' + culturalList[7].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(culturalList[7].postID)" *ngIf = "culturalList[7]">{{culturalList[7].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[7].postID)" *ngIf = "culturalList[7]"  style="cursor:pointer">{{culturalList[7].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(culturalList[7].user)" *ngIf = "culturalList[7]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{culturalList[7].user}}</span>
             </div>
 
             <div *ngIf = "culturalList[8]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{culturalList[8].month + ' ' + culturalList[8].date + 'th ' + culturalList[8].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(culturalList[8].postID)" *ngIf = "culturalList[8]">{{culturalList[8].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[8].postID)" *ngIf = "culturalList[8]"  style="cursor:pointer">{{culturalList[8].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(culturalList[8].user)" *ngIf = "culturalList[8]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{culturalList[8].user}}</span>
             </div>
 
             <div *ngIf = "culturalList[9]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>{{culturalList[9].month + ' ' + culturalList[9].date + 'th ' + culturalList[9].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(culturalList[9].postID)" *ngIf = "culturalList[9]">{{culturalList[9].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(culturalList[9].postID)" *ngIf = "culturalList[9]"  style="cursor:pointer">{{culturalList[9].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(culturalList[9].user)" *ngIf = "culturalList[9]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{culturalList[9].user}}</span>
             </div>
           </div>
@@ -476,7 +476,7 @@
             <div *ngIf = "beachList[0]" class="post-entry-1 lg">
               <a (click) = "nextPage(beachList[0].postID)"><img *ngIf = "beachPhotos[0]" [src]="beachPhotos[0]" alt="" class="img-fluid"></a>
               <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[0].month + ' ' + beachList[0].date + 'th ' + beachList[0].year}}</span></div>
-              <h2><a (click) = "nextPage(beachList[0].postID)" *ngIf = "beachList[0]">{{beachList[0].title}}</a></h2>
+              <h2><a (click) = "nextPage(beachList[0].postID)" *ngIf = "beachList[0]"  style="cursor:pointer">{{beachList[0].title}}</a></h2>
               <p class="mb-4 d-block">{{truncateString(beachList[0].body, 300)}}..</p>
 
               <div class="d-flex align-items-center author">
@@ -489,13 +489,13 @@
 
             <div *ngIf = "beachList[1]" class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[1].month + ' ' + beachList[1].date + 'th ' + beachList[1].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(beachList[1].postID)" *ngIf = "beachList[1]">{{beachList[1].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(beachList[1].postID)" *ngIf = "beachList[1]" style="cursor:pointer">{{beachList[1].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(beachList[1].user)"><i class="bi bi-person" style="margin-right: 10px;"></i>{{beachList[1].user}}</span>
             </div>
 
             <div *ngIf = "beachList[2]" class="post-entry-1">
               <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[2].month + ' ' + beachList[2].date + 'th ' + beachList[2].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(beachList[2].postID)" *ngIf = "beachList[2]">{{beachList[2].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(beachList[2].postID)" *ngIf = "beachList[2]" style="cursor:pointer">{{beachList[2].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(beachList[2].user)"><i class="bi bi-person" style="margin-right: 10px;"></i>{{beachList[2].user}}</span>
             </div>
 
@@ -507,71 +507,71 @@
                 <div *ngIf = "beachList[3]" class="post-entry-1">
                   <a (click) = "nextPage(beachList[3].postID)"><img *ngIf = "beachPhotos[3]" [src]="beachPhotos[3]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[3].month + ' ' + beachList[3].date + 'th ' + beachList[3].year}}</span></div>
-                  <h2><a (click) = "nextPage(beachList[3].postID)" *ngIf = "beachList[3]">{{beachList[3].title}}</a></h2>
+                  <h2><a (click) = "nextPage(beachList[3].postID)" *ngIf = "beachList[3]" style="cursor:pointer">{{beachList[3].title}}</a></h2>
                 </div>
                 <div *ngIf = "beachList[4]" class="post-entry-1">
                   <a (click) = "nextPage(beachList[4].postID)"><img *ngIf = "beachPhotos[4]" [src]="beachPhotos[4]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[4].month + ' ' + beachList[4].date + 'th ' + beachList[4].year}}</span></div>
-                  <h2><a (click) = "nextPage(beachList[4].postID)" *ngIf = "beachList[4]">{{beachList[4].title}}</a></h2>
+                  <h2><a (click) = "nextPage(beachList[4].postID)" *ngIf = "beachList[4]" style="cursor:pointer">{{beachList[4].title}}</a></h2>
                 </div>
                 <div *ngIf = "beachList[5]" class="post-entry-1">
                   <a (click) = "nextPage(beachList[5].postID)"><img *ngIf = "beachPhotos[5]" [src]="beachPhotos[5]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[5].month + ' ' + beachList[5].date + 'th ' + beachList[5].year}}</span></div>
-                  <h2><a (click) = "nextPage(beachList[5].postID)" *ngIf = "beachList[5]">{{beachList[5].title}}</a></h2>
+                  <h2><a (click) = "nextPage(beachList[5].postID)" *ngIf = "beachList[5]" style="cursor:pointer">{{beachList[5].title}}</a></h2>
                 </div>
               </div>
               <div class="col-lg-4 border-start custom-border">
                 <div *ngIf = "beachList[6]" class="post-entry-1">
                   <a (click) = "nextPage(beachList[6].postID)"><img *ngIf = "beachPhotos[6]" [src]="beachPhotos[6]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[6].month + ' ' + beachList[6].date + 'th ' + beachList[6].year}}</span></div>
-                  <h2><a (click) = "nextPage(beachList[6].postID)" *ngIf = "beachList[6]">{{beachList[6].title}}</a></h2>
+                  <h2><a (click) = "nextPage(beachList[6].postID)" *ngIf = "beachList[6]" style="cursor:pointer">{{beachList[6].title}}</a></h2>
                 </div>
                 <div *ngIf = "beachList[7]" class="post-entry-1">
                   <a (click) = "nextPage(beachList[7].postID)"><img *ngIf = "beachPhotos[7]" [src]="beachPhotos[7]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[7].month + ' ' + beachList[7].date + 'th ' + beachList[7].year}}</span></div>
-                  <h2><a (click) = "nextPage(beachList[7].postID)" *ngIf="beachList[7]">{{beachList[7].title}}</a></h2>
+                  <h2><a (click) = "nextPage(beachList[7].postID)" *ngIf="beachList[7]" style="cursor:pointer">{{beachList[7].title}}</a></h2>
                 </div>
                 <div *ngIf = "beachList[8]" class="post-entry-1">
                   <a (click) = "nextPage(beachList[8].postID)"><img *ngIf = "beachPhotos[8]" [src]="beachPhotos[8]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[8].month + ' ' + beachList[8].date + 'th ' + beachList[8].year}}</span></div>
-                  <h2><a (click) = "nextPage(beachList[8].postID)" *ngIf = "beachList[7]">{{beachList[8].title}}</a></h2>
+                  <h2><a (click) = "nextPage(beachList[8].postID)" *ngIf = "beachList[7]" style="cursor:pointer">{{beachList[8].title}}</a></h2>
                 </div>
               </div>
               <div class="col-lg-4">
 
                 <div *ngIf = "beachList[9]" class="post-entry-1 border-bottom">
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span *ngIf = "beachList[8]">{{beachList[9].month + ' ' + beachList[9].date + 'th ' + beachList[9].year}}</span></div>
-                  <h2 class="mb-2"><a (click) = "nextPage(beachList[9].postID)" *ngIf = "beachList[9]">{{beachList[9].title}}</a></h2>
+                  <h2 class="mb-2"><a (click) = "nextPage(beachList[9].postID)" *ngIf = "beachList[9]" style="cursor:pointer">{{beachList[9].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(beachList[9].user)" *ngIf = "beachList[9]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{beachList[9].user}}</span>
                 </div>
 
                 <div *ngIf = "beachList[10]" class="post-entry-1 border-bottom">
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[10].month + ' ' + beachList[10].date + 'th ' + beachList[10].year}}</span></div>
-                  <h2 class="mb-2"><a (click) = "nextPage(beachList[10].postID)" *ngIf = "beachList[10]">{{beachList[9].title}}</a></h2>
+                  <h2 class="mb-2"><a (click) = "nextPage(beachList[10].postID)" *ngIf = "beachList[10]" style="cursor:pointer">{{beachList[9].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(beachList[10].user)" *ngIf = "beachList[10]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{beachList[10].user}}</span>
                 </div>
 
                 <div *ngIf = "beachList[11]" class="post-entry-1 border-bottom">
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[11].month + ' ' + beachList[11].date + 'th ' + beachList[11].year}}</span></div>
-                  <h2 class="mb-2"><a *ngIf = "beachList[11]" (click) = "nextPage(beachList[11].postID)">{{beachList[11].title}}</a></h2>
+                  <h2 class="mb-2"><a *ngIf = "beachList[11]" (click) = "nextPage(beachList[11].postID)" style="cursor:pointer">{{beachList[11].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(beachList[11].user)" *ngIf = "beachList[11]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{beachList[11].user}}</span>
                 </div>
 
                 <div *ngIf = "beachList[12]" class="post-entry-1 border-bottom">
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[12].month + ' ' + beachList[12].date + 'th ' + beachList[12].year}}</span></div>
-                  <h2 class="mb-2"><a *ngIf = "beachList[12]" (click) = "nextPage(beachList[12].postID)">{{beachList[12].title}}</a></h2>
+                  <h2 class="mb-2"><a *ngIf = "beachList[12]" (click) = "nextPage(beachList[12].postID)" style="cursor:pointer">{{beachList[12].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(beachList[12].user)" *ngIf = "beachList[12]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{beachList[12].user}}</span>
                 </div>
 
                 <div *ngIf = "beachList[13]" class="post-entry-1 border-bottom">
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[13].month + ' ' + beachList[13].date + 'th ' + beachList[13].year}}</span></div>
-                  <h2 class="mb-2"><a *ngIf = "beachList[13]" (click) = "nextPage(beachList[13].postID)">{{beachList[13].title}}</a></h2>
+                  <h2 class="mb-2"><a *ngIf = "beachList[13]" (click) = "nextPage(beachList[13].postID)" style="cursor:pointer">{{beachList[13].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(beachList[13].user)" *ngIf = "beachList[13]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{beachList[13].user}}</span>
                 </div>
 
                 <div *ngIf = "beachList[14]" class="post-entry-1 border-bottom">
                   <div class="post-meta"><span class="date">Sun and Beach</span> <span class="mx-1">&bullet;</span> <span>{{beachList[14].month + ' ' + beachList[14].date + 'th ' + beachList[14].year}}</span></div>
-                  <h2 class="mb-2"><a *ngIf = "beachList[14]" (click) = "nextPage(beachList[14].postID)">{{beachList[14].title}}</a></h2>
+                  <h2 class="mb-2"><a *ngIf = "beachList[14]" (click) = "nextPage(beachList[14].postID)" style="cursor:pointer">{{beachList[14].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(beachList[14].user)" *ngIf = "beachList[14]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{beachList[14].user}}</span>
                 </div>
 
@@ -603,7 +603,7 @@
               </a>
               <div>
                 <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>{{leisureList[0].month + ' ' + leisureList[0].date + 'th ' + leisureList[0].year}}</span></div>
-                <h3><a (click) = "nextPage(leisureList[0].postID)" *ngIf = "leisureList[0]">{{leisureList[0].title}}</a></h3>
+                <h3><a (click) = "nextPage(leisureList[0].postID)" *ngIf = "leisureList[0]" style="cursor:pointer">{{leisureList[0].title}}</a></h3>
                 <p>{{truncateString(leisureList[0].body, 200)}}..</p>
                 <div class="d-flex align-items-center author">
                   <div class="photo"></div>
@@ -619,14 +619,14 @@
                 <div *ngIf = "leisureList[1]"  class="post-entry-1 border-bottom">
                   <a (click) = "nextPage(leisureList[1].postID)"><img *ngIf="leisurePhotos[1]" [src]="leisurePhotos[1]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>{{leisureList[1].month + ' ' + leisureList[1].date + 'th ' + leisureList[1].year}}</span></div>
-                  <h2 class="mb-2"><a (click) = "nextPage(leisureList[1].postID)" *ngIf = "leisureList[1]">{{leisureList[1].title}}</a></h2>
+                  <h2 class="mb-2"><a (click) = "nextPage(leisureList[1].postID)" *ngIf = "leisureList[1]"  style="cursor:pointer">{{leisureList[1].title}}</a></h2>
                   <span *ngIf = "leisureList[1]" (click)="viewAuthor(leisureList[1].user)" class="author mb-3 d-block"><i class="bi bi-person" style="margin-right: 10px;"></i>{{leisureList[1].user}}</span>
                   <p class="mb-4 d-block">{{truncateString(leisureList[1].body, 150)}}..</p>
                 </div>
 
                 <div *ngIf = "leisureList[2]"  class="post-entry-1">
                   <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>{{leisureList[2].month + ' ' + leisureList[2].date + 'th ' + leisureList[2].year}}</span></div>
-                  <h2 class="mb-2"><a (click) = "nextPage(leisureList[2].postID)" *ngIf = "leisureList[2]">{{leisureList[2].title}}</a></h2>
+                  <h2 class="mb-2"><a (click) = "nextPage(leisureList[2].postID)" *ngIf = "leisureList[2]" style="cursor:pointer">{{leisureList[2].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(leisureList[2].user)" *ngIf = "leisureList[2]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{leisureList[2].user}}</span>
                 </div>
               </div>
@@ -634,7 +634,7 @@
                 <div *ngIf = "leisureList[3]"  class="post-entry-1">
                   <a (click) = "nextPage(leisureList[3].postID)"><img *ngIf="leisurePhotos[2]" [src]="leisurePhotos[2]" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>{{leisureList[3].month + ' ' + leisureList[3].date + 'th ' + leisureList[3].year}}</span></div>
-                  <h2 class="mb-2"><a (click) = "nextPage(leisureList[3].postID)" *ngIf = "leisureList[3]">{{leisureList[3].title}}</a></h2>
+                  <h2 class="mb-2"><a (click) = "nextPage(leisureList[3].postID)" *ngIf = "leisureList[3]" style="cursor:pointer">{{leisureList[3].title}}</a></h2>
                   <span class="author mb-3 d-block" (click)="viewAuthor(leisureList[3].user)" *ngIf = "leisureList[3]">{{leisureList[3].user}}</span>
                   <p class="mb-4 d-block">{{truncateString(leisureList[3].body, 150)}}..</p>
                 </div>
@@ -644,37 +644,37 @@
           <div class="col-md-3">
             <div *ngIf = "leisureList[4]"  class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>{{leisureList[4].month + ' ' + leisureList[4].date + 'th ' + leisureList[4].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(leisureList[4].postID)" *ngIf = "leisureList[4]">{{leisureList[4].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[4].postID)" *ngIf = "leisureList[4]" style="cursor:pointer">{{leisureList[4].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(leisureList[4].user)" *ngIf = "leisureList[4]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{leisureList[4].user}}</span>
             </div>
 
             <div *ngIf = "leisureList[5]"  class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>{{leisureList[5].month + ' ' + leisureList[5].date + 'th ' + leisureList[5].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(leisureList[5].postID)" *ngIf = "leisureList[5]">{{leisureList[5].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[5].postID)" *ngIf = "leisureList[5]" style="cursor:pointer">{{leisureList[5].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(leisureList[5].user)" *ngIf = "leisureList[5]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{leisureList[5].user}}</span>
             </div>
 
             <div *ngIf = "leisureList[6]"  class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>{{leisureList[6].month + ' ' + leisureList[6].date + 'th ' + leisureList[6].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(leisureList[6].postID)" *ngIf = "leisureList[6]">{{leisureList[6].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[6].postID)" *ngIf = "leisureList[6]" style="cursor:pointer">{{leisureList[6].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(leisureList[6].user)" *ngIf = "leisureList[6]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{leisureList[6].user}}</span>
             </div>
 
             <div *ngIf = "leisureList[7]"  class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>{{leisureList[7].month + ' ' + leisureList[7].date + 'th ' + leisureList[7].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(leisureList[7].postID)" *ngIf = "leisureList[7]">{{leisureList[7].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[7].postID)" *ngIf = "leisureList[7]" style="cursor:pointer">{{leisureList[7].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(leisureList[7].user)" *ngIf = "leisureList[7]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{leisureList[7].user}}</span>
             </div>
 
             <div *ngIf = "leisureList[8]"  class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>{{leisureList[8].month + ' ' + leisureList[8].date + 'th ' + leisureList[8].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(leisureList[8].postID)" *ngIf = "leisureList[8]">{{leisureList[8].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[8].postID)" *ngIf = "leisureList[8]" style="cursor:pointer">{{leisureList[8].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(leisureList[8].user)" *ngIf = "leisureList[8]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{leisureList[8].user}}</span>
             </div>
 
             <div *ngIf = "leisureList[9]"  class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">Entertainment</span> <span class="mx-1">&bullet;</span> <span>{{leisureList[9].month + ' ' + leisureList[9].date + 'th ' + leisureList[9].year}}</span></div>
-              <h2 class="mb-2"><a (click) = "nextPage(leisureList[9].postID)" *ngIf = "leisureList[9]">{{leisureList[9].title}}</a></h2>
+              <h2 class="mb-2"><a (click) = "nextPage(leisureList[9].postID)" *ngIf = "leisureList[9]" style="cursor:pointer">{{leisureList[9].title}}</a></h2>
               <span class="author mb-3 d-block" (click)="viewAuthor(leisureList[9].user)" *ngIf = "leisureList[9]"><i class="bi bi-person" style="margin-right: 10px;"></i>{{leisureList[9].user}}</span>
             </div>
           </div>

@@ -23,7 +23,7 @@
           </div> -->
           <div class="col-6 col-lg-2">
             <h3 class="footer-heading">Categories</h3>
-            <ul class="footer-links list-unstyled">
+            <ul class="footer-links list-unstyled" style="cursor:pointer">
               <li><a (click) = "nextPage('nature')"><i class="bi bi-chevron-right"></i> Nature</a></li>
               <li><a (click) = "nextPage('cultural')"><i class="bi bi-chevron-right"></i> Cultural</a></li>
               <li><a (click) = "nextPage('industrial')"><i class="bi bi-chevron-right"></i> Industrial</a></li>
@@ -39,7 +39,7 @@
           <div class="col-lg-4">
             <h3 class="footer-heading">Recent Posts</h3>
 
-            <ul class="footer-links footer-blog-entry list-unstyled">
+            <ul class="footer-links footer-blog-entry list-unstyled" style="cursor:pointer">
               <li *ngFor = "let post2 of recentPosts; let i = index">
                 <a *ngIf = "recentPosts" class="d-flex align-items-center">
                   <img *ngIf = "recentPhotos[i]" [src]="recentPhotos[i].imageUrl" alt="" class="img-fluid me-3" (click) = "singlePage(post2.postID)">

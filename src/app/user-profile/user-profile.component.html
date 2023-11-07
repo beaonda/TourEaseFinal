@@ -4,11 +4,37 @@
 <div class="header__wrapper">
     <header><button class="header_edit" *ngIf="showSettings"><i class="bi bi-camera"></i></button></header>
     <div class="cols__container">
+
+
+
+
+
+
       <div class="left__col">
         <div class="img__container">
             <img *ngIf = "user" [src]="user.profile_photo" alt="Kaila Guerrero" />
             <button  class="profile_edit" *ngIf="showSettings"><i class="bi bi-camera"></i></button> 
         </div>
+
+
+  <!--       <div class="post-meta">
+          <div class="caption-line32"></div>
+          <div class="post-caption">
+              <div class="caption-line22" style="margin-top: 37px;"></div>
+           
+            </div>
+    
+          <div class="post-placeholder1" style="margin-bottom: 20px;"></div>
+          <div class="post-caption">
+            <div class="caption-line" ></div>
+            <div class="caption-line" ></div>
+            <div class="caption-line" ></div>
+         
+          </div>
+        </div>  -->
+
+
+        
         <h2 *ngIf = "user">{{user.fname + ' ' + user.lname}}</h2>
         <p *ngIf = "user">@{{user.uname}}</p>
         <button *ngIf = "showSettings"id="follow-button">Save</button>
@@ -27,11 +53,6 @@
             <p *ngIf = "user">
                 {{user.bio}}
             </p>
-            <!-- <ul>
-                <li><i class="fab fa-twitter"></i></li>
-                <li><i class="fab fa-instagram"></i></li>
-                <li><i class="fab fa-facebook"></i></li>
-            </ul> -->
         </div>
     </div>
 
