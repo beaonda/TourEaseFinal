@@ -393,7 +393,7 @@
         
                     <div class="form-group">
                         <label for="photos">Photo</label>
-                        <button (click)="takePicture()" [(ngModel)]="photo" id="photos" name="photos">Choose Another Photo</button>
+                        <button (click)="takePicture()" [(ngModel)]="photo" class="buttonform" id="photos" name="photos">Choose Another Photo</button>
                         <img *ngIf = "chosenPic" [src] = "chosenPic" style="width: 100%;"/>
                     </div>
         

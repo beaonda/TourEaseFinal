@@ -44,6 +44,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LoadingComponent } from './components/loading/loading.component';
 import { SuspendedComponent } from './suspended/suspended.component';
 import { Confirm2Component } from './components/confirm2/confirm2.component';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { Confirm2Component } from './components/confirm2/confirm2.component';
     ConfirmationComponent,
     LoadingComponent,
     SuspendedComponent,
-    Confirm2Component
+    Confirm2Component,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

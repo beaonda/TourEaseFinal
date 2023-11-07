@@ -19,6 +19,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SuspendedComponent } from './suspended/suspended.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
@@ -48,7 +49,8 @@ const routes: Routes = [
       {path: 'settings/:uname', component:SettingsComponent},
       {path: 'suspended', component:SuspendedComponent},
       {path: 'new_post', component:NewPostComponent},
-      {path: 'new_post/:reviewId', component:NewPostComponent}
+      {path: 'new_post/:reviewId', component:NewPostComponent},
+      {path: 'search', component:SearchComponent}
     ])],
   exports: [RouterModule]
 })

@@ -12,6 +12,15 @@
     margin-top: 150px;
 }
 
+.btn{
+  background: #21757f;
+    border: 0;
+    padding: 10px 30px;
+    color: #fff;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
 .verlogo{
     max-width: 28%;
     margin-left: 99%;

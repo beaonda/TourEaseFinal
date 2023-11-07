@@ -369,7 +369,8 @@ nav ul li a.active {
   font-size: 16px; /* Font size */
   cursor: pointer;
   transition: background-color 0.3s ease; /* Smooth hover transition */
-  margin-top: 20px; /* Add margin to push the button down */
+  margin-top: 20px;
+  margin-right: 5px; /* Add margin to push the button down */
 }
 
 #follow-button:hover {

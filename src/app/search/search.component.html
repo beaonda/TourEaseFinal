@@ -4,10 +4,22 @@
     <section>
       <div class="container">
         <div class="row">
-          
-          <div class="col-md-9" data-aos="fade-up">
-            <h3 class="category-title">Category: {{this.category}}</h3>
+            <div class="form-group col-md-8">
+            
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search" style="margin-bottom: 5%;">
+                  </div>
+              </div>
+        </div>
+      
+        <div class="row">
 
+          <div class="col-md-9" data-aos="fade-up">
+            
+           
             <div *ngFor = "let post of postList; let i = index" class="d-md-flex post-entry-2 half">
               <a *ngIf = "post" (click)="nextPage(post.postID)" class="me-4 thumbnail">
                 <img [src]="photoList[i]" alt="" class="img-fluid">

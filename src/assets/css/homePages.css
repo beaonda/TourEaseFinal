@@ -1,4 +1,4 @@
-
+.rating{ display: flex; flex-direction: row-reverse;}
  
   .footer .footer-links li a {
     color: rgba(var(--color-white-rgb), 0.7);
