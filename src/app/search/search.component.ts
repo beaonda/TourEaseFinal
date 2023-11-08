@@ -22,6 +22,8 @@ export class SearchComponent {
     this.router.navigate(['/view', postID]);
   }
 
+  
+
   category:any;
   raw_categ:any;
 
@@ -121,6 +123,8 @@ export class SearchComponent {
       this.getDocs();
     });
   }
+
+  
 
   truncateString(inputString: string, maxLength: number): string {
     if (inputString.length <= maxLength) {
