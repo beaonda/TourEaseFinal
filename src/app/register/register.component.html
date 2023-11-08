@@ -80,7 +80,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="exact">Exact address <span style="color: red; margin-left: 5px;">*</span></label>
+                    <label for="exact">Exact address</label>
                     <input  autocomplete="off" class="form-control"  [(ngModel)]="exact_add" type="text" name="exact" id="exact"  placeholder="House no./ Lot no./ Street"/>
                 </div>
                 
@@ -108,6 +108,11 @@
                   <div class="sent-message">Your message has been sent. Thank you!</div>
                 </div>
                 <div class="text-center">
+                    <label style="margin-bottom: 10px;">
+                        <input type="checkbox" name="terms" required>
+                        By clicking submit you automatically <br> agree to the <a href="https://www.termsandconditionsgenerator.com/live.php?token=rJWIHsDElh96Z56bkJbICtVCvWUMcYYB&fbclid=IwAR04eQrxMjprk5N-IldTYyQqTJKdxfcmzvgGZldCAoIwlgQHb24F8Kin3Qc" target="_blank" style="color:#21757f"> Terms and Conditions</a> of TourEase.
+                    </label>
+                    <br>
                     <button (click)="checkUsername()" type="submit" class="submit" id="submit" style="margin-right: 20px">Submit</button>
                     <button (click)="reset()" class="submit" type="submit">Reset</button>
                 </div>
