@@ -18,13 +18,28 @@
         <div class="row">
 
           <div class="col-md-9" data-aos="fade-up">
-            <div class="dropdown" style="margin-bottom: 5%;">
-                <i class="bi bi-funnel filter-icon"></i>
-                <span class="filter-text">Filter</span>
-                <div class="dropdown-content">
+            <div class="row" style="margin-bottom: 5%;">
+              <div class="col-md-1">
+                <div class="dropdown">
+                  <i class="bi bi-funnel filter-icon"></i>
+                  <span class="filter-text">City</span>
+                  <div class="dropdown-content">
                     <a href="#">City</a>
                     <a href="#">Year</a>
+                  </div>
                 </div>
+              </div>
+            
+              <div class="col-md-1">
+                <div class="dropdown">
+                  <i class="bi bi-funnel filter-icon"></i>
+                  <span class="filter-text">Year</span>
+                  <div class="dropdown-content">
+                    <a href="#">100</a>
+                    <a href="#">Year</a>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <h3 class="category-title">Search Result:</h3>
@@ -50,14 +65,22 @@
 
               <div class="d-flex post-entry-2">
                 <a class="me-4 thumbnail thum">
-                    <i class="bi bi-person" style="font-size: 100px;"></i>
+                    <i class="bi bi-person" style="font-size: 70px;"></i>
                     <div class="user-info">
-                        <div class="post-meta"><span class="date">User Profile</span><span class="mx-1"></span></div>
+                        <div class="post-meta"><span class="date">User</span><span class="mx-1"></span></div>
                         <h3><a>Marie Kaila Guerrero</a></h3>
                         <p>@guerrerokai</p>
                     </div>
                 </a>
             </div>
+
+            <div class="d-flex post-entry-2">
+              <a class="me-4 thumbnail thum">
+                  <div class="user-info">
+                      <h3><a>No Results Found</a></h3>
+                  </div>
+              </a>
+          </div>
            
           <!--   <div *ngFor = "let post of postList; let i = index" class="d-md-flex post-entry-2 half">
               <a *ngIf = "post" (click)="nextPage(post.postID)" class="me-4 thumbnail">

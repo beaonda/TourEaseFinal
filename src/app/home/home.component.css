@@ -22,6 +22,10 @@
   top:300px;
 }
 
+.author{
+  cursor:pointer
+}
+
 
 .prev-button {
   left:20px
@@ -29,7 +33,7 @@
 }
 
 .next-button {
-  right:915px
+  right:668px
 
 }
 
@@ -71,6 +75,17 @@
   }
 }
 
+@media (min-width: 1025px){
+  .prev-button {
+    left:20px
+  
+  }
+  
+  .next-button {
+    right:915px
+  
+  }
+}
 /*  (e.g., larger tablets) */
 /* @media (min-width: 769px) and (max-width: 1024px) {
   .form-block {
