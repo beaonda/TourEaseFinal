@@ -166,7 +166,7 @@
   
   @media (max-width: 768px) {
     .post-entry-2.half .thumbnail {
-      flex: 0 0 100%;
+      flex: -1 0 100%;
       margin-bottom: 20px;
     }
   }

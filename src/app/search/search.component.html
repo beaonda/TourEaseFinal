@@ -10,7 +10,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="bi bi-search"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search" style="margin-bottom: 5%;">
+                    <input type="text" class="form-control" placeholder="Search" style="margin-bottom: 3%;">
                   </div>
               </div>
         </div>
@@ -18,9 +18,48 @@
         <div class="row">
 
           <div class="col-md-9" data-aos="fade-up">
-            
+            <div class="dropdown" style="margin-bottom: 5%;">
+                <i class="bi bi-funnel filter-icon"></i>
+                <span class="filter-text">Filter</span>
+                <div class="dropdown-content">
+                    <a href="#">City</a>
+                    <a href="#">Year</a>
+                </div>
+            </div>
+
+            <h3 class="category-title">Search Result:</h3>
+
+
+
+            <div  class="d-md-flex post-entry-2 half">
+                <a class="me-4 thumbnail">
+                  <img src="../../assets/img/bats.png" alt="" class="img-fluid">
+                </a>
+                <div>
+                  <div class="post-meta"><span class="date"></span>Nature<span class="mx-1">&bullet;</span>Nov 1st 2021 <span></span></div>
+                  <h3><a>The Amazing Mabini Batangas</a></h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at fringilla urna. Sed et condimentum libero, in eleifend est. Maecenas tincidunt quam a risus tempor congue. Vivamus vestibulum ultricies risus, vel lacinia dui consequat eu. Duis vehicula vitae arcu eu pharetra. Nam posuere scelerisque urna, non vestibulum justo tristique ut...</p>
+                  <div class="d-flex align-items-center author">
+                    <div class="photo"></div>
+                    <div class="name">
+                      <h3 class="m-0 p-0"><i class="bi bi-person" style="margin-right: 10px;"></i>guerrerokai</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex post-entry-2">
+                <a class="me-4 thumbnail thum">
+                    <i class="bi bi-person" style="font-size: 100px;"></i>
+                    <div class="user-info">
+                        <div class="post-meta"><span class="date">User Profile</span><span class="mx-1"></span></div>
+                        <h3><a>Marie Kaila Guerrero</a></h3>
+                        <p>@guerrerokai</p>
+                    </div>
+                </a>
+            </div>
            
-            <div *ngFor = "let post of postList; let i = index" class="d-md-flex post-entry-2 half">
+          <!--   <div *ngFor = "let post of postList; let i = index" class="d-md-flex post-entry-2 half">
               <a *ngIf = "post" (click)="nextPage(post.postID)" class="me-4 thumbnail">
                 <img [src]="photoList[i]" alt="" class="img-fluid">
               </a>
@@ -35,7 +74,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
 
             <div class="text-start py-4">
