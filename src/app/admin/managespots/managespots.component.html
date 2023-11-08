@@ -281,12 +281,12 @@
         
                     <div class="form-group">
                         <label for="photos">Photo</label>
-                        <button (click)="takePicture()" [(ngModel)]="photo" id="photos" name="photos">Choose Photo</button>
+                        <button (click)="takePicture()" [(ngModel)]="photo" class="buttonform" id="photos" name="photos">Choose Photo</button>
                         <img *ngIf = "chosenPic" [src] = "chosenPic" style="width: 100%;"/>
                     </div>
         
                     <div class="form-group">
-                        <button (click) = "uploadData()" type="submit" class="buttonform">Submit</button>
+                        <button (click) = "uploadData()" type="submit" class="buttonform" style="margin-right: 10px;">Submit</button>
                         <button (click) = "resetAdd()" class="buttonform">Reset</button>
                     </div>
                     
